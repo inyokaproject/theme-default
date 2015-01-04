@@ -56,31 +56,7 @@
       .activecol {width:5%;}
     }
   }
-
   &-article {
-    &:extend(.panel);
-    &:extend(.panel-default);
-
-    & > &-heading {
-      &:extend(.panel-heading);
-      &:extend(.panel-default > .panel-heading);
-
-      a {
-        &:extend(.panel-title > a);
-
-        text-decoration: underline;
-      }
-
-      .headerlink {
-        visibility: hidden;
-      }
-
-      & h3:hover .headerlink {
-        visibility: visible;
-      }
-    }
-    & > &-body {
-      &:extend(.panel-body);
-    }
+    .article();
   }
 }

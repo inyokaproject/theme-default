@@ -61,11 +61,11 @@
         </div>
         {% if can_moderate %}
           <div class="pull-right">
-            <button type="button" class="stuff-button" data-toggle="dropdown">
+            <button type="button" class="staff-button" data-toggle="dropdown">
               {% trans %}Staff{% endtrans %}
               <span class="fa_icon-caret-down"></span>
             </button>
-            <ul class="stuff-button-menu">
+            <ul class="staff-button-menu">
               <li><a href="#">{% trans %}Edit{% endtrans %}</a></li>
               {% if post.hidden %}
                 <li><a href="#">{% trans %}Restore{% endtrans %}</a></li>

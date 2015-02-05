@@ -4,7 +4,7 @@
 
   basic template on which all used templates rely.
 
-  :copyright: (c) 2007-2014 by the Inyoka Team, see AUTHORS for more details.
+  :copyright: (c) 2007-2015 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 {% import 'macros.html' as macros %}
@@ -41,7 +41,7 @@
       </div>
       <div class="header-collapsing">
         <ul>
-          {# TODO: Apps should register themself, and the template should receive some list of active apps #} 
+          {# TODO: Apps should register themself, and the template should receive some list of active apps #}
           {% for app in ('portal', 'forum', 'wiki', 'ikhaya', 'planet') %}
           <li class="{{ app }}{% if app == active_app %} active{% endif %}">
             <a href="{{ href(app) }}">{{ app|capitalize }}</a>
@@ -126,7 +126,7 @@
     </div>
   </div>
   {% endblock %}
-  
+
   {% block footer %}
   <nav class="footer" id="main-footer">
     <div class="container">

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for more details.
 #}
 {%- extends 'portal/base.html' %}
+{% import 'macros.html' as macros %}
 
 {% block breadcrumb %}
   {{ super() }}
@@ -77,10 +78,8 @@
       <tr>
         <th>{% trans %}Name{% endtrans %}</th>
         <td>{{ user.username|e }}</td>
-        <td rowspan="6">
-          <img class="col-md-12" src="{{ user.avatar_url|e }}"
-               alt="{% trans user=user.username|e %}Avatar of {{ user }}{% endtrans %}"
-               title="{% trans user=user.username|e %}Avatar of {{ user }}{% endtrans %}" />
+        <td rowspan="6" class="portal-usericon">
+          {{ macros.add_user_avatar(user) }}
         </td>
       </tr>
       <tr>

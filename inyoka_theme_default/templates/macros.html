@@ -144,5 +144,14 @@
   {%- if not inline %}
     </dl>
   {%- endif %}
-  
 {%- endmacro %}
+
+{% macro add_user_avatar(user) %}
+  {% if user.avatar_url %}
+    <img src="{{ user.avatar_url|e }}"
+         alt="{% trans user=user.username|e %}Avatar of {{ user }}{% endtrans %}"
+         title="{% trans user=user.username|e %}Avatar of {{ user }}{% endtrans %}" />
+  {% else %}
+    <span class="fa_icon-user" title="{% trans user=user.username|e %}Avatar of {{ user }}{% endtrans %}"></span>
+  {% endif %}
+{% endmacro %}

@@ -8,6 +8,7 @@
     :license: BSD, see LICENSE for more details.
 #}
 {%- extends 'portal/user_admin.html' %}
+{% import 'macros.html' as macros %}
 
 {% block breadcrumb %}
   {{ super() }}
@@ -34,7 +35,9 @@
       <h4>{% trans %}Avatar settings{% endtrans %}:</h4>
     </div>
     <dt>{{ form.avatar.label_tag() }}:</dt>
-    <dd><img class="usercp_avatar" src="{{ user.avatar_url }}" alt="Avatar" /></dd>
+    {% if user.has_avatar %}
+      <dd>{{ macros.add_user_avatar(user) }}</dd>
+    {% endif %}
     <dd>{{ form.avatar }}</dd>
     <dd class="note">{% trans height=avatar_height, width=avatar_width -%}
       (Will be scaled to {{ width }}x{{ height }})

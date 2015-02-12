@@ -1,3 +1,10 @@
-*.py[cod]
+*.css
 *.egg-info
+*.min.js
+*.py[cod]
+
 dist
+node_modules
+
+!inyoka_theme_default/static/js/bootstrap.min.js
+!inyoka_theme_default/static/js/jquery*.min.js

@@ -12,7 +12,6 @@
 <!DOCTYPE html>
 <html>
 {% block head %}
-
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
@@ -21,12 +20,11 @@
 
   <title>Inyoka</title>
 
-  <link href="{{ href('static', 'less', 'style.less') }}" rel="stylesheet/less" type="text/css" />
-  <script type="text/javascript" src="{{ href('static', 'js/less.min.js') }}"></script>
-
+  <link href="{{ href('static', 'style', 'style.css') }}" rel="stylesheet" type="text/css" />
 </head>
-{% endblock %} {% block body %}
+{% endblock %}
 
+{% block body %}
 <body class="{{ active_app }}" role="document">
 
   {% block header %}

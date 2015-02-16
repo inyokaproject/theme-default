@@ -1,0 +1,120 @@
+.article {
+  &:extend(.panel);
+  &:extend(.panel-default);
+
+  &-muted {
+    &:extend(.panel-info);
+
+    & > div:first-child {
+      &:extend(.panel-info > .panel-heading);
+    }
+  }
+  .headerlink {
+    visibility: hidden;
+    margin-left: 3px;
+  }
+  h2, h3 {
+    &:hover .headerlink {
+      visibility: visible;
+    }
+    > a {
+      color: inherit;
+      font-size: inherit;
+    }
+  }
+  & > &-heading {
+    &:extend(.panel-heading);
+    &:extend(.panel-default > .panel-heading);
+    display: table;
+    width: 100%;
+
+    .meta {
+      &:extend(.small);
+
+      color: @gray-light;
+    }
+  }
+  & > &-body {
+    &:extend(.panel-body);
+
+    .box {
+      &:extend(.panel);
+      &:extend(.panel-info);
+
+      h3 {
+        margin: 0;
+        padding: 5px;
+        &:extend(.panel-info > .panel-heading);
+      }
+
+      .contents {
+        padding: 5px;
+      }
+    }
+
+    & > .intro {
+      &:extend(.page-header);
+
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size:  ceil((@font-size-base * 1.1));
+
+      > p {
+        margin: 0 0 2px;
+      }
+    }
+    & > .text {
+      .underline {
+        text-decoration: underline;
+      }
+    }
+    h2, h3 {
+      &:extend(.page-header);
+    }
+    li > p {
+      margin: 0;
+    }
+  }
+  & > &-footer {
+    &:extend(.panel-footer);
+    ul {
+      margin: 0;
+    }
+  }
+  table {
+    &:extend(.table);
+    &:extend(.table-bordered);
+    width: auto;
+
+    > thead, > tbody, > tfoot {
+      > tr {
+        &.titel {
+          &:extend(.panel-default);
+          &:extend(.panel-default > .panel-heading);
+        }
+        &.kopf > td {
+          &:extend(.table >  thead > tr > th );
+        }
+        > th,
+        > td {
+          &:extend(.table > thead > tr > td );
+        }
+      }
+    }
+    .highlight {
+        &:extend(.table-striped > tbody > tr:nth-child(odd) > td);
+    }
+  }
+  .toc {
+    &:extend(.panel);
+    &:extend(.panel-default);
+
+    & > .head {
+      &:extend(.panel-default > .panel-heading);
+      &:extend(.h3);
+
+      margin: 0;
+      padding: 5px;
+    }
+  }
+}

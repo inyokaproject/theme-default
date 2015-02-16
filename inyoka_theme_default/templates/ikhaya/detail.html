@@ -39,8 +39,8 @@
 {% endblock %}
 
 {% block content %}
-  <article>
-    <header>
+  <article class="ikhaya-article">
+    <header class="ikhaya-article-heading">
       <h3>{{ article.subject }}</h3>
       <ul class="list-inline meta">
         <li class="author">
@@ -63,9 +63,10 @@
         </li>
       </ul>
     </header>
-    <div class="clearfix"></div>
-    <div class="intro lead">{{ article.rendered_intro }}</div>
-    <div class="text">{{ article.rendered_text }}</div>
+    <div class="ikhaya-article-body">
+      <div class="intro">{{ article.rendered_intro }}</div>
+      <div class="text">{{ article.rendered_text }}</div>
+    </div>
   </article>
   <div class="button-group visible-xs">
     {% if is_subscribed %}
@@ -81,8 +82,6 @@
       {% trans %}Report misspelling{% endtrans %}
     </a>
   </div>
-  <div class="clearfix"></div>
-  <hr />
   <h3>{% trans %}Comments{% endtrans %}</h3>
   {% for comment in comments %}
     {% if not comment.deleted or can_admin_comment %}

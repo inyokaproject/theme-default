@@ -41,9 +41,13 @@
               <div class="planet-article {% if article.hidden %}planet-article-muted{% endif %}">
                 <div class="planet-article-heading">
                   <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-2 blog-icon-container">
                       <a href="{{ article.blog|url|e }}">
-                        <img src="{{ article.blog.icon_url|e }}" alt="" />
+                        {% if article.blog.icon %}
+                          <img src="{{ article.blog.icon_url|e }}" alt="" />
+                        {% else %}
+                          <span class="fa_icon-book"></span>
+                        {% endif %}
                       </a>
                     </div>
                     <div class="col-md-10">
@@ -100,7 +104,7 @@
             </article>
           {%- endfor %}
         </div>
-        {% set article_index = article_index + day.articles|length %}      
+        {% set article_index = article_index + day.articles|length %}
       {%- endfor %}
     </div>
     {{ rendered_pagination }}

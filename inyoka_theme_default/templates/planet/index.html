@@ -40,40 +40,38 @@
             <article id="article_{{ article_index + loop.index0 }}">
               <div class="planet-article {% if article.hidden %}planet-article-muted{% endif %}">
                 <div class="planet-article-heading">
-                  <div class="row">
-                    <div class="col-md-2 blog-icon-container">
-                      <a href="{{ article.blog|url|e }}">
-                        {% if article.blog.icon %}
-                          <img src="{{ article.blog.icon_url|e }}" alt="" />
-                        {% else %}
-                          <span class="fa_icon-book"></span>
-                        {% endif %}
-                      </a>
+                  <div class="col-md-2 blog-icon-container">
+                    <a href="{{ article.blog|url|e }}">
+                      {% if article.blog.icon %}
+                        <img src="{{ article.blog.icon_url|e }}" alt="" />
+                      {% else %}
+                        <span class="fa_icon-book"></span>
+                      {% endif %}
+                    </a>
+                  </div>
+                  <div class="col-md-10">
+                    <div class="pull-left meta">
+                      <a href="{{ article.blog|url|e }}">{{ article.blog.name|e }}</a>
+                      {{ article.pub_date|datetime }}
                     </div>
-                    <div class="col-md-10">
-                      <div class="pull-left meta">
-                        <a href="{{ article.blog|url|e }}">{{ article.blog.name|e }}</a>
-                        {{ article.pub_date|datetime }}
-                      </div>
-                      <div class="pull-right meta">
-                        {%- if not (dayloop.first and loop.first) %}
-                        <a href="#article_{{ article_index + loop.index0 - 1 }}">{% trans %}« Previous{% endtrans %}</a>
-                        {%- endif %}
+                    <div class="pull-right meta">
+                      {%- if not (dayloop.first and loop.first) %}
+                      <a href="#article_{{ article_index + loop.index0 - 1 }}">{% trans %}« Previous{% endtrans %}</a>
+                      {%- endif %}
 
-                        {%- if not (dayloop.first and loop.first) and not (dayloop.last and loop.last) %}
-                        <span>&#448;</span>
-                        {%- endif %}
+                      {%- if not (dayloop.first and loop.first) and not (dayloop.last and loop.last) %}
+                      <span>&#448;</span>
+                      {%- endif %}
 
-                        {%- if not (dayloop.last and loop.last) %}
-                        <a href="#article_{{ article_index + loop.index0 + 1 }}">{% trans %}Next »{% endtrans %}</a>
-                        {%- endif %}
-                      </div>
-                      <div class="clearfix"></div>
-                      <h3>
-                        <a href="{{ article|url|e }}">{{ article.title }}</a>
-                        <a class="headerlink" href="#article_{{ article_index + loop.index0 }}">¶</a>
-                      </h3>
+                      {%- if not (dayloop.last and loop.last) %}
+                      <a href="#article_{{ article_index + loop.index0 + 1 }}">{% trans %}Next »{% endtrans %}</a>
+                      {%- endif %}
                     </div>
+                    <div class="clearfix"></div>
+                    <h3>
+                      <a href="{{ article|url|e }}">{{ article.title }}</a>
+                      <a class="headerlink" href="#article_{{ article_index + loop.index0 }}">¶</a>
+                    </h3>
                   </div>
                 </div>
                 <div class="planet-article-body">

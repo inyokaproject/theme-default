@@ -1,3 +1,15 @@
+{#
+  wiki/missing_page.html
+  ~~~~~~~~~~~~~~~~~~~~~~
+
+  This page is displayed if a wiki page does not exist yet, but
+  was requested. We do not show a normal wiki page. Thus, we don't hit
+  the database.
+
+  :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+  :license: BSD, see LICENSE for more details.
+#}
+
 {% extends 'wiki/base.html' %}
 
 {% block content %}

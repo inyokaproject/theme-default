@@ -51,7 +51,11 @@
           {{ blog.latest_update|datetime if blog.latest_update else _('No entry') }}
         </td>
         <td data-title="{{ ('Active') }}">
-          <img src="{{ href('static', 'img', blog.active and 'check.png' or 'hide.png') }}" />
+          {% if blog.active %}
+            <span class="fa_icon-check"></span>
+          {% else %}
+            <span class="fa_icon-times"></span>
+          {% endif %}
         </td>
       </tr>
     {%- endfor %}

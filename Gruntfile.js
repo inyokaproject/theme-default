@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     uglify: {
       options: {
         banner: '/**\n<%= banner %>',
-        compress: true,
+        compress: {},
       },
       dist: {
         expand: true,
@@ -54,7 +54,7 @@ module.exports = function(grunt) {
     watch: {
       options: {
         atBegin: true
-      },  
+      },
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']

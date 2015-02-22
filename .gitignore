@@ -5,6 +5,7 @@
 
 dist
 node_modules
+bower_components
 
-!inyoka_theme_default/static/js/bootstrap.min.js
-!inyoka_theme_default/static/js/jquery*.min.js
+inyoka_theme_default/static/fonts
+inyoka_theme_default/static/js/complete.js

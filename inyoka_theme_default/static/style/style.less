@@ -9,11 +9,15 @@
  * :license: BSD, see LICENSE for more details.
  */
 
+// Path to bower components
+// Mind: no trailing slash at the end of each @path-variable.
+@bower: "../../../bower_components";
+
 //----------------------------------------------------
 // Load Bootstrap Style
 //----------------------------------------------------
 
-@bootstrap: "bootstrap"; // path to bootstrap library
+@bootstrap: "@{bower}/bootstrap/less";
 
 // Core variables and mixins
 @import "@{bootstrap}/variables.less";
@@ -69,9 +73,14 @@
 // Load Font Awesome
 //----------------------------------------------------
 
-@font-awesome: "font-awesome-4.2.0";
+@font-awesome: "@{bower}/fontawesome/less";
 
 @import "@{font-awesome}/variables.less";
+
+// reset default variables
+@fa-css-prefix: fa_icon;
+@fa-font-path: "../fonts";
+
 @import (reference) "@{font-awesome}/mixins.less";
 @import "@{font-awesome}/path.less";
 @import "@{font-awesome}/icons.less";

@@ -133,10 +133,9 @@
   </nav>
   {% endblock %}
 
-  <script src="{{ href('static', 'js', 'jquery-2.1.1.min.js') }}"></script>
-  <script src="{{ href('static', 'js', 'bootstrap.min.js') }}"></script>
-  <script src="{{ href('static', 'js', 'smoothscrolling.js') }}"></script>
-  <script src="{{ href('static', 'js', 'base.js') }}"></script>
+  {% set extension = '.js' if SETTINGS.DEBUG else '.min.js' %}
+  <script src="{{ href('static', 'js', 'complete' + extension) }}"></script>
+
   {% block scripts %} {% endblock %}
 </body>
 {% endblock %}

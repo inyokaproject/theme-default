@@ -21,9 +21,10 @@ On development systems:
         └── maybe another-theme
 
 2. Switch into the repository: ``cd theme-default``
-3. Install as a development package: ``python setup.py develop``
-4. Run ``npm install`` to install *Grunt*
-5. Run ``./node_modules/grunt-cli/bin/grunt watch`` to build all static files
+3. Activate source ``source ~/.venvs/inyoka/bin/activate``
+4. Install as a development package: ``python setup.py develop``
+5. Run ``npm install`` to install *Grunt*
+6. Run ``./node_modules/grunt-cli/bin/grunt watch`` to build all static files
    and watch for file changes on the CSS / JS files
 
 On Production

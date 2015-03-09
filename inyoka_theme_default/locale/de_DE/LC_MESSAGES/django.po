@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  Inyoka\n"
 "Report-Msgid-Bugs-To: http://trac.inyokaproject.org/\n"
-"POT-Creation-Date: 2015-01-04 21:05+0100\n"
+"POT-Creation-Date: 2015-03-09 09:42+0100\n"
 "PO-Revision-Date: 2012-11-03 11:11+0000\n"
 "Last-Translator: Markus Holtermann <inyoka@markusholtermann.eu>\n"
 "Language-Team: German (Germany) "
@@ -19,38 +19,33 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:56
+#: inyoka_theme_default/templates/base.html:52
 msgid "My profile"
 msgstr "Mein Profil anzeigen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:59
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:61
+#: inyoka_theme_default/templates/base.html:55
+#: inyoka_theme_default/templates/base.html:57
 msgid "Logout"
 msgstr "Abmelden"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:65
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:67
+#: inyoka_theme_default/templates/base.html:61
+#: inyoka_theme_default/templates/base.html:63
 msgid "Control panel"
 msgstr "Kontrollzentrum"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:71
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:73
+#: inyoka_theme_default/templates/base.html:67
+#: inyoka_theme_default/templates/base.html:69
 msgid "Messages"
 msgstr "Private Nachrichten"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:78
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:80
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/login.html:5
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/login.html:9
+#: inyoka_theme_default/templates/base.html:74
+#: inyoka_theme_default/templates/base.html:76
+#: inyoka_theme_default/templates/portal/login.html:15
+#: inyoka_theme_default/templates/portal/login.html:19
 msgid "Login"
 msgstr "Anmelden"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:85
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:87
-msgid "Search"
-msgstr "Suche"
-
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/base.html:136
+#: inyoka_theme_default/templates/base.html:126
 #, python-format
 msgid ""
 "\n"
@@ -58,65 +53,72 @@ msgid ""
 "        "
 msgstr "Powered by <a href=\"%(link)s\">Inyoka</a>"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/macros.html:24
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:65
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:108
+#: inyoka_theme_default/templates/macros.html:24
+#: inyoka_theme_default/templates/forum/topic.html:77
+#: inyoka_theme_default/templates/ikhaya/detail.html:116
 msgid "Staff"
 msgstr ""
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/edit.html:10
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:59
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:69
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:102
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:112
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_admin.html:20
+#: inyoka_theme_default/templates/macros.html:152
+#: inyoka_theme_default/templates/macros.html:153
+#: inyoka_theme_default/templates/macros.html:155
+#, python-format
+msgid "Avatar of %(user)s"
+msgstr "Avatar von %(user)s"
+
+#: inyoka_theme_default/templates/forum/edit.html:21
+#: inyoka_theme_default/templates/forum/topic.html:71
+#: inyoka_theme_default/templates/forum/topic.html:81
+#: inyoka_theme_default/templates/ikhaya/detail.html:110
+#: inyoka_theme_default/templates/ikhaya/detail.html:120
+#: inyoka_theme_default/templates/portal/user_admin.html:20
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/forum.html:18
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:18
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:88
+#: inyoka_theme_default/templates/forum/forum.html:27
+#: inyoka_theme_default/templates/forum/topic.html:30
+#: inyoka_theme_default/templates/forum/topic.html:100
 msgid "Unsubscribe"
 msgstr "Abbestellen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/forum.html:20
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:20
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:92
+#: inyoka_theme_default/templates/forum/forum.html:29
+#: inyoka_theme_default/templates/forum/topic.html:32
+#: inyoka_theme_default/templates/forum/topic.html:104
 msgid "Subscribe"
 msgstr "Abonnieren"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/forum.html:22
+#: inyoka_theme_default/templates/forum/forum.html:31
 msgid "New topic"
 msgstr "Neues Thema"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/forum.html:23
+#: inyoka_theme_default/templates/forum/forum.html:32
 msgid "Mark as read"
 msgstr "Als gelesen markieren"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/forum.html:34
+#: inyoka_theme_default/templates/forum/forum.html:43
 msgid "Subforums"
 msgstr "Unterforen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/forum.html:51
+#: inyoka_theme_default/templates/forum/forum.html:60
 msgid "Topics"
 msgstr "Themen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/forum.html:60
+#: inyoka_theme_default/templates/forum/forum.html:69
 msgid "Sticky:"
 msgstr "Wichtig:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/forum.html:61
+#: inyoka_theme_default/templates/forum/forum.html:70
 msgid "Poll:"
 msgstr "Umfrage:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/forum.html:64
+#: inyoka_theme_default/templates/forum/forum.html:73
 msgid ""
 "\n"
 "                  Created on:\n"
 "                "
 msgstr "Erstellt:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/forum.html:77
+#: inyoka_theme_default/templates/forum/forum.html:86
 #, python-format
 msgid ""
 "\n"
@@ -124,89 +126,89 @@ msgid ""
 "                "
 msgstr "Letzter Beitrag von <a href=\"%(link)s\">%(author)s</a>"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/forum.html:84
+#: inyoka_theme_default/templates/forum/forum.html:93
 msgid ""
 "\n"
 "                  Last post:\n"
 "                "
 msgstr "Letzter Beitrag"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:14
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:86
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:98
+#: inyoka_theme_default/templates/forum/topic.html:26
+#: inyoka_theme_default/templates/forum/topic.html:98
+#: inyoka_theme_default/templates/ikhaya/detail.html:106
 msgid "Reply"
 msgstr "Antworten"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:25
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:96
+#: inyoka_theme_default/templates/forum/topic.html:37
+#: inyoka_theme_default/templates/forum/topic.html:108
 msgid "Mark as unsolved"
 msgstr "Als ungelöst markieren"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:27
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:99
+#: inyoka_theme_default/templates/forum/topic.html:39
+#: inyoka_theme_default/templates/forum/topic.html:111
 msgid "Mark as solved"
 msgstr "Als gelöst markieren"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:30
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:104
+#: inyoka_theme_default/templates/forum/topic.html:42
+#: inyoka_theme_default/templates/forum/topic.html:116
 msgid "Report"
 msgstr "Melden"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:53
+#: inyoka_theme_default/templates/forum/topic.html:65
 msgid "The topic is locked"
 msgstr "Das Thema wurde gesperrt"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:55
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:76
+#: inyoka_theme_default/templates/forum/topic.html:67
+#: inyoka_theme_default/templates/forum/topic.html:88
 msgid "Quote"
 msgstr "Zitieren"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:71
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:114
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/hide_entry.html:23
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/index.html:90
+#: inyoka_theme_default/templates/forum/topic.html:83
+#: inyoka_theme_default/templates/ikhaya/detail.html:122
+#: inyoka_theme_default/templates/planet/hide_entry.html:23
+#: inyoka_theme_default/templates/planet/index.html:93
 msgid "Restore"
 msgstr "Wiederherstellen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:73
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:116
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/hide_entry.html:25
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/index.html:92
+#: inyoka_theme_default/templates/forum/topic.html:85
+#: inyoka_theme_default/templates/ikhaya/detail.html:124
+#: inyoka_theme_default/templates/planet/hide_entry.html:25
+#: inyoka_theme_default/templates/planet/index.html:95
 msgid "Hide"
 msgstr "Verbergen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:91
+#: inyoka_theme_default/templates/forum/topic.html:103
 msgid "Get notified as soon someone replies to this topic"
 msgstr ""
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/forum/topic.html:102
+#: inyoka_theme_default/templates/forum/topic.html:114
 msgid "Report this topic if you think it needs moderators attention"
 msgstr ""
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/base.html:6
+#: inyoka_theme_default/templates/ikhaya/base.html:15
 msgid "News"
 msgstr "Nachrichten"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:15
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:64
+#: inyoka_theme_default/templates/ikhaya/detail.html:24
+#: inyoka_theme_default/templates/ikhaya/detail.html:74
 msgid "Unsubscribe comments"
 msgstr "Kommentare abbestellen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:17
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:68
+#: inyoka_theme_default/templates/ikhaya/detail.html:26
+#: inyoka_theme_default/templates/ikhaya/detail.html:78
 msgid "Subscribe comments"
 msgstr "Kommentare abonnieren"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:21
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:72
+#: inyoka_theme_default/templates/ikhaya/detail.html:30
+#: inyoka_theme_default/templates/ikhaya/detail.html:82
 msgid "Report misspelling"
 msgstr "Rechtschreibfehler melden"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:26
+#: inyoka_theme_default/templates/ikhaya/detail.html:35
 msgid "Edit article"
 msgstr "Artikel bearbeiten"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:38
+#: inyoka_theme_default/templates/ikhaya/detail.html:47
 #, python-format
 msgid ""
 "\n"
@@ -214,26 +216,26 @@ msgid ""
 "          "
 msgstr "Veröffentlicht von <a href=\"%(link)s\">%(author)s</a>"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:47
+#: inyoka_theme_default/templates/ikhaya/detail.html:56
 msgid ""
 "Last\n"
 "              update:"
 msgstr ""
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:52
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/index.html:38
+#: inyoka_theme_default/templates/ikhaya/detail.html:61
+#: inyoka_theme_default/templates/ikhaya/index.html:51
 msgid "Category:"
 msgstr "Kategorie:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/detail.html:77
+#: inyoka_theme_default/templates/ikhaya/detail.html:85
 msgid "Comments"
 msgstr "Kommentare"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/index.html:23
+#: inyoka_theme_default/templates/ikhaya/index.html:33
 msgid "This article is not visible for regular users"
 msgstr "Dieser Artikel ist für reguläre Benutzer unsichtbar."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/index.html:42
+#: inyoka_theme_default/templates/ikhaya/index.html:55
 #, python-format
 msgid ""
 "\n"
@@ -246,20 +248,20 @@ msgid_plural ""
 msgstr[0] "%(count)s Kommentar"
 msgstr[1] "%(count)s Kommentare"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/ikhaya/index.html:51
+#: inyoka_theme_default/templates/ikhaya/index.html:64
 msgid "Last update:"
 msgstr "Letzte Aktualisierung:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/add.html:17
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/base.html:23
+#: inyoka_theme_default/templates/pastebin/add.html:17
+#: inyoka_theme_default/templates/pastebin/base.html:23
 msgid "New paste"
 msgstr "Neuer Eintrag"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/add.html:24
+#: inyoka_theme_default/templates/pastebin/add.html:24
 msgid "About:"
 msgstr "Funktion:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/add.html:25
+#: inyoka_theme_default/templates/pastebin/add.html:25
 msgid ""
 "This is a pastebin where you can save error messages, logs, configuration"
 " files or source codes to keep threads or IRC channels clean. To do this,"
@@ -272,31 +274,31 @@ msgstr ""
 " Text in das Textfeld und wählst die passende Sprache aus. Dann kopierst "
 "du die URL in das Thema bzw. den Kanal."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/add.html:33
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/blog_edit.html:33
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/suggest.html:37
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_groups.html:60
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_password.html:27
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_privileges.html:58
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_profile.html:58
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_settings.html:37
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_status.html:58
+#: inyoka_theme_default/templates/pastebin/add.html:33
+#: inyoka_theme_default/templates/planet/blog_edit.html:33
+#: inyoka_theme_default/templates/planet/suggest.html:37
+#: inyoka_theme_default/templates/portal/user_edit_groups.html:60
+#: inyoka_theme_default/templates/portal/user_edit_password.html:27
+#: inyoka_theme_default/templates/portal/user_edit_privileges.html:58
+#: inyoka_theme_default/templates/portal/user_edit_profile.html:61
+#: inyoka_theme_default/templates/portal/user_edit_settings.html:37
+#: inyoka_theme_default/templates/portal/user_edit_status.html:58
 msgid "Submit"
 msgstr "Speichern"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/base.html:15
+#: inyoka_theme_default/templates/pastebin/base.html:15
 msgid "Pastebin"
 msgstr "Ablage"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/base.html:24
+#: inyoka_theme_default/templates/pastebin/base.html:24
 msgid "Browse pastes"
 msgstr "Einträge durchstöbern"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/browse.html:15
+#: inyoka_theme_default/templates/pastebin/browse.html:15
 msgid "Entries"
 msgstr "Einträge"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/browse.html:24
+#: inyoka_theme_default/templates/pastebin/browse.html:24
 #, python-format
 msgid ""
 "<a href=\"%(entry_link)s\">%(title)s</a> by <a "
@@ -305,164 +307,164 @@ msgstr ""
 "<a href=\"%(entry_link)s\">%(title)s</a> von <a "
 "href=\"%(author_link)s\">%(author)s</a>"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/browse.html:38
+#: inyoka_theme_default/templates/pastebin/browse.html:38
 msgid "No pastes were created yet."
 msgstr "Es wurden noch keine Einträge erstellt."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/delete_entry.html:16
+#: inyoka_theme_default/templates/pastebin/delete_entry.html:16
 #, python-format
 msgid "Do you really want to delete the entry <a href=\"%(link)s\">%(entry)s</a>?"
 msgstr ""
 "Möchtest du den Eintrag <a href=\"%(link)s\">%(entry)s</a> wirklich "
 "löschen?"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/delete_entry.html:21
+#: inyoka_theme_default/templates/pastebin/delete_entry.html:21
 msgid "Delete"
 msgstr "Löschen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/delete_entry.html:22
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/hide_entry.html:28
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/suggest.html:38
+#: inyoka_theme_default/templates/pastebin/delete_entry.html:22
+#: inyoka_theme_default/templates/planet/hide_entry.html:28
+#: inyoka_theme_default/templates/planet/suggest.html:38
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/display.html:24
+#: inyoka_theme_default/templates/pastebin/display.html:24
 msgid "Actions:"
 msgstr "Aktionen:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/display.html:25
+#: inyoka_theme_default/templates/pastebin/display.html:25
 msgid "Display entry as raw text"
 msgstr "Zeige Eintrag als Rohtext an"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/display.html:30
+#: inyoka_theme_default/templates/pastebin/display.html:30
 msgid "Delete entry"
 msgstr "Eintrag löschen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/display.html:37
+#: inyoka_theme_default/templates/pastebin/display.html:37
 msgid "Title:"
 msgstr "Titel:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/display.html:40
+#: inyoka_theme_default/templates/pastebin/display.html:40
 msgid "Author:"
 msgstr "Autor:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/display.html:43
+#: inyoka_theme_default/templates/pastebin/display.html:43
 msgid "Date:"
 msgstr "Datum:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/display.html:46
+#: inyoka_theme_default/templates/pastebin/display.html:46
 msgid "Pages that are referencing this entry:"
 msgstr "Seiten, die auf diesen Eintrag verweisen:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/pastebin/display.html:53
+#: inyoka_theme_default/templates/pastebin/display.html:53
 msgid "Code:"
 msgstr "Code:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/base.html:14
+#: inyoka_theme_default/templates/planet/base.html:14
 msgid "Planet"
 msgstr "Planet"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/base.html:23
+#: inyoka_theme_default/templates/planet/base.html:23
 msgid "Export blogs"
 msgstr "Blogs exportieren"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/base.html:29
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/blog_list.html:20
+#: inyoka_theme_default/templates/planet/base.html:29
+#: inyoka_theme_default/templates/planet/blog_list.html:20
 msgid "Blogs"
 msgstr "Blogs"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/base.html:45
+#: inyoka_theme_default/templates/planet/base.html:45
 msgid "new blog"
 msgstr "Neues Blog hinzufügen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/base.html:46
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/blog_list.html:16
+#: inyoka_theme_default/templates/planet/base.html:46
+#: inyoka_theme_default/templates/planet/blog_list.html:16
 msgid "Bloglist"
 msgstr "Blogliste"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/blog_edit.html:19
+#: inyoka_theme_default/templates/planet/blog_edit.html:19
 msgid "Add blog"
 msgstr "Blog hinzufügen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/blog_list.html:21
+#: inyoka_theme_default/templates/planet/blog_list.html:21
 msgid "Add new blog"
 msgstr "Neues Blog hinzufügen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/blog_list.html:31
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:78
+#: inyoka_theme_default/templates/planet/blog_list.html:31
+#: inyoka_theme_default/templates/portal/profile.html:79
 msgid "Name"
 msgstr "Name"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/blog_list.html:32
+#: inyoka_theme_default/templates/planet/blog_list.html:32
 msgid "User"
 msgstr "Benutzer"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/blog_list.html:33
+#: inyoka_theme_default/templates/planet/blog_list.html:33
 msgid "Latest update"
 msgstr "Letzte Aktualisierung"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/blog_list.html:34
+#: inyoka_theme_default/templates/planet/blog_list.html:34
 msgid "Active"
 msgstr "Aktiv"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/blog_list.html:51
+#: inyoka_theme_default/templates/planet/blog_list.html:51
 msgid "No entry"
 msgstr "Kein Eintrag"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/hide_entry.html:15
+#: inyoka_theme_default/templates/planet/hide_entry.html:15
 msgid "Are you sure you want to restore the entry?"
 msgstr "Bist du sicher, dass du diesen Eintrag wiederherstellen möchtest?"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/hide_entry.html:17
+#: inyoka_theme_default/templates/planet/hide_entry.html:17
 msgid "Are you sure you want to hide the entry?"
 msgstr "Bist du sicher, dass du diesen Eintrag verbergen möchtest?"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/index.html:15
+#: inyoka_theme_default/templates/planet/index.html:15
 msgid "Planet - Captions"
 msgstr "Planet - Nur Überschriften"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/index.html:16
+#: inyoka_theme_default/templates/planet/index.html:16
 msgid "Planet - Teaser"
 msgstr "Planet - Nur Einleitung"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/index.html:17
+#: inyoka_theme_default/templates/planet/index.html:17
 msgid "Planet - Full article"
 msgstr "Planet - Ganzer Artikel"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/index.html:24
+#: inyoka_theme_default/templates/planet/index.html:24
 msgid "Recent articles"
 msgstr "Neueste Artikel"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/index.html:56
+#: inyoka_theme_default/templates/planet/index.html:59
 msgid "« Previous"
 msgstr "« Zurück"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/index.html:64
+#: inyoka_theme_default/templates/planet/index.html:67
 msgid "Next »"
 msgstr "Weiter »"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/index.html:80
+#: inyoka_theme_default/templates/planet/index.html:83
 msgid "Permanent link"
 msgstr "Permalink"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/index.html:83
+#: inyoka_theme_default/templates/planet/index.html:86
 #, python-format
 msgid "Hidden by: <a href=\"%(link)s\">%(name)s</a>"
 msgstr "Verborgen von: <a href=\"%(link)s\">%(name)s</a>"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/index.html:110
+#: inyoka_theme_default/templates/planet/index.html:110
 msgid "No articles were aggregated"
 msgstr "Es wurden keine Artikel aggregiert."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/suggest.html:16
+#: inyoka_theme_default/templates/planet/suggest.html:16
 msgid "Suggest blog"
 msgstr "Ein Blog vorschlagen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/suggest.html:20
+#: inyoka_theme_default/templates/planet/suggest.html:20
 msgid "With this form you can suggest a new blog for the planet."
 msgstr "Hier kannst du einen Blog für den Planeten vorschlagen."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/planet/suggest.html:29
+#: inyoka_theme_default/templates/planet/suggest.html:29
 msgid ""
 "Please be patient. It could take a while, until we approve your "
 "suggestion."
@@ -470,21 +472,21 @@ msgstr ""
 "Bitte habe ein wenig Geduld mit der Bearbeitung. Es kann etwas dauern, "
 "bis der Blog von uns geprüft wurde."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/base.html:6
+#: inyoka_theme_default/templates/portal/base.html:16
 msgid "Portal"
 msgstr "Portal"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/login.html:21
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/register.html:20
+#: inyoka_theme_default/templates/portal/login.html:31
+#: inyoka_theme_default/templates/portal/register.html:30
 msgid "Username"
 msgstr "Benutzername"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/login.html:28
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/register.html:27
+#: inyoka_theme_default/templates/portal/login.html:38
+#: inyoka_theme_default/templates/portal/register.html:37
 msgid "Password"
 msgstr "Passwort"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/login.html:40
+#: inyoka_theme_default/templates/portal/login.html:50
 msgid ""
 "\n"
 "          Don’t choose this option if you are using a public computer. "
@@ -496,11 +498,11 @@ msgstr ""
 " befindest, da sonst fremde Personen möglicherweise Zugang zu deinem "
 "Konto erhalten."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/login.html:48
+#: inyoka_theme_default/templates/portal/login.html:58
 msgid "Sign in"
 msgstr ""
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/login.html:54
+#: inyoka_theme_default/templates/portal/login.html:64
 #, python-format
 msgid ""
 "\n"
@@ -509,7 +511,7 @@ msgid ""
 "        "
 msgstr ""
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/login.html:59
+#: inyoka_theme_default/templates/portal/login.html:69
 #, python-format
 msgid ""
 "\n"
@@ -518,228 +520,237 @@ msgid ""
 "        "
 msgstr ""
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:14
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_admin.html:18
+#: inyoka_theme_default/templates/portal/lost_password.html:16
+#: inyoka_theme_default/templates/portal/lost_password.html:20
+#, fuzzy
+msgid "Lost password"
+msgstr "Passwort"
+
+#: inyoka_theme_default/templates/portal/lost_password.html:22
+msgid "You have forgotten your password? You can obtain a new one here."
+msgstr ""
+
+#: inyoka_theme_default/templates/portal/lost_password.html:29
+#, fuzzy
+msgid "Request new password"
+msgstr "Passwort ändern"
+
+#: inyoka_theme_default/templates/portal/profile.html:15
+#: inyoka_theme_default/templates/portal/user_admin.html:18
 msgid "Members"
 msgstr "Mitglieder"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:44
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:45
+#: inyoka_theme_default/templates/portal/profile.html:45
+#: inyoka_theme_default/templates/portal/profile.html:46
 msgid "Don’t watch anymore"
 msgstr "Nicht mehr beobachten"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:49
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:50
+#: inyoka_theme_default/templates/portal/profile.html:50
+#: inyoka_theme_default/templates/portal/profile.html:51
 msgid "Watch"
 msgstr "Beobachten"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:54
+#: inyoka_theme_default/templates/portal/profile.html:55
 msgid "Private message"
 msgstr "Private Nachricht"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:55
+#: inyoka_theme_default/templates/portal/profile.html:56
 msgid "show posts"
 msgstr "Beiträge anzeigen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:60
+#: inyoka_theme_default/templates/portal/profile.html:61
 msgid "Edit user"
 msgstr "Benutzer bearbeiten"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:61
+#: inyoka_theme_default/templates/portal/profile.html:62
 msgid "Edit groups"
 msgstr "Gruppen bearbeiten"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:72
+#: inyoka_theme_default/templates/portal/profile.html:73
 #, python-format
 msgid "%(name)s is a system user."
 msgstr "%(name)s ist ein Systembenutzer"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:74
+#: inyoka_theme_default/templates/portal/profile.html:75
 #, python-format
 msgid "%(name)s is not available."
 msgstr "%(name)s ist nicht verfügbar."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:82
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:83
-#, python-format
-msgid "Avatar of %(user)s"
-msgstr "Avatar von %(user)s"
-
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:87
+#: inyoka_theme_default/templates/portal/profile.html:86
 msgid "Email address"
 msgstr "E-Mail-Adresse"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:91
+#: inyoka_theme_default/templates/portal/profile.html:90
 msgid "Website"
 msgstr "Website"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:101
+#: inyoka_theme_default/templates/portal/profile.html:100
 msgid "Launchpad username"
 msgstr "Launchpad-Benutzername"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:110
+#: inyoka_theme_default/templates/portal/profile.html:109
 msgid "Member since"
 msgstr "Mitglied seit"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:114
+#: inyoka_theme_default/templates/portal/profile.html:113
 msgid "Posts"
 msgstr "Beiträge"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:120
+#: inyoka_theme_default/templates/portal/profile.html:119
 msgid "Residence"
 msgstr "Wohnort"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:121
+#: inyoka_theme_default/templates/portal/profile.html:120
 msgid "Job"
 msgstr "Beruf"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:122
+#: inyoka_theme_default/templates/portal/profile.html:121
 msgid "Interests"
 msgstr "Interessen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:130
+#: inyoka_theme_default/templates/portal/profile.html:129
 msgid "MSN"
 msgstr "MSN"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:131
+#: inyoka_theme_default/templates/portal/profile.html:130
 msgid "ICQ"
 msgstr "ICQ"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:132
+#: inyoka_theme_default/templates/portal/profile.html:131
 msgid "AIM"
 msgstr "AIM"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:140
+#: inyoka_theme_default/templates/portal/profile.html:139
 msgid "Yahoo Messenger"
 msgstr "Yahoo Messenger"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:141
+#: inyoka_theme_default/templates/portal/profile.html:140
 msgid "Skype"
 msgstr "Skype"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:142
+#: inyoka_theme_default/templates/portal/profile.html:141
 msgid "WengoPhone"
 msgstr "WengoPhone"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:150
+#: inyoka_theme_default/templates/portal/profile.html:149
 msgid "SIP"
 msgstr "SIP"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:151
+#: inyoka_theme_default/templates/portal/profile.html:150
 msgid "Jabber"
 msgstr "Jabber"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:152
+#: inyoka_theme_default/templates/portal/profile.html:151
 msgid "GPG key"
 msgstr "GPG-Schlüssel"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:168
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_admin.html:31
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_groups.html:15
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_groups.html:23
+#: inyoka_theme_default/templates/portal/profile.html:167
+#: inyoka_theme_default/templates/portal/user_admin.html:31
+#: inyoka_theme_default/templates/portal/user_edit_groups.html:15
+#: inyoka_theme_default/templates/portal/user_edit_groups.html:23
 msgid "Group memberships"
 msgstr "Gruppenmitgliedschaften"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:178
+#: inyoka_theme_default/templates/portal/profile.html:177
 #, python-format
 msgid "“%(name)s” is no member of any group."
 msgstr "„%(name)s“ ist kein Mitglied einer Gruppe."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/profile.html:190
+#: inyoka_theme_default/templates/portal/profile.html:189
 msgid "edit"
 msgstr "Bearbeiten"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/register.html:5
+#: inyoka_theme_default/templates/portal/register.html:15
 msgid "Register"
 msgstr "Registrieren"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/register.html:9
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/register.html:58
+#: inyoka_theme_default/templates/portal/register.html:19
+#: inyoka_theme_default/templates/portal/register.html:68
 msgid "Sign up"
 msgstr ""
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/register.html:33
+#: inyoka_theme_default/templates/portal/register.html:43
 msgid "Type in your password again to confirm it"
 msgstr ""
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/register.html:40
+#: inyoka_theme_default/templates/portal/register.html:50
 msgid "someone@example.com"
 msgstr ""
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/register.html:49
+#: inyoka_theme_default/templates/portal/register.html:59
 msgid "I agree to the terms and conditions"
 msgstr "Du musst die Hinweise zur Nutzung unserer Plattform lesen und akzeptieren."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_admin.html:24
+#: inyoka_theme_default/templates/portal/user_admin.html:24
 msgid "Menu"
 msgstr "Menü"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_admin.html:25
+#: inyoka_theme_default/templates/portal/user_admin.html:25
 msgid "View public profile"
 msgstr "Öffentliches Profil ansehen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_admin.html:29
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_profile.html:14
+#: inyoka_theme_default/templates/portal/user_admin.html:29
+#: inyoka_theme_default/templates/portal/user_edit_profile.html:15
 msgid "Profile"
 msgstr "Profil"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_admin.html:30
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_settings.html:14
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_settings.html:22
+#: inyoka_theme_default/templates/portal/user_admin.html:30
+#: inyoka_theme_default/templates/portal/user_edit_settings.html:14
+#: inyoka_theme_default/templates/portal/user_edit_settings.html:22
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_admin.html:32
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_privileges.html:14
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_privileges.html:26
+#: inyoka_theme_default/templates/portal/user_admin.html:32
+#: inyoka_theme_default/templates/portal/user_edit_privileges.html:14
+#: inyoka_theme_default/templates/portal/user_edit_privileges.html:26
 msgid "Privileges"
 msgstr "Privilegien"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_admin.html:33
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_password.html:14
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_password.html:22
+#: inyoka_theme_default/templates/portal/user_admin.html:33
+#: inyoka_theme_default/templates/portal/user_edit_password.html:14
+#: inyoka_theme_default/templates/portal/user_edit_password.html:22
 msgid "Change password"
 msgstr "Passwort ändern"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_admin.html:34
+#: inyoka_theme_default/templates/portal/user_admin.html:34
 msgid "State"
 msgstr "Status"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_admin.html:40
+#: inyoka_theme_default/templates/portal/user_admin.html:40
 #, python-format
 msgid "Attention: You are currently editing “%(name)s”."
 msgstr "Achtung: Du bearbeitest gerade „%(name)s“."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_groups.html:27
+#: inyoka_theme_default/templates/portal/user_edit_groups.html:27
 msgid "Available groups"
 msgstr "Verfügbare Gruppen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_groups.html:29
+#: inyoka_theme_default/templates/portal/user_edit_groups.html:29
 msgid "Membership"
 msgstr "Mitgliedschaft"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_groups.html:39
+#: inyoka_theme_default/templates/portal/user_edit_groups.html:39
 msgid "Add group"
 msgstr "Gruppe hinzufügen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_groups.html:43
+#: inyoka_theme_default/templates/portal/user_edit_groups.html:43
 msgid "Remove group"
 msgstr "Gruppe entfernen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_groups.html:57
+#: inyoka_theme_default/templates/portal/user_edit_groups.html:57
 msgid "delete"
 msgstr "löschen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_privileges.html:40
+#: inyoka_theme_default/templates/portal/user_edit_privileges.html:40
 #, python-format
 msgid "(Derived from %(grouplist)s)"
 msgstr "(Von %(grouplist)s geerbt)"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_privileges.html:48
+#: inyoka_theme_default/templates/portal/user_edit_privileges.html:48
 msgid "Forum privileges"
 msgstr "Forumsprivilegien"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_privileges.html:51
+#: inyoka_theme_default/templates/portal/user_edit_privileges.html:51
 msgid ""
 "\n"
 "          Sorry, you need to enable JavaScript to edit forum privileges.\n"
@@ -748,77 +759,77 @@ msgstr ""
 "Entschuldige, du musst JavaScript aktivieren, um Forenberechtigungen zu "
 "bearbeiten."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_profile.html:34
+#: inyoka_theme_default/templates/portal/user_edit_profile.html:35
 msgid "Avatar settings"
 msgstr "Avatar Einstellungen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_profile.html:39
+#: inyoka_theme_default/templates/portal/user_edit_profile.html:42
 #, python-format
 msgid "(Will be scaled to %(width)sx%(height)s)"
 msgstr "(Wird auf %(width)sx%(height)s skaliert)"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_profile.html:44
+#: inyoka_theme_default/templates/portal/user_edit_profile.html:47
 msgid "Contact addresses"
 msgstr "Kontaktadressen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_profile.html:49
+#: inyoka_theme_default/templates/portal/user_edit_profile.html:52
 msgid "Miscellaneous settings"
 msgstr "Verschiedene Einstellungen"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_profile.html:55
+#: inyoka_theme_default/templates/portal/user_edit_profile.html:58
 msgid "Signature"
 msgstr "Signatur"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_settings.html:28
+#: inyoka_theme_default/templates/portal/user_edit_settings.html:28
 msgid "Interface"
 msgstr "Oberfläche"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_settings.html:32
+#: inyoka_theme_default/templates/portal/user_edit_settings.html:32
 msgid "Forum"
 msgstr "Forum"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_status.html:14
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_status.html:22
+#: inyoka_theme_default/templates/portal/user_edit_status.html:14
+#: inyoka_theme_default/templates/portal/user_edit_status.html:22
 msgid "Status"
 msgstr "Status"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_status.html:29
+#: inyoka_theme_default/templates/portal/user_edit_status.html:29
 #, python-format
 msgid "Last login: %(date)s"
 msgstr "Letzte Anmeldung: %(date)s"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_status.html:34
+#: inyoka_theme_default/templates/portal/user_edit_status.html:34
 #, python-format
 msgid "Member since: %(date)s"
 msgstr "Mitglied seit: %(date)s"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_status.html:39
+#: inyoka_theme_default/templates/portal/user_edit_status.html:39
 #, python-format
 msgid "<a href=\"%(link)s\">Send an email</a> to %(name)s"
 msgstr "<a href=\"%(link)s\">Eine E-Mail</a> an %(name)s senden"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_status.html:47
+#: inyoka_theme_default/templates/portal/user_edit_status.html:47
 msgid "Resend activation mail"
 msgstr "Aktivierungsmail erneut zusenden"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/portal/user_edit_status.html:51
+#: inyoka_theme_default/templates/portal/user_edit_status.html:51
 msgid " Activation link:"
 msgstr "Aktivierungslink:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/wiki/base.html:8
+#: inyoka_theme_default/templates/wiki/base.html:18
 msgid "Wiki"
 msgstr "Wiki"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/wiki/missing_page.html:4
+#: inyoka_theme_default/templates/wiki/missing_page.html:16
 msgid "Missing article"
 msgstr "Fehlender Artikel"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/wiki/missing_page.html:7
+#: inyoka_theme_default/templates/wiki/missing_page.html:19
 #, python-format
 msgid "The article “%(title)s” does not exist yet."
 msgstr "Der Artikel „%(title)s“ existiert noch nicht."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/wiki/missing_page.html:9
+#: inyoka_theme_default/templates/wiki/missing_page.html:21
 #, python-format
 msgid ""
 "\n"
@@ -830,7 +841,7 @@ msgstr ""
 "Der Artikel „%(title)s” wurde gelöscht. Du kannst ihn wiederherstellen "
 "oder über das Aktionsmenü einen neuen erstellen."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/wiki/missing_page.html:16
+#: inyoka_theme_default/templates/wiki/missing_page.html:28
 msgid ""
 "The article is already under construction, help improving and finishing "
 "it!"
@@ -838,24 +849,27 @@ msgstr ""
 "Dieser Artikel existiert bereits in der Baustelle; hilf dabei ihn zu "
 "verbessern und fertigzustellen!"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/wiki/missing_page.html:26
+#: inyoka_theme_default/templates/wiki/missing_page.html:38
 msgid "The following pages are referring this article:"
 msgstr "Die folgenden Seiten verweisen auf diesen Artikel:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/wiki/missing_page.html:37
+#: inyoka_theme_default/templates/wiki/missing_page.html:49
 msgid "Check if you have a typo in the URL."
 msgstr "Bitte überprüfe, ob du einen Tippfehler in der URL hast."
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/wiki/missing_page.html:39
+#: inyoka_theme_default/templates/wiki/missing_page.html:51
 msgid "The following pages have similar names:"
 msgstr "Die folgenden Seiten haben einen ähnlichen Namen:"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/wiki/missing_page.html:51
+#: inyoka_theme_default/templates/wiki/missing_page.html:63
 #, python-format
 msgid "You can also <a href=\"%(link)s\">create</a> this article."
 msgstr "Du kannst diesen Artikel auch <a href=\"%(link)s\">erstellen</a>"
 
-#: /home/markus/Coding/inyoka-dev/theme-default/inyoka_theme_default/templates/wiki/missing_page.html:53
+#: inyoka_theme_default/templates/wiki/missing_page.html:65
 msgid "However, you are missing the permissions to create this article."
 msgstr "Allerdings fehlen dir die Berechtigungen, um diesen Artikel zu erstellen."
+
+#~ msgid "Search"
+#~ msgstr "Suche"
 

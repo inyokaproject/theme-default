@@ -23,23 +23,21 @@
 
 {% block sidebar %}
   {% call macros.sidebar() %}
-    {{ macros.sidebar_item(_('Reply'), topic|url('reply')) }}
+    {{ macros.sidebar_item(_('Reply'), topic|url('reply'), 'fa_icon-comments-o') }}
 
-    {% if can_subscribe %}
-      {% if is_subscribed %}
-        {{ macros.sidebar_item(_('Unsubscribe'), topic|url('unsubscribe')) }}
-      {% else %}
-        {{ macros.sidebar_item(_('Subscribe'), topic|url('subscribe')) }}
-      {% endif %}
-    {% endif %}
-
-    {% if topic.solved %}
-      {{ macros.sidebar_item(_('Mark as unsolved'), topic|url('unsolve')) }}
+    {% if is_subscribed %}
+      {{ macros.sidebar_item(_('Unsubscribe'), topic|url('unsubscribe')) }}
     {% else %}
-      {{ macros.sidebar_item(_('Mark as solved'), topic|url('solve')) }}
+      {{ macros.sidebar_item(_('Subscribe'), topic|url('subscribe')) }}
     {% endif %}
 
-    {{ macros.sidebar_item(_('Report'), topic|url('report')) }}
+    {%- if topic.solved -%}
+      {{ macros.sidebar_item(_('Mark as unsolved'), topic|url('unsolve'), 'fa_icon-remove') }}
+    {%- else -%}
+      {{ macros.sidebar_item(_('Mark as solved'), topic|url('solve'), 'fa_icon-check') }}
+    {%- endif -%}
+
+    {{ macros.sidebar_item(_('Report'), topic|url('report'), 'fa_icon-exclamation-triangle') }}
   {% endcall %}
 {% endblock %}
 
@@ -93,28 +91,5 @@
       </div>
     </div>
   {% endfor %}
-  <div class="button-group visible-xs">
-    <a href="{{ topic|url('reply') }}" class="btn btn-primary">
-      <span class="fa_icon-pencil"></span> {% trans %}Reply{% endtrans %}</a>
-    {% if is_subscribed %}
-      <a href="{{ topic|url('unsubscribe') }}" class="btn btn-default">{% trans %}Unsubscribe{% endtrans %}</a>
-    {% else %}
-      <a href="{{ topic|url('subscribe') }}" class="btn btn-default"
-         title="{% trans %}Get notified as soon someone replies to this topic{% endtrans %}"
-         data-toggle="tooltip" data-placement="bottom" data-delay="700">{% trans %}Subscribe{% endtrans %}</a>
-    {% endif %}
-    {% if topic.solved %}
-      <a href="{{ topic|url('unsolve') }}" class="btn btn-default">
-        <span class="fa_icon-remove"></span> {% trans %}Mark as unsolved{% endtrans %}</a>
-    {% else %}
-      <a href="{{ topic|url('solve') }}" class="btn btn-default">
-        <span class="fa_icon-check"></span> {% trans %}Mark as solved{% endtrans %}</a>
-    {% endif %}
-    <a href="{{ topic|url('report') }}" class="btn btn-default"
-       title="{% trans %}Report this topic if you think it needs moderators attention{% endtrans %}"
-       data-toggle="tooltip" data-placement="bottom" data-delay="700">
-      <span class="fa_icon-bell-o"></span> {% trans %}Report{% endtrans %}</a>
-  </div>
-  <div class="clearfix"></div>
   {{ rendered_pagination }}
 {% endblock %}

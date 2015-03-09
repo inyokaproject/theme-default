@@ -30,10 +30,12 @@
 </div>
 {% endmacro %}
 
-{% macro sidebar_item(label, url) %}
+{% macro sidebar_item(label, url, icon) %}
 {# This macro can be used in two types:
     1. as "normal" function
        with the the parameters "label" and "url", a link (<a>) is generated inside a <li>
+       the third, optional parameter "icon" adds an icon before the label.
+       Therefore, the value is used as class for a <span>
     2. as caller
        via the caller the inner content of the <li> is simply passed to it
 #}
@@ -41,7 +43,10 @@
     {%- if caller %}
       {{ caller() }}
     {%- else %}
-      <a href="{{ url }}">{{ label }}</a>
+      <a href="{{ url }}">
+        {%- if icon -%} <span class=" {{- icon -}} "></span> {%- endif %}
+        {{ label }}
+      </a>
     {%- endif %}
   </li>
 {% endmacro %}

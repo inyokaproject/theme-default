@@ -68,20 +68,6 @@
       <div class="text">{{ article.rendered_text }}</div>
     </div>
   </article>
-  <div class="button-group visible-xs">
-    {% if is_subscribed %}
-      <a href="{{ article|url('unsubscribe') }}" class="btn btn-default" role="button">
-        {% trans %}Unsubscribe comments{% endtrans %}
-      </a>
-    {% else %}
-      <a href="{{ article|url('subscribe') }}" class="btn btn-default" role="button">
-        {% trans %}Subscribe comments{% endtrans %}
-      </a>
-    {% endif %}
-    <a href="{{ article|url('reports') }}" class="btn btn-default" role="button">
-      {% trans %}Report misspelling{% endtrans %}
-    </a>
-  </div>
   <h3>{% trans %}Comments{% endtrans %}</h3>
   {% for comment in comments %}
     {% if not comment.deleted or can_admin_comment %}

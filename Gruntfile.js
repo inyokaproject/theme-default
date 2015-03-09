@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     banner: ' * <%= pkg.title %>\n' +
             ' * <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %>\n' +
             ' * <%= pkg.homepage %>\n' +
-            ' * :copyright: (c) 2007-<%= grunt.template.today("yyyy") %> by the <%= pkg.author %>\n' +
+            ' * :copyright: (c) 2013-<%= grunt.template.today("yyyy") %> by the <%= pkg.author %>\n' +
             ' * :license: <%= pkg.license %>\n' +
             ' */\n',
     // Task configuration.
@@ -20,11 +20,7 @@ module.exports = function(grunt) {
       dist: {
         expand: true,
         cwd: 'inyoka_theme_default/static/js/',
-        src: [
-          '*.js',
-          '!*.min.js',
-          'bootstrap.js'
-        ],
+        src: 'complete.js',
         dest: 'inyoka_theme_default/static/js/',
         ext: '.min.js',
         extDot: 'last',
@@ -53,17 +49,25 @@ module.exports = function(grunt) {
     },
     watch: {
       options: {
-        atBegin: true
+        atBegin: true,
+      },
+      initBower: {
+        files: '!*', // always false → only run once at begin
+        tasks: 'bowercopy',
       },
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
       },
       style: {
-        files: [
-          'inyoka_theme_default/static/style/**/*.less'
-        ],
+        files: 'inyoka_theme_default/static/style/**/*.less',
         tasks: ['less'],
+      },
+      js: {
+        files: ['inyoka_theme_default/static/js/**/*.js',
+                '!inyoka_theme_default/static/js/complete.js',
+                '!*.min.js',],
+        tasks: ['concat'],
       }
     },
     less: {
@@ -82,10 +86,29 @@ module.exports = function(grunt) {
           }
         ]
       }
+    },
+    bowercopy: {
+      fontawesome_fonts: {
+        src: 'fontawesome/fonts',
+        dest: 'inyoka_theme_default/static/fonts'
+      }
+    },
+    concat: {
+      options: {
+        separator: ';',
+      },
+      complete: {
+        src: ['./bower_components/jquery/dist/jquery.js',
+              './bower_components/bootstrap/dist/js/bootstrap.js',
+              './inyoka_theme_default/static/js/smoothscrolling.js',
+              './inyoka_theme_default/static/js/base.js',],
+        dest: 'inyoka_theme_default/static/js/complete.js',
+      }
     }
   });
 
   // These plugins provide necessary tasks.
+  grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
@@ -93,6 +116,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'less', 'uglify']);
-
+  grunt.registerTask('default', ['bowercopy', 'jshint', 'less', 'concat', 'uglify']);
 };

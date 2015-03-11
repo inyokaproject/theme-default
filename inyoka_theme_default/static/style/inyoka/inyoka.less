@@ -287,6 +287,10 @@ textarea {
     &:extend(.nav);
     &:extend(.navbar-nav);
 
+    @media (max-width: @screen-sm-min) {
+      clear: both;
+    }
+
     & > li {
       &:extend(.nav > li);
       &:extend(.navbar-nav > li);

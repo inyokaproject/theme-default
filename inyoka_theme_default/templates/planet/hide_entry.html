@@ -8,8 +8,12 @@
   :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 -#}
-<form action="{{ href('planet', 'hide', entry.id)|e }}" method="post">
-  {{ csrf_token() }}
+
+{% from 'macros.html' import outer_form %}
+
+{% set submit_text = _('Restore') if entry.hidden else _('Hide') %}
+
+{% call outer_form(csrf_token(), action=href('planet', 'hide', entry.id)|e, submit_text=submit_text) %}
   <p>
     {% if entry.hidden %}
       {% trans %}Are you sure you want to restore the entry?{% endtrans %}
@@ -17,14 +21,6 @@
       {% trans %}Are you sure you want to hide the entry?{% endtrans %}
     {% endif %}
   </p>
-  <p> 
-    <input type="submit" value="
-      {% if entry.hidden %}
-        {% trans %}Restore{% endtrans %}
-      {% else %}
-        {% trans %}Hide{% endtrans %}
-      {% endif %}"
-    />
-    <input type="submit" name="cancel" value="{% trans %}Cancel{% endtrans %}" />
-  </p>
-</form>
+  
+  <input type="submit" name="cancel" value="{% trans %}Cancel{% endtrans %}" />
+{% endcall %}

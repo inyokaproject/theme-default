@@ -8,7 +8,7 @@
     :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
-{%- extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block breadcrumb %}
   {{ super() }}
@@ -26,5 +26,5 @@
 {% endblock %}
 
 {% block content %}
-  {%- block paste_content %}{%- endblock %}
-{%- endblock %}
+  {% block paste_content %}{% endblock %}
+{% endblock %}

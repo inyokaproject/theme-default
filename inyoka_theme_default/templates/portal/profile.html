@@ -7,7 +7,7 @@
     :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
-{%- extends 'portal/base.html' %}
+{% extends 'portal/base.html' %}
 {% import 'macros.html' as macros %}
 
 {% block breadcrumb %}
@@ -17,13 +17,13 @@
 {% endblock %}
 
 {% macro show_item(item) %}
-  {%- if user[item] and user.settings['show_'+item] -%}
+  {% if user[item] and user.settings['show_'+item] %}
     <td>{{ user[item]|e }}</td>
-  {%- elif user[item] and REQUEST.user.can('user_edit') -%}
+  {% elif user[item] and REQUEST.user.can('user_edit') %}
     <td class="hidden-info">{{ user[item]|e }}</td>
-  {%- else -%}
+  {% else %}
     <td>–</td>
-  {%- endif -%}
+  {% endif %}
 {% endmacro %}
 
 {% block sidebar %}
@@ -39,29 +39,29 @@
   </form>
 
   {% call macros.sidebar() %}
-    {%- if request.user.can('subscribe_to_users') -%}
-      {%- if is_subscribed %}
+    {% if request.user.can('subscribe_to_users') %}
+      {% if is_subscribed %}
           <input type="submit" form="unsubscribe_user" class="button-in-sidebar"
                   title="{% trans %}Don’t watch anymore{% endtrans %}"
                   value="{% trans %}Don’t watch anymore{% endtrans %}"
           />
-      {%- else %}
+      {% else %}
         <input type="submit" form="subscribe_user" class="button-in-sidebar"
                 title="{% trans %}Watch{% endtrans %}"
                 value="{% trans %}Watch{% endtrans %}"
         />
-      {%- endif -%}
-    {%- endif %}
+      {% endif %}
+    {% endif %}
     {{ macros.sidebar_item(_('Private message'), user|url('privmsg')) }}
     {{ macros.sidebar_item(_('show posts'), href('forum', 'author', user.username)) }}
   {% endcall %}
 
-  {%- if request.user.can('user_edit') %}
+  {% if request.user.can('user_edit') %}
     {% call macros.sidebar_admin() %}
       {{ macros.sidebar_item(_('Edit user'), href('portal', 'user', user.urlsafe_username, 'edit', 'profile')) }}
       {{ macros.sidebar_item(_('Edit groups'), href('portal', 'user', user.username, 'edit', 'groups')) }}
     {% endcall %}
-  {%- endif %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -69,11 +69,11 @@
     {{ user.username|e }}
   </h3>
 
-  {%- if user in (User.objects.get_system_user(), User.objects.get_anonymous_user()) %}
+  {% if user in (User.objects.get_system_user(), User.objects.get_anonymous_user()) %}
     {% trans name=user.username|e %}{{ name }} is a system user.{% endtrans %}
-  {%- elif user.is_deleted or user.is_banned %}
+  {% elif user.is_deleted or user.is_banned %}
     {% trans name=user.username|e %}{{ name }} is not available.{% endtrans %}
-  {%- else %}
+  {% else %}
     <table class="portal-userinfo">
       <tr>
         <th>{% trans %}Name{% endtrans %}</th>
@@ -89,19 +89,19 @@
       <tr>
         <th>{% trans %}Website{% endtrans %}</th>
         <td>
-          {%- if user.website -%}
+          {% if user.website %}
             <a href="{{ user.website|e }}">{{ user.website|e }}</a>
-          {%- else -%}
+          {% else %}
             –
-          {%- endif -%}
+          {% endif %}
         </td>
       </tr>
       <tr>
         <th>{% trans %}Launchpad username{% endtrans %}</th>
         <td>
-          {%- if user.launchpad -%}
+          {% if user.launchpad %}
             <a href="{{ user.launchpad_url|e }}">{{ user.launchpad|e }}</a>
-          {%- else -%}
+          {% else %}
             –
           {% endif %}
         </td>
@@ -152,15 +152,15 @@
       </tr>
       <tr>
         <td>{{ user.sip|e or '–' }}</td>
-        {% if user.jabber and user.settings['show_jabber'] -%}
+        {% if user.jabber and user.settings['show_jabber'] %}
           <td><a href="{{ user.jabber_url|e }}">{{ user.jabber|e }}</a></td>
-        {%- elif user.jabber and REQUEST.user.can('user_edit') -%}
+        {% elif user.jabber and REQUEST.user.can('user_edit') %}
           <td class="hidden-info">
             <a href="{{ user.jabber_url|e }}">{{ user.jabber|e }}</a>
           </td>
-        {%- else -%}
+        {% else %}
           <td>–</td>
-        {%- endif -%}
+        {% endif %}
         <td>{% if user.gpgkey %}0x{{ user.gpgkey|e }}{% else %}–{% endif %}</td>
       </tr>
       <tr>
@@ -168,26 +168,26 @@
       </tr>
       <tr>
         <td colspan="3">
-          {%- for group in groups -%}
+          {% for group in groups %}
             <a  href="{{ group|url }}"{% if not group.is_public %}
                 class="hidden-info"{% endif %}>
               {{ group.name|e }}
             </a>
-            {%- if not loop.last %}, {% endif %}
-          {%- else %}{% trans name=user.username|e -%}
+            {% if not loop.last %}, {% endif %}
+          {% else %}{% trans name=user.username|e %}
             “{{ name }}” is no member of any group.
-           {%- endtrans %}
-          {%- endfor %}
+           {% endtrans %}
+          {% endfor %}
         </td>
       </tr>
     </table>
   {% endif %}
-  {%- if wikipage %}
+  {% if wikipage %}
     {{ wikipage }}
     <p>
       (<a href="{{ href('wiki', SETTINGS.WIKI_USER_BASE, user.username|e, action='edit') }}">
         {% trans %}edit{% endtrans %}
       </a>)
     </p>
-  {%- endif %}
+  {% endif %}
 {% endblock %}

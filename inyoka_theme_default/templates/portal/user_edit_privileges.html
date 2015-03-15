@@ -7,7 +7,7 @@
     :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
-{%- extends 'portal/user_admin.html' %}
+{% extends 'portal/user_admin.html' %}
 
 {% block breadcrumb %}
   {{ super() }}
@@ -16,7 +16,7 @@
 
 {% macro render_grouplist(derived) %}
   {% for group in derived %}<a href="{{ group|url }}">{{ group.name|e }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
-{%- endmacro %}
+{% endmacro %}
 
 {% block content %}
   {{ super() }}
@@ -25,25 +25,25 @@
     <div class="page-header">
       <h3>{% trans %}Privileges{% endtrans %}</h3>
     </div>
-    {%- for id, name, checked, derived in permissions %}
+    {% for id, name, checked, derived in permissions %}
       <input type="checkbox"
         name="permissions"
         value="{{ id }}"
         id="perm_{{ id }}"
-        {%- if checked %}
+        {% if checked %}
           checked="checked"
         {% endif %}
       />
       <label for="perm_{{ id }}">{{ name|e }}</label>
-      {%- if derived %}
+      {% if derived %}
         <span class="text-muted">
-          {% trans grouplist=render_grouplist(derived) -%}
+          {% trans grouplist=render_grouplist(derived) %}
             (Derived from {{ grouplist }})
-          {%- endtrans %}
+          {% endtrans %}
         </span>
-      {%- endif -%}
+      {% endif %}
       <br />
-    {%- endfor %}
+    {% endfor %}
     {{ form.permissions.errors }}
     <h4>{% trans %}Forum privileges{% endtrans %}</h4>
     <div id="forum_rights">

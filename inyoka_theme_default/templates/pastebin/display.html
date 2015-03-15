@@ -8,7 +8,7 @@
     :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
-{%- extends 'pastebin/base.html' %}
+{% extends 'pastebin/base.html' %}
 
 {% set styles = ['highlight'] %}
 {% set scripts = ['Pastebin'] %}
@@ -25,31 +25,31 @@
     {{ macros.sidebar_item(_('Display entry as raw text'), entry|url('raw')) }}
   {% endcall %}
   
-  {%- if USER.can('manage_pastebin') %}
+  {% if USER.can('manage_pastebin') %}
     {% call macros.sidebar_admin() %}
       {{ macros.sidebar_item(_('Delete entry'), entry|url('delete')) }}
     {% endcall %}
-  {%- endif %}
+  {% endif %}
 {% endblock %}
 
 {% block paste_content %}
   <dl>
     <dt>{% trans %}Title:{% endtrans %}</dt>
     <dd>{{ entry.title|e }}</dd>
-    {%- if not entry.author.is_anonymous %}
+    {% if not entry.author.is_anonymous %}
       <dt>{% trans %}Author:{% endtrans %}</dt>
       <dd><a href="{{ entry.author|url }}">{{ entry.author.username|e }}</a></dd>
-    {%- endif %}
+    {% endif %}
     <dt>{% trans %}Date:{% endtrans %}</dt>
     <dd>{{ entry.pub_date|datetime }}</dd>
-    {%- if entry.referrer|length %}
+    {% if entry.referrer|length %}
       <dt>{% trans %}Pages that are referencing this entry:{% endtrans %}</dt>
       <dd><ul>
-      {%- for link in entry.referrer_list %}
+      {% for link in entry.referrer_list %}
         <li>{{ link|urlize(60) }}</li>
-      {%- endfor %}
+      {% endfor %}
       </ul></dd>
-    {%- endif %}
+    {% endif %}
     <dt>{% trans %}Code:{% endtrans %}</dt>
     <dd>
       {{ entry.rendered_code }}

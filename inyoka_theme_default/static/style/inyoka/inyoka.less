@@ -213,24 +213,17 @@ button, input[type="button"], input[type="submit"] {
   &.button-cancel, &[name="cancel"] {
     &:extend(.btn-default);
   }
+}
 
-  &.button-in-sidebar {
+.sidebar form button[type="submit"] {
     &:extend(a);
-    &:extend(.list-group-item);
-    &:extend(.panel > .list-group .list-group-item);
-
-    width: 100%;
-    text-align: left;
-    margin-top: 0;
-
-    &:first-child {
-      &:extend(.panel > .list-group:first-child .list-group-item:first-child);
-    }
-
     &:hover, &:focus {
-      &:extend(list-group-item:focus);
+      &:extend(a:hover, a:focus);
     }
-  }
+
+    border: none;
+    padding:0;
+    margin: 0;
 }
 
 input[type="text"], input[type="email"], input[type="password"], select {

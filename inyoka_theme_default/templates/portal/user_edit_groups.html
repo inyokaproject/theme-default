@@ -12,17 +12,19 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  <li>{{_('Group memberships')}}</li>
+
+  {{ macros.breadcrumb_item(_('Group memberships'), href('portal', 'user', user.urlsafe_username, 'edit', 'groups')) }}
 {% endblock %}
 
 {% block content %}
   {{ super() }}
-  <form enctype="multipart/form-data" id="user_edit_form" method="post" action="">
-		{{ csrf_token() }}
-    <div class="page-header">
-      <h3>{% trans %}Group memberships{% endtrans %}</h3>
-    </div>
-    <table class="user_groups">
+
+  <div class="page-header">
+    <h3>{% trans %}Group memberships{% endtrans %}</h3>
+  </div>
+
+  {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
+    <table class="user_groups form-group">
       <tr>
         <th class="col-sm-5">{% trans %}Available groups{% endtrans %}</th>
         <th class="col-sm-1"></th>
@@ -35,13 +37,11 @@
         </td>
         <td class="actions">
           <div class="center-block col-sm-1">
-            <button class="item_add btn btn-default" type="button">
-              <span alt="{% trans %}Add group{% endtrans %}"
-                class="fa_icon-arrow-right"></span>
-            </button><br />
-            <button class="item_remove btn btn-default" type="button">
-              <span alt="{% trans %}Remove group{% endtrans %}"
-                class="fa_icon-arrow-left"></span>
+            <button class="item_add btn-default">
+              <span alt="{% trans %}Add group{% endtrans %}" class="fa_icon-arrow-right"></span>
+            </button>
+            <button class="item_remove btn-default">
+              <span alt="{% trans %}Remove group{% endtrans %}" class="fa_icon-arrow-left"></span>
             </button>
           </div>
         </td>
@@ -51,14 +51,10 @@
         </td>
       </tr>
     </table>
-    <dt><div class="page-header">{{ form.primary_group.label }}</div></dt>
-    <dd>
-      {{ form.primary_group }}
-      <a href="" class="delete_primary_group">{% trans %}delete{% endtrans %}</a>
-      <p class="help-block">{{ form.primary_group.help_text }}</p>
-    </dd>
-    <input type="submit" value="{% trans %}Submit{% endtrans %}" />
-  </form>
+
+    {{ macros.input(form.primary_group) }}
+
+  {% endcall %}
 {% endblock %}
 
 {% block scripts %}

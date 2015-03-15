@@ -51,6 +51,7 @@
   </li>
 {% endmacro %}
 
+
 {# BREADCRUMB #}
 
 {% macro breadcrumb_item(label, url) %}
@@ -62,6 +63,7 @@
     <li>{{ label }}</li>
   {% endif %}
 {% endmacro %}
+
 
 {# PAGINATION #}
 
@@ -108,6 +110,107 @@
 {% endmacro %}
 
 
+{# FORM #}
+
+{% macro outer_form(csrf, form=None, bootstrap_class=None, action="", method="post", submit_label=None, manually_rendered=False) %}
+{# params
+    * csrf: just give `csrf_token()` (workaround for a context-bug)
+    * form: if given and manually_rendered not touched, all fields will be rendered
+            Even if you want to render this form manually, it is worth to pass this parameter.
+            Thus, errors not associated with any field will be still rendered.
+    * bootstrap_class: f.e. `form-horizontal` or `form-inline` see http://getbootstrap.com/css/#forms
+                            `None` if default boostrap-behaviour wished
+    * action: HTML-action-url
+    * method: default: `post`, alternative `get`
+              (latter will generate an URL from the fields. It will look like ?<name>=<value>.
+              So it will be visible in browser-history. Do not use for sensible information (passwords etc.)!)
+    * submit_label: text for submit-button
+    * manually_rendered: disable automatic rendering of all form-fields by setting this True
+#}
+    <form action="{{ action }}" method="{{ method }}"
+    {% if bootstrap_class %} class="{{ bootstrap_class }}" {% endif %}
+    {% if form and form.is_multipart() %} enctype="multipart/form-data" {% endif %}> {# for uploading files (images etc.) #}
+      {% if method.lower() == "post" %} {{ csrf }} {% endif %}
+
+      {% if form %}
+        {{ form.non_field_errors() }}
+        {% if not manually_rendered %}
+          {{ inner_form(form) }}
+        {% endif %}
+      {% endif %}
+
+      {% if caller %}
+        {{ caller() }}
+      {% endif %}
+
+      <button type="submit">
+        {% if submit_label %}
+          {{ submit_label }}
+        {% else %}
+          {% trans %}Submit{% endtrans %}
+        {% endif %}
+      </button>
+    </form>
+{% endmacro %}
+
+{% macro inner_form(form, custom_fields=None) %}
+{#
+  can be used with call outer_form(…) to do things "manually"
+
+  if no list for custom_fields are given, all fields of @form will be rendered.
+  Otherwise all fields in custom_fields will be rendered (in the given order, too).
+#}
+  {% if form %}
+    {% if custom_fields %}
+      {% for field in custom_fields %}
+        {% if form[field] %}
+          {{ render_field_by_type(form[field]) }}
+        {% endif %}
+      {% endfor %}
+
+    {% else %}
+        {% for field in form %}
+          {{ render_field_by_type(field) }}
+        {% endfor %}
+    {% endif %}
+  {% endif %}
+{% endmacro %}
+
+{% macro render_field_by_type(field) %}
+  {% if field.field.widget|ischeckbox %}
+    {{ checkbox(field) }}
+  {% else %}
+    {{ input(field) }}
+  {% endif %}
+{% endmacro %}
+
+{% macro checkbox(field) %}
+  {% if field.errors %}
+  <div class="has-error">
+    {{ field.errors }}
+  {% endif %}
+
+    <div class="checkbox">
+      <label>
+        {{ field }} {{ field.label }}
+      </label>
+    </div>
+
+  {% if field.errors %} </div> {% endif %}
+{% endmacro %}
+
+{% macro input(field) %}
+  <div class="form-group {% if field.errors %} has-error {% endif %}">
+    {{ field.errors }}
+    {{ field.label_tag() }}
+    {{ field }}
+
+    {% if field.help_text %}
+      <p class="help-block">{{ field.help_text }}</p>
+    {% endif %}
+  </div>
+{% endmacro %}
+
 {% macro render_form(form, fields, inline = false) %}
   {% if not inline %}
     <dl>
@@ -150,6 +253,9 @@
     </dl>
   {% endif %}
 {% endmacro %}
+
+
+{# OTHER #}
 
 {% macro add_user_avatar(user) %}
   {% if user.avatar_url %}

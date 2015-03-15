@@ -7,7 +7,7 @@
     :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
-{%- extends 'portal/user_admin.html' %}
+{% extends 'portal/user_admin.html' %}
 {% import 'macros.html' as macros %}
 
 {% block breadcrumb %}
@@ -28,7 +28,7 @@
         <input type="checkbox" name="group_titles" value="{{ group }}" /> {{ group }}
       {% endfor %}
       </div>
-      {%- endif %}
+      {% endif %}
     </dd>
 
     <div class="page-header">
@@ -39,9 +39,9 @@
       <dd>{{ macros.add_user_avatar(user) }}</dd>
     {% endif %}
     <dd>{{ form.avatar }}</dd>
-    <dd class="note">{% trans height=avatar_height, width=avatar_width -%}
+    <dd class="note">{% trans height=avatar_height, width=avatar_width %}
       (Will be scaled to {{ width }}x{{ height }})
-    {%- endtrans %}</dd>
+    {% endtrans %}</dd>
 
     <div class="page-header">
       <h4>{% trans %}Contact addresses{% endtrans %}</h4>

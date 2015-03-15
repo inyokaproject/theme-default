@@ -9,7 +9,7 @@
     :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
-{%- extends 'pastebin/base.html' %}
+{% extends 'pastebin/base.html' %}
 {% from 'macros.html' import render_form %}
 
 {% block breadcrumb %}
@@ -22,13 +22,13 @@
     {{ csrf_token() }}
     <dl>
       <dt>{% trans %}About:{% endtrans %}</dt>
-      <dd>{% trans -%}
+      <dd>{% trans %}
         This is a pastebin where you can save error messages, logs, configuration files or source codes to keep threads or IRC channels clean. To do this, just copy the text in the box below and choose the appropriate language. After that, you copy the URL into the topic or the channel.
-      {%- endtrans %}</dd>
+      {% endtrans %}</dd>
       {{ render_form(form, ['title', 'lang', 'code'], inline=True) }}
-      {%- if not USER.is_authenticated() %}
+      {% if not USER.is_authenticated() %}
       {{ render_form(form, ['captcha'], inline=True) }}
-      {%- endif %}
+      {% endif %}
       <dd>
         <input type="submit" value="{% trans %}Submit{% endtrans %}" />
       </dd>

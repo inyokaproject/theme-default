@@ -31,11 +31,11 @@
       {{ macros.sidebar_item(_('Subscribe'), topic|url('subscribe')) }}
     {% endif %}
 
-    {%- if topic.solved -%}
+    {% if topic.solved %}
       {{ macros.sidebar_item(_('Mark as unsolved'), topic|url('unsolve'), 'fa_icon-remove') }}
-    {%- else -%}
+    {% else %}
       {{ macros.sidebar_item(_('Mark as solved'), topic|url('solve'), 'fa_icon-check') }}
-    {%- endif -%}
+    {% endif %}
 
     {{ macros.sidebar_item(_('Report'), topic|url('report'), 'fa_icon-exclamation-triangle') }}
   {% endcall %}

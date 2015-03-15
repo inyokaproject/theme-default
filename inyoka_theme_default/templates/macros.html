@@ -3,7 +3,7 @@
 {% macro sidebar(title) %}
 {# use as caller in combination with sidebar_item #}
   <div class="sidebar">
-    {%- if title %}
+    {% if title %}
       <div class="sidebar-heading">
         <h1>{{ title }}</h1>
       </div>
@@ -18,11 +18,11 @@
 {# use as caller in combination with sidebar_item #}
 <div class="sidebar sidebar-danger">
   <div class="sidebar-heading">
-    {%- if title %} {# necessary because gettext wont work here #}
+    {% if title %} {# necessary because gettext wont work here #}
       <h1>{{ title }}</h1>
-    {%- else %}
+    {% else %}
       <h1>{% trans %}Staff{% endtrans %}</h1>
-    {%- endif %}
+    {% endif %}
   </div>
   <ul>
     {{ caller() }}
@@ -40,116 +40,116 @@
        via the caller the inner content of the <li> is simply passed to it
 #}
   <li class="sidebar-item" >
-    {%- if caller %}
+    {% if caller %}
       {{ caller() }}
-    {%- else %}
+    {% else %}
       <a href="{{ url }}">
-        {%- if icon -%} <span class=" {{- icon -}} "></span> {%- endif %}
+        {% if icon %} <span class=" {{ icon }} "></span> {% endif %}
         {{ label }}
       </a>
-    {%- endif %}
+    {% endif %}
   </li>
 {% endmacro %}
 
 {# BREADCRUMB #}
 
 {% macro breadcrumb_item(label, url) %}
-  {%- if url %}
+  {% if url %}
     <li><a href="{{ url }}">
       {{ label }}
     </a></li>
-  {%- else %}
+  {% else %}
     <li>{{ label }}</li>
-  {%- endif %}
+  {% endif %}
 {% endmacro %}
 
 {# PAGINATION #}
 
 {% macro render_pagination(pagination, show_prev=True, show_next=True, threshold=2) %}
   <ul class="pagination">
-    {%- if show_prev -%}
-      {%- if pagination.prev -%}
+    {% if show_prev %}
+      {% if pagination.prev %}
         <li>
           <a href="{{ pagination.prev }}">«</a>
         </li>
-      {%- else -%}
+      {% else %}
         <li class="disabled">
           <span>«</span>
         </li>
-      {%- endif -%}
-    {%- endif -%}
-    {% for link in pagination.list(threshold) -%}
-      {%- if link['type'] == 'spacer' -%}
+      {% endif %}
+    {% endif %}
+    {% for link in pagination.list(threshold) %}
+      {% if link['type'] == 'spacer' %}
         <li>
           <span>…</span>
         </li>
-      {%- elif link['type'] == 'current' -%}
+      {% elif link['type'] == 'current' %}
         <li class="active">
           <span>{{ link['page'] }}</span>
         </li>
-      {%- else -%}
+      {% else %}
         <li>
           <a href="{{ link['url'] }}">{{ link['page'] }}</a>
         </li>
-      {%- endif -%}
-    {%- endfor -%}
-    {%- if show_next -%}
-      {%- if pagination.next -%}
+      {% endif %}
+    {% endfor %}
+    {% if show_next %}
+      {% if pagination.next %}
         <li>
           <a href="{{ pagination.next }}">»</a>
         </li>
-      {%- else -%}
+      {% else %}
         <li class="disabled">
           <span>»</span>
         </li>
-      {%- endif -%}
-    {%- endif %}
+      {% endif %}
+    {% endif %}
   </ul>
 {% endmacro %}
 
 
 {% macro render_form(form, fields, inline = false) %}
-  {%- if not inline %}
+  {% if not inline %}
     <dl>
-  {%- endif %}
-  {%- for field in fields %}
-    {%- if form[field] %}
+  {% endif %}
+  {% for field in fields %}
+    {% if form[field] %}
       <dt>
         <label for="{{ form[field].auto_id }}">{{ form[field].label }}:</label>
       </dt>
       <dd>
         {{ form[field] }} {{ form.errors[field] }}
-        {%- if form[field].help_text %}
+        {% if form[field].help_text %}
           <p class="text-info">{{ form[field].help_text }}</p>
-        {%- endif %}
+        {% endif %}
       </dd>
-    {%- endif %}
-  {%- endfor %}
-  {%- if not inline %}
+    {% endif %}
+  {% endfor %}
+  {% if not inline %}
     </dl>
-  {%- endif %}
-{%- endmacro %}
+  {% endif %}
+{% endmacro %}
 
 {% macro render_checkbox_form(form, fields, inline = false) %}
-  {%- if not inline %}
+  {% if not inline %}
     <dl>
-  {%- endif %}
-  {%- for field in fields %}
-    {%- if form[field] %}
+  {% endif %}
+  {% for field in fields %}
+    {% if form[field] %}
       <dd>
         {{ form[field] }}
         <label for="{{ form[field].auto_id }}">{{ form[field].label }}</label>
         {{ form.errors[field] }}
-        {%- if form[field].help_text %}
+        {% if form[field].help_text %}
           <p class="text-info">{{ form[field].help_text }}</p>
-        {%- endif %}
+        {% endif %}
       </dd>
-    {%- endif %}
-  {%- endfor %}
-  {%- if not inline %}
+    {% endif %}
+  {% endfor %}
+  {% if not inline %}
     </dl>
-  {%- endif %}
-{%- endmacro %}
+  {% endif %}
+{% endmacro %}
 
 {% macro add_user_avatar(user) %}
   {% if user.avatar_url %}

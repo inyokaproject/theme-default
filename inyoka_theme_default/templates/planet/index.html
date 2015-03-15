@@ -7,7 +7,7 @@
   :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
-{%- extends 'planet/base.html' %}
+{% extends 'planet/base.html' %}
 {% from 'macros.html' import render_pagination %}
 {% set rendered_pagination = render_pagination(pagination) %}
 
@@ -18,21 +18,21 @@
 ] %}
 
 {% block planet_content %}
-  {%- if days %}
-    {%- if page == 1 %}
+  {% if days %}
+    {% if page == 1 %}
       <div class="planet-newestarticles">
         <h2>{% trans %}Recent articles{% endtrans %}</h2>
         <ul class="list-inline">
-          {%- for article in articles[:10] %}
+          {% for article in articles[:10] %}
             <li><a title="{{ article.blog }}" href="#article_{{ loop.index0 }}">{{ article.title }}</a></li>
-          {%- endfor %}
+          {% endfor %}
         </ul>
       </div>
-    {%- endif %}
+    {% endif %}
 
     <div class="row">
       {% set article_index = 0 %}
-      {%- for day in days %}
+      {% for day in days %}
         <div class="col-xs-12">
           <h2>{{ day.date|naturalday }}</h2>
           {% set dayloop = loop %}
@@ -55,17 +55,17 @@
                       {{ article.pub_date|datetime }}
                     </div>
                     <div class="pull-right meta">
-                      {%- if not (dayloop.first and loop.first) %}
+                      {% if not (dayloop.first and loop.first) %}
                       <a href="#article_{{ article_index + loop.index0 - 1 }}">{% trans %}« Previous{% endtrans %}</a>
-                      {%- endif %}
+                      {% endif %}
 
-                      {%- if not (dayloop.first and loop.first) and not (dayloop.last and loop.last) %}
+                      {% if not (dayloop.first and loop.first) and not (dayloop.last and loop.last) %}
                       <span>&#448;</span>
-                      {%- endif %}
+                      {% endif %}
 
-                      {%- if not (dayloop.last and loop.last) %}
+                      {% if not (dayloop.last and loop.last) %}
                       <a href="#article_{{ article_index + loop.index0 + 1 }}">{% trans %}Next »{% endtrans %}</a>
-                      {%- endif %}
+                      {% endif %}
                     </div>
                     <div class="clearfix"></div>
                     <h3>
@@ -83,9 +83,9 @@
                   <a href="{{ article|url|e }}">{% trans %}Permanent link{% endtrans %}</a>
                   {% if USER.can('blog_edit') %}
                     {% if article.hidden and article.hidden_by %} |
-                      {% trans link=article.hidden_by|url, name=article.hidden_by.username|e -%}
+                      {% trans link=article.hidden_by|url, name=article.hidden_by.username|e %}
                         Hidden by: <a href="{{ link }}">{{ name }}</a>
-                      {%- endtrans %}
+                      {% endtrans %}
                     {% endif %}
                     <span class="admin_link">| {#
                       #}<a href="{{ article|url('hide')|e }}">
@@ -100,13 +100,13 @@
                 </div>
               </div>
             </article>
-          {%- endfor %}
+          {% endfor %}
         </div>
         {% set article_index = article_index + day.articles|length %}
-      {%- endfor %}
+      {% endfor %}
     </div>
     {{ rendered_pagination }}
-  {%- else %}
+  {% else %}
     <p>{% trans %}No articles were aggregated{% endtrans %}</p>
-  {%- endif %}
+  {% endif %}
 {% endblock %}

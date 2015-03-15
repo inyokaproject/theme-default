@@ -2,7 +2,7 @@ Neuer Vorschlag für einen Blog im Planet
 ========================================
 
 Vorschlag von:  {{ USER.username }} ({{ USER|url }})
-{%- if mine %}
+{% if mine %}
                 Der Blog gehört {{ USER.username }}{% endif %}
 Name:	        {{ name }}
 URL:	        {{ url }}

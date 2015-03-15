@@ -19,11 +19,6 @@
   {% endif %}
 {% endblock %}
 
-{# if you want to add a specific sidebar, uncomment this #}
-{#{% block sidebar %}#}
-{#  {{super(); }} #}{# neceserry! otherwise we would overwrite content from ikhaya/base.html #}
-{#{% endblock %}#}
-
 {% block content %}
   {{ rendered_pagination }}
   {% for article in articles %}

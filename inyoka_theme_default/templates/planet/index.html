@@ -87,8 +87,8 @@
                         Hidden by: <a href="{{ link }}">{{ name }}</a>
                       {% endtrans %}
                     {% endif %}
-                    <span class="admin_link">| {#
-                      #}<a href="{{ article|url('hide')|e }}">
+                    <span class="admin_link">|
+                      <a href="{{ article|url('hide')|e }}">
                         {% if article.hidden %}
                           {% trans %}Restore{% endtrans %}
                         {% else %}

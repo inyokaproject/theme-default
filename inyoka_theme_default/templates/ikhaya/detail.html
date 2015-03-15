@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block sidebar %}
-  {{ super() }} {# necessary! otherwise we would overwrite content from ikhaya/base.html #}
+  {{ super() }}
 
   {% call macros.sidebar() %}
     {% if can_subscribe and article.comments_enabled %}

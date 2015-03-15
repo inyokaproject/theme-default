@@ -30,7 +30,6 @@
     {{ macros.sidebar_item(_('Settings'), href('portal', 'user', user.urlsafe_username, 'edit', 'settings')) }}
     {{ macros.sidebar_item(_('Group memberships'), href('portal', 'user', user.urlsafe_username, 'edit', 'groups')) }}
     {{ macros.sidebar_item(_('Privileges'), href('portal', 'user', user.urlsafe_username, 'edit', 'privileges')) }}
-    {{ macros.sidebar_item(_('Change password'), href('portal', 'user', user.urlsafe_username, 'edit', 'password')) }}
     {{ macros.sidebar_item(_('State'), href('portal', 'user', user.urlsafe_username, 'edit', 'status')) }}
   {% endcall %}
 {% endblock %}

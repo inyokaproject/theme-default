@@ -1,6 +1,6 @@
 {#
     portal/user_edit_settings.html
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Change the settings of a user.
 
@@ -11,30 +11,23 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  <li>{{_('Settings')}}</li>
+  <li>{% trans %}Settings{% endtrans %}</li>
 {% endblock %}
 
 {% block content %}
   {{ super() }}
-  <form enctype="multipart/form-data" id="user_edit_form" method="post" action="">
-    {{ csrf_token() }}
+  
+  {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
     <div class="page-header">
       <h3>{% trans %}Settings{% endtrans %}</h3>
     </div>
+    
+    {{ macros.inner_form(form, ['notify', 'notifications', 'timezone']) }}
 
-    <dl>
-      {{ render_form(form, ['notify', 'notifications', 'timezone'], inline = True) }}
+    <h4>{% trans %}Interface{% endtrans %}</h4>
+    {{ macros.inner_form(form, ['hide_avatars', 'hide_signatures', 'hide_profile', 'highlight_search']) }}
 
-      <dt><h4>{% trans %}Interface{% endtrans %}</h4></dt>
-      {{ render_checkbox_form(form, ['hide_avatars', 'hide_signatures', 'hide_profile', 'highlight_search'], inline = True) }}
-
-
-      <dt><h4>{% trans %}Forum{% endtrans %}</h4></dt>
-      {{ render_checkbox_form(form, ['mark_read_on_logout', 'autosubscribe', 'show_preview'], inline = True) }}
-      {{ render_checkbox_form(form, ['show_thumbnails'], inline = False) }}
-    </dl>
-    <p>
-      <input type="submit" value="{% trans %}Submit{% endtrans %}" />
-    </p>
-  </script>
+    <h4>{% trans %}Forum{% endtrans %}</h4>
+    {{ macros.inner_form(form, ['mark_read_on_logout', 'autosubscribe', 'show_preview', 'show_thumbnails']) }}
+  {% endcall %}
 {% endblock %}

@@ -10,28 +10,21 @@
     :license: BSD, see LICENSE for more details.
 #}
 {% extends 'pastebin/base.html' %}
-{% from 'macros.html' import render_form %}
+{% from 'macros.html' import breadcrumb_item, outer_form %}
 
 {% block breadcrumb %}
   {{ super() }}
-  <li><a href="{{ href('pastebin', 'add') }}">{% trans %}New paste{% endtrans %}</a></li>
+
+  {{ breadcrumb_item(_('New paste'), href('pastebin', 'add')) }}
 {% endblock %}
 
+
 {% block paste_content %}
-  <form action="" method="post">
-    {{ csrf_token() }}
-    <dl>
-      <dt>{% trans %}About:{% endtrans %}</dt>
-      <dd>{% trans %}
-        This is a pastebin where you can save error messages, logs, configuration files or source codes to keep threads or IRC channels clean. To do this, just copy the text in the box below and choose the appropriate language. After that, you copy the URL into the topic or the channel.
-      {% endtrans %}</dd>
-      {{ render_form(form, ['title', 'lang', 'code'], inline=True) }}
-      {% if not USER.is_authenticated() %}
-      {{ render_form(form, ['captcha'], inline=True) }}
-      {% endif %}
-      <dd>
-        <input type="submit" value="{% trans %}Submit{% endtrans %}" />
-      </dd>
-    </dl>
-  </form>
+  <p>
+    {% trans %}
+    This is a pastebin where you can save error messages, logs, configuration files or source codes to keep threads or IRC channels clean. To do this, just copy the text in the box below and choose the appropriate language. After that, you copy the URL into the topic or the channel.
+    {% endtrans %}
+  </p>
+
+  {{ outer_form(csrf_token(), form) }}
 {% endblock %}

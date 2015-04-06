@@ -27,31 +27,16 @@
 {% endmacro %}
 
 {% block sidebar %}
-  <form action="{{ href('portal', 'user', user.username, 'unsubscribe')|e }}"
-        method="post"
-        id="unsubscribe_user">
-    {{ csrf_token() }}
-  </form>
-  <form action="{{ href('portal', 'user', user.username, 'subscribe')|e }}"
-        method="post"
-        id="subscribe_user">
-    {{ csrf_token() }}
-  </form>
 
   {% call macros.sidebar() %}
     {% if request.user.can('subscribe_to_users') %}
       {% if is_subscribed %}
-          <input type="submit" form="unsubscribe_user" class="button-in-sidebar"
-                  title="{% trans %}Don’t watch anymore{% endtrans %}"
-                  value="{% trans %}Don’t watch anymore{% endtrans %}"
-          />
+        {{ macros.outer_form(csrf_token(), action=href('portal', 'user', user.username, 'unsubscribe')|e , submit_text=_('Don’t watch anymore')) }}
       {% else %}
-        <input type="submit" form="subscribe_user" class="button-in-sidebar"
-                title="{% trans %}Watch{% endtrans %}"
-                value="{% trans %}Watch{% endtrans %}"
-        />
+        {{ macros.outer_form(csrf_token(), action=href('portal', 'user', user.username, 'subscribe')|e, submit_text=_('Watch')) }}
       {% endif %}
     {% endif %}
+    
     {{ macros.sidebar_item(_('Private message'), user|url('privmsg')) }}
     {{ macros.sidebar_item(_('show posts'), href('forum', 'author', user.username)) }}
   {% endcall %}

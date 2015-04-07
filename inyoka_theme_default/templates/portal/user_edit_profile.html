@@ -16,20 +16,9 @@
 
 {% block content %}
   {{ super() }}
-  
+
   {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
-    {{ macros.inner_form(form, ['username']) }}
-    
-    <dt>{{ form.member_title.label_tag() }}</dt>
-    <dd>{{ form.member_title }}
-      {% if user.groups.all() %}
-        <div class="group_titles">
-          {% for group in user.groups.all() %}
-            <input type="checkbox" name="group_titles" value="{{ group }}" /> {{ group }}
-          {% endfor %}
-        </div>
-      {% endif %}
-    </dd>
+    {{ macros.inner_form(form, ['username', 'member_title']) }}
 
     <h4>{% trans %}Avatar settings{% endtrans %}</h4>
     <div class="form-group {% if form.avatar.errors %} has-error {% endif %}">
@@ -51,7 +40,7 @@
 
     <h4>{% trans %}Contact addresses{% endtrans %}</h4>
     {{ macros.inner_form(form, ['email', 'gpgkey', 'jabber', 'icq', 'msn', 'aim', 'yim', 'skype', 'wengophone', 'sip']) }}
-    
+
     <h4>{% trans %}Miscellaneous settings{% endtrans %}</h4>
     {{ macros.inner_form(form, ['occupation', 'interests', 'website', 'launchpad', 'location']) }}
 

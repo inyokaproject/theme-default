@@ -133,7 +133,7 @@
       {% if method.lower() == "post" %} {{ csrf }} {% endif %}
 
       {% if form %}
-        {{ form.non_field_errors() }}
+        {{ render_errors(form.non_field_errors()) }}
         {% if not manually_rendered %}
           {{ inner_form(form) }}
         {% endif %}
@@ -187,7 +187,7 @@
 {% macro checkbox(field) %}
   {% if field.errors %}
   <div class="has-error">
-    {{ field.errors }}
+    {{ render_errors(field.errors) }}
   {% endif %}
 
     <div class="checkbox">
@@ -201,14 +201,24 @@
 
 {% macro input(field) %}
   <div class="form-group {% if field.errors %} has-error {% endif %}">
-    {{ field.errors }}
     {{ field.label_tag() }}
+    {{ render_errors(field.errors) }}
     {{ field }}
 
     {% if field.help_text %}
       <p class="help-block">{{ field.help_text }}</p>
     {% endif %}
   </div>
+{% endmacro %}
+
+{% macro render_errors(error_list) %}
+  {% if error_list %}
+    {% for error in error_list %}
+      <p class="help-block">
+        {{ error }}
+      </p>
+    {% endfor %}
+  {% endif %}
 {% endmacro %}
 
 {# OTHER #}

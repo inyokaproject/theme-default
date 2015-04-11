@@ -44,7 +44,7 @@
       {{ caller() }}
     {% else %}
       <a href="{{ url }}">
-        {% if icon %} <span class=" {{ icon }} "></span> {% endif %}
+        {% if icon %} <span class="{{ icon }}"></span> {% endif %}
         {{ label }}
       </a>
     {% endif %}

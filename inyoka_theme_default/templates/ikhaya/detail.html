@@ -11,8 +11,8 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  <li><a href="{{ article.category|url }}">{{ article.category }}</a></li>
-  <li>{{ article.subject }}</li>
+  {{ macros.breadcrumb_item(article.category, article.category|url) }}
+  {{ macros.breadcrumb_item(article.subject) }}
 {% endblock %}
 
 {% block sidebar %}

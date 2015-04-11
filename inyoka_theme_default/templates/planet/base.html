@@ -11,11 +11,10 @@
 {% extends 'base.html' %}
 
 {% block breadcrumb %}
-  <li><a href="{{ href('planet') }}">{% trans %}Planet{% endtrans %}</a></li>
+  {{ macros.breadcrumb_item(_('Planet'), href('planet')) }}
 {% endblock %}
 
 {% set active_app = 'planet' %}
-{% set styles = styles|default([]) + ['planet'] %}
 
 {% block sidebar %}
   {{ planet_description_rendered|default('', True) }}

@@ -17,5 +17,5 @@
 {% endblock %}
 
 {% block breadcrumb %}
-  <li><a href="{{ href('forum') }}">Forum</a></li>
+  {{ macros.breadcrumb_item(_('Forum'), href('forum')) }}
 {% endblock %}

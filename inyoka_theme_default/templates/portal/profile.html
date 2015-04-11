@@ -12,8 +12,9 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  <li><a href="{{ href('portal', 'users') }}">{% trans %}Members{% endtrans %}</a></li>
-  <li>{{ user.username }}</li>
+
+  {{ macros.breadcrumb_item(_('Members'), href('portal', 'users')) }}
+  {{ macros.breadcrumb_item(user.username) }}
 {% endblock %}
 
 {% macro show_item(item) %}

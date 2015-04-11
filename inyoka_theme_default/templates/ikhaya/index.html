@@ -1,6 +1,6 @@
 {#
   ikhaya/index.html
-  ~~~~~~~~~~~~~~~~~~~~~~
+  ~~~~~~~~~~~~~~~~~
 
   This page shows some of the latest news entries.
 
@@ -15,7 +15,7 @@
 {% block breadcrumb %}
   {{ super() }}
   {% if category %}
-    <li>{{ category }}</li>
+    {{ macros.breadcrumb_item(category) }}
   {% endif %}
 {% endblock %}
 

@@ -13,5 +13,5 @@
 {% set active_app = 'portal' %}
 
 {% block breadcrumb %}
-  <li><a href="{{ href('portal') }}">{% trans %}Portal{% endtrans %}</a></li>
+  {{ macros.breadcrumb_item(_('Portal'), href('portal')) }}
 {% endblock %}

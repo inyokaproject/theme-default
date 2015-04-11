@@ -12,7 +12,8 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  <li><a href="{{ href('pastebin', 'browse') }}">{% trans %}Entries{% endtrans %}</a></li>
+
+  {{ macros.breadcrumb_item(_('Entries'), href('pastebin', 'browse')) }}
 {% endblock %}
 
 {% block paste_content %}

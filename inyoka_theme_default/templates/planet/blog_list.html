@@ -1,6 +1,6 @@
 {#
   planet/blog_list.html
-  ~~~~~~~~~~~~~~~~
+  ~~~~~~~~~~~~~~~~~~~~~
 
   This is the overview of the static pages configuration.
 
@@ -13,7 +13,8 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  <li>{% trans %}Bloglist{% endtrans %}</li>
+  
+  {{ macros.breadcrumb_item(_('Bloglist')) }}
 {% endblock %}
 
 {% block content %}

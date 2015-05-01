@@ -10,12 +10,12 @@
 #}
 {% extends 'pastebin/base.html' %}
 
-{% set styles = ['highlight'] %}
 {% set scripts = ['Pastebin'] %}
 
 {% block breadcrumb %}
   {{ super() }}
-  <li><a href="{{ entry|url }}">{{ entry.title|e }}</a></li>
+
+  {{ macros.breadcrumb_item(entry.title|e, entry|url) }}
 {% endblock %}
 
 {% block sidebar %}

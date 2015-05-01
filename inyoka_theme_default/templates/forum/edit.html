@@ -13,12 +13,13 @@
 
 {% block breadcrumb %}
   {{ super() }}
+
   {% if topic.forum.parent.parent %}
-    <li>…</li>
+    {{ macros.breadcrumb_item('…') }}
   {% endif %}
-  <li><a href="{{ topic.forum|url }}">{{ topic.forum }}</a></li>
-  <li><a href="{{ topic|url }}">{{ topic }}</a></li>
-  <li>{% trans %}Edit{% endtrans %}</li>
+  {{ macros.breadcrumb_item(topic.forum, topic.forum|url) }}
+  {{ macros.breadcrumb_item(topic, topic|url) }}
+  {{ macros.breadcrumb_item(_('Edit') }}
 {% endblock %}
 
 {% block content %}

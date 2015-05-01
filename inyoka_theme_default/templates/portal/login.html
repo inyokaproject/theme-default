@@ -12,7 +12,8 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  <li>{% trans %}Login{% endtrans %}</li>
+
+  {{ macros.breadcrumb_item(_('Login')) }}
 {% endblock %}
 
 {% block content %}

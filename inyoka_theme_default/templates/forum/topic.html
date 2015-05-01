@@ -14,11 +14,12 @@
 
 {% block breadcrumb %}
   {{ super() }}
+
   {% if topic.forum.parent.parent %}
-    <li>…</li>
+    {{ macros.breadcrumb_item('…') }}
   {% endif %}
-  <li><a href="{{ topic.forum|url }}">{{ topic.forum }}</a></li>
-  <li>{{ topic }}</li>
+  {{ macros.breadcrumb_item(topic.forum, topic.forum|url) }}
+  {{ macros.breadcrumb_item(topic, topic|url) }}
 {% endblock %}
 
 {% block sidebar %}

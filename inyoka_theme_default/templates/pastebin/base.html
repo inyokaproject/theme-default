@@ -12,10 +12,10 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  <li><a href="{{ href('pastebin') }}">{% trans %}Pastebin{% endtrans %}</a></li>
+
+  {{ macros.breadcrumb_item(_('Pastebin'), href('pastebin')) }}
 {% endblock %}
 
-{% set styles = styles|default([]) + ['pastebin'] %}
 {% set active_app = 'paste' %}
 
 {% block sidebar %}

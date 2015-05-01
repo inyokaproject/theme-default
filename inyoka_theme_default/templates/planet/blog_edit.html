@@ -14,13 +14,9 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  <li>
-    {% if not blog %}
-      {% trans %}Add blog{% endtrans %}
-    {% else %}
-      {{ blog.name|e }}
-    {% endif %}
-  </li>
+
+  {% set tmp_name = _('Add blog') if not blog else blog.name|e %}
+  {{ macros.breadcrumb_item(tmp_name) }}
 {% endblock %}
 
 {% block content %}

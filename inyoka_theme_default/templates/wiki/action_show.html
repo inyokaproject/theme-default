@@ -12,17 +12,19 @@
 {% extends 'wiki/base.html' %}
 
 {% block breadcrumb %}
-  <li><a href="{{ href('wiki') }}">{% block trans %}Wiki{% endblock %}</a></li>
+  {{ super() }}
+
   {% for part in page.title.split('/') %}
     {% if loop.first %}
       {% set link = href('wiki', part) %}
     {% else %}
       {% set link = link + '/' + part %}
     {% endif %}
+    
     {% if loop.last %}
-      <li class="active">{{ part }}</li>
+      {{ macros.breadcrumb_item(part) }}
     {% else %}
-      <li><a href="{{ link }}">{{ part }}</a></li>
+      {{ macros.breadcrumb_item(part, link) }}
     {% endif %}
   {% endfor %}
 {% endblock %}

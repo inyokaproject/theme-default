@@ -13,7 +13,8 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  <li>{% trans %}Suggest blog{% endtrans %}</li>
+
+  {{ macros.breadcrumb_item(_('Suggest blog')) }}
 {% endblock %}
 
 {% block planet_content %}

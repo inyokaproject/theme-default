@@ -28,8 +28,8 @@ def mkenv(root):
         csrf_token=lambda: 'csrf_token-content'
     )
 
-    for n in ('timedeltaformat', 'hnumber', 'url', 'urlencode', 'jsonencode',
-              'naturalday', 'date', 'datetime', 'time'):
+    for n in ('date', 'datetime', 'hnumber', 'ischeckbox', 'jsonencode',
+               'naturalday', 'time', 'timedeltaformat', 'url', 'urlencode'):
         env.filters[n] = mkdummy(n)
 
     return env

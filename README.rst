@@ -48,3 +48,51 @@ Add ``'inyoka_theme_default'`` to the ``INSTALLED_APPS`` in
     INSTALLED_APPS = INSTALLED_APPS + (
         'inyoka_theme_default',
     )
+
+Running the tests
+-----------------
+
+We're using `tox <https://pypi.python.org/pypi/tox/>`_ to handle different
+Python (other) dependencies::
+
+    $ pip install tox
+    $ tox
+    py27 runtests: PYTHONHASHSEED='3431216340'
+    py27 runtests: commands[0] | python -m unittest discover
+    ...........................................................................
+    ..
+    ----------------------------------------------------------------------
+    Ran 77 tests in 0.533s
+
+    OK
+    py33 runtests: PYTHONHASHSEED='3431216340'
+    py33 runtests: commands[0] | python -m unittest discover
+    ...........................................................................
+    ..
+    ----------------------------------------------------------------------
+    Ran 77 tests in 0.601s
+
+    OK
+    py34 runtests: PYTHONHASHSEED='3431216340'
+    py34 runtests: commands[0] | python -m unittest discover
+    ...........................................................................
+    ..
+    ----------------------------------------------------------------------
+    Ran 77 tests in 0.525s
+
+    OK
+    _________________________________ summary _________________________________
+      py27: commands succeeded
+      py33: commands succeeded
+      py34: commands succeeded
+      congratulations :)
+
+You can also use the Python ``unittest`` framework directly::
+
+    $ python -m unittest discover
+    ...........................................................................
+    ..
+    ----------------------------------------------------------------------
+    Ran 77 tests in 0.537s
+
+    OK

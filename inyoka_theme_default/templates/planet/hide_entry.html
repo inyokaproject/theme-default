@@ -9,11 +9,9 @@
   :license: BSD, see LICENSE for more details.
 -#}
 
-{% from 'macros.html' import outer_form %}
-
 {% set tmp_label = _('Restore') if entry.hidden else _('Hide') %}
 
-{% call outer_form(csrf_token(), action=href('planet', 'hide', entry.id)|e, submit_label=tmp_label) %}
+{% call macros.outer_form(csrf_token(), action=href('planet', 'hide', entry.id)|e, submit_label=tmp_label) %}
   <p>
     {% if entry.hidden %}
       {% trans %}Are you sure you want to restore the entry?{% endtrans %}

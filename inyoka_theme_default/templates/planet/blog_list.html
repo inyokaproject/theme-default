@@ -13,7 +13,7 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  
+
   {{ macros.breadcrumb_item(_('Bloglist')) }}
 {% endblock %}
 
@@ -45,7 +45,7 @@
           {% if blog.user %}
             <a href="{{ href('portal', 'user', blog.user) }}">{{ blog.user }}</a>
           {% else %}
-             - 
+             -
           {% endif %}
         </td>
         <td data-title="{{ ('Latest update') }}">

@@ -18,7 +18,7 @@
 {% block planet_content %}
   <h3>{% trans %}With this form you can suggest a new blog for the planet.{% endtrans %}</h3>
   <p>{% trans %}Please be patient. It could take a while, until we approve your suggestion.{% endtrans %}</p>
-  
+
   {% call macros.outer_form(csrf_token(), form, action=href('planet', 'suggest')) %}
   {% endcall %}
 {% endblock %}

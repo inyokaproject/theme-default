@@ -1,6 +1,6 @@
 {#
     portal/user_edit_profile.html
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Change a userprofile
 
@@ -8,56 +8,42 @@
     :license: BSD, see LICENSE for more details.
 #}
 {% extends 'portal/user_admin.html' %}
-{% import 'macros.html' as macros %}
 
 {% block breadcrumb %}
   {{ super() }}
-  <li>{{_('Profile')}}</li>
+  {{ macros.breadcrumb_item(_('Profile'), href('portal', 'user', user.urlsafe_username, 'edit', 'profile')) }}
 {% endblock %}
 
 {% block content %}
   {{ super() }}
-  <form enctype="multipart/form-data" id="user_edit_form" method="post" action="">
-		{{ csrf_token() }}
-    {{ render_form(form, ['username'], inline=true) }}
-    <dt>{{ form.member_title.label_tag() }}:</dt>
-    <dd>{{ form.member_title }}
-      {% if user.groups.all() %}
-      <div class="group_titles">
-      {% for group in user.groups.all() %}
-        <input type="checkbox" name="group_titles" value="{{ group }}" /> {{ group }}
-      {% endfor %}
-      </div>
+
+  {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
+    {{ macros.inner_form(form, ['username', 'member_title']) }}
+
+    <h4>{% trans %}Avatar settings{% endtrans %}</h4>
+    <div class="form-group {% if form.avatar.errors %} has-error {% endif %}">
+      {{ form.avatar.label_tag() }}
+      {{ macros.render_errors(form.avatar.errors) }}
+      <br />
+      {% if user.has_avatar %}
+        {{ macros.add_user_avatar(user) }}
       {% endif %}
-    </dd>
 
-    <div class="page-header">
-      <h4>{% trans %}Avatar settings{% endtrans %}:</h4>
-    </div>
-    <dt>{{ form.avatar.label_tag() }}:</dt>
-    {% if user.has_avatar %}
-      <dd>{{ macros.add_user_avatar(user) }}</dd>
-    {% endif %}
-    <dd>{{ form.avatar }}</dd>
-    <dd class="note">{% trans height=avatar_height, width=avatar_width %}
-      (Will be scaled to {{ width }}x{{ height }})
-    {% endtrans %}</dd>
+      {{ form.avatar }}
 
-    <div class="page-header">
-      <h4>{% trans %}Contact addresses{% endtrans %}</h4>
+      <p class="help-block">
+        {% trans height=avatar_height, width=avatar_width %}
+          (Will be scaled to {{ width }}x{{ height }})
+        {% endtrans %}
+      </p>
     </div>
-    {{ render_form(form, ['email', 'gpgkey', 'jabber', 'icq', 'msn', 'aim', 'yim', 'skype', 'wengophone', 'sip']) }}
 
-    <div class="page-header">
-      <h4>{% trans %}Miscellaneous settings{% endtrans %}</h4>
-    </div>
-    {{ render_form(form, ['occupation', 'interests', 'website',
-                          'launchpad', 'location']) }}
+    <h4>{% trans %}Contact addresses{% endtrans %}</h4>
+    {{ macros.inner_form(form, ['email', 'gpgkey', 'jabber', 'icq', 'msn', 'aim', 'yim', 'skype', 'wengophone', 'sip']) }}
 
-    <div class="page-header">
-      <h4>{% trans %}Signature{% endtrans %}</h4>
-    </div>
-    <p>{{ form.signature }}</p>
-    <p><input type="submit" value="{% trans %}Submit{% endtrans %}" /></p>
-  </form>
+    <h4>{% trans %}Miscellaneous settings{% endtrans %}</h4>
+    {{ macros.inner_form(form, ['occupation', 'interests', 'website', 'launchpad', 'location']) }}
+
+    {{ macros.input(form.signature) }}
+  {% endcall %}
 {% endblock %}

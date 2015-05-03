@@ -9,8 +9,7 @@
 #}
 {% extends 'planet/base.html' %}
 
-{% from 'macros.html' import render_form %}
-{% set scripts = ['jquery.autocomplete'] %}
+{% from 'macros.html' import outer_form %}
 
 {% block breadcrumb %}
   {{ super() }}
@@ -20,13 +19,5 @@
 {% endblock %}
 
 {% block content %}
-  <form action="" method="post" enctype="multipart/form-data">
-    {{ csrf_token() }}
-    <dl>
-      {{ render_form(form, ['name', 'description', 'blog_url', 'feed_url', 'active', 'user', 'icon'], inline=True) }}
-    </dl>
-    <p>
-      <input type="submit" value="{% trans %}Submit{% endtrans %}" />
-    </p>
-  </form>
+  {{ outer_form(csrf_token(), form) }}
 {% endblock %}

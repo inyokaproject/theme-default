@@ -1,6 +1,6 @@
 {#
     portal/user_edit_privileges.html
-    ~~~~~~~~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Manage the privileges of a user.
 
@@ -11,29 +11,26 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  <li>{{_('Privileges')}}</li>
+  {{ macros.breadcrumb_item(_('Privileges'), href('portal', 'user', user.urlsafe_username, 'edit', 'privileges')) }}
 {% endblock %}
 
 {% macro render_grouplist(derived) %}
-  {% for group in derived %}<a href="{{ group|url }}">{{ group.name|e }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
+  {% for group in derived %}
+    <a href="{{ group|url }}">{{ group.name|e }}</a>{% if not loop.last %}, {% endif %}
+  {% endfor %}
 {% endmacro %}
 
 {% block content %}
   {{ super() }}
-  <form enctype="multipart/form-data" id="user_edit_form" method="post" action="">
-		{{ csrf_token() }}
-    <div class="page-header">
-      <h3>{% trans %}Privileges{% endtrans %}</h3>
-    </div>
+  <div class="page-header">
+    <h3>{% trans %}Privileges{% endtrans %}</h3>
+  </div>
+  
+  {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
+    {{ macros.render_errors(form.permissions.errors) }}
     {% for id, name, checked, derived in permissions %}
-      <input type="checkbox"
-        name="permissions"
-        value="{{ id }}"
-        id="perm_{{ id }}"
-        {% if checked %}
-          checked="checked"
-        {% endif %}
-      />
+      <input type="checkbox" name="permissions" value="{{ id }}"
+        id="perm_{{ id }}" {% if checked %} checked="checked" {% endif %} />
       <label for="perm_{{ id }}">{{ name|e }}</label>
       {% if derived %}
         <span class="text-muted">
@@ -44,7 +41,7 @@
       {% endif %}
       <br />
     {% endfor %}
-    {{ form.permissions.errors }}
+
     <h4>{% trans %}Forum privileges{% endtrans %}</h4>
     <div id="forum_rights">
       <p class="text-danger">
@@ -53,12 +50,7 @@
         {% endtrans %}
       </p>
     </div>
-    <p>
-      <input type="submit"
-        value="{% trans %}Submit{% endtrans %}"
-      />
-    </p>
-  </form>
+  {% endcall %}
 {% endblock %}
 
 {% block scripts %}

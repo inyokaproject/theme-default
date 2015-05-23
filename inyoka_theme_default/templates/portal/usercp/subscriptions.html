@@ -10,11 +10,16 @@
 #}
 
 {% extends 'portal/usercp/overall.html' %}
-{% from 'macros.html' import render_pagination, render_small_pagination %}
-{% set rendered_pagination = render_pagination(pagination) %}
-
-{% do BREADCRUMB.append(_('Subscriptions'), href('portal', 'usercp', 'subscriptions'), True) %}
+{% import 'macros.html' as macros %}
+{% set rendered_pagination = macros.render_pagination(pagination) %}
 {% set selected = 'subscriptions' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Subscriptions'), href('portal', 'usercp', 'subscriptions'))}}
+{% endblock %}
+
 
 {% block sidebar %}
   {{ super() }}
@@ -61,7 +66,7 @@
                     -#}</a>
                   {% endif %}
                   {% if object.paginated %} &#160; &#160; [<span class="pagination">
-                    {{ render_small_pagination(object.get_pagination()) }}
+                    {{ macros.render_small_pagination(object.get_pagination()) }}
                   </span>]{% endif %}
                 {% elif type == 'article' %}
                   <a href="{{ object|url('last_comment') }}" title="{% trans %}Go to last comment{% endtrans %}">{#-

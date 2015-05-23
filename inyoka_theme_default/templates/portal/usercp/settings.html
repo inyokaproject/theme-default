@@ -9,8 +9,14 @@
 #}
 
 {% extends 'portal/usercp/overall.html' %}
-{% from 'macros.html' import render_form %}
-{% do BREADCRUMB.append(_('Settings'), href('portal', 'usercp', 'settings'), True) %}
+{% import 'macros.html' as macros %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Settings'), href('portal', 'usercp', 'settings'))}}
+{% endblock %}
+
 {% set scripts = ['WikiEditor'] %}
 {% set styles = ['editor'] %}
 {% set selected = 'settings' %}

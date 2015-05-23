@@ -9,7 +9,12 @@
 #}
 
 {% extends 'portal/usercp/overall.html' %}
-{% do BREADCRUMB.append(_('Deactivate account'), href('portal', 'deactivate'), True) %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Deactivate account'), href('portal', 'deactivate'))}}
+{% endblock %}
 {% set selected = 'deactivate' %}
 
 {% block content %}

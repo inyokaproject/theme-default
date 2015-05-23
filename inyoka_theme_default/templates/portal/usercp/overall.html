@@ -10,7 +10,12 @@
 
 {% extends 'portal/index.html' %}
 {% import 'macros.html' as macros %}
-{% do BREADCRUMB.append(_('Control panel'), href('portal', 'usercp'), True) %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Control panel'), href('portal', 'usercp'))}}
+{% endblock %}
 
 {% block sidebar %}
   {% call macros.sidebar(_('Menu')) %}

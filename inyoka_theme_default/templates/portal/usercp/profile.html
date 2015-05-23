@@ -22,13 +22,12 @@
 {% set selected = 'profile' %}
 
 {% block content %}
-  <form enctype="multipart/form-data" class="usercp_form" method="post" action="">
-    {{ csrf_token() }}
+  {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
     <h3>{% trans %}Avatar settings{% endtrans %}</h3>
     <dl>
       <dt>{{ form.avatar.label_tag() }}:</dt>
       <dd>
-        {{ macros.add_user_avatar(user, 'usercp_avatar') }}
+        {{ macros.add_user_avatar(user) }}
       </dd>
       <dd>{{ form.avatar }}</dd>
       {% if max_avatar_height >= 0 and max_avatar_width >= 0 %}
@@ -72,10 +71,8 @@
       {% endfor %}
     </dl>
     <h3>{% trans %}Miscellaneous settings{% endtrans %}</h3>
-    {{ macros.render_form(form, ['occupation', 'interests', 'website',
+    {{ macros.inner_form(form, ['occupation', 'interests', 'website',
                           'launchpad', 'gpgkey']) }}
-    <h4>{% trans %}Geographical location{% endtrans %}</h4>
-    {{ macros.render_form(form, ['location', 'coordinates']) }}
     <h3>{% trans %}Signature{% endtrans %}</h3>
     <p class="note">{% trans n=max_sig_length, link=href('wiki', 'ubuntuusers/Moderatoren/Forenregeln', _anchor='8-Signaturregeln') %}
       The signature will be appended to every post. It cannot contain more than {{ n }} characters. Please follow the <a href="{{ link }}">signature rules</a>.
@@ -89,50 +86,7 @@
     </p>
     {{ form.errors.signature }}
     <p>
-      <input type="submit" value="{% trans %}Submit{% endtrans %}" />
-    </p>
-    <p>
       <a href="{{ href('portal', 'user', user.username ) }}">{% trans %}Show my profile{% endtrans %}</a>
     </p>
-  </form>
-{% endblock %}
-
-{% block additional_scripts %}
-  {{ super() }}
-
-  <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key={{ gmaps_apikey|e }}" type="text/javascript"></script>
-
-  <script type="text/javascript">
-    /*<![CDATA[*/
-    var signatureeditor = new WikiEditor('textarea[name="signature"]');
-
-    var userpageeditor = new WikiEditor('textarea[name="userpage"]');
-
-    $(function() {
-      $('p.note', $('#id_coordinates').parent())
-        .html('Solltest du deine Koordinaten nicht kennen gibt einfach deine ' +
-              'Adresse an und klicke auf <a href="javascript:findCoords()">' +
-              'Koordinaten suchen</a>.');
-    });
-    function findCoords() {
-      var geocoder = new GClientGeocoder();
-      if ($('#id_coordinates').val()) {
-        var location = $('#id_coordinates').val();
-      } else {
-        var location = $('#id_location').val();
-      }
-
-      $('#id_coordinates').val('suche nach Koordinaten...');
-
-      if (!location) {
-        alert('Du hast keinen Ort angegeben!');
-      }
-
-      geocoder.getLatLng(location, function(p) {
-        $('#id_coordinates').val(p ? p.lat() + ', ' + p.lng() : '');
-      });
-    }
-
-    /*]]>*/
-  </script>
+  {% endcall %}
 {% endblock %}

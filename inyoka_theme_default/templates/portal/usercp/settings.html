@@ -22,15 +22,14 @@
 {% set selected = 'settings' %}
 
 {% block content %}
-  <form enctype="multipart/form-data" class="usercp_form" method="post" action="">
-    {{ csrf_token() }}
+  {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
     <h3>{% trans %}Settings{% endtrans %}</h3>
     <dl>
-      {{ render_form(form, ['notify', 'notifications', 'ubuntu_version'], inline=True) }}
+      {{ macros.inner_form(form, ['notify', 'notifications', 'ubuntu_version']) }}
       <p class="note">
         <a href="{{ href('portal', 'usercp', 'subscriptions') }}">{% trans %}Edit your subscriptions{% endtrans %}</a>
       </p>
-      {{ render_form(form, ['timezone'], inline=true) }}
+      {{ macros.inner_form(form, ['timezone']) }}
       <dt>{% trans %}Interface{% endtrans %}</dt>
       <dd>
         {{ form.hide_avatars }}
@@ -72,8 +71,5 @@
         </dl>
       </dd>
     </dl>
-    <p>
-      <input type="submit" value="{% trans %}Submit{% endtrans %}" />
-    </p>
-  </form>
+  {% endcall %}
 {% endblock %}

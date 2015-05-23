@@ -12,7 +12,7 @@
 {% do BREADCRUMB.append(_('Deactivate account'), href('portal', 'deactivate'), True) %}
 {% set selected = 'deactivate' %}
 
-{% block portal_content %}
+{% block content %}
   <h3>{% trans %}Deactivate account{% endtrans %}</h3>
   <p>{% trans name=USER.username|e %}
     You can deactivate your account “{{ name }}” here. By doing this, we will remove all your personal data. All your forum posts and wiki articles will remain.

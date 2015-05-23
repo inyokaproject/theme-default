@@ -15,7 +15,7 @@
 {% set styles = ['editor'] %}
 {% set selected = 'settings' %}
 
-{% block portal_content %}
+{% block content %}
   <form enctype="multipart/form-data" class="usercp_form" method="post" action="">
     {{ csrf_token() }}
     <h3>{% trans %}Settings{% endtrans %}</h3>

@@ -15,7 +15,7 @@
 {% set styles = ['editor'] %}
 {% set selected = 'profile' %}
 
-{% block portal_content %}
+{% block content %}
   <form enctype="multipart/form-data" class="usercp_form" method="post" action="">
     {{ csrf_token() }}
     <h3>{% trans %}Avatar settings{% endtrans %}</h3>

@@ -9,8 +9,6 @@
 #}
 {% extends 'planet/base.html' %}
 
-{% set rendered_pagination = macros.render_pagination(pagination) %}
-
 {% block breadcrumb %}
   {{ super() }}
 
@@ -62,5 +60,5 @@
     {% endfor %}
     </tbody>
   </table>
-  <div class="pagination pagination_right">{{ rendered_pagination }}</div>
+  <div class="pagination pagination_right">{{ macros.render_pagination(pagination) }}</div>
 {% endblock %}

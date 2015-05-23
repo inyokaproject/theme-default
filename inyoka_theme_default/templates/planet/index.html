@@ -9,8 +9,6 @@
 #}
 {% extends 'planet/base.html' %}
 
-{% set rendered_pagination = macros.render_pagination(pagination) %}
-
 {% set feeds = [
   (_('Planet - Captions'), href('planet', 'feeds/title/20')),
   (_('Planet - Teaser'), href('planet', 'feeds/short/20')),
@@ -105,7 +103,7 @@
         {% set article_index = article_index + day.articles|length %}
       {% endfor %}
     </div>
-    {{ rendered_pagination }}
+    {{ macros.render_pagination(pagination) }}
   {% else %}
     <p>{% trans %}No articles were aggregated{% endtrans %}</p>
   {% endif %}

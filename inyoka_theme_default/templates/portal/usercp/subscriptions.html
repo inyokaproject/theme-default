@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for more details.
 #}
 
-{%- extends 'portal/usercp/overall.html' %}
+{% extends 'portal/usercp/overall.html' %}
 {% from 'macros.html' import render_pagination, render_small_pagination %}
 {% set rendered_pagination = render_pagination(pagination) %}
 
@@ -46,38 +46,38 @@
         </tr>
       </thead>
       <tbody>
-        {%- for sub in subscriptions -%}
-          {%- set type = sub.content_type.model -%}
-          {%- set object = sub.content_object -%}
-          {%- if type != 'suggestion' and object -%}
+        {% for sub in subscriptions %}
+          {% set type = sub.content_type.model %}
+          {% set object = sub.content_object %}
+          {% if type != 'suggestion' and object %}
             <tr>
               <td class="checkboxes"><input type="checkbox" name="select" value="{{ sub.id }}" /></td>
               <td class="items{% if not sub.can_read %} unreadable{% endif %}">
                 {{ object._meta.verbose_name }}: <a href="{{ object|url }}">{{ object|e }}</a>
-                {% if type == 'topic' -%}
-                  {%- if not object.get_read_status(USER) %}
+                {% if type == 'topic' %}
+                  {% if not object.get_read_status(USER) %}
                     <a href="{{ object|url('first_unread') }}" title="{% trans %}Show unread posts{% endtrans %}">{#-
                       -#}<img src="{{ href('static', 'img/forum/goto.png') }}" alt="{% trans %}Show unread posts{% endtrans %}" />{#-
                     -#}</a>
-                  {%- endif %}
-                  {%- if object.paginated %} &#160; &#160; [<span class="pagination">
+                  {% endif %}
+                  {% if object.paginated %} &#160; &#160; [<span class="pagination">
                     {{ render_small_pagination(object.get_pagination()) }}
-                  </span>]{% endif -%}
-                {% elif type == 'article' -%}
+                  </span>]{% endif %}
+                {% elif type == 'article' %}
                   <a href="{{ object|url('last_comment') }}" title="{% trans %}Go to last comment{% endtrans %}">{#-
                     -#}<img src="{{ href('static', 'img/forum/goto.png') }}" alt="{% trans %}Go to last comment{% endtrans %}" />{#-
                   -#}</a>
-                {% elif type == 'page' -%}
+                {% elif type == 'page' %}
                   <a href="{{ object|url('log') }}" title="{% trans %}Revisions{% endtrans %}">{#-
                     -#}<img src="{{ href('static', 'img/icons/raw.png') }}" alt="{% trans %}Revisions{% endtrans %}" height="16" />{#-
                   -#}</a>
-                {%- endif %}
-                {%- if not sub.can_read %} <a href="{{ object|url('unsubscribe', next=CURRENT_URL) }}">({% trans %}Unsubscribe{% endtrans %})</a>{% endif %}
+                {% endif %}
+                {% if not sub.can_read %} <a href="{{ object|url('unsubscribe', next=CURRENT_URL) }}">({% trans %}Unsubscribe{% endtrans %})</a>{% endif %}
               </td>
               <td class="read">
-                {%- if sub.notified %}
+                {% if sub.notified %}
                   <img src="{{ href('static', 'img', 'icons', 'new.png') }}" alt="neu" title="{% trans %}Changes since last visit{% endtrans %}" />
-                {%- endif %}
+                {% endif %}
               </td>
               <td class="status">
                 {% if type == 'topic' %}
@@ -85,12 +85,12 @@
                 {% endif %}
               </td>
             </tr>
-          {%- endif %}
-        {%- else %}
+          {% endif %}
+        {% else %}
           <tr>
             <td colspan="4">{% trans %}You did not yet subscribed to any topics or articles.{% endtrans %}</td>
           </tr>
-        {%- endfor %}
+        {% endfor %}
       </tbody>
     </table>
     <div>

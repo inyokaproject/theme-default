@@ -8,13 +8,13 @@
     :license: BSD, see LICENSE for more details.
 #}
 
-{%- extends 'portal/usercp/overall.html' %}
+{% extends 'portal/usercp/overall.html' %}
 
 {% macro usercp_button(link, icon, name) %}
   <li>
     <span><a href="{{ link }}">{#
-      #}<img src="{{ href('static', 'img/usercp/usercp-%s.png'|format(icon)) }}" alt="{{ name }}" /><br />
-      {{- name -}}
+      #}<img src="{{ href('static', 'img/usercp/usercp%s.png'|format(icon)) }}" alt="{{ name }}" /><br />
+      {{ name }}
     </a></span>
   </li>
 {% endmacro %}

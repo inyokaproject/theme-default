@@ -8,7 +8,7 @@
     :license: BSD, see LICENSE for more details.
 #}
 
-{%- extends 'portal/usercp/overall.html' %}
+{% extends 'portal/usercp/overall.html' %}
 {% import 'macros.html' as macros %}
 {% do BREADCRUMB.append(_('Profile'), href('portal', 'usercp', 'profile'), True) %}
 {% set scripts = ['WikiEditor'] %}
@@ -25,15 +25,15 @@
         {{ macros.add_user_avatar(user, 'usercp_avatar') }}
       </dd>
       <dd>{{ form.avatar }}</dd>
-      {%- if max_avatar_height >= 0 and max_avatar_width >= 0 %}
+      {% if max_avatar_height >= 0 and max_avatar_width >= 0 %}
       <dd class="note">
-        {%- trans width=max_avatar_width, height=max_avatar_height,
-                 size=max_avatar_size -%}
+        {% trans width=max_avatar_width, height=max_avatar_height,
+                 size=max_avatar_size %}
           Please note that the maximum size for the avatar is {{ width }}x{{ height }} pixels and {{ size }} KiB. Everything that exceeds this limit will automatically be resized.
-        {%- endtrans -%}
+        {% endtrans %}
       </dd>
-      {%- endif %}
-      {%- if form.errors.avatar %}<dd>{{ form.errors.avatar }}</dd>{% endif %}
+      {% endif %}
+      {% if form.errors.avatar %}<dd>{{ form.errors.avatar }}</dd>{% endif %}
       <hr style="clear: both;" />
       <dt>{% trans %}Gravatar:{% endtrans %}</dt>
       {% if user.settings.use_gravatar %}
@@ -47,22 +47,22 @@
     <h3>{% trans %}Contact addresses{% endtrans %}</h3>
     <dl>
       <dd>
-        <p class="note">{% trans -%}
+        <p class="note">{% trans %}
           By default, the email and jabber addresses are not displayed in your public profile. To publish them, you need to check the “show in profile” box.
-        {%- endtrans %}</p>
+        {% endtrans %}</p>
       </dd>
       {% for item in ['email', 'jabber', 'icq', 'msn', 'aim', 'yim', 'skype', 'wengophone', 'sip'] %}
         <dt>
           <label for="{{ form[item].auto_id }}">{{ form[item].label_tag() }}:</label>
         </dt>
         <dd>{{ form[item] }}
-          {%- if item in ['email', 'jabber'] %}
+          {% if item in ['email', 'jabber'] %}
             <span class="note">{{ form['show_' + item] }}
               <label for="id_show_{{ item }}">{% trans %}Show in profile{% endtrans %}</label>
             </span>
-          {%- endif -%}
+          {% endif %}
         </dd>
-        {%- if form.errors[item] %}<dd>{{ form.errors[item] }}</dd>{% endif %}
+        {% if form.errors[item] %}<dd>{{ form.errors[item] }}</dd>{% endif %}
       {% endfor %}
     </dl>
     <h3>{% trans %}Miscellaneous settings{% endtrans %}</h3>
@@ -71,9 +71,9 @@
     <h4>{% trans %}Geographical location{% endtrans %}</h4>
     {{ macros.render_form(form, ['location', 'coordinates']) }}
     <h3>{% trans %}Signature{% endtrans %}</h3>
-    <p class="note">{% trans n=max_sig_length, link=href('wiki', 'ubuntuusers/Moderatoren/Forenregeln', _anchor='8-Signaturregeln') -%}
+    <p class="note">{% trans n=max_sig_length, link=href('wiki', 'ubuntuusers/Moderatoren/Forenregeln', _anchor='8-Signaturregeln') %}
       The signature will be appended to every post. It cannot contain more than {{ n }} characters. Please follow the <a href="{{ link }}">signature rules</a>.
-    {%- endtrans %}</p>
+    {% endtrans %}</p>
     <p>
       {{ form.signature }}
     </p>

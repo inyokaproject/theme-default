@@ -9,8 +9,6 @@
 #}
 {% extends 'planet/base.html' %}
 
-{% from 'macros.html' import outer_form %}
-
 {% block breadcrumb %}
   {{ super() }}
 
@@ -19,5 +17,5 @@
 {% endblock %}
 
 {% block content %}
-  {{ outer_form(csrf_token(), form) }}
+  {{ macros.outer_form(csrf_token(), form) }}
 {% endblock %}

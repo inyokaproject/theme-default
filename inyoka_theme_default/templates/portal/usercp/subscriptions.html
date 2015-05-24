@@ -12,7 +12,6 @@
 {% extends 'portal/usercp/overall.html' %}
 {% import 'macros.html' as macros %}
 {% set rendered_pagination = macros.render_pagination(pagination) %}
-{% set selected = 'subscriptions' %}
 
 {% block breadcrumb %}
   {{ super() }}
@@ -20,10 +19,10 @@
   {{ macros.breadcrumb_item(_('Subscriptions'), href('portal', 'usercp', 'subscriptions'))}}
 {% endblock %}
 
-
 {% block sidebar %}
   {{ super() }}
 
+  {# FIXME Waiting for changes in backend #}
   <h3>{% trans %}Filter{% endtrans %}</h3>
   <div class="container noh3">
     {{ filtersets[0].form.content_type }}
@@ -32,16 +31,12 @@
 
 
 {% block content %}
+  {% set rendered_pagination = macros.render_pagination(pagination) %}
+
   <h3>{% trans %}Subscriptions{% endtrans %}</h3>
-  <form class="usercp_form" method="post" action="">
-    {{ csrf_token() }}
+  {% call macros.outer_form(csrf_token(), button_visible=False, manually_rendered=True) %}
+    <div class="pagination right">{{ rendered_pagination }}</div>
     <table class="usercp_subscriptions">
-     <colgroup>
-        <col width="1%">
-        <col width="84%">
-        <col width="10%">
-        <col width="5%">
-      </colgroup>
       <thead>
         <tr>
           <th class="checkboxes"><input type="checkbox" id="check_all" title="{% trans %}(De)select all{% endtrans %}" /></th>
@@ -60,33 +55,25 @@
               <td class="items{% if not sub.can_read %} unreadable{% endif %}">
                 {{ object._meta.verbose_name }}: <a href="{{ object|url }}">{{ object|e }}</a>
                 {% if type == 'topic' %}
-                  {% if not object.get_read_status(USER) %}
-                    <a href="{{ object|url('first_unread') }}" title="{% trans %}Show unread posts{% endtrans %}">{#-
-                      -#}<img src="{{ href('static', 'img/forum/goto.png') }}" alt="{% trans %}Show unread posts{% endtrans %}" />{#-
-                    -#}</a>
-                  {% endif %}
-                  {% if object.paginated %} &#160; &#160; [<span class="pagination">
-                    {{ macros.render_small_pagination(object.get_pagination()) }}
-                  </span>]{% endif %}
+                    <a class="fa_icon-share" href="{{ object|url('first_unread') }}" title="{% trans %}Show unread posts{% endtrans %}"></a>
                 {% elif type == 'article' %}
-                  <a href="{{ object|url('last_comment') }}" title="{% trans %}Go to last comment{% endtrans %}">{#-
-                    -#}<img src="{{ href('static', 'img/forum/goto.png') }}" alt="{% trans %}Go to last comment{% endtrans %}" />{#-
-                  -#}</a>
+                  <a class="fa_icon-share" href="{{ object|url('last_comment') }}" title="{% trans %}Go to last comment{% endtrans %}"></a>
                 {% elif type == 'page' %}
-                  <a href="{{ object|url('log') }}" title="{% trans %}Revisions{% endtrans %}">{#-
-                    -#}<img src="{{ href('static', 'img/icons/raw.png') }}" alt="{% trans %}Revisions{% endtrans %}" height="16" />{#-
-                  -#}</a>
+                  <a class="fa_icon-edit" href="{{ object|url('log') }}" title="{% trans %}Revisions{% endtrans %}"></a>
                 {% endif %}
-                {% if not sub.can_read %} <a href="{{ object|url('unsubscribe', next=CURRENT_URL) }}">({% trans %}Unsubscribe{% endtrans %})</a>{% endif %}
+
+                {% if not sub.can_read %}
+                  <a href="{{ object|url('unsubscribe', next=CURRENT_URL) }}">({% trans %}Unsubscribe{% endtrans %})</a>
+                {% endif %}
               </td>
               <td class="read">
                 {% if sub.notified %}
-                  <img src="{{ href('static', 'img', 'icons', 'new.png') }}" alt="neu" title="{% trans %}Changes since last visit{% endtrans %}" />
+                  <span class="fa_icon-star" alt="neu" title="{% trans %}Changes since last visit{% endtrans %}"></span>
                 {% endif %}
               </td>
               <td class="status">
                 {% if type == 'topic' %}
-                  <span class="status_{{ object.solved and 'solved' or 'unsolved' }}"></span>
+                  <span class="{{ object.solved and 'fa_icon-check' or 'fa_icon-times' }}"></span>
                 {% endif %}
               </td>
             </tr>
@@ -102,11 +89,11 @@
       <input type="submit" name="delete" value="{% trans %}Delete selected subscriptions{% endtrans %}" />
       <input type="submit" name="mark_read" value="{% trans %}Mark selected subscriptions as read{% endtrans %}" />
     </div>
-  </form>
+  {% endcall %}
   <div class="pagination right">{{ rendered_pagination }}</div>
 {% endblock %}
 
-{% block additional_scripts %}
+{% block scripts %}
   {{ super() }}
   <script type="text/javascript">
     /* <![CDATA[ */

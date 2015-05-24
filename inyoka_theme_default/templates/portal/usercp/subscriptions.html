@@ -10,8 +10,6 @@
 #}
 
 {% extends 'portal/usercp/overall.html' %}
-{% import 'macros.html' as macros %}
-{% set rendered_pagination = macros.render_pagination(pagination) %}
 
 {% block breadcrumb %}
   {{ super() }}
@@ -90,7 +88,7 @@
       <input type="submit" name="mark_read" value="{% trans %}Mark selected subscriptions as read{% endtrans %}" />
     </div>
   {% endcall %}
-  <div class="pagination right">{{ rendered_pagination }}</div>
+  <div class="pagination right">{{ macros.render_pagination(pagination) }}</div>
 {% endblock %}
 
 {% block scripts %}

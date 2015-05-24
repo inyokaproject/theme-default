@@ -16,60 +16,17 @@
 
   {{ macros.breadcrumb_item(_('Settings'), href('portal', 'usercp', 'settings'))}}
 {% endblock %}
-
-{% set scripts = ['WikiEditor'] %}
-{% set styles = ['editor'] %}
 {% set selected = 'settings' %}
 
 {% block content %}
   {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
     <h3>{% trans %}Settings{% endtrans %}</h3>
-    <dl>
-      {{ macros.inner_form(form, ['notify', 'notifications', 'ubuntu_version']) }}
-      <p class="note">
-        <a href="{{ href('portal', 'usercp', 'subscriptions') }}">{% trans %}Edit your subscriptions{% endtrans %}</a>
-      </p>
-      {{ macros.inner_form(form, ['timezone']) }}
-      <dt>{% trans %}Interface{% endtrans %}</dt>
-      <dd>
-        {{ form.hide_avatars }}
-        <label for="id_hide_avatars">{{ form.hide_avatars.label }}</label>
-        {{ form.errors.hide_avatar }}
-      </dd>
-      <dd>
-        {{ form.hide_signatures }}
-        <label for="id_hide_signatures">{{ form.hide_signatures.label }}</label>
-        {{ form.errors.hide_signatures }}
-      </dd>
-      <dd>
-        {{ form.hide_profile }}
-        <label for="id_hide_profile">{{ form.hide_profile.label }}</label>
-        {{ form.errors.hide_profile }}
-      </dd>
-      <dt>Forum</dt>
-      <dd>
-        {{ form.mark_read_on_logout }}
-        <label for="id_mark_read_on_logout">{{ form.mark_read_on_logout.label }}</label>
-        {{ form.errors.mark_read_on_logout }}
-      </dd>
-      <dd>
-        {{ form.autosubscribe }}
-        <label for="id_autosubscribe">{{ form.autosubscribe.label }}</label>
-        {{ form.errors.autosubscribe }}
-      </dd>
-      <dd>
-        {{ form.show_preview }}
-        <label for="id_show_preview">{{ form.show_preview.label }}</label>
-        {{ form.errors.show_preview }}
-        <dl>
-          <dd>
-            {{ form.show_thumbnails }}
-            <label for="id_show_thumbnails">{{ form.show_thumbnails.label }}</label>
-            <span class="note">{{ form.show_thumbnails.help_text }}</span>
-            {{ form.errors.show_thumbnails }}
-          </dd>
-        </dl>
-      </dd>
-    </dl>
+      {{ macros.inner_form(form, ['notify', 'notifications','timezone']) }}
+
+      <h4>{% trans %}Interface{% endtrans %}</h4>
+      {{ macros.inner_form(form, ['hide_avatars', 'hide_signatures','hide_profile']) }}
+
+      <h4>Forum</h4>
+      {{ macros.inner_form(form, ['mark_read_on_logout', 'autosubscribe','show_preview', 'show_thumbnails']) }}
   {% endcall %}
 {% endblock %}

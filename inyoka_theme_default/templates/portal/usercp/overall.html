@@ -14,12 +14,11 @@
 {% block breadcrumb %}
   {{ super() }}
 
-  {{ macros.breadcrumb_item(_('Control panel'), href('portal', 'usercp'))}}
+  {{ macros.breadcrumb_item(_('Control panel'), href('portal', 'usercp', 'profile'))}}
 {% endblock %}
 
 {% block sidebar %}
   {% call macros.sidebar(_('Menu')) %}
-    {{ macros.sidebar_item(_('Overview'), href('portal', 'usercp')) }}
     {{ macros.sidebar_item(_('Profile'), href('portal', 'usercp', 'profile')) }}
     {{ macros.sidebar_item(_('Settings'), href('portal', 'usercp', 'settings')) }}
     {{ macros.sidebar_item(_('Change password'), href('portal', 'usercp', 'password')) }}

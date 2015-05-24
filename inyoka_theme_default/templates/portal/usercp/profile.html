@@ -17,76 +17,20 @@
   {{ macros.breadcrumb_item(_('Profile'), href('portal', 'usercp', 'profile'))}}
 {% endblock %}
 
-{% set scripts = ['WikiEditor'] %}
-{% set styles = ['editor'] %}
 {% set selected = 'profile' %}
 
 {% block content %}
   {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
-    <h3>{% trans %}Avatar settings{% endtrans %}</h3>
-    <dl>
-      <dt>{{ form.avatar.label_tag() }}:</dt>
-      <dd>
-        {{ macros.add_user_avatar(user) }}
-      </dd>
-      <dd>{{ form.avatar }}</dd>
-      {% if max_avatar_height >= 0 and max_avatar_width >= 0 %}
-      <dd class="note">
-        {% trans width=max_avatar_width, height=max_avatar_height,
-                 size=max_avatar_size %}
-          Please note that the maximum size for the avatar is {{ width }}x{{ height }} pixels and {{ size }} KiB. Everything that exceeds this limit will automatically be resized.
-        {% endtrans %}
-      </dd>
-      {% endif %}
-      {% if form.errors.avatar %}<dd>{{ form.errors.avatar }}</dd>{% endif %}
-      <hr style="clear: both;" />
-      <dt>{% trans %}Gravatar:{% endtrans %}</dt>
-      {% if user.settings.use_gravatar %}
-      <dd><img class="usercp_avatar" src="{{ user.gravatar_url }}" alt="Gravatar" /></dd>
-      {% endif %}
-      <dd>{{ form.use_gravatar }} <label for="id_use_gravatar">{{ form.use_gravatar.label }}</label>
-        <dd class="note">{{ form.use_gravatar.help_text|safe }}</dd>
-      </dd>
-      <br style="clear: both;" />
-    </dl>
-    <h3>{% trans %}Contact addresses{% endtrans %}</h3>
-    <dl>
-      <dd>
-        <p class="note">{% trans %}
-          By default, the email and jabber addresses are not displayed in your public profile. To publish them, you need to check the “show in profile” box.
-        {% endtrans %}</p>
-      </dd>
-      {% for item in ['email', 'jabber', 'icq', 'msn', 'aim', 'yim', 'skype', 'wengophone', 'sip'] %}
-        <dt>
-          <label for="{{ form[item].auto_id }}">{{ form[item].label_tag() }}:</label>
-        </dt>
-        <dd>{{ form[item] }}
-          {% if item in ['email', 'jabber'] %}
-            <span class="note">{{ form['show_' + item] }}
-              <label for="id_show_{{ item }}">{% trans %}Show in profile{% endtrans %}</label>
-            </span>
-          {% endif %}
-        </dd>
-        {% if form.errors[item] %}<dd>{{ form.errors[item] }}</dd>{% endif %}
-      {% endfor %}
-    </dl>
-    <h3>{% trans %}Miscellaneous settings{% endtrans %}</h3>
-    {{ macros.inner_form(form, ['occupation', 'interests', 'website',
-                          'launchpad', 'gpgkey']) }}
-    <h3>{% trans %}Signature{% endtrans %}</h3>
-    <p class="note">{% trans n=max_sig_length, link=href('wiki', 'ubuntuusers/Moderatoren/Forenregeln', _anchor='8-Signaturregeln') %}
-      The signature will be appended to every post. It cannot contain more than {{ n }} characters. Please follow the <a href="{{ link }}">signature rules</a>.
-    {% endtrans %}</p>
-    <p>
-      {{ form.signature }}
-    </p>
-    <h3>{% trans %}User page{% endtrans %}</h3>
-    <p>
-      {{ form.userpage }}
-    </p>
-    {{ form.errors.signature }}
-    <p>
-      <a href="{{ href('portal', 'user', user.username ) }}">{% trans %}Show my profile{% endtrans %}</a>
-    </p>
+    <h4>{% trans %}Avatar settings{% endtrans %}</h4>
+    {% if user.has_avatar %}
+      {{ macros.add_user_avatar(user) }}
+    {% endif %}
+    {{ macros.input(form.avatar) }}
+
+    <h4>{% trans %}Contact addresses{% endtrans %}</h4>
+    {{ macros.inner_form(form, ['email', 'gpgkey', 'jabber', 'icq', 'msn', 'aim', 'yim', 'skype', 'wengophone', 'sip']) }}
+
+    <h4>{% trans %}Miscellaneous information fields{% endtrans %}</h4>
+    {{ macros.inner_form(form, ['occupation', 'interests', 'website', 'launchpad', 'location', 'signature', 'userpage']) }}
   {% endcall %}
 {% endblock %}

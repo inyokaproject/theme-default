@@ -9,6 +9,9 @@
 #}
 {% extends 'ikhaya/base.html' %}
 
+{% import 'macros.html' as macros %}
+{% set rendered_pagination = macros.render_pagination(pagination) %}
+
 {% block breadcrumb %}
   {{ super() }}
   {% if category %}
@@ -17,7 +20,7 @@
 {% endblock %}
 
 {% block content %}
-  {{ macros.render_pagination(pagination) }}
+  {{ rendered_pagination }}
   {% for article in articles %}
     <article class="ikhaya-article {% if article.hidden %}ikhaya-article-muted{% endif %}"
         {% if article.hidden %}
@@ -61,5 +64,5 @@
       </div>
     </article>
   {% endfor %}
-  {{ macros.render_pagination(pagination) }}
+  {{ rendered_pagination }}
 {% endblock %}

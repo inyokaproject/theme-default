@@ -9,6 +9,9 @@
 #}
 {% extends 'forum/base.html' %}
 
+{% import 'macros.html' as macros %}
+{% set rendered_pagination = macros.render_pagination(pagination) %}
+
 {% block breadcrumb %}
   {{ super() }}
 
@@ -31,7 +34,7 @@
 {% endblock %}
 
 {% block content %}
-  {{ macros.render_pagination(pagination) }}
+  {{ rendered_pagination }}
   {% if subforums %}
     <div class="forum-list">
       <div class="forum-list-heading">
@@ -101,5 +104,5 @@
       {% endfor %}
     </ul>
   </div>
-  {{ macros.render_pagination(pagination) }}
+  {{ rendered_pagination }}
 {% endblock %}

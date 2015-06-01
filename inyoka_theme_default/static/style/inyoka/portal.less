@@ -54,9 +54,37 @@
       }
     }
   }
+
   &-usericon {
     font-size:  20ex;
     text-align: center;
     vertical-align: middle;
+  }
+
+  &-privmsg-table {
+    th.actions {
+      text-align: center;
+    }
+    .actions {
+      text-align: right;
+    }
+    th.delete {
+      text-align: center;
+      input {
+        margin-left: 5px;
+      }
+    }
+    .pn_delete {
+      text-align: center;
+    }
+
+    @media (min-width: @screen-md-min) {
+      .actionscol {width:10%;}
+      .deletecol {width:14%;}
+    }
+    @media (min-width: @screen-lg-min) {
+      .actionscol {width:10%;}
+      .deletecol {width:12%;}
+    }
   }
 }

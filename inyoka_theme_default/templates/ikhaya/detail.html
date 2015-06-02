@@ -40,6 +40,7 @@
 
   {% if can_edit_article %}
     {% call macros.sidebar_admin() %}
+      {{ macros.sidebar_item(_('Delete article'), 'delete') }}
       {{ macros.sidebar_item(_('Edit article'), '#') }}
       {{ macros.sidebar_item('Enable / Disable comments', '#') }}
     {% endcall %}

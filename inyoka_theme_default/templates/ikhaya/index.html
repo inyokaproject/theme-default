@@ -14,9 +14,18 @@
 
 {% block breadcrumb %}
   {{ super() }}
+
   {% if category %}
     {{ macros.breadcrumb_item(category) }}
   {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+  {{ super() }}
+
+  {% call macros.sidebar() %}
+    {{ macros.sidebar_item(_('Archive'), href('ikhaya', 'archive')) }}
+  {% endcall %}
 {% endblock %}
 
 {% block content %}

@@ -11,6 +11,7 @@
 
 {% block breadcrumb %}
   {{ super() }}
+
   {{ macros.breadcrumb_item(article.category, article.category|url) }}
   {{ macros.breadcrumb_item(article.subject) }}
 {% endblock %}
@@ -68,6 +69,7 @@
       <div class="text">{{ article.rendered_text }}</div>
     </div>
   </article>
+
   <h3>{% trans %}Comments{% endtrans %}</h3>
   {% for comment in comments %}
     {% if not comment.deleted or can_admin_comment %}

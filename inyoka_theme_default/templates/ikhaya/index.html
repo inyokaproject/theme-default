@@ -42,7 +42,35 @@
   {{ super() }}
 
   {% call macros.sidebar() %}
-    {{ macros.sidebar_item(_('Archive'), href('ikhaya', 'archive')) }}
+    {{ macros.sidebar_item(_('Suggest article'), href('ikhaya', 'suggest', 'new')) }}
+  {% endcall %}
+
+  {% call macros.sidebar(_('Categories')) %}
+    {% if categories %}
+        {% for category in categories %}
+          {% call macros.sidebar_item() %}
+            <a href="{{ category|url }}">{{ category.name|e }}</a>
+
+            {% if USER.can('category_edit') %}
+              <a href="{{ href('ikhaya', 'category', category.slug, 'edit') }}"><span class="fa_icon-pencil"></span></a>
+            {% endif %}
+          {% endcall %}
+        {% endfor %}
+    {% endif %}
+  {% endcall %}
+
+  {% call macros.sidebar() %}
+    {{ macros.sidebar_item(_('Archive'), href('ikhaya', 'archive'), 'fa_icon-archive') }}
+  {% endcall %}
+
+  {% call macros.sidebar_admin() %}
+    {% if USER.can('article_edit') %}
+      {{ macros.sidebar_item(_('New article'), href('ikhaya', 'article', 'new')) }}
+    {% endif %}
+
+    {% if USER.can('category_edit') %}
+      {{ macros.sidebar_item(_('Add category'), href('ikhaya', 'category', 'new')) }}
+    {% endif %}
   {% endcall %}
 {% endblock %}
 

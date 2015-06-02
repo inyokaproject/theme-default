@@ -12,6 +12,24 @@
 {% import 'macros.html' as macros %}
 {% set rendered_pagination = macros.render_pagination(pagination) %}
 
+{% if category %}
+  {% set name = category.name %}
+  {% set feeds = [
+    (name + _('Captions'), href('ikhaya', 'feeds', category.slug, 'title/20')),
+    (name + _('Teaser'), href('ikhaya', 'feeds', category.slug, 'short/20')),
+    (name + _('Full'), href('ikhaya', 'feeds', category.slug, 'full/20')),
+    ] %}
+{% else %}
+  {% set feeds = [
+    (_('News') + ' - ' + _('Captions'), href('ikhaya', 'feeds/title/20')),
+    (_('News') + ' - ' + _('Teaser'), href('ikhaya', 'feeds/short/20')),
+    (_('News') + ' - ' + _('Full'), href('ikhaya', 'feeds/full/20')),
+    (_('Comments') + ' - ' + _('Full'), href('ikhaya', 'feeds/comments/title/20')),
+    (_('Comments') + ' - ' + _('Full'), href('ikhaya', 'feeds/comments/short/20')),
+    (_('Comments') + ' - ' + _('Full'), href('ikhaya', 'feeds/comments/full/20')),
+    ] %}
+{% endif %}
+
 {% block breadcrumb %}
   {{ super() }}
 

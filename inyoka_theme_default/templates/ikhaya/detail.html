@@ -9,6 +9,13 @@
 #}
 {% extends 'ikhaya/base.html' %}
 
+{% set feed = 'feeds/comments/%s/%%s/20'|format(article.id) %}
+{% set feeds = [
+  (_('Comments - Captions'), href('ikhaya', feed|format('title'))),
+  (_('Comments - Teaser'), href('ikhaya', feed|format('short'))),
+  (_('Comments - Full'), href('ikhaya', feed|format('full'))),
+  ] %}
+
 {% block breadcrumb %}
   {{ super() }}
 

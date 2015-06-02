@@ -1,0 +1,71 @@
+{#
+    ikhaya/article_edit.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Template for editing or creating an Ikhaya article
+
+    :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'ikhaya/base.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {% if not article %}
+    {{ macros.breadcrumb_item(_('New Article'), href('ikhaya', 'new')) }}
+  {% else %}
+    {{ macros.breadcrumb_item(article.category, article.category|url) }}
+    {{ macros.breadcrumb_item(article.subject, article|url) }}
+    {{ macros.breadcrumb_item(_('Edit'), article|url('edit')) }}
+  {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+  {{ super() }}
+
+  {% if article %}
+    {% call macros.sidebar() %}
+      {{ macros.sidebar_item(_('Show article'), article|url()) }}
+      {{ macros.sidebar_item(_('Short URL'), article|url('id')) }}
+      {{ macros.sidebar_item(_('Delete'), article|url('delete')) }}
+    {% endcall %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if article %}
+    <h3>
+      {% trans link=article|url, article=article.subject|e %}
+        Edit article “<a href="{{ link }}" title="Show article">{{ article }}</a>”
+      {% endtrans %}
+    </h3>
+  {% else %}
+    <h3>{% trans %}New Article{% endtrans %}</h3>
+  {% endif %}
+
+  {% call macros.outer_form(csrf_token(), form, button_visible=False, manually_rendered=True) %}
+    {{ macros.inner_form(form, ['subject', 'intro', 'text', 'author', 'category']) }}
+
+    {{ macros.inner_form(form, ['icon']) }}
+    {% if article.article_icon %}
+      <img src="{{ article.article_icon|url }}" alt="{{ article.article_icon.identifier|e }}" />
+    {% endif %}
+
+    {{ macros.inner_form(form, ['comments_enabled', 'public']) }}
+    {% if article != none %}
+      {{ macros.inner_form(form, ['updated']) }}
+    {% endif %}
+    {{ macros.inner_form(form, ['pub_date', 'slug']) }}
+
+    <input type="submit" value="{% trans %}Preview{% endtrans %}" name="preview" />
+    <input type="submit" value="{% trans %}Submit{% endtrans %}" name="send" />
+  {% endcall %}
+
+  {% if preview %}
+    <div class="preview_wrapper">
+      <h2 class="title">{% trans %}Preview{% endtrans %}</h2>
+      <div class="preview">{{ preview }}</div>
+    </div>
+  {% endif %}
+{% endblock %}

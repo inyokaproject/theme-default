@@ -34,7 +34,7 @@
   {{ super() }}
 
   {% if category %}
-    {{ macros.breadcrumb_item(category, article.category|url) }}
+    {{ macros.breadcrumb_item(category, category|url) }}
   {% endif %}
 {% endblock %}
 
@@ -75,49 +75,55 @@
 {% endblock %}
 
 {% block content %}
-  {{ rendered_pagination }}
-  {% for article in articles %}
-    <article class="ikhaya-article {% if article.hidden %}ikhaya-article-muted{% endif %}"
-        {% if article.hidden %}
-          data-toggle="tooltip"
-          title="{% trans %}This article is not visible for regular users{% endtrans %}"
-          data-trigger="manual"
-        {% endif %} id="article-{{ article.id }}">
-      <div class="ikhaya-article-heading">
-          <time datetime="{{ article.pub_datetime|datetime('c') }}"
-            class="pull-right meta">{{ article.pub_datetime|datetime }}</time>
-        <h3>
-          <a href="{{ article|url }}">{{ article.subject }}</a>
-        </h3>
+  {% if articles %}
+    {{ rendered_pagination }}
+    {% for article in articles %}
+      <article class="ikhaya-article {% if article.hidden %}ikhaya-article-muted{% endif %}"
+          {% if article.hidden %}
+            data-toggle="tooltip"
+            title="{% trans %}This article is not visible for regular users{% endtrans %}"
+            data-trigger="manual"
+          {% endif %} id="article-{{ article.id }}">
+        <div class="ikhaya-article-heading">
+            <time datetime="{{ article.pub_datetime|datetime('c') }}"
+              class="pull-right meta">{{ article.pub_datetime|datetime }}</time>
+          <h3>
+            <a href="{{ article|url }}">{{ article.subject }}</a>
+          </h3>
 
-        <div class="clearfix"></div>
-      </div>
-      <div class="ikhaya-article-body">
-        {{ article.rendered_intro }}
-      </div>
-      <div class="ikhaya-article-footer">
-        <ul class="list-inline">
-          <li>
-            {% trans %}Category:{% endtrans %}
-            <a href="{{ article.category|url }}">{{ article.category.name|e }}</a>
-          </li>
-          <li>
-            {% trans count=article.comment_count %}
-              {{ count }} comment
-              {% pluralize %}
-              {{ count }} comments
-            {% endtrans %}
-          </li>
-          {% if article.updated > article.pub_datetime %}
-            <li class="pull-right">
-              <time datetime="{{ article.updated|datetime('c') }}">
-                {% trans %}Last update:{% endtrans %} {{ article.updated|datetime }}
-              </time>
+          <div class="clearfix"></div>
+        </div>
+        <div class="ikhaya-article-body">
+          {{ article.rendered_intro }}
+        </div>
+        <div class="ikhaya-article-footer">
+          <ul class="list-inline">
+            <li>
+              {% trans %}Category:{% endtrans %}
+              <a href="{{ article.category|url }}">{{ article.category.name|e }}</a>
             </li>
-          {% endif %}</ul>
-        <div class="clearfix"></div>
-      </div>
-    </article>
-  {% endfor %}
-  {{ rendered_pagination }}
+            <li>
+              {% trans count=article.comment_count %}
+                {{ count }} comment
+                {% pluralize %}
+                {{ count }} comments
+              {% endtrans %}
+            </li>
+            {% if article.updated > article.pub_datetime %}
+              <li class="pull-right">
+                <time datetime="{{ article.updated|datetime('c') }}">
+                  {% trans %}Last update:{% endtrans %} {{ article.updated|datetime }}
+                </time>
+              </li>
+            {% endif %}</ul>
+          <div class="clearfix"></div>
+        </div>
+      </article>
+    {% endfor %}
+    {{ rendered_pagination }}
+  {% else %}
+    <div class="message-info">
+      {% trans %}There is no article.{% endtrans %}
+    </div>
+  {% endif %}
 {% endblock %}

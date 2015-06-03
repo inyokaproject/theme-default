@@ -34,7 +34,7 @@
   {{ super() }}
 
   {% if category %}
-    {{ macros.breadcrumb_item(category) }}
+    {{ macros.breadcrumb_item(category, article.category|url) }}
   {% endif %}
 {% endblock %}
 

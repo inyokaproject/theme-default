@@ -84,9 +84,7 @@
       <div class="ikhaya-comment {% if comment.deleted %}ikhaya-comment-muted{% endif %}" id="comment_{{ loop.index }}">
         <div class="ikhaya-comment-heading">
           <span class="pull-right">
-            <a href="#comment_{{ loop.index }}">
-              <time datetime="{{ comment.pub_date|datetime('c') }}">{{ comment.pub_date|datetime }}</time>
-            </a>
+            <time datetime="{{ comment.pub_date|datetime('c') }}">{{ comment.pub_date|datetime }}</time>
           </span>
           <a href="#comment_{{ loop.index }}">#{{ loop.index }}</a>
           <a href="{{ comment.author|url }}">{{ comment.author }}</a>

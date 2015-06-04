@@ -35,7 +35,7 @@
       {% endif %}
     {% endif %}
 
-    {{ macros.sidebar_item(_('Report misspelling'), article|url('reports')) }}
+    {{ macros.sidebar_item(_('Report misspelling'), article|url('report_new')) }}
   {% endcall %}
 
   {% if can_edit_article %}
@@ -92,7 +92,8 @@
             </a>
             {% if comment.author_id == USER.id %}
               <a href="{{ comment|url('edit') }}" class="btn btn-primary">
-                {% trans %}Edit{% endtrans %}</a>
+                {% trans %}Edit{% endtrans %}
+              </a>
             {% endif %}
           </div>
 

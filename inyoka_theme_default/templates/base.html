@@ -12,18 +12,25 @@
 
 <!DOCTYPE html>
 <html>
-{% block head %}
+
 <head>
+{% block head %}
+  {% block head_meta %}
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% endblock %}
 
-  <title>Inyoka</title>
+  <title>
+    {% block page_title %}
+      Inyoka
+    {% endblock %}
+  </title>
 
   <link href="{{ href('static', 'style', 'style.css') }}" rel="stylesheet" type="text/css" />
-</head>
 {% endblock %}
+</head>
 
 {% block body %}
 <body class="{{ active_app }}" role="document">

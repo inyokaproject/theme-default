@@ -9,6 +9,10 @@
  */
 
 .ikhaya {
+  &-article {
+    .article();
+  }
+
   &-comment {
     &:extend(.panel);
     &:extend(.panel-default);
@@ -36,7 +40,53 @@
     }
   }
 
-  &-article {
-    .article();
+  &-report {
+    &:extend(.panel);
+    &:extend(.panel-default);
+
+    & > &-heading {
+      &:extend(.panel-heading);
+      &:extend(.panel-default > .panel-heading);
+      &:extend(.list-inline);
+      margin: 0;
+      li {
+        &:extend(.list-inline > li);
+      }
+    }
+
+    & > &-body {
+      &:extend(.panel-body);
+    }
+
+    & > &-footer {
+      &:extend(.panel-footer);
+      &:extend(.list-inline);
+      margin: 0;
+      li {
+        &:extend(.list-inline > li);
+      }
+    }
+    
+    &-hidden {
+      .ikhaya-report-heading, .ikhaya-report-footer {
+        &:extend(.panel-info);
+        &:extend(.panel-info > .panel-heading);
+      }
+      .ikhaya-report-body {
+        color: @gray-light;
+      }
+    }
+    
+    &-solved {
+      .ikhaya-report-heading, .ikhaya-report-footer {
+        background-color: @state-success-bg;
+      }
+    }
+    
+    &:target {
+      .ikhaya-report-heading {
+        background-color: @active-target-bg;
+      }
+    }
   }
 }

@@ -90,7 +90,6 @@
           </span>
           <a href="#comment_{{ loop.index }}">#{{ loop.index }}</a>
           <a href="{{ comment.author|url }}">{{ comment.author }}</a>
-
           <div class="clearfix"></div>
         </div>
         <div class="ikhaya-comment-body">
@@ -106,6 +105,7 @@
                 {% trans %}Edit{% endtrans %}</a>
             {% endif %}
           </div>
+
           {% if can_admin_comment %}
             <div class="pull-right">
               <button type="button" class="staff-button" data-toggle="dropdown">
@@ -113,15 +113,16 @@
                 <span class="fa_icon-caret-down"></span>
               </button>
               <ul class="staff-button-menu">
-                <li><a href="#">{% trans %}Edit{% endtrans %}</a></li>
+                <li><a href="{{ comment|url('edit') }}">{% trans %}Edit{% endtrans %}</a></li>
                 {% if comment.deleted %}
-                  <li><a href="#">{% trans %}Restore{% endtrans %}</a></li>
+                  <li><a href="{{ comment|url('restore') }}">{% trans %}Restore{% endtrans %}</a></li>
                 {% else %}
-                  <li><a href="#">{% trans %}Hide{% endtrans %}</a></li>
+                  <li><a href="{{ comment|url('hide') }}">{% trans %}Hide{% endtrans %}</a></li>
                 {% endif %}
               </ul>
             </div>
           {% endif %}
+
           <div class="clearfix"></div>
         </div>
       </div>

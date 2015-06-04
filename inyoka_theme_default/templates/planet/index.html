@@ -16,6 +16,9 @@
 ] %}
 
 {% block planet_content %}
+  {% set rendered_pagination = macros.render_pagination(pagination) %}
+
+  {{ rendered_pagination }}
   {% if days %}
     {% if page == 1 %}
       <div class="planet-newestarticles">
@@ -105,7 +108,7 @@
         {% set article_index = article_index + day.articles|length %}
       {% endfor %}
     </div>
-    {{ macros.render_pagination(pagination) }}
+    {{ rendered_pagination }}
   {% else %}
     <p>{% trans %}No articles were aggregated{% endtrans %}</p>
   {% endif %}

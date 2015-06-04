@@ -20,11 +20,13 @@
     {% if page == 1 %}
       <div class="planet-newestarticles">
         <h2>{% trans %}Recent articles{% endtrans %}</h2>
-        <ul class="list-inline">
+        <ol class="planet-newestarticles-list">
           {% for article in articles[:10] %}
-            <li><a title="{{ article.blog }}" href="#article_{{ loop.index0 }}">{{ article.title }}</a></li>
+            <li>
+              <a title="{{ article.blog }}" href="#article_{{ loop.index0 }}">{{ article.title }}</a>
+            </li>
           {% endfor %}
-        </ul>
+        </ol>
       </div>
     {% endif %}
 

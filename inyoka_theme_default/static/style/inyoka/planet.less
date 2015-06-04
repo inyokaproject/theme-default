@@ -10,16 +10,10 @@
 
 .planet {
   &-newestarticles {
-    .list-inline {
-      text-align:justifed;
-
-      li {
-        padding: 0;
-
-        &:not(:last-child):after {
-          color: @gray-light;
-          content: ' |';
-        }
+    @media (min-width: @screen-sm-min) {
+      &-list {
+        columns: 2;
+        column-gap: 4em;
       }
     }
   }

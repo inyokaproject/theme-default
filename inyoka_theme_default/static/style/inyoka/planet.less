@@ -76,5 +76,19 @@
         color: inherit;
       }
     }
+
+    img {
+      max-width: 100% !important;
+      
+      /* `!important` needed as width and height are sometimes inline
+          defined (→ wrong form-factor if scaled) */
+      height: auto !important;
+      width: auto !important;
+    }
+
+    table {
+      table-layout: fixed;
+      width: 100%;
+    }
   }
 }

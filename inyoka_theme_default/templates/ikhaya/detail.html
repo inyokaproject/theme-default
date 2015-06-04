@@ -48,22 +48,16 @@
 {% block content %}
   <article class="ikhaya-article">
     <header class="ikhaya-article-heading">
+      {% include 'ikhaya/includes/ikhaya-article-date.html' %}
+
       <h3>{{ article.subject }}</h3>
+
       <ul class="list-inline meta">
         <li class="author">
           {% trans link=article.author|url, author=article.author.username|e %}
             Published by <a href="{{ link }}">{{ author }}</a>
           {% endtrans %}
         </li>
-        <li>
-          <time datetime="{{ article.pub_datetime|datetime('c') }}">{{ article.pub_datetime|datetime }}</time>
-        </li>
-        {% if article.updated > article.pub_datetime %}
-          <li>
-            <time datetime="{{ article.updated|datetime('c') }}">{% trans %}Last
-              update:{% endtrans %} {{ article.updated|datetime }}</time>
-          </li>
-        {% endif %}
         <li class="category">
           {% trans %}Category:{% endtrans %}
           <a href="{{ article.category|url }}">{{ article.category.name|e }}</a>

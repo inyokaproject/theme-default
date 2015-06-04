@@ -84,14 +84,14 @@
             title="{% trans %}This article is not visible for regular users{% endtrans %}"
             data-trigger="manual"
           {% endif %} id="article-{{ article.id }}">
+
         <div class="ikhaya-article-heading">
-            <time datetime="{{ article.pub_datetime|datetime('c') }}"
-              class="pull-right meta">{{ article.pub_datetime|datetime }}</time>
+          {% include 'ikhaya/includes/ikhaya-article-date.html' %}
+
           <h3>
             <a href="{{ article|url }}">{{ article.subject }}</a>
           </h3>
 
-          <div class="clearfix"></div>
         </div>
         <div class="ikhaya-article-body">
           {{ article.rendered_intro }}
@@ -111,13 +111,6 @@
               {% endtrans %}
               </a>
             </li>
-            {% if article.updated > article.pub_datetime %}
-              <li class="pull-right">
-                <time datetime="{{ article.updated|datetime('c') }}">
-                  {% trans %}Last update:{% endtrans %} {{ article.updated|datetime }}
-                </time>
-              </li>
-            {% endif %}</ul>
           <div class="clearfix"></div>
         </div>
       </article>

@@ -103,11 +103,13 @@
               <a href="{{ article.category|url }}">{{ article.category.name|e }}</a>
             </li>
             <li>
+              <a href="{{ article|url }}#comment-section">
               {% trans count=article.comment_count %}
                 {{ count }} comment
                 {% pluralize %}
                 {{ count }} comments
               {% endtrans %}
+              </a>
             </li>
             {% if article.updated > article.pub_datetime %}
               <li class="pull-right">

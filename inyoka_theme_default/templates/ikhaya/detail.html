@@ -78,7 +78,7 @@
     </div>
   </article>
 
-  <h3>{% trans %}Comments{% endtrans %}</h3>
+  <h3 id="comment-section">{% trans %}Comments{% endtrans %}</h3>
   {% for comment in comments %}
     {% if not comment.deleted or can_admin_comment %}
       <div class="ikhaya-comment {% if comment.deleted %}ikhaya-comment-muted{% endif %}" id="comment_{{ loop.index }}">

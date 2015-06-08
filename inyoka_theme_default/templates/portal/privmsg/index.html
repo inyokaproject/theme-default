@@ -18,52 +18,57 @@
 
 {% block content %}
   {%- if message %}
-    <div class="">
-      {{ macros.add_user_avatar(message.author) }}
-      <dl>
-        <dt>{% trans %}From:{% endtrans %}</dt>
-        <dd>
-          <a{% if not message.author.is_active %} class="user_inactive"{% endif %} href="{{ message.author|url }}">
-            {{- message.author|e }}
-          </a>
-        </dd>
-        <dt>{% trans %}To:{% endtrans %}</dt>
-        <dd>
-          {% for user in message.recipients -%}
-            <a{% if not user.is_active %} class="user_inactive"{% endif %} href="{{ user|url }}">{{ user|e }}</a>
-            {%- if not loop.last %}, {% endif %}
-          {% else %}
-            …
-          {% endfor %}
-        </dd>
-        <dt>{% trans %}Subject:{% endtrans %}</dt>
-        <dd>{{ message.subject|e }}</dd>
-        <dt>{% trans %}Date:{% endtrans %}</dt>
-        <dd>{{ message.pub_date|datetime }}</dd>
-      </dl>
-      <div>
+    <div class="message">
+      <div class="head">
+        <div class="row">
+          <div class="col-sm-9">
+            <dl>
+              <dt>{% trans %}From:{% endtrans %}</dt>
+              <dd>
+                <a{% if not message.author.is_active %} class="user_inactive"{% endif %} href="{{ message.author|url }}">
+                  {{- message.author|e }}
+                </a>
+              </dd>
+              <dt>{% trans %}To:{% endtrans %}</dt>
+              <dd>
+                {% for user in message.recipients -%}
+                  <a{% if not user.is_active %} class="user_inactive"{% endif %} href="{{ user|url }}">{{ user|e }}</a>
+                  {%- if not loop.last %}, {% endif %}
+                {% else %}
+                  …
+                {% endfor %}
+              </dd>
+              <dt>{% trans %}Subject:{% endtrans %}</dt>
+              <dd>{{ message.subject|e }}</dd>
+              <dt>{% trans %}Date:{% endtrans %}</dt>
+              <dd>{{ message.pub_date|datetime }}</dd>
+            </dl>
+          </div>
+          <div class="col-sm-3 avatar">{{ macros.add_user_avatar(message.author) }}</div>
+        </div>
+      </div>      
+      <div class="body">
         {{ message.rendered_text }}
       </div>
-      <div>
+      <div class="foot">
         {%- if not message.author == USER %}
-
           {% if message.author.is_active %}
-            <a class="pn_reply" href="{{ message|url('reply') }}">{% trans %}Reply{% endtrans %}</a> |
+            <a class="pn_reply" href="{{ message|url('reply') }}"><i class="fa_icon-reply"></i> <span>{% trans %}Reply{% endtrans %}</span></a> |
           {%- endif %}
 
           {%- if message.recipients|length > 1 %}
-            <a class="pn_reply_all" href="{{ message|url('reply_to_all') }}">{% trans %}Reply to all{% endtrans %}</a> |
+            <a class="pn_reply_all" href="{{ message|url('reply_to_all') }}"><i class="fa_icon-reply-all"></i> <span>{% trans %}Reply to all{% endtrans %}</span></a> |
           {%- endif %}
         {%- endif %}
-        <a class="pn_forward" href="{{ message|url('forward') }}">{% trans %}Forward{% endtrans %}</a> |
+        <a class="pn_forward" href="{{ message|url('forward') }}"><i class="fa_icon-share"></i> <span>{% trans %}Forward{% endtrans %}</span></a> |
         {%- if folder.id == 'trash' %}
-          <a class="pn_restore" href="?action=restore">{% trans %}Restore{% endtrans %}</a> |
+          <a class="pn_restore" href="?action=restore"><i class="fa_icon-arrow-up"></i> <span>{% trans %}Restore{% endtrans %}</span></a> |
         {%- elif folder.id != 'archive' %}
-          <a class="pn_archive" href="?action=archive">{% trans %}Archive{% endtrans %}</a> |
+          <a class="pn_archive" href="?action=archive"><i class="fa_icon-archive"></i> <span>{% trans %}Archive{% endtrans %}</span></a> |
         {%- endif %}
-        <a class="pn_delete" href="?action=delete">{% trans %}Delete message{% endtrans %}</a>
+        <a class="pn_delete" href="?action=delete"><i class="fa_icon-trash-o"></i> <span>{% trans %}Delete message{% endtrans %}</span></a>
       </div>
-      <div>
+      <div class="spam-info">
         {%- trans moderators='http://wiki.ubuntuusers.de/ubuntuusers/Moderatoren' -%}
           If you received a spam message, please forward it to a <a href="{{ moderators }}">moderator</a>.
         {%- endtrans -%}
@@ -95,17 +100,17 @@
       <tbody>
       {%- for entry in entries %}
         <tr{% if message == entry.message %} class="active_pn"{% endif %}>
-          <td>
+          <td data-title="{% trans %}Subject{% endtrans %}">
             {% if not entry.read %}<strong>{% endif -%}
               <a href="{{ entry|url }}">{{ entry.message.subject|e|truncate(50,false,'...') }}</a>
             {%- if not entry.read %}</strong>{% endif %}
           </td>
-          <td>
+          <td data-title="{% trans %}From{% endtrans %}">
             <a{% if not entry.message.author.is_active %} class="user_inactive"{% endif %} href="{{ entry.message.author|url }}">
             {{- entry.message.author|e -}}
             </a>
           </td>
-          <td>
+          <td data-title="{% trans %}To{% endtrans %}">
             {%- if entry.message.recipients|length == 0 %}
               <a{% if not entry.message.author.is_active %} class="user_inactive"{% endif %} href="{{ entry.message.author|url }}">
               {{- entry.message.author|e -}}
@@ -117,8 +122,8 @@
             {%- endif %}
             {%- if entry.message.recipients|length > 1 %}, …{% endif %}
           </td>
-          <td>{{ entry.message.pub_date|datetime }}</td>
-          <td class="actions">
+          <td data-title="{% trans %}Date{% endtrans %}">{{ entry.message.pub_date|datetime }}</td>
+          <td data-title={% trans %}Actions{% endtrans %} class="actions">
             {%- if not entry.is_own_message %}
               {% if entry.message.author.is_active %}
                 <a href="{{ entry|url('reply') }}" title="{% trans %}Reply{% endtrans %}">
@@ -140,7 +145,7 @@
               </a>
             {%- endif %}
           </td>
-          <td class="pn_delete">
+          <td data-title="{% trans %}Delete{% endtrans %}" class="pn_delete">
             <input type="checkbox" name="delete" value="{{ entry.id }}" />
           </td>
         </tr>

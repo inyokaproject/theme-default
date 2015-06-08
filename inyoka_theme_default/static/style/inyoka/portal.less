@@ -86,5 +86,106 @@
       .actionscol {width:10%;}
       .deletecol {width:12%;}
     }
+
+    @media (max-width: @screen-xs-max) {
+      thead {display:none;}
+      tbody {
+        tr {
+          display:block;
+          width:100%;
+          height:auto;
+          border-top:1px solid @gray-lighter;
+          margin:15px 0 25px;
+        }
+        td {
+          display: block;
+          float:left;
+          width:50%;
+          border:0;
+        }
+        td:before {
+          display: inline-block;
+          width: auto;
+          padding-right: 10px;
+          white-space: nowrap;
+          content: attr(data-title)':';
+        }
+        td.action,
+        td.pn_delete {
+          margin-bottom: 25px;
+        }
+      }
+      tfoot > tr {
+        > td {
+          border-top: none;
+        }
+      }
+    }
+  }
+  .message {
+    margin-bottom: 25px;
+    .head {
+      background: @gray-lighter;
+      padding:10px 8px;
+      border: 1px solid #ddd;
+      @media (max-width: @screen-xs-max) {
+        position: relative;
+      }
+      dl {
+        .dl-horizontal();
+        margin-bottom: 0;
+        @media (max-width: @screen-xs-max) {
+          padding-right: 80px
+        }
+        dt {
+          text-align: left;
+        }
+        dd {
+          @media (min-width: @screen-sm-min) {
+            margin-left: 120px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+      .avatar {
+        @media (max-width: @screen-xs-max) {
+          position: absolute;
+          right: 8px;
+          top: 10px;
+        }
+        text-align: center;
+        .fa_icon-user {
+          font-size:25px;
+        }
+      }
+    }
+    .body {
+      background: #fff;
+      padding: 15px 8px;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      blockquote {
+        font-size: @font-size-base; 
+      }
+    }
+    .foot{
+      background: @gray-lighter;
+      border: 1px solid #ddd;
+      padding: 15px;
+      i {
+        @media (max-width: @screen-xs-max) {
+          font-size: 20px;
+          margin:0 8px;
+        }
+      }
+      span {
+        @media (max-width: @screen-xs-max) {
+          display: none;
+        }
+      }
+    }
+    .spam-info{
+      padding: 0px 8px;
+    }
   }
 }

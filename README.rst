@@ -26,6 +26,12 @@ On development systems:
 5. Run ``npm install`` to install *Grunt*
 6. Run ``./node_modules/grunt-cli/bin/grunt watch`` to build all static files
    and watch for file changes on the CSS / JS files
+7. Let Django know about the theme. Add ``'inyoka_theme_default'`` to the
+   ``INSTALLED_APPS`` in ``inyoka/development_settings.py``::
+
+       INSTALLED_APPS = INSTALLED_APPS + (
+           'inyoka_theme_default',
+       )
 
 On Production
 -------------
@@ -38,16 +44,6 @@ Deployment
 1. Run ``npm install`` to install *Grunt*
 2. Run ``./node_modules/grunt-cli/bin/grunt`` to build all static files
 3. Run ``manage.py collectstatic`` in your Django project
-
-Let Django know about the theme
--------------------------------
-
-Add ``'inyoka_theme_default'`` to the ``INSTALLED_APPS`` in
-``inyoka/development_settings.py``::
-
-    INSTALLED_APPS = INSTALLED_APPS + (
-        'inyoka_theme_default',
-    )
 
 Running the tests
 -----------------

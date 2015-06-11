@@ -10,12 +10,11 @@
     :license: BSD, see LICENSE for more details.
 #}
 {% extends 'pastebin/base.html' %}
-{% from 'macros.html' import breadcrumb_item, outer_form %}
 
 {% block breadcrumb %}
   {{ super() }}
 
-  {{ breadcrumb_item(_('New paste'), href('pastebin', 'add')) }}
+  {{ macros.breadcrumb_item(_('New paste'), href('pastebin', 'add')) }}
 {% endblock %}
 
 
@@ -26,5 +25,5 @@
     {% endtrans %}
   </p>
 
-  {{ outer_form(csrf_token(), form) }}
+  {{ macros.outer_form(csrf_token(), form) }}
 {% endblock %}

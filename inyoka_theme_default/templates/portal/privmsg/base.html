@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block sidebar %}
-  {% call macros.sidebar(_('Messages')) %}
+  {% call macros.sidebar() %}
     {{ macros.sidebar_item(_('Inbox'), href('portal', 'privmsg', 'inbox'), 'fa_icon-inbox') }}
     {{ macros.sidebar_item(_('Sent Mail'), href('portal', 'privmsg', 'sent') , 'fa_icon-share-square') }}
     {{ macros.sidebar_item(_('Archive'), href('portal', 'privmsg', 'archive'), 'fa_icon-archive') }}

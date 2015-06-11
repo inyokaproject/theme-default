@@ -24,12 +24,12 @@
       {% endif %}
       <input type="submit" name="preview" value="{% trans %}Preview{% endtrans %}" />
   {% endcall %}
-  {%- if preview %}
+  {% if preview %}
     <div class="preview_wrapper">
       <h2 class="title">{% trans %}Preview{% endtrans %}</h2>
       <div id="preview" class="preview">{{ preview }}</div>
     </div>
-  {%- endif %}
+  {% endif %}
 {% endblock %}
 
 {% block scripts %}

@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block content %}
-  {%- if message %}
+  {% if message %}
     <div class="message">
       <div class="head">
         <div class="row">
@@ -25,14 +25,14 @@
               <dt>{% trans %}From:{% endtrans %}</dt>
               <dd>
                 <a{% if not message.author.is_active %} class="user_inactive"{% endif %} href="{{ message.author|url }}">
-                  {{- message.author|e }}
+                  {{ message.author|e }}
                 </a>
               </dd>
               <dt>{% trans %}To:{% endtrans %}</dt>
               <dd>
-                {% for user in message.recipients -%}
+                {% for user in message.recipients %}
                   <a{% if not user.is_active %} class="user_inactive"{% endif %} href="{{ user|url }}">{{ user|e }}</a>
-                  {%- if not loop.last %}, {% endif %}
+                  {% if not loop.last %}, {% endif %}
                 {% else %}
                   …
                 {% endfor %}
@@ -52,37 +52,37 @@
       </div>
 
       <div class="foot">
-        {%- if not message.author == USER %}
+        {% if not message.author == USER %}
           {% if message.author.is_active %}
             <a class="pn_reply" href="{{ message|url('reply') }}">
               <span class="fa_icon-reply"></span> <span>{% trans %}Reply{% endtrans %}</span>
             </a> |
-          {%- endif %}
+          {% endif %}
 
-          {%- if message.recipients|length > 1 %}
+          {% if message.recipients|length > 1 %}
             <a class="pn_reply_all" href="{{ message|url('reply_to_all') }}">
               <span class="fa_icon-reply-all"></span> <span>{% trans %}Reply to all{% endtrans %}</span>
             </a> |
-          {%- endif %}
-        {%- endif %}
+          {% endif %}
+        {% endif %}
         <a class="pn_forward" href="{{ message|url('forward') }}">
           <span class="fa_icon-share"></span> <span>{% trans %}Forward{% endtrans %}</span>
         </a> |
-        {%- if folder.id == 'trash' %}
+        {% if folder.id == 'trash' %}
           <a class="pn_restore" href="?action=restore">
             <span class="fa_icon-arrow-up"></span> <span>{% trans %}Restore{% endtrans %}</span>
           </a> |
-        {%- elif folder.id != 'archive' %}
+        {% elif folder.id != 'archive' %}
           <a class="pn_archive" href="?action=archive">
             <span class="fa_icon-archive"></span> <span>{% trans %}Archive{% endtrans %}</span>
           </a> |
-        {%- endif %}
+        {% endif %}
         <a class="pn_delete" href="?action=delete">
           <span class="fa_icon-trash-o"></span> <span>{% trans %}Delete message{% endtrans %}</span>
         </a>
       </div>
     </div>
-  {%- endif %}
+  {% endif %}
 
   <form action="" method="post">
     {{ csrf_token() }}
@@ -106,64 +106,64 @@
         </tr>
       </thead>
       <tbody>
-      {%- for entry in entries %}
+      {% for entry in entries %}
         <tr{% if message == entry.message %} class="active_pn"{% endif %}>
           <td data-title="{% trans %}Subject{% endtrans %}">
-            {% if not entry.read %}<strong>{% endif -%}
+            {% if not entry.read %}<strong>{% endif %}
               <a href="{{ entry|url }}">{{ entry.message.subject|e|truncate(50,false,'...') }}</a>
-            {%- if not entry.read %}</strong>{% endif %}
+            {% if not entry.read %}</strong>{% endif %}
           </td>
           <td data-title="{% trans %}From{% endtrans %}">
             <a{% if not entry.message.author.is_active %} class="user_inactive"{% endif %} href="{{ entry.message.author|url }}">
-            {{- entry.message.author|e -}}
+            {{ entry.message.author|e }}
             </a>
           </td>
           <td data-title="{% trans %}To{% endtrans %}">
-            {%- if entry.message.recipients|length == 0 %}
+            {% if entry.message.recipients|length == 0 %}
               <a{% if not entry.message.author.is_active %} class="user_inactive"{% endif %} href="{{ entry.message.author|url }}">
-              {{- entry.message.author|e -}}
+              {{ entry.message.author|e }}
               </a>
             {% else %}
               <a{% if not entry.message.recipients[0].is_active %} class="user_inactive"{% endif %} href="{{ entry.message.recipients[0]|url }}">
-              {{- entry.message.recipients[0]|e -}}
+              {{ entry.message.recipients[0]|e }}
               </a>
-            {%- endif %}
-            {%- if entry.message.recipients|length > 1 %}, …{% endif %}
+            {% endif %}
+            {% if entry.message.recipients|length > 1 %}, …{% endif %}
           </td>
           <td data-title="{% trans %}Date{% endtrans %}">{{ entry.message.pub_date|datetime }}</td>
           <td data-title={% trans %}Actions{% endtrans %} class="actions">
-            {%- if not entry.is_own_message %}
+            {% if not entry.is_own_message %}
               {% if entry.message.author.is_active %}
                 <a href="{{ entry|url('reply') }}" title="{% trans %}Reply{% endtrans %}">
                   <span class="fa_icon-reply"></span>
                 </a>
-              {%- endif -%}
-              {%- if entry.message.recipients|length > 1 %}
+              {% endif %}
+              {% if entry.message.recipients|length > 1 %}
                 <a href="{{ entry|url('reply_to_all') }}" title="{% trans %}Reply to all{% endtrans %}">
                   <span class="fa_icon-reply-all"></span>
                 </a>
-              {%- endif -%}
-            {%- endif %}
+              {% endif %}
+            {% endif %}
             <a href="{{ entry|url('forward') }}" title="{% trans %}Forward{% endtrans %}">
              <span class="fa_icon-share"></span>
             </a>
-            {%- if not entry.in_archive %}
+            {% if not entry.in_archive %}
               <a href="{{ entry|url }}?action=archive" title="{% trans %}Archive{% endtrans %}">
                 <span class="fa_icon-archive"></span>
               </a>
-            {%- endif %}
+            {% endif %}
           </td>
           <td data-title="{% trans %}Delete{% endtrans %}" class="pn_delete">
             <input type="checkbox" name="delete" value="{{ entry.id }}" />
           </td>
         </tr>
-        {%- else %}
+        {% else %}
         <tr>
           <td colspan="6">
             {% trans %}Currently there are no messages in this folder.{% endtrans %}
           </td>
         </tr>
-      {%- endfor %}
+      {% endfor %}
     </tbody>
     <tfoot>
       <tr>
@@ -173,11 +173,11 @@
             <p class="onepage">
               {% if one_page %}
                 <a href="{{ href('portal', 'privmsg', folder.id) }}">
-                 {%- trans %}Split messages into multiple pages{% endtrans -%}
+                 {% trans %}Split messages into multiple pages{% endtrans %}
                 </a>
               {% else %}
                 <a href="{{ href('portal', 'privmsg', folder.id, 'all') }}">
-                  {%- trans %}Display all messages on one page{% endtrans -%}
+                  {% trans %}Display all messages on one page{% endtrans %}
                 </a>
               {% endif %}
             </p>

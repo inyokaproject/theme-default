@@ -52,20 +52,32 @@
       <div class="foot">
         {%- if not message.author == USER %}
           {% if message.author.is_active %}
-            <a class="pn_reply" href="{{ message|url('reply') }}"><i class="fa_icon-reply"></i> <span>{% trans %}Reply{% endtrans %}</span></a> |
+            <a class="pn_reply" href="{{ message|url('reply') }}">
+              <span class="fa_icon-reply"></span> <span>{% trans %}Reply{% endtrans %}</span>
+            </a> |
           {%- endif %}
 
           {%- if message.recipients|length > 1 %}
-            <a class="pn_reply_all" href="{{ message|url('reply_to_all') }}"><i class="fa_icon-reply-all"></i> <span>{% trans %}Reply to all{% endtrans %}</span></a> |
+            <a class="pn_reply_all" href="{{ message|url('reply_to_all') }}">
+              <span class="fa_icon-reply-all"></span> <span>{% trans %}Reply to all{% endtrans %}</span>
+            </a> |
           {%- endif %}
         {%- endif %}
-        <a class="pn_forward" href="{{ message|url('forward') }}"><i class="fa_icon-share"></i> <span>{% trans %}Forward{% endtrans %}</span></a> |
+        <a class="pn_forward" href="{{ message|url('forward') }}">
+          <span class="fa_icon-share"></span> <span>{% trans %}Forward{% endtrans %}</span>
+        </a> |
         {%- if folder.id == 'trash' %}
-          <a class="pn_restore" href="?action=restore"><i class="fa_icon-arrow-up"></i> <span>{% trans %}Restore{% endtrans %}</span></a> |
+          <a class="pn_restore" href="?action=restore">
+            <span class="fa_icon-arrow-up"></span> <span>{% trans %}Restore{% endtrans %}</span>
+          </a> |
         {%- elif folder.id != 'archive' %}
-          <a class="pn_archive" href="?action=archive"><i class="fa_icon-archive"></i> <span>{% trans %}Archive{% endtrans %}</span></a> |
+          <a class="pn_archive" href="?action=archive">
+            <span class="fa_icon-archive"></span> <span>{% trans %}Archive{% endtrans %}</span>
+          </a> |
         {%- endif %}
-        <a class="pn_delete" href="?action=delete"><i class="fa_icon-trash-o"></i> <span>{% trans %}Delete message{% endtrans %}</span></a>
+        <a class="pn_delete" href="?action=delete">
+          <span class="fa_icon-trash-o"></span> <span>{% trans %}Delete message{% endtrans %}</span>
+        </a>
       </div>
       <div class="spam-info">
         {%- trans moderators='http://wiki.ubuntuusers.de/ubuntuusers/Moderatoren' -%}
@@ -126,21 +138,21 @@
             {%- if not entry.is_own_message %}
               {% if entry.message.author.is_active %}
                 <a href="{{ entry|url('reply') }}" title="{% trans %}Reply{% endtrans %}">
-                  <i class="fa_icon-reply"></i>
+                  <span class="fa_icon-reply"></span>
                 </a>
               {%- endif -%}
               {%- if entry.message.recipients|length > 1 %}
                 <a href="{{ entry|url('reply_to_all') }}" title="{% trans %}Reply to all{% endtrans %}">
-                  <i class="fa_icon-reply-all"></i>
+                  <span class="fa_icon-reply-all"></span>
                 </a>
               {%- endif -%}
             {%- endif %}
             <a href="{{ entry|url('forward') }}" title="{% trans %}Forward{% endtrans %}">
-             <i class="fa_icon-share"></i>
+             <span class="fa_icon-share"></span>
             </a>
             {%- if not entry.in_archive %}
               <a href="{{ entry|url }}?action=archive" title="{% trans %}Archive{% endtrans %}">
-                <i class="fa_icon-archive"></i>
+                <span class="fa_icon-archive"></span>
               </a>
             {%- endif %}
           </td>

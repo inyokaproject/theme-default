@@ -12,7 +12,7 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  {{ macros.breadcrumb_item(_(folder.name), href('portal', 'privmsg', folder.id)) }}
+  {{ macros.breadcrumb_item(_(folder.name)) }}
 {% endblock %}
 
 {% block content %}

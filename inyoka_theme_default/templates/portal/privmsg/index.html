@@ -8,12 +8,11 @@
   :license: BSD, see LICENSE for more details.
 #}
 
-{% import 'macros.html' as macros %}
-
 {% extends 'portal/privmsg/base.html' %}
 
 {% block breadcrumb %}
-  {{ macros.breadcrumb_item(_('Portal'), href('portal', 'privmsg', 'inbox')) }}
+  {{ super() }}
+  {{ macros.breadcrumb_item(_(folder.name), href('portal', 'privmsg', folder.id)) }}
 {% endblock %}
 
 {% block content %}

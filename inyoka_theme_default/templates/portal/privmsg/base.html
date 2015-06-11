@@ -6,11 +6,11 @@
   :license: BSD, see LICENSE for more details.
 #}
 
-{% from 'macros.html' import breadcrumb_item, sidebar, sidebar_item %}
-{%- extends 'portal/base.html' %}
+{% extends 'portal/base.html' %}
 
 {% block breadcrumb %}
   {{ super() }}
+  {{ macros.breadcrumb_item(_('Messages'), href('portal', 'privmsg')) }}
 {% endblock %}
 
 {% block sidebar %}

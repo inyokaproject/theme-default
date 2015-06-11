@@ -45,10 +45,12 @@
           </div>
           <div class="col-sm-3 avatar">{{ macros.add_user_avatar(message.author) }}</div>
         </div>
-      </div>      
+      </div>
+
       <div class="body">
         {{ message.rendered_text }}
       </div>
+
       <div class="foot">
         {%- if not message.author == USER %}
           {% if message.author.is_active %}

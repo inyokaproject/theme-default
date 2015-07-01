@@ -172,13 +172,23 @@
       background: @gray-lighter;
       border: 1px solid #ddd;
       padding: 15px;
-      i {
+      ul {
+        &:extend(.list-inline);
+        li {
+          &:extend(.list-inline > li);
+          border-right: 1px solid @gray-light;
+          &:last-child {
+            border-right:none;
+          }
+        }
+      }
+      span[class^='fa_icon'] {
         @media (max-width: @screen-xs-max) {
           font-size: 20px;
           margin:0 8px;
         }
       }
-      span {
+      .text {
         @media (max-width: @screen-xs-max) {
           display: none;
         }

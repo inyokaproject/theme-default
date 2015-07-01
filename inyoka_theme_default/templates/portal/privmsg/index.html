@@ -52,39 +52,44 @@
       </div>
 
       <div class="foot">
-        {% if not message.author == USER %}
-          {% if message.author.is_active %}
-            <a class="pn_reply" href="{{ message|url('reply') }}">
-              <span class="fa_icon-reply"></span> <span>{% trans %}Reply{% endtrans %}</span>
-            </a> |
+        <ul>
+          {% if not message.author == USER %}
+            {% if message.author.is_active %}
+              <li><a class="pn_reply" href="{{ message|url('reply') }}">
+                <span class="fa_icon-reply"></span> <span class="text">{% trans %}Reply{% endtrans %}</span>
+              </a></li>
+            {% endif %}
+
+            {% if message.recipients|length > 1 %}
+              <li><a class="pn_reply_all" href="{{ message|url('reply_to_all') }}">
+                <span class="fa_icon-reply-all"></span> <span class="text">{% trans %}Reply to all{% endtrans %}</span>
+              </a></li>
+            {% endif %}
           {% endif %}
 
-          {% if message.recipients|length > 1 %}
-            <a class="pn_reply_all" href="{{ message|url('reply_to_all') }}">
-              <span class="fa_icon-reply-all"></span> <span>{% trans %}Reply to all{% endtrans %}</span>
-            </a> |
+          <li><a class="pn_forward" href="{{ message|url('forward') }}">
+            <span class="fa_icon-share"></span> <span class="text">{% trans %}Forward{% endtrans %}</span>
+          </a></li>
+
+          {% if folder.id == 'trash' %}
+            <li><a class="pn_restore" href="?action=restore">
+              <span class="fa_icon-arrow-up"></span> <span class="text">{% trans %}Restore{% endtrans %}</span>
+            </a></li>
+          {% elif folder.id != 'archive' %}
+            <li><a class="pn_archive" href="?action=archive">
+              <span class="fa_icon-archive"></span> <span class="text">{% trans %}Archive{% endtrans %}</span>
+            </a></li>
           {% endif %}
-        {% endif %}
-        <a class="pn_forward" href="{{ message|url('forward') }}">
-          <span class="fa_icon-share"></span> <span>{% trans %}Forward{% endtrans %}</span>
-        </a> |
-        {% if folder.id == 'trash' %}
-          <a class="pn_restore" href="?action=restore">
-            <span class="fa_icon-arrow-up"></span> <span>{% trans %}Restore{% endtrans %}</span>
-          </a> |
-        {% elif folder.id != 'archive' %}
-          <a class="pn_archive" href="?action=archive">
-            <span class="fa_icon-archive"></span> <span>{% trans %}Archive{% endtrans %}</span>
-          </a> |
-        {% endif %}
-        <a class="pn_delete" href="?action=delete">
-          <span class="fa_icon-trash-o"></span> <span>{% trans %}Delete message{% endtrans %}</span>
-        </a>
+
+          <li><a class="pn_delete" href="?action=delete">
+            <span class="fa_icon-trash-o"></span> <span class="text">{% trans %}Delete message{% endtrans %}</span>
+          </a></li>
+        </ul>
       </div>
     </div>
   {% endif %}
 
-  <form action="" method="post">
+  {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
     {{ csrf_token() }}
     <table class="portal-privmsg-table portal-privmsg-responsive-table table table-striped">
       <colgroup>
@@ -190,7 +195,7 @@
         </tr>
       </tfoot>
     </table>
-  </form>
+  {% endcall %}
 {% endblock %}
 
 {% block scripts %}

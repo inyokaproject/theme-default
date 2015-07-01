@@ -33,8 +33,6 @@
                 {% for user in message.recipients %}
                   <a{% if not user.is_active %} class="user_inactive"{% endif %} href="{{ user|url }}">{{ user|e }}</a>
                   {% if not loop.last %}, {% endif %}
-                {% else %}
-                  …
                 {% endfor %}
               </dd>
               <dt>{% trans %}Subject:{% endtrans %}</dt>

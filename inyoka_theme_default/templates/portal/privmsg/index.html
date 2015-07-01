@@ -21,25 +21,37 @@
       <div class="head">
         <div class="row">
           <div class="col-sm-9">
-            <dl>
-              <dt>{% trans %}From:{% endtrans %}</dt>
-              <dd>
+            <div class="row">
+              <div class="col-sm-3">
+                <strong>{% trans %}From:{% endtrans %}</strong>
+              </div>
+              <div class="col-sm-9">
                 <a{% if not message.author.is_active %} class="user_inactive"{% endif %} href="{{ message.author|url }}">
                   {{ message.author|e }}
                 </a>
-              </dd>
-              <dt>{% trans %}To:{% endtrans %}</dt>
-              <dd>
+              </div>
+              <div class="col-sm-3">
+                <strong>{% trans %}To:{% endtrans %}</strong>
+              </div>
+              <div class="col-sm-9">
                 {% for user in message.recipients %}
                   <a{% if not user.is_active %} class="user_inactive"{% endif %} href="{{ user|url }}">{{ user|e }}</a>
                   {% if not loop.last %}, {% endif %}
                 {% endfor %}
-              </dd>
-              <dt>{% trans %}Subject:{% endtrans %}</dt>
-              <dd>{{ message.subject|e }}</dd>
-              <dt>{% trans %}Date:{% endtrans %}</dt>
-              <dd>{{ message.pub_date|datetime }}</dd>
-            </dl>
+              </div>
+              <div class="col-sm-3">
+                <strong>{% trans %}Subject:{% endtrans %}</strong>
+              </div>
+              <div class="col-sm-9">
+                {{ message.subject|e }}
+              </div>
+              <div class="col-sm-3">
+                <strong>{% trans %}Date:{% endtrans %}</strong>
+              </div>
+              <div class="col-sm-9">
+                {{ message.pub_date|datetime }}
+              </div>
+            </div>
           </div>
           <div class="col-sm-3 avatar">{{ macros.add_user_avatar(message.author) }}</div>
         </div>

@@ -1,0 +1,46 @@
+{#
+    ikhaya/suggest_new.html
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    This page shows the latest ikhaya suggestions.
+
+    :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'ikhaya/base.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Suggest new article'), href('ikhaya', 'suggest')) }}
+{% endblock %}
+
+{% block content %}
+  <h2>{% trans %}Suggest new article{% endtrans %}</h2>
+  <p>
+    {% trans %}
+      If you want to suggest a new article please submit your article below.
+    {% endtrans %}
+  </p>
+  <p>
+    {% trans %}
+      It is not possible to submit images along with the article. If you want to use images please upload them elsewhere and insert the links in the article.
+    {% endtrans %}
+  </p>
+  <p>
+    {% trans link_license=href('wiki', 'Wiki/Lizenz'), link_rules=href('wiki', 'Wiki/ubuntuusers/Moderatoren/Portalregeln') %}
+      I assure that my submission does not violate any other legal rights and it does not violate the <a href="{{ link_rules }}">platform rules</a>. Additionally I accept that my submission is published under the <a href="{{ link_license }}">license</a> of the platform.
+    {% endtrans %}
+  </p>
+  {% call macros.outer_form(csrf_token(), form) %}
+    <input type="submit" value="{% trans %}Preview{% endtrans %}" name="preview" />
+  {% endcall %}
+
+  {% if preview %}
+  <div class="preview_wrapper">
+    <h2 class="title">{% trans %}Preview{% endtrans %}</h2>
+    <div class="preview">{{ preview }}</div>
+  </div>
+  {% endif %}
+{% endblock %}

@@ -29,18 +29,22 @@
   {% call macros.sidebar() %}
     {% if can_subscribe and article.comments_enabled %}
       {% if is_subscribed %}
-        {{ macros.sidebar_item(_('Unsubscribe comments'), article|url('unsubscribe')) }}
+        {{ macros.sidebar_item(_('Unsubscribe comments'), article|url('unsubscribe'),
+                                 'fa_icon-bell-slash') }}
       {% else %}
-        {{ macros.sidebar_item(_('Subscribe comments'), article|url('subscribe')) }}
+        {{ macros.sidebar_item(_('Subscribe comments'), article|url('subscribe'),
+                                 'fa_icon-bell') }}
       {% endif %}
     {% endif %}
 
-    {{ macros.sidebar_item(_('Report misspelling'), article|url('report_new')) }}
+    {{ macros.sidebar_item(_('Report misspelling'), article|url('report_new'),
+                             'fa_icon-exclamation-triangle') }}
   {% endcall %}
 
   {% if can_edit_article %}
     {% call macros.sidebar_admin() %}
-      {{ macros.sidebar_item(_('Edit article'), 'edit') }}
+      {{ macros.sidebar_item(_('Edit article'), 'edit',
+                               'fa_icon-pencil') }}
     {% endcall %}
   {% endif %}
 {% endblock %}

@@ -43,8 +43,7 @@
 
   {% if can_edit_article %}
     {% call macros.sidebar_admin() %}
-      {{ macros.sidebar_item(_('Edit article'), 'edit',
-                               'fa_icon-pencil') }}
+      {{ macros.sidebar_item(_('Edit article'), 'edit', 'fa_icon-pencil') }}
     {% endcall %}
   {% endif %}
 {% endblock %}

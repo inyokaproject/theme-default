@@ -82,15 +82,24 @@
                     <div class="text">{{ article.text }}</div>
                   </div>
                 </div>
-                <div class="planet-article-footer">
-                  <a href="{{ article|url|e }}">{% trans %}Permanent link{% endtrans %}</a>
+
+                <ul class="planet-article-footer">
+                  <li>
+                    <a href="{{ article|url|e }}">
+                      {% trans %}Permanent link{% endtrans %}
+                    </a>
+                  </li>
                   {% if USER.can('blog_edit') %}
-                    {% if article.hidden and article.hidden_by %} |
-                      {% trans link=article.hidden_by|url, name=article.hidden_by.username|e %}
-                        Hidden by: <a href="{{ link }}">{{ name }}</a>
-                      {% endtrans %}
+                    {% if article.hidden and article.hidden_by %}
+                      <li>
+                        {% trans link=article.hidden_by|url,
+                                 name=article.hidden_by.username|e %}
+                          Hidden by: <a href="{{ link }}">{{ name }}</a>
+                        {% endtrans %}
+                      </li>
                     {% endif %}
-                    <span class="admin_link">|
+
+                    <li class="admin_link">
                       <a href="{{ article|url('hide')|e }}">
                         {% if article.hidden %}
                           {% trans %}Restore{% endtrans %}
@@ -98,9 +107,10 @@
                           {% trans %}Hide{% endtrans %}
                         {% endif %}
                       </a>
-                  </span>
+                    </li>
                   {% endif %}
-                </div>
+                </ul>
+
               </div>
             </article>
           {% endfor %}

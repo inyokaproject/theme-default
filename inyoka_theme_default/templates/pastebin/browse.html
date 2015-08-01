@@ -16,7 +16,7 @@
   {{ macros.breadcrumb_item(_('Entries'), href('pastebin', 'browse')) }}
 {% endblock %}
 
-{% block paste_content %}
+{% block content %}
   {% if entries %}
     <ul class="pastes">
       {% for entry in entries %}

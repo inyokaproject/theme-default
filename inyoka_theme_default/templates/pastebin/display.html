@@ -10,8 +10,6 @@
 #}
 {% extends 'pastebin/base.html' %}
 
-{% set scripts = ['Pastebin'] %}
-
 {% block breadcrumb %}
   {{ super() }}
 
@@ -21,7 +19,7 @@
 {% block sidebar %}
   {{ super() }}
 
-  {% call macros.sidebar(title=_('Actions:')) %}
+  {% call macros.sidebar(title=_('View settings')) %}
     {{ macros.sidebar_item(_('Display entry as raw text'), entry|url('raw')) }}
   {% endcall %}
 
@@ -32,7 +30,7 @@
   {% endif %}
 {% endblock %}
 
-{% block paste_content %}
+{% block content %}
   <dl>
     <dt>{% trans %}Title:{% endtrans %}</dt>
     <dd>{{ entry.title|e }}</dd>

@@ -107,17 +107,15 @@
           </ol>
         </div>
 
-        <div class="col-sm-3">
-          <div class="content_sidebar" id="sidebar">
-            {% block sidebar %}
-            {% endblock %}
-          </div>
+        <div class="sidebar">
+          {% block sidebar %}
+          {% endblock %}
         </div>
+
         <div class="col-sm-9 content">
           {% block content %}
           {% endblock %}
         </div>
-
       </div>
     </div>
   </div>

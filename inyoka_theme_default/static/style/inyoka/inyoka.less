@@ -28,17 +28,21 @@ html, body {
 }
 
 .breadcrumb {
-  &:extend(.breadcrumb);
+  .make-md-column(12);
 
-  & > li {
-    &:extend(.breadcrumb > li);
+  &-list {
+    &:extend(.breadcrumb);
 
-    + li:before {
-      &:extend(.breadcrumb > li + li:before);
-    }
+    & > li {
+      &:extend(.breadcrumb > li);
 
-    &:last-child, &:last-child a {
-      &:extend(.breadcrumb > .active);
+      + li:before {
+        &:extend(.breadcrumb > li + li:before);
+      }
+
+      &:last-child, &:last-child a {
+        &:extend(.breadcrumb > .active);
+      }
     }
   }
 }

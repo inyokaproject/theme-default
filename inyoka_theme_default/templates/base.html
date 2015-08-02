@@ -99,9 +99,8 @@
         </div>
         {% endfor %}
 
-        <!-- Breadcrumb  like bootstrap-->
-        <div class="col-md-12">
-          <ol class="breadcrumb">
+        <div class="breadcrumb">
+          <ol class="breadcrumb-list">
             {% block breadcrumb %}
             {% endblock %}
           </ol>
@@ -116,6 +115,7 @@
           {% block content %}
           {% endblock %}
         </div>
+
       </div>
     </div>
   </div>

@@ -333,6 +333,12 @@ textarea {
 }
 
 .content {
+  .make-sm-column(9);
+}
+
+.main-container {
+  &:extend(.container);
+
   @correction: 2px; /* prevents scrolling; needed because of approx. @line-height-computed (see bootstrap/variables.less, line 62)
                        and min-height: 1px of .col-sm-3 for the sidebar */
   @margin_sum: @header-height + @header-margin + @breadcrumb-height + @correction;

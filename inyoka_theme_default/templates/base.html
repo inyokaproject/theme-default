@@ -88,34 +88,31 @@
   {% endblock %}
 
   {% block main %}
-  <div class="content" id="main-content" role="main">
-    <div class="container">
-      <div class="row">
-        {% for message in MESSAGES %}
-        <div class="col-md-12">
-          <div class="message-{{ message.tags }}">
-            {{ message }}
-          </div>
+  <div class="main-container">
+    <div class="row">
+      {% for message in MESSAGES %}
+      <div class="col-md-12">
+        <div class="message-{{ message.tags }}">
+          {{ message }}
         </div>
-        {% endfor %}
+      </div>
+      {% endfor %}
 
-        <div class="breadcrumb">
-          <ol class="breadcrumb-list">
-            {% block breadcrumb %}
-            {% endblock %}
-          </ol>
-        </div>
-
-        <div class="sidebar">
-          {% block sidebar %}
+      <div class="breadcrumb">
+        <ol class="breadcrumb-list">
+          {% block breadcrumb %}
           {% endblock %}
-        </div>
+        </ol>
+      </div>
 
-        <div class="col-sm-9 content">
-          {% block content %}
-          {% endblock %}
-        </div>
+      <div class="sidebar">
+        {% block sidebar %}
+        {% endblock %}
+      </div>
 
+      <div class="content" id="main-content" role="main" target="-1">
+        {% block content %}
+        {% endblock %}
       </div>
     </div>
   </div>

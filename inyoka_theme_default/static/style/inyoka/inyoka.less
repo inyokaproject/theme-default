@@ -348,15 +348,21 @@ textarea {
   margin: 0;
   height: @footer-height;
 
+  &-container {
+    &:extend(.container);
+  }
+
   &-left, &-center, &-right {
     width: 33.3%;
     padding: 0 10px;
     float: left;
     &:extend(.navbar-inverse .navbar-text);
   }
+
   &-center {
     text-align: center;
   }
+
   &-right {
     text-align: right;
   }

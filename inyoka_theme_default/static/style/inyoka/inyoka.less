@@ -129,14 +129,14 @@ html, body {
   }
 }
 
-.sidebar {
+.sidebar-group {
   &:extend(.panel);
   &:extend(.panel-default);
 
   &-danger {
     &:extend(.panel-danger);
 
-    .sidebar-heading {
+    .sidebar-group-heading {
       &:extend(.panel-heading);
       &:extend(.panel-danger > .panel-heading);
 
@@ -220,7 +220,7 @@ button, input[type="button"], input[type="submit"] {
   }
 }
 
-.sidebar form button[type="submit"] {
+.sidebar-group form button[type="submit"] {
     &:extend(a);
     &:hover, &:focus {
       &:extend(a:hover, a:focus);

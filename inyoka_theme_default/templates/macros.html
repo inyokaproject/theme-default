@@ -68,26 +68,32 @@
 {# PAGINATION #}
 
 {% macro render_pagination(pagination, show_prev=True, show_next=True, threshold=2) %}
+  {% set prev_item = '<span aria-hidden="true">«</span>' %}
+  {% set next_item = '<span aria-hidden="true">»</span>' %}
+
+<nav>
   <ul class="pagination">
     {% if show_prev %}
       {% if pagination.prev %}
         <li>
-          <a href="{{ pagination.prev }}">«</a>
+          <a href="{{ pagination.prev }}" aria-label="Previous">{{ prev_item }}</a>
         </li>
       {% else %}
-        <li class="disabled">
-          <span>«</span>
-        </li>
+        <li class="disabled">{{ prev_item }}</li>
       {% endif %}
     {% endif %}
+
     {% for link in pagination.list(threshold) %}
       {% if link['type'] == 'spacer' %}
-        <li>
+        <li class="disabled">
           <span>…</span>
         </li>
       {% elif link['type'] == 'current' %}
         <li class="active">
-          <span>{{ link['page'] }}</span>
+          <span>
+            {{ link['page'] }}
+            <span class="sr-only">(current)</span>
+          </span>
         </li>
       {% else %}
         <li>
@@ -95,18 +101,18 @@
         </li>
       {% endif %}
     {% endfor %}
+
     {% if show_next %}
       {% if pagination.next %}
         <li>
-          <a href="{{ pagination.next }}">»</a>
+          <a href="{{ pagination.next }}" aria-label="Next">{{ next_item }}</a>
         </li>
       {% else %}
-        <li class="disabled">
-          <span>»</span>
-        </li>
+        <li class="disabled">{{ next_item }}</li>
       {% endif %}
     {% endif %}
   </ul>
+<nav>
 {% endmacro %}
 
 

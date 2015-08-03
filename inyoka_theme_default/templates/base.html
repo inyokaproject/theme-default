@@ -90,13 +90,6 @@
   {% block main %}
   <div class="main-container">
     <div class="row">
-      {% for message in MESSAGES %}
-        <div class="message-container">
-          <div class="message-{{ message.tags }}">
-            {{ message }}
-          </div>
-        </div>
-      {% endfor %}
 
       <div class="breadcrumb" role="navigation">
         <ol class="breadcrumb-list">
@@ -111,6 +104,12 @@
       </div>
 
       <div class="content" id="main-content" role="main" target="-1">
+        {% for message in MESSAGES %}
+          <div class="message-{{ message.tags }}" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+
         {% block content %}
         {% endblock %}
       </div>

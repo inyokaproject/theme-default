@@ -71,48 +71,48 @@
   {% set prev_item = '<span aria-hidden="true">«</span>' %}
   {% set next_item = '<span aria-hidden="true">»</span>' %}
 
-<nav>
-  <ul class="pagination">
-    {% if show_prev %}
-      {% if pagination.prev %}
-        <li>
-          <a href="{{ pagination.prev }}" aria-label="Previous">{{ prev_item }}</a>
-        </li>
-      {% else %}
-        <li class="disabled">{{ prev_item }}</li>
+  <nav>
+    <ul class="pagination">
+      {% if show_prev %}
+        {% if pagination.prev %}
+          <li>
+            <a href="{{ pagination.prev }}" aria-label="Previous">{{ prev_item }}</a>
+          </li>
+        {% else %}
+          <li class="disabled">{{ prev_item }}</li>
+        {% endif %}
       {% endif %}
-    {% endif %}
 
-    {% for link in pagination.list(threshold) %}
-      {% if link['type'] == 'spacer' %}
-        <li class="disabled">
-          <span>…</span>
-        </li>
-      {% elif link['type'] == 'current' %}
-        <li class="active">
-          <span>
-            {{ link['page'] }}
-            <span class="sr-only">(current)</span>
-          </span>
-        </li>
-      {% else %}
-        <li>
-          <a href="{{ link['url'] }}">{{ link['page'] }}</a>
-        </li>
-      {% endif %}
-    {% endfor %}
+      {% for link in pagination.list(threshold) %}
+        {% if link['type'] == 'spacer' %}
+          <li class="disabled">
+            <span>…</span>
+          </li>
+        {% elif link['type'] == 'current' %}
+          <li class="active">
+            <span>
+              {{ link['page'] }}
+              <span class="sr-only">(current)</span>
+            </span>
+          </li>
+        {% else %}
+          <li>
+            <a href="{{ link['url'] }}">{{ link['page'] }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
 
-    {% if show_next %}
-      {% if pagination.next %}
-        <li>
-          <a href="{{ pagination.next }}" aria-label="Next">{{ next_item }}</a>
-        </li>
-      {% else %}
-        <li class="disabled">{{ next_item }}</li>
+      {% if show_next %}
+        {% if pagination.next %}
+          <li>
+            <a href="{{ pagination.next }}" aria-label="Next">{{ next_item }}</a>
+          </li>
+        {% else %}
+          <li class="disabled">{{ next_item }}</li>
+        {% endif %}
       {% endif %}
-    {% endif %}
-  </ul>
-<nav>
+    </ul>
+  <nav>
 {% endmacro %}
 
 

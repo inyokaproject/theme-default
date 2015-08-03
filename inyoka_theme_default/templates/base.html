@@ -91,11 +91,11 @@
   <div class="main-container">
     <div class="row">
       {% for message in MESSAGES %}
-      <div class="col-md-12">
-        <div class="message-{{ message.tags }}">
-          {{ message }}
+        <div class="message-container">
+          <div class="message-{{ message.tags }}">
+            {{ message }}
+          </div>
         </div>
-      </div>
       {% endfor %}
 
       <div class="breadcrumb" role="navigation">

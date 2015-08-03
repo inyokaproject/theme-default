@@ -78,30 +78,43 @@ html, body {
   &:extend(.bg-info);
 }
 
-.message-error, .warning_important {
+
+.message {
+  &-container {
+    .make-md-column(12);
+  }
+
+  &-error {
+    &:extend(.alert);
+    &:extend(.alert-danger);
+  }
+
+  &-debug {
+    &:extend(.alert);
+    &:extend(.alert-info);
+  }
+
+  &-success {
+    &:extend(.alert);
+    &:extend(.alert-success);
+  }
+
+  &-warning {
+    &:extend(.alert);
+    &:extend(.alert-warning);
+  }
+
+  &-info {
+    &:extend(.alert);
+    &:extend(.alert-info);
+  }
+}
+
+.warning_important {
   &:extend(.alert);
   &:extend(.alert-danger);
 }
 
-.message-debug {
-  &:extend(.alert);
-  &:extend(.alert-info);
-}
-
-.message-success {
-  &:extend(.alert);
-  &:extend(.alert-success);
-}
-
-.message-warning {
-  &:extend(.alert);
-  &:extend(.alert-warning);
-}
-
-.message-info {
-  &:extend(.alert);
-  &:extend(.alert-info);
-}
 
 .pagination {
   &:extend(.pagination);

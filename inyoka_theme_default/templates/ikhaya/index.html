@@ -9,9 +9,6 @@
 #}
 {% extends 'ikhaya/base.html' %}
 
-{% import 'macros.html' as macros %}
-{% set rendered_pagination = macros.render_pagination(pagination) %}
-
 {% if category %}
   {% set name = category.name %}
   {% set feeds = [
@@ -77,6 +74,8 @@
 
 {% block content %}
   {% if articles %}
+    {% set rendered_pagination = macros.render_pagination(pagination) %}
+
     {{ rendered_pagination }}
     {% for article in articles %}
       <article class="ikhaya-article {% if article.hidden %}ikhaya-article-muted{% endif %}"

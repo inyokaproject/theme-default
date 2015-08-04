@@ -105,16 +105,29 @@
             </li>
 
             <li>
-              <a href="{{ article|url }}#comment-section">
-              {% trans indicator=article.comment_count,
-                       count=article.comment_count|hnumber('masculine') %}
-                {{ count }} comment
-                {% pluralize indicator %}
-                {{ count }} comments
-              {% endtrans %}
-              </a>
+              {% if article.comments_enabled %}
+                <a href="{{ article|url }}#comment-section">
+                {% trans indicator=article.comment_count,
+                          count=article.comment_count|hnumber('masculine') %}
+                  {{ count }} comment
+                  {% pluralize indicator %}
+                  {{ count }} comments
+                {% endtrans %}
+                </a>
+
+              {% else %}
+                {% trans %}Comments disabled{% endtrans %}
+              {% endif %}
             </li>
-          <div class="clearfix"></div>
+
+            {% if USER.can('article_edit') %}
+              <li>
+                <a href="{{ article|url('edit') }}">
+                  {% trans %}Edit{% endtrans %}
+                </a>
+              </li>
+            {% endif %}
+          </ul>
         </div>
       </article>
     {% endfor %}

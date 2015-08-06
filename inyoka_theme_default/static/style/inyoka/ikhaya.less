@@ -9,7 +9,31 @@
  */
 
 .ikhaya {
-  &-article, &-suggestion {
+  &-article {
+    .article();
+
+    &-heading {
+      a {
+        &:extend(.media);
+        display: block;
+        clear: both;
+
+        .icon-container {
+          &:extend(.media-left);
+          img {
+            &:extend(.media-object);
+          }
+        }
+
+        h3 {
+          &:extend(.media-heading);
+          &:extend(.media-body);
+        }
+      }
+    }
+  }
+
+  &-suggestion {
     .article();
   }
 
@@ -66,20 +90,20 @@
         &:extend(.list-inline > li);
       }
     }
-    
+
     &-hidden {
       .ikhaya-report-body {
         &:extend(.panel-info);
         &:extend(.panel-info > .panel-heading);
       }
     }
-    
+
     &-solved {
       .ikhaya-report-heading, .ikhaya-report-footer {
         background-color: @state-success-bg;
       }
     }
-    
+
     &:target {
       .ikhaya-report-heading {
         background-color: @active-target-bg;

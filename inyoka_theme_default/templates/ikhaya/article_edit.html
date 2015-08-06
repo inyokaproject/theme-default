@@ -27,7 +27,6 @@
   {% if article %}
     {% call macros.sidebar() %}
       {{ macros.sidebar_item(_('Show article'), article|url()) }}
-      {{ macros.sidebar_item(_('Short URL'), article|url('id')) }}
       {{ macros.sidebar_item(_('Delete'), article|url('delete')) }}
     {% endcall %}
   {% endif %}

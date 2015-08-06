@@ -39,6 +39,7 @@
 
     {{ macros.sidebar_item(_('Report misspelling'), article|url('report_new'),
                              'fa_icon-exclamation-triangle') }}
+    {{ macros.sidebar_item(_('Short URL'), article|url('id'), 'fa_icon-link') }}
   {% endcall %}
 
   {% if can_edit_article %}

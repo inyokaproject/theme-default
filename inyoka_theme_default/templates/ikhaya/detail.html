@@ -86,9 +86,11 @@
           <a href="{{ comment.author|url }}">{{ comment.author }}</a>
           <div class="clearfix"></div>
         </div>
+
         <div class="ikhaya-comment-body">
           {{ comment.rendered_text }}
         </div>
+
         <div class="ikhaya-comment-footer">
           <div class="button-group">
             <a href="#" class="btn btn-default">
@@ -117,10 +119,23 @@
               </ul>
             </div>
           {% endif %}
-
-          <div class="clearfix"></div>
         </div>
       </div>
     {% endif %}
   {% endfor %}
+
+  {% if article.comments_enabled and can_post_comment %}
+    <h3 id="new_comment">{% trans %}Write new Comment{% endtrans %}</h3>
+    {% call macros.outer_form(csrf_token(), form, action=article|url + '#new_comment') %}
+      <input type="submit" name="preview" value="{% trans %}Preview{% endtrans %}" />
+    {% endcall %}
+
+    {% if preview %}
+      <div class="preview_wrapper">
+        <h2 class="title">{% trans %}Preview{% endtrans %}</h2>
+        <div id="preview" class="preview">{{ preview }}</div>
+      </div>
+    {% endif %}
+  {% endif %}
+
 {% endblock %}

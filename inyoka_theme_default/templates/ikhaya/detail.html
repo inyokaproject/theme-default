@@ -77,14 +77,26 @@
   <h3 id="comment-section">{% trans %}Comments{% endtrans %}</h3>
   {% for comment in comments %}
     {% if not comment.deleted or can_admin_comment %}
-      <div class="ikhaya-comment {% if comment.deleted %}ikhaya-comment-muted{% endif %}" id="comment_{{ loop.index }}">
+      <div class="ikhaya-comment
+      {% if comment.deleted %}muted{% endif %}
+      {% if comment.author.id == USER.id %}own{% endif %}" id="comment_{{ loop.index }}">
+
         <div class="ikhaya-comment-heading">
           <span class="pull-right">
             <time datetime="{{ comment.pub_date|datetime('c') }}">{{ comment.pub_date|datetime }}</time>
           </span>
           <a href="#comment_{{ loop.index }}">#{{ loop.index }}</a>
-          <a href="{{ comment.author|url }}">{{ comment.author }}</a>
-          <div class="clearfix"></div>
+
+          <a href="{{ comment.author|url }}" class="ikhaya-comment-author">
+            {% if comment.author.has_avatar and not USER.settings['hide_avatars'] %}
+              {{ macros.add_user_avatar(comment.author) }}
+            {% endif %}
+            {{ comment.author }}
+          </a>
+
+          {% if comment.author.primary_group_id and comment.author.primary_group.icon %}
+            <img class="teamicon" src="{{ comment.author.primary_group.icon_url }}" alt="{% trans %}Team icon{% endtrans %}" />
+          {% endif %}
         </div>
 
         <div class="ikhaya-comment-body">

@@ -99,7 +99,7 @@
     </div>
   {% endif %}
 
-  {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
+  {% call macros.outer_form(csrf_token(), form, button_visible=False, manually_rendered=True) %}
     {{ csrf_token() }}
     <table class="portal-privmsg-table portal-privmsg-responsive-table table table-striped">
       <colgroup>

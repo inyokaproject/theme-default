@@ -74,7 +74,7 @@ module.exports = function(grunt) {
       },
       style: {
         files: 'inyoka_theme_default/static/style/**/*.less',
-        tasks: ['less', 'postcss:dist'],
+        tasks: ['less:develop', 'postcss:dist'],
       },
       js: {
         files: ['inyoka_theme_default/static/js/**/*.js',
@@ -88,6 +88,20 @@ module.exports = function(grunt) {
         options: {
           banner: '/*!\n<%= banner %>',
           compress: true
+        },
+        files: [
+          {
+            expand: true,
+            src: [
+              'inyoka_theme_default/static/style/*.less'
+            ],
+            ext: '.css',
+          }
+        ]
+      },
+      develop: {
+        options: {
+          compress: false
         },
         files: [
           {
@@ -130,5 +144,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-postcss');
 
   // Default task.
-  grunt.registerTask('default', ['bowercopy', 'jshint', 'less', 'postcss:dist', 'concat', 'uglify']);
+  grunt.registerTask('default', ['bowercopy', 'jshint', 'less:production', 'postcss:dist', 'concat', 'uglify']);
 };

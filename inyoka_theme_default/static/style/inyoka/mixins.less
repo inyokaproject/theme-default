@@ -92,7 +92,7 @@
     }
   }
   table {
-    &:extend(.table);
+    &:extend(.table all);
     &:extend(.table-bordered);
     width: auto;
 
@@ -104,10 +104,6 @@
         }
         &.kopf > td {
           &:extend(.table >  thead > tr > th );
-        }
-        > th,
-        > td {
-          &:extend(.table > thead > tr > td );
         }
       }
     }

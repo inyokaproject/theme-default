@@ -20,7 +20,7 @@
     {% else %}
       {% set link = link + '/' + part %}
     {% endif %}
-    
+
     {% if loop.last %}
       {{ macros.breadcrumb_item(part) }}
     {% else %}

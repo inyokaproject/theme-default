@@ -12,6 +12,16 @@ module.exports = function(grunt) {
             ' * :license: <%= pkg.license %>\n' +
             ' */\n',
     // Task configuration.
+    postcss: {
+      options: {
+        processors: [
+          require('autoprefixer-core')({remove: false}), // add vendor prefixes (not remove deprecated ones)
+        ]
+      },
+      dist: {
+        src: ['inyoka_theme_default/static/style/*.css']
+      }
+    },
     uglify: {
       options: {
         banner: '/**\n<%= banner %>',
@@ -44,6 +54,9 @@ module.exports = function(grunt) {
         }
       },
       gruntfile: {
+        options: {
+          undef: false,
+        },
         src: 'Gruntfile.js'
       }
     },
@@ -61,7 +74,7 @@ module.exports = function(grunt) {
       },
       style: {
         files: 'inyoka_theme_default/static/style/**/*.less',
-        tasks: ['less'],
+        tasks: ['less', 'postcss:dist'],
       },
       js: {
         files: ['inyoka_theme_default/static/js/**/*.js',
@@ -114,7 +127,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-postcss');
 
   // Default task.
-  grunt.registerTask('default', ['bowercopy', 'jshint', 'less', 'concat', 'uglify']);
+  grunt.registerTask('default', ['bowercopy', 'jshint', 'less', 'postcss:dist', 'concat', 'uglify']);
 };

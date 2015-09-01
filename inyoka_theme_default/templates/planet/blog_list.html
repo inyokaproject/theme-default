@@ -8,12 +8,10 @@
   :license: BSD, see LICENSE for more details.
 #}
 {% extends 'planet/base.html' %}
-{% from 'macros.html' import render_pagination %}
-{% set rendered_pagination = render_pagination(pagination) %}
 
 {% block breadcrumb %}
   {{ super() }}
-  
+
   {{ macros.breadcrumb_item(_('Bloglist')) }}
 {% endblock %}
 
@@ -45,7 +43,7 @@
           {% if blog.user %}
             <a href="{{ href('portal', 'user', blog.user) }}">{{ blog.user }}</a>
           {% else %}
-             - 
+             -
           {% endif %}
         </td>
         <td data-title="{{ ('Latest update') }}">
@@ -62,5 +60,5 @@
     {% endfor %}
     </tbody>
   </table>
-  <div class="pagination pagination_right">{{ rendered_pagination }}</div>
+  <div class="pagination pagination_right">{{ macros.render_pagination(pagination) }}</div>
 {% endblock %}

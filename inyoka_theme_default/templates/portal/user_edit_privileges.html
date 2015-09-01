@@ -25,7 +25,7 @@
   <div class="page-header">
     <h3>{% trans %}Privileges{% endtrans %}</h3>
   </div>
-  
+
   {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
     {{ macros.render_errors(form.permissions.errors) }}
     {% for id, name, checked, derived in permissions %}

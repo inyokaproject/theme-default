@@ -8,7 +8,6 @@
     :license: BSD, see LICENSE for more details.
 #}
 {% extends 'portal/base.html' %}
-{% import 'macros.html' as macros %}
 
 {% block breadcrumb %}
   {{ super() }}
@@ -39,7 +38,7 @@
         {% endif %}
       {% endcall %}
     {% endif %}
-    
+
     {{ macros.sidebar_item(_('Private message'), user|url('privmsg')) }}
     {{ macros.sidebar_item(_('show posts'), href('forum', 'author', user.username)) }}
   {% endcall %}

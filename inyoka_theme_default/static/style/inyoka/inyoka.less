@@ -201,7 +201,12 @@ html, body {
   }
 }
 
-button, input[type="button"], input[type="submit"] {
+a.button {
+  &:extend(.btn);
+  &:extend(.btn-primary);
+}
+
+.button, button, input[type="button"], input[type="submit"] {
   &:extend(.btn);
   &:extend(.btn-primary);
   margin-top: 10px;

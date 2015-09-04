@@ -112,7 +112,7 @@
 
 {# FORM #}
 
-{% macro outer_form(csrf, form=None, bootstrap_class=None, action="", method="post", submit_label=None, manually_rendered=False) %}
+{% macro outer_form(csrf, form=None, bootstrap_class=None, action="", method="post", submit_label=None, button_visible=True, manually_rendered=False) %}
 {# params
     * csrf: just give `csrf_token()` (workaround for a context-bug)
     * form: if given and manually_rendered not touched, all fields will be rendered
@@ -125,6 +125,7 @@
               (latter will generate an URL from the fields. It will look like ?<name>=<value>.
               So it will be visible in browser-history. Do not use for sensible information (passwords etc.)!)
     * submit_label: text for submit-button
+    * button_visible: hides the submit-button, if set to false
     * manually_rendered: disable automatic rendering of all form-fields by setting this True
 #}
     <form action="{{ action }}" method="{{ method }}"
@@ -143,13 +144,15 @@
         {{ caller() }}
       {% endif %}
 
-      <button type="submit">
-        {% if submit_label %}
-          {{ submit_label }}
-        {% else %}
-          {% trans %}Submit{% endtrans %}
-        {% endif %}
-      </button>
+      {% if button_visible %}
+        <button type="submit">
+          {% if submit_label %}
+            {{ submit_label }}
+          {% else %}
+            {% trans %}Submit{% endtrans %}
+          {% endif %}
+        </button>
+      {% endif %}
     </form>
 {% endmacro %}
 

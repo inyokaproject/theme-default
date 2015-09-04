@@ -54,9 +54,129 @@
       }
     }
   }
+
   &-usericon {
     font-size:  20ex;
     text-align: center;
     vertical-align: middle;
+  }
+
+  &-privmsg-table {
+    th.actions {
+      text-align: center;
+    }
+    .actions {
+      text-align: right;
+    }
+    th.delete {
+      text-align: center;
+      input {
+        margin-left: 5px;
+      }
+    }
+    .pn_delete {
+      text-align: center;
+    }
+
+    @media (min-width: @screen-md-min) {
+      .actionscol {width:10%;}
+      .deletecol {width:14%;}
+    }
+    @media (min-width: @screen-lg-min) {
+      .actionscol {width:10%;}
+      .deletecol {width:12%;}
+    }
+
+    @media (max-width: @screen-xs-max) {
+      thead {display:none;}
+      tbody {
+        tr {
+          display:block;
+          width:100%;
+          height:auto;
+          border-top:1px solid @gray-lighter;
+          margin:15px 0 25px;
+        }
+        td {
+          display: block;
+          float:left;
+          width:50%;
+          border:0;
+        }
+        td:before {
+          display: inline-block;
+          width: auto;
+          padding-right: 10px;
+          white-space: nowrap;
+          content: attr(data-title)':';
+        }
+        td.action,
+        td.pn_delete {
+          margin-bottom: 25px;
+        }
+      }
+      tfoot > tr {
+        > td {
+          border-top: none;
+        }
+      }
+    }
+  }
+  .message {
+    margin-bottom: 25px;
+    .head {
+      background: @gray-lighter;
+      padding:10px 8px;
+      border: 1px solid #ddd;
+      @media (max-width: @screen-xs-max) {
+        position: relative;
+      }
+      .avatar {
+        @media (max-width: @screen-xs-max) {
+          position: absolute;
+          right: 8px;
+          top: 10px;
+        }
+        text-align: center;
+        .fa_icon-user {
+          font-size:25px;
+        }
+      }
+    }
+    .body {
+      background: #fff;
+      padding: 15px 8px;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      blockquote {
+        font-size: @font-size-base;
+      }
+    }
+    .foot{
+      background: @gray-lighter;
+      border: 1px solid #ddd;
+      padding: 15px;
+      ul {
+        &:extend(.list-inline);
+        li {
+          &:extend(.list-inline > li);
+          border-right: 1px solid @gray-light;
+          &:last-child {
+            border-right:none;
+          }
+        }
+      }
+      span[class^='fa_icon'] {
+        @media (max-width: @screen-xs-max) {
+          font-size: 20px;
+          margin:0 8px;
+        }
+      }
+      .text {
+        @media (max-width: @screen-xs-max) {
+          display: none;
+        }
+      }
+    }
   }
 }

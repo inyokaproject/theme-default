@@ -33,7 +33,7 @@
 
   <h3>{% trans %}Subscriptions{% endtrans %}</h3>
   {% call macros.outer_form(csrf_token(), button_visible=False, manually_rendered=True) %}
-    <div class="pagination right">{{ rendered_pagination }}</div>
+    {{ rendered_pagination }}
     <table class="usercp_subscriptions">
       <thead>
         <tr>
@@ -57,7 +57,7 @@
                 {% elif type == 'article' %}
                   <a class="fa_icon-share" href="{{ object|url('last_comment') }}" title="{% trans %}Go to last comment{% endtrans %}"></a>
                 {% elif type == 'page' %}
-                  <a class="fa_icon-edit" href="{{ object|url('log') }}" title="{% trans %}Revisions{% endtrans %}"></a>
+                  <a class="fa_icon-history" href="{{ object|url('log') }}" title="{% trans %}Revisions{% endtrans %}"></a>
                 {% endif %}
 
                 {% if not sub.can_read %}
@@ -88,7 +88,7 @@
       <input type="submit" name="mark_read" value="{% trans %}Mark selected subscriptions as read{% endtrans %}" />
     </div>
   {% endcall %}
-  <div class="pagination right">{{ macros.render_pagination(pagination) }}</div>
+  {{ macros.render_pagination(pagination) }}
 {% endblock %}
 
 {% block scripts %}

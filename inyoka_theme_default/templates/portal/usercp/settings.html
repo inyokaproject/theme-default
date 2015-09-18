@@ -19,13 +19,13 @@
 
 {% block content %}
   {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
-    <h3>{% trans %}Settings{% endtrans %}</h3>
-      {{ macros.inner_form(form, ['notify', 'notifications','timezone']) }}
+    <h2>{% trans %}Settings{% endtrans %}</h2>
+    {{ macros.inner_form(form, ['notify', 'notifications','timezone']) }}
 
-      <h4>{% trans %}Interface{% endtrans %}</h4>
-      {{ macros.inner_form(form, ['hide_avatars', 'hide_signatures','hide_profile']) }}
+    <h3>{% trans %}Interface{% endtrans %}</h3>
+    {{ macros.inner_form(form, ['hide_avatars', 'hide_signatures','hide_profile']) }}
 
-      <h4>Forum</h4>
-      {{ macros.inner_form(form, ['mark_read_on_logout', 'autosubscribe','show_preview', 'show_thumbnails']) }}
+    <h3>Forum</h3>
+    {{ macros.inner_form(form, ['mark_read_on_logout', 'autosubscribe','show_preview', 'show_thumbnails']) }}
   {% endcall %}
 {% endblock %}

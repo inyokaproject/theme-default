@@ -20,16 +20,16 @@
 
 {% block content %}
   {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
-    <h4>{% trans %}Avatar settings{% endtrans %}</h4>
+    <h2>{% trans %}Avatar settings{% endtrans %}</h2>
     {% if user.has_avatar %}
       {{ macros.add_user_avatar(user) }}
     {% endif %}
     {{ macros.input(form.avatar) }}
 
-    <h4>{% trans %}Contact addresses{% endtrans %}</h4>
+    <h2>{% trans %}Contact addresses{% endtrans %}</h2>
     {{ macros.inner_form(form, ['email', 'gpgkey', 'jabber', 'icq', 'msn', 'aim', 'yim', 'skype', 'wengophone', 'sip']) }}
 
-    <h4>{% trans %}Miscellaneous information fields{% endtrans %}</h4>
+    <h2>{% trans %}Miscellaneous information fields{% endtrans %}</h2>
     {{ macros.inner_form(form, ['occupation', 'interests', 'website', 'launchpad', 'location', 'signature', 'userpage']) }}
   {% endcall %}
 {% endblock %}

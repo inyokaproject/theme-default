@@ -87,6 +87,7 @@ html, body {
 .message-warning {
   &:extend(.alert);
   &:extend(.alert-warning);
+  font-weight: bold;
 }
 
 .message-info {
@@ -229,6 +230,12 @@ button, input[type="button"], input[type="submit"] {
 input[type="text"], input[type="email"], input[type="password"], select {
   &:extend(.form-control);
   .form-control-focus();
+}
+
+table {
+  td, th {
+    padding: 0 5px;
+  }
 }
 
 textarea {

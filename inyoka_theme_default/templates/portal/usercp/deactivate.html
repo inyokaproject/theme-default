@@ -1,0 +1,32 @@
+{#
+    portal/usercp/deactivate.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    On this page the user can deactivate his account.
+
+    :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'portal/usercp/overall.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Deactivate account'), href('portal', 'deactivate'))}}
+{% endblock %}
+{% set selected = 'deactivate' %}
+
+{% block content %}
+  <h2>{% trans %}Deactivate account{% endtrans %}</h2>
+
+  <div class="message-warning">
+    {% trans name=USER.username|e %}
+      You can deactivate your account “{{ name }}” here. By doing this, we will remove all your personal data. All your forum posts and wiki articles will remain. <br>
+      Keep in mind that deactivating your account cannot be undone. After that, you will never be able to log in with the account “{{ name }}” again.
+    {% endtrans %}
+  </div>
+
+  {{ macros.outer_form(csrf_token(), form, submit_label=_('Deactivate my account')) }}
+
+{% endblock %}

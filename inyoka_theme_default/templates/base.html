@@ -22,11 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% endblock %}
 
-  <title>
-    {% block page_title %}
-      Inyoka
-    {% endblock %}
-  </title>
+  <title>{% block title %}Inyoka{% endblock %}</title>
 
   <link href="{{ href('static', 'style', 'style.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}

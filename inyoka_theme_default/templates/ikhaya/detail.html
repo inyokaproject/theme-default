@@ -16,6 +16,10 @@
   (_('Comments - Full'), href('ikhaya', feed|format('full'))),
   ] %}
 
+{% block title %}
+  {{ article.subject }} - {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ super() }}
 

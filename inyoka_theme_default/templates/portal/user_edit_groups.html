@@ -9,6 +9,9 @@
 #}
 {% extends 'portal/user_admin.html' %}
 
+{% block title %}
+  {{ _('Group memberships') }} - {{ super() }}
+{% endblock %}
 
 {% block breadcrumb %}
   {{ super() }}

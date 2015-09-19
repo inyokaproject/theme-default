@@ -2,7 +2,7 @@
  * js.smoothscrolling
  * ~~~~~~~~~~~~~~~~~~
  * 
- * Smothly scroll to ids inside a document. Script includes additions for a11y.
+ * Smoothly scroll to ids inside a document. Script includes additions for a11y.
  * 
  * source: http://codepen.io/theandyyates/pen/dGovD/
  * (thus MIT licensed, see https://blog.codepen.io/legal/licensing/)

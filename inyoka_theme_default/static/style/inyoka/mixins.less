@@ -124,3 +124,20 @@
     }
   }
 }
+
+.message {
+  &:extend(.alert all);
+  &:extend(.alert-dismissable all);
+
+  .close {
+    background-color: transparent;
+    position: relative;
+    float: right;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+}

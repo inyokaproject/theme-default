@@ -15,3 +15,41 @@
 {% block breadcrumb %}
   {{ macros.breadcrumb_item(_('Portal'), href('portal')) }}
 {% endblock %}
+
+{% block sidebar %}
+  {% call macros.sidebar(_('Member informations')) %}
+    {{ macros.sidebar_item(_('Members'), href('portal', 'users')) }}
+    {{ macros.sidebar_item(_('Who is online?'), href('portal', 'whoisonline')) }}
+    {{ macros.sidebar_item(_('Groups'), href('portal', 'groups')) }}
+  {% endcall %}
+
+  {% call macros.sidebar(_('Additional functions')) %}
+    {% if USER.is_authenticated() %}
+      {{ macros.sidebar_item(_('Pastebin'), href('pastebin')) }}
+    {% else %}
+      {{ macros.sidebar_item(_('Pastebin'), href('pastebin', 'browse')) }}
+    {% endif %}
+      {{ macros.sidebar_item(_('Calendar'), href('portal', 'calendar')) }}
+  {% endcall %}
+
+  {% if USER.can('static_page_edit')
+    or USER.can('static_file_edit')
+    or USER.can('configuration_edit')
+    or USER.can('markup_css_edit')
+  %}
+    {% call macros.sidebar_admin() %}
+      {% if USER.can('configuration_edit') %}
+        {{ macros.sidebar_item(_('General'),href('portal', 'config')) }}
+      {% endif %}
+      {% if USER.can('markup_css_edit') %}
+        {{ macros.sidebar_item(_('Stylesheets'),href('portal', 'styles')) }}
+      {% endif %}
+      {% if USER.can('static_page_edit') %}
+        {{ macros.sidebar_item(_('Static pages'),href('portal', 'pages')) }}
+      {% endif %}
+      {% if USER.can('static_file_edit') %}
+        {{ macros.sidebar_item(_('Static files'),href('portal', 'files')) }}
+      {% endif %}
+    {% endcall %}
+  {% endif %}
+{% endblock %}

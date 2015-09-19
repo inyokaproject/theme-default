@@ -2,10 +2,59 @@
   portal/index.html
   ~~~~~~~~~~~~~~~~~
 
-  The main page which is atm empty.
-
   :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 
 {% extends 'portal/base.html' %}
+
+{% block content %}
+  <h1 class="portal-welcome">
+    {% trans %}
+      Welcome!
+    {% endtrans %}
+  </h1>
+
+  {{ welcome_message_rendered|default('', True) }}
+
+  <h2 class="portal-calendar">
+    {% trans %}
+      Upcoming Events
+    {% endtrans %}
+  </h2>
+  <div class="portal-calendar-overview">
+    {% if calendar_events %}
+      <ul>
+      {% for event in calendar_events %}
+        <li class="portal-calendar-event">
+          {{ macros.calendar_entry(event) }}
+        </li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      {% trans %}There are no upcoming events.{% endtrans %}
+    {% endif %}
+  </div>
+
+  <h2 class="portal-inyoka">
+    {% trans %}
+      Latest News
+    {% endtrans %}
+  </h2>
+  <div class="portal-inyoka-overview">
+    {% if ikhaya_latest %}
+      <ul>
+      {% for article in ikhaya_latest %}
+        <li class="portal-inyoka-article" >
+            <a href="{{ article|url }}">
+              <h3 class="portal-inyoka-heading">{{ article.subject|e }}</h3>
+            </a>
+            {{ article.rendered_intro }}
+        </li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      {% trans %}There are no news at the moment.{% endtrans %}
+    {% endif %}
+  </div>
+{% endblock %}

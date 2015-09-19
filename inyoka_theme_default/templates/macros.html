@@ -241,3 +241,14 @@
     <span class="fa_icon-user" title="{% trans user=user.username|e %}Avatar of {{ user }}{% endtrans %}"></span>
   {% endif %}
 {% endmacro %}
+
+{% macro calendar_entry(event) %}
+  <a href="{{ event.get_absolute_url() }}">
+    <h3 class="portal-calendar-heading">
+      {{ event.date.strftime('%d.%m.%Y') }}
+      {% if (event.time) %} {{ event.time.strftime('%H:%M') }} {% endif %}
+      - {{ event.name }}{% if (event.location_town) %}, {{ event.location_town }}{% endif %}
+    </h3>
+  </a>
+  {{ event.rendered_description }}
+{% endmacro %}

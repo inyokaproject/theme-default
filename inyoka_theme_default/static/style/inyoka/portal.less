@@ -46,4 +46,30 @@
       text-align: center;
     }
   }
+
+  &-inyoka-overview {
+    > ul {
+      list-style: none;
+      padding: 0;
+    }
+    .portal-inyoka-heading {
+      color: @text-color;
+    }
+    .portal-inyoka-article:not(:last-child) {
+      border-bottom: 1px @gray-lighter solid;
+    }
+  }
+  &-calendar-overview {
+    > ul {
+      list-style: none;
+      padding: 0;
+    }
+    .portal-calendar-heading {
+      color: @text-color;
+      font-size: @font-size-h4;
+    }
+    .portal-calendar-event:not(:last-child) {
+      border-bottom: 1px @gray-lighter solid;
+    }
+  }
 }

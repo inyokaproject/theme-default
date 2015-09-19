@@ -23,19 +23,16 @@ html, body {
   height: 100%;
 }
 
+.skip-navigation {
+  .sr-only();
+  .sr-only-focusable();
+}
+
 .breadcrumb {
-  &:extend(.breadcrumb);
+  .make-md-column(12);
 
-  & > li {
-    &:extend(.breadcrumb > li);
-
-    + li:before {
-      &:extend(.breadcrumb > li + li:before);
-    }
-
-    &:last-child, &:last-child a {
-      &:extend(.breadcrumb > .active);
-    }
+  &-list {
+    &:extend(.breadcrumb all);
   }
 }
 
@@ -70,32 +67,40 @@ html, body {
   &:extend(.bg-info);
 }
 
-.message-error, .warning_important {
-  &:extend(.alert-danger all);
+.message {
+  &-error {
+    &:extend(.alert-danger all);
+    .message();
+  }
+
+  &-debug {
+    &:extend(.alert-info all);
+    .message();
+  }
+
+  &-success {
+    &:extend(.alert-success all);
+    .message();
+  }
+
+  &-info {
+    &:extend(.alert-info all);
+    .message();
+  }
+
+  &-warning {
+    &:extend(.alert-warning all);
+    .message();
+
+    font-weight: bold;
+  }
+}
+
+.warning_important {
+  &:extend(.alert-danger);
   .message();
 }
 
-.message-debug {
-  &:extend(.alert-info all);
-  .message();
-}
-
-.message-success {
-  &:extend(.alert-success all);
-  .message();
-}
-
-.message-warning {
-  &:extend(.alert-warning all);
-  .message();
-
-  font-weight: bold;
-}
-
-.message-info {
-  &:extend(.alert-info all);
-  .message();
-}
 
 .pagination {
   &:extend(.pagination);
@@ -128,47 +133,51 @@ html, body {
 }
 
 .sidebar {
-  &:extend(.panel);
-  &:extend(.panel-default);
+  .make-sm-column(3);
 
-  &-danger {
-    &:extend(.panel-danger);
+  &-group {
+    &:extend(.panel);
+    &:extend(.panel-default);
 
-    .sidebar-heading {
+    &-danger {
+      &:extend(.panel-danger);
+
+      .sidebar-group-heading {
+        &:extend(.panel-heading);
+        &:extend(.panel-danger > .panel-heading);
+
+        & > h1 {
+          &:extend(.panel-title);
+        }
+      }
+    }
+
+    &-heading {
       &:extend(.panel-heading);
-      &:extend(.panel-danger > .panel-heading);
+      &:extend(.panel-default > .panel-heading);
 
       & > h1 {
         &:extend(.panel-title);
       }
     }
-  }
 
-  &-heading {
-    &:extend(.panel-heading);
-    &:extend(.panel-default > .panel-heading);
-
-    & > h1 {
-      &:extend(.panel-title);
-    }
-  }
-
-  & > ul {
-    &:extend(.list-group);
-    &:extend(.panel > .list-group);
-  }
-
-  &-item {
-    &:extend(.list-group-item);
-    &:extend(.panel > .list-group .list-group-item);
-
-    &:first-child {
-      &:extend(.panel > .list-group:first-child .list-group-item:first-child);
+    & > ul {
+      &:extend(.list-group);
+      &:extend(.panel > .list-group);
     }
 
-    &:last-child {
-      &:extend(.list-group-item:last-child);
-      &:extend(.panel > .list-group:last-child .list-group-item:last-child);
+    &-item {
+      &:extend(.list-group-item);
+      &:extend(.panel > .list-group .list-group-item);
+
+      &:first-child {
+        &:extend(.panel > .list-group:first-child .list-group-item:first-child);
+      }
+
+      &:last-child {
+        &:extend(.list-group-item:last-child);
+        &:extend(.panel > .list-group:last-child .list-group-item:last-child);
+      }
     }
   }
 }
@@ -218,7 +227,7 @@ button, input[type="button"], input[type="submit"] {
   }
 }
 
-.sidebar form button[type="submit"] {
+.sidebar-group form button[type="submit"] {
     &:extend(a);
     &:hover, &:focus {
       &:extend(a:hover, a:focus);
@@ -329,6 +338,12 @@ textarea {
 }
 
 .content {
+  .make-sm-column(9);
+}
+
+.main-container {
+  &:extend(.container);
+
   @correction: 2px; /* prevents scrolling; needed because of approx. @line-height-computed (see bootstrap/variables.less, line 62)
                        and min-height: 1px of .col-sm-3 for the sidebar */
   @margin_sum: @header-height + @header-margin + @breadcrumb-height + @correction;
@@ -352,15 +367,21 @@ textarea {
   margin: 0;
   height: @footer-height;
 
+  &-container {
+    &:extend(.container);
+  }
+
   &-left, &-center, &-right {
     width: 33.3%;
     padding: 0 10px;
     float: left;
     &:extend(.navbar-inverse .navbar-text);
   }
+
   &-center {
     text-align: center;
   }
+
   &-right {
     text-align: right;
   }

@@ -10,16 +10,10 @@
 
 .planet {
   &-newestarticles {
-    .list-inline {
-      text-align:justifed;
-
-      li {
-        padding: 0;
-
-        &:not(:last-child):after {
-          color: @gray-light;
-          content: ' |';
-        }
+    @media (min-width: @screen-sm-min) {
+      &-list {
+        columns: 2;
+        column-gap: 4em;
       }
     }
   }
@@ -69,6 +63,11 @@
   &-article {
     .article();
 
+    &-footer {
+      &:extend(.list-inline all);
+      margin: 0;
+    }
+
     .blog-icon-container{
       font-size: 400%;
       vertical-align: middle;
@@ -81,6 +80,20 @@
       a {
         color: inherit;
       }
+    }
+
+    img {
+      max-width: 100% !important;
+      
+      /* `!important` needed as width and height are sometimes inline
+          defined (→ wrong form-factor if scaled) */
+      height: auto !important;
+      width: auto !important;
+    }
+
+    table {
+      table-layout: fixed;
+      width: 100%;
     }
   }
 }

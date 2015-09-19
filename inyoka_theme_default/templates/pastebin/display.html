@@ -10,8 +10,9 @@
 #}
 {% extends 'pastebin/base.html' %}
 
-{% set scripts = ['Pastebin'] %}
-
+{% block title %}
+  {{ entry.title }} - {{ super() }}
+{% endblock %}
 {% block breadcrumb %}
   {{ super() }}
 
@@ -21,7 +22,7 @@
 {% block sidebar %}
   {{ super() }}
 
-  {% call macros.sidebar(title=_('Actions:')) %}
+  {% call macros.sidebar(title=_('View settings')) %}
     {{ macros.sidebar_item(_('Display entry as raw text'), entry|url('raw')) }}
   {% endcall %}
 
@@ -32,27 +33,37 @@
   {% endif %}
 {% endblock %}
 
-{% block paste_content %}
-  <dl>
-    <dt>{% trans %}Title:{% endtrans %}</dt>
-    <dd>{{ entry.title|e }}</dd>
+{% block content %}
+
+<div class="paste-entry">
+    <div>{% trans %}Title{% endtrans %}</div>
+    <div>{{ entry.title|e }}</div>
+
     {% if not entry.author.is_anonymous %}
-      <dt>{% trans %}Author:{% endtrans %}</dt>
-      <dd><a href="{{ entry.author|url }}">{{ entry.author.username|e }}</a></dd>
+      <div>{% trans %}Author{% endtrans %}</div>
+      <div>
+        <a href="{{ entry.author|url }}">{{ entry.author.username|e }}</a>
+      </div>
     {% endif %}
-    <dt>{% trans %}Date:{% endtrans %}</dt>
-    <dd>{{ entry.pub_date|datetime }}</dd>
+
+    <div>{% trans %}Date{% endtrans %}</div>
+    <div>{{ entry.pub_date|datetime }}</div>
+
     {% if entry.referrer|length %}
-      <dt>{% trans %}Pages that are referencing this entry:{% endtrans %}</dt>
-      <dd><ul>
-      {% for link in entry.referrer_list %}
-        <li>{{ link|urlize(60) }}</li>
-      {% endfor %}
-      </ul></dd>
+      <div>{% trans %}Pages that are referencing this entry{% endtrans %}</div>
+      <div>
+        <ul>
+          {% for link in entry.referrer_list %}
+            <li>{{ link|urlize(60) }}</li>
+          {% endfor %}
+        </ul>
+      </div>
     {% endif %}
-    <dt>{% trans %}Code:{% endtrans %}</dt>
-    <dd>
+
+    <div>{% trans %}Code{% endtrans %}</div>
+    <div class="paste-entry-code">
       {{ entry.rendered_code }}
-    </dd>
-  </dl>
+    </div>
+</div>
+
 {% endblock %}

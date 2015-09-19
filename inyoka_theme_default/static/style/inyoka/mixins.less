@@ -78,9 +78,6 @@
         text-decoration: underline;
       }
     }
-    h2, h3 {
-      &:extend(.page-header);
-    }
     li > p {
       margin: 0;
     }
@@ -92,7 +89,7 @@
     }
   }
   table {
-    &:extend(.table);
+    &:extend(.table all);
     &:extend(.table-bordered);
     width: auto;
 
@@ -104,10 +101,6 @@
         }
         &.kopf > td {
           &:extend(.table >  thead > tr > th );
-        }
-        > th,
-        > td {
-          &:extend(.table > thead > tr > td );
         }
       }
     }
@@ -126,5 +119,22 @@
       margin: 0;
       padding: 5px;
     }
+  }
+}
+
+.message {
+  &:extend(.alert all);
+  &:extend(.alert-dismissable all);
+
+  .close {
+    background-color: transparent;
+    position: relative;
+    float: right;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
   }
 }

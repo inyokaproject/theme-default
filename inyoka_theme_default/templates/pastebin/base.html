@@ -1,5 +1,5 @@
 {#
-    pastebin/page.html
+    pastebin/base.html
     ~~~~~~~~~~~~~~~~~~
 
     This template is included by all pastebin templates and adds the elements
@@ -9,6 +9,10 @@
     :license: BSD, see LICENSE for more details.
 #}
 {% extends 'base.html' %}
+
+{% block title %}
+  {{ _('Pastebin') }} - {{ super() }}
+{% endblock %}
 
 {% block breadcrumb %}
   {{ super() }}
@@ -23,8 +27,4 @@
     {{ macros.sidebar_item(_('New paste'), href('pastebin', 'add')) }}
     {{ macros.sidebar_item(_('Browse pastes'), href('pastebin', 'browse')) }}
   {% endcall %}
-{% endblock %}
-
-{% block content %}
-  {% block paste_content %}{% endblock %}
 {% endblock %}

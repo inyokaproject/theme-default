@@ -9,6 +9,10 @@
 #}
 {% extends 'portal/user_admin.html' %}
 
+{% block title %}
+  {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ super() }}
   {{ macros.breadcrumb_item(_('Profile'), href('portal', 'user', user.urlsafe_username, 'edit', 'profile')) }}

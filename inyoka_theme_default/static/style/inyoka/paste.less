@@ -1,0 +1,62 @@
+/**
+ * style.inyoka.paste
+ * ~~~~~~~~~~~~~~~~~~
+ *
+ * Custom styles for the pastebin. All css-classes are prefixed with `paste-`.
+ *
+ * :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+ * :license: BSD, see LICENSE for more details.
+ */
+
+.paste {
+  &-pastelist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &-number {
+      font-weight: bold;
+    }
+
+    &-date {
+      @media(min-width: @screen-sm-min) {
+        .pull-right();
+      }
+
+      @media(max-width: @screen-sm-max) {
+        display: block;
+        text-align: right;
+      }
+    }
+  }
+
+  &-entry {
+    &:extend(.row);
+
+    > div {
+      &:nth-child(odd) {
+        .make-sm-column(2);
+
+        @media(min-width: @screen-sm-min) {
+          text-align: right;
+        }
+        font-weight: bold;
+      }
+
+      &:nth-child(even) {
+        .make-sm-column(10);
+      }
+    }
+
+    &-code {
+      /* for the case of a paste with wide text */
+      width: 95% !important; // for browsers not supporting `calc()`
+      width: ~"calc(100% -" @grid-gutter-width/2~")" !important;
+      overflow: auto;
+
+      pre {
+        overflow: visible;
+      }
+    }
+  }
+}

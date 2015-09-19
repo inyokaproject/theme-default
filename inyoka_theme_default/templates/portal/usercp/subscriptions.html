@@ -1,0 +1,108 @@
+{#
+    portal/usercp/subscriptions.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    This page shows all subscriptions of the user and let him
+    manage them.
+
+    :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'portal/usercp/overall.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Subscriptions'), href('portal', 'usercp', 'subscriptions'))}}
+{% endblock %}
+
+{% block sidebar %}
+  {{ super() }}
+
+  {# FIXME Waiting for changes in backend #}
+  <h3>{% trans %}Filter{% endtrans %}</h3>
+  <div class="container noh3">
+    {{ filtersets[0].form.content_type }}
+  </div>
+{% endblock %}
+
+
+{% block content %}
+  {% set rendered_pagination = macros.render_pagination(pagination) %}
+
+  <h3>{% trans %}Subscriptions{% endtrans %}</h3>
+  {% call macros.outer_form(csrf_token(), button_visible=False, manually_rendered=True) %}
+    {{ rendered_pagination }}
+    <table class="usercp_subscriptions">
+      <thead>
+        <tr>
+          <th class="checkboxes"><input type="checkbox" id="check_all" title="{% trans %}(De)select all{% endtrans %}" /></th>
+          <th class="name">{% trans %}Name{% endtrans %}</th>
+          <th class="read">{{ table.get_html('notified', _('Read')) }}</th>
+          <th class="status">{% trans %}State{% endtrans %}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for sub in subscriptions %}
+          {% set type = sub.content_type.model %}
+          {% set object = sub.content_object %}
+          {% if type != 'suggestion' and object %}
+            <tr>
+              <td class="checkboxes"><input type="checkbox" name="select" value="{{ sub.id }}" /></td>
+              <td class="items{% if not sub.can_read %} unreadable{% endif %}">
+                {{ object._meta.verbose_name }}: <a href="{{ object|url }}">{{ object|e }}</a>
+                {% if type == 'topic' %}
+                    <a class="fa_icon-share" href="{{ object|url('first_unread') }}" title="{% trans %}Show unread posts{% endtrans %}"></a>
+                {% elif type == 'article' %}
+                  <a class="fa_icon-share" href="{{ object|url('last_comment') }}" title="{% trans %}Go to last comment{% endtrans %}"></a>
+                {% elif type == 'page' %}
+                  <a class="fa_icon-history" href="{{ object|url('log') }}" title="{% trans %}Revisions{% endtrans %}"></a>
+                {% endif %}
+
+                {% if not sub.can_read %}
+                  <a href="{{ object|url('unsubscribe', next=CURRENT_URL) }}">({% trans %}Unsubscribe{% endtrans %})</a>
+                {% endif %}
+              </td>
+              <td class="read">
+                {% if sub.notified %}
+                  <span class="fa_icon-star" alt="neu" title="{% trans %}Changes since last visit{% endtrans %}"></span>
+                {% endif %}
+              </td>
+              <td class="status">
+                {% if type == 'topic' %}
+                  <span class="{{ object.solved and 'fa_icon-check' or 'fa_icon-times' }}"></span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endif %}
+        {% else %}
+          <tr>
+            <td colspan="4">{% trans %}You did not yet subscribed to any topics or articles.{% endtrans %}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div>
+      <input type="submit" name="delete" value="{% trans %}Delete selected subscriptions{% endtrans %}" />
+      <input type="submit" name="mark_read" value="{% trans %}Mark selected subscriptions as read{% endtrans %}" />
+    </div>
+  {% endcall %}
+  {{ macros.render_pagination(pagination) }}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    (function () {
+      $('#check_all').click(function() {
+        var checked = this.checked
+        $('input[name="select"]').each(function() {
+          this.checked = checked;
+        });
+      });
+    })();
+  /*]]> */
+  </script>
+{% endblock %}

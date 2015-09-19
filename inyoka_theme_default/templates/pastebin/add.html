@@ -11,6 +11,10 @@
 #}
 {% extends 'pastebin/base.html' %}
 
+{% block title %}
+  {{ _('New psate') }} - {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ super() }}
 
@@ -18,10 +22,13 @@
 {% endblock %}
 
 
-{% block paste_content %}
+{% block content %}
   <p>
     {% trans %}
-    This is a pastebin where you can save error messages, logs, configuration files or source codes to keep threads or IRC channels clean. To do this, just copy the text in the box below and choose the appropriate language. After that, you copy the URL into the topic or the channel.
+      This is a pastebin where you can save error messages, logs, configuration files
+      or source codes to keep threads or IRC channels clean. To do this, just copy
+      the text in the box below and choose the appropriate language. After that, you
+      copy the URL into the topic or the channel.
     {% endtrans %}
   </p>
 

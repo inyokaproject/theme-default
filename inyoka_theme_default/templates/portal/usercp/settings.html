@@ -1,0 +1,31 @@
+{#
+    portal/usercp/settings.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    This page shows the user control panel settings page.
+
+    :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'portal/usercp/overall.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Settings'), href('portal', 'usercp', 'settings'))}}
+{% endblock %}
+{% set selected = 'settings' %}
+
+{% block content %}
+  {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
+    <h2>{% trans %}Settings{% endtrans %}</h2>
+    {{ macros.inner_form(form, ['notify', 'notifications','timezone']) }}
+
+    <h3>{% trans %}Interface{% endtrans %}</h3>
+    {{ macros.inner_form(form, ['hide_avatars', 'hide_signatures','hide_profile']) }}
+
+    <h3>Forum</h3>
+    {{ macros.inner_form(form, ['mark_read_on_logout', 'autosubscribe','show_preview', 'show_thumbnails']) }}
+  {% endcall %}
+{% endblock %}

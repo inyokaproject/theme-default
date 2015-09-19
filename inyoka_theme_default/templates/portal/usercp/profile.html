@@ -1,0 +1,35 @@
+{#
+    portal/usercp/settings.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    This page shows the user control panel settings page.
+
+    :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'portal/usercp/overall.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Profile'), href('portal', 'usercp', 'profile'))}}
+{% endblock %}
+
+{% set selected = 'profile' %}
+
+{% block content %}
+  {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
+    <h2>{% trans %}Avatar settings{% endtrans %}</h2>
+    {% if user.has_avatar %}
+      {{ macros.add_user_avatar(user) }}
+    {% endif %}
+    {{ macros.input(form.avatar) }}
+
+    <h2>{% trans %}Contact addresses{% endtrans %}</h2>
+    {{ macros.inner_form(form, ['email', 'gpgkey', 'jabber', 'icq', 'msn', 'aim', 'yim', 'skype', 'wengophone', 'sip']) }}
+
+    <h2>{% trans %}Miscellaneous information fields{% endtrans %}</h2>
+    {{ macros.inner_form(form, ['occupation', 'interests', 'website', 'launchpad', 'location', 'signature', 'userpage']) }}
+  {% endcall %}
+{% endblock %}

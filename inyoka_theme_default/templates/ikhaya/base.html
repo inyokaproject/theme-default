@@ -9,6 +9,10 @@
 #}
 {% extends 'base.html' %}
 
+{% block title %}
+  Ikhaya - {{ super() }}
+{% endblock %}
+
 {% set active_app = 'ikhaya' %}
 
 {% block breadcrumb %}

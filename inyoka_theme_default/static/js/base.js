@@ -76,4 +76,8 @@ $(function () {
             $(this).text('Expand');
         }
     });
+
+    $('.close').click(function() {
+      $(this).parent().remove();
+    });
 });

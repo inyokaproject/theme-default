@@ -71,29 +71,30 @@ html, body {
 }
 
 .message-error, .warning_important {
-  &:extend(.alert);
-  &:extend(.alert-danger);
+  &:extend(.alert-danger all);
+  .message();
 }
 
 .message-debug {
-  &:extend(.alert);
-  &:extend(.alert-info);
+  &:extend(.alert-info all);
+  .message();
 }
 
 .message-success {
-  &:extend(.alert);
-  &:extend(.alert-success);
+  &:extend(.alert-success all);
+  .message();
 }
 
 .message-warning {
-  &:extend(.alert);
-  &:extend(.alert-warning);
+  &:extend(.alert-warning all);
+  .message();
+
   font-weight: bold;
 }
 
 .message-info {
-  &:extend(.alert);
-  &:extend(.alert-info);
+  &:extend(.alert-info all);
+  .message();
 }
 
 .pagination {

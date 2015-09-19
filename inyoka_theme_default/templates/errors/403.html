@@ -12,6 +12,10 @@
 
 {% extends 'base.html' %}
 
+{% block title %}
+  403 - {{ super() }}
+{% endblock title %}
+
 {% block content %}
   <p>
     {% trans %}You do not have permissions to access this page.{% endtrans %}

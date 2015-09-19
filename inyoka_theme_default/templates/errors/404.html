@@ -10,6 +10,10 @@
 
 {% extends 'base.html' %}
 
+{% block title %}
+  404 - {{ super() }}
+{% endblock title %}
+
 {% block content %}
   {% if err_message %}
     <p>{{ err_message }}</p>

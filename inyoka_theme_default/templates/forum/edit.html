@@ -10,6 +10,9 @@
 #}
 
 {% extends 'forum/base.html' %}
+{% block title %}
+  {{_('Edit') }} - {{ topic }} - {{ super() }}
+{% endblock %}
 
 {% block breadcrumb %}
   {{ super() }}

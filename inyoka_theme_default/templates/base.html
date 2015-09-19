@@ -106,6 +106,7 @@
       <div class="content" id="main-content" role="main" target="-1">
         {% for message in MESSAGES %}
           <div class="message-{{ message.tags }}" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             {{ message }}
           </div>
         {% endfor %}

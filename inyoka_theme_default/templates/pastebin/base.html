@@ -1,5 +1,5 @@
 {#
-    pastebin/page.html
+    pastebin/base.html
     ~~~~~~~~~~~~~~~~~~
 
     This template is included by all pastebin templates and adds the elements
@@ -9,6 +9,10 @@
     :license: BSD, see LICENSE for more details.
 #}
 {% extends 'base.html' %}
+
+{% block title %}
+  {{ _('Pastebin') }} - {{ super() }}
+{% endblock %}
 
 {% block breadcrumb %}
   {{ super() }}

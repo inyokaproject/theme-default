@@ -10,6 +10,9 @@
 #}
 {% extends 'pastebin/base.html' %}
 
+{% block title %}
+  {{ entry.title }} - {{ super() }}
+{% endblock %}
 {% block breadcrumb %}
   {{ super() }}
 

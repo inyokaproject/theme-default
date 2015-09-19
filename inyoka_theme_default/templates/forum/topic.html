@@ -12,6 +12,10 @@
 
 {% extends 'forum/base.html' %}
 
+{% block title %}
+  {{ topic }} - {{ topic.forum }} - {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ super() }}
 

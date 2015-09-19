@@ -9,6 +9,10 @@
 #}
 {% extends 'portal/base.html' %}
 
+{% block title %}
+  {{ user.username }} - {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ super() }}
 

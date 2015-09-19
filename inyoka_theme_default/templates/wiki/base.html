@@ -10,6 +10,10 @@
 
 {% extends 'base.html' %}
 
+{% block title %}
+  Wiki - {{ super() }}
+{% endblock %}
+
 {% set active_app = 'wiki' %}
 
 {% block breadcrumb %}

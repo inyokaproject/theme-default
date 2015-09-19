@@ -9,6 +9,9 @@
 #}
 
 {% extends 'base.html' %}
+{% block title %}
+  400 - {{ super() }}
+{% endblock title %}
 
 {% block content %}
   <h2>{% trans %}Bad request{% endtrans %}</h2>

@@ -10,6 +10,10 @@
 #}
 {% extends 'base.html' %}
 
+{% block title %}
+  Planet - {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ macros.breadcrumb_item(_('Planet'), href('planet')) }}
 {% endblock %}

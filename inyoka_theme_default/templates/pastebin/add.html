@@ -11,6 +11,10 @@
 #}
 {% extends 'pastebin/base.html' %}
 
+{% block title %}
+  {{ _('New psate') }} - {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ super() }}
 

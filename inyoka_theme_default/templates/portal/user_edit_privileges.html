@@ -9,6 +9,10 @@
 #}
 {% extends 'portal/user_admin.html' %}
 
+{% block title %}
+  {{ _('Privileges') }} - {{ super() }}
+{% endblock %}}
+
 {% block breadcrumb %}
   {{ super() }}
   {{ macros.breadcrumb_item(_('Privileges'), href('portal', 'user', user.urlsafe_username, 'edit', 'privileges')) }}

@@ -9,6 +9,10 @@
 #}
 {% extends 'ikhaya/base.html' %}
 
+{% block title %}
+  {{ article.subject }} - {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ super() }}
   {{ macros.breadcrumb_item(article.category, article.category|url) }}

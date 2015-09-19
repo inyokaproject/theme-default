@@ -10,48 +10,32 @@
 
 .forum {
   &-list {
-    &:extend(.panel);
-    &:extend(.panel-default);
+    &:extend(.panel all);
+    &:extend(.panel-default all);
 
     &-heading {
       &:extend(.panel-heading);
       &:extend(.panel-default > .panel-heading);
 
       & > h3 {
-        &:extend(.panel-title);
+        &:extend(.panel-title all);
 
         font-size: @font-size-h3;
-
-        & > a {
-          &:extend(.panel-title > a);
-        }
       }
     }
     & > ul {
-      &:extend(.list-group);
-      &:extend(.panel > .list-group);
+      &:extend(.list-group all);
+      &:extend(.panel > .list-group all);
     }
     &-item {
-      &:extend(.list-group-item);
-      &:extend(a.list-group-item);
-      &:extend(.panel > .list-group .list-group-item);
-
-      &:first-child {
-        &:extend(.panel > .list-group:first-child .list-group-item:first-child);
-      }
-      &:last-child {
-        &:extend(.list-group-item:last-child);
-        &:extend(.panel > .list-group:last-child .list-group-item:last-child);
-      }
-      &:focus, &:hover {
-        &:extend(a.list-group-item:hover);
-      }
+      &:extend(.list-group-item all);
+      &:extend(.panel > .list-group .list-group-item all);
 
       & > h4 {
-        &:extend(list-group-item-heading);
+        &:extend(list-group-item-heading all);
       }
       & > p {
-        &:extend(list-group-item-text);
+        &:extend(list-group-item-text all);
       }
     }
   }
@@ -107,5 +91,10 @@
     & > &-footer {
       &:extend(.panel-footer);
     }
+  }
+
+  & &-no-forum {
+    &:extend(.bg-warning all);
+    padding: 1em;
   }
 }

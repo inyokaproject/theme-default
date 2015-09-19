@@ -1,0 +1,33 @@
+{#
+    portal/usercp/overall.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    This page shows the user control panel overall page.
+
+    :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'portal/index.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+  {{ macros.breadcrumb_item(_('Control panel'), href('portal', 'usercp', 'profile')) }}
+{% endblock %}
+
+{% block sidebar %}
+
+  {% call macros.sidebar_admin(_('Settings')) %}
+    {{ macros.sidebar_item(_('Profile'), href('portal', 'usercp', 'profile')) }}
+    {{ macros.sidebar_item(_('Settings'), href('portal', 'usercp', 'settings')) }}
+    {{ macros.sidebar_item(_('Change password'), href('portal', 'usercp', 'password')) }}
+    {{ macros.sidebar_item(_('Subscriptions'), href('portal', 'usercp', 'subscriptions')) }}
+    {{ macros.sidebar_item(_('Deactivate account'), href('portal', 'usercp', 'deactivate')) }}
+  {% endcall %}
+
+  {% if user %}
+    {% call macros.sidebar() %}
+      {{ macros.sidebar_item(_('Show profile'), href('portal', 'user', user.username )) }}
+    {% endcall %}
+  {% endif %}
+{% endblock %}

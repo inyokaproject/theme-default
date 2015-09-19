@@ -32,19 +32,7 @@ html, body {
   .make-md-column(12);
 
   &-list {
-    &:extend(.breadcrumb);
-
-    & > li {
-      &:extend(.breadcrumb > li);
-
-      + li:before {
-        &:extend(.breadcrumb > li + li:before);
-      }
-
-      &:last-child, &:last-child a {
-        &:extend(.breadcrumb > .active);
-      }
-    }
+    &:extend(.breadcrumb all);
   }
 }
 

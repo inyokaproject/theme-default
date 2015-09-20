@@ -106,27 +106,19 @@
   {% call macros.outer_form(csrf_token(), form, button_visible=False, manually_rendered=True) %}
     {{ csrf_token() }}
     <table class="portal-privmsg-table portal-privmsg-responsive-table table table-striped">
-      <colgroup>
-          <col class="subjectcol">
-          <col class="authorcol">
-          <col class="recipientscol">
-          <col class="datecol">
-          <col class="actionscol">
-          <col class="deletecol">
-      </colgroup>
       <thead>
         <tr>
-          <th class="subject">{% trans %}Subject{% endtrans %}</th>
-          <th class="author">{% trans %}From{% endtrans %}</th>
-          <th class="recipients">{% trans %}To{% endtrans %}</th>
-          <th class="date">{% trans %}Date{% endtrans %}</th>
-          <th class="actions">{% trans %}Actions{% endtrans %}</th>
-          <th class="delete"><input id="private_message_mark_all"type="checkbox" ></th>
+          <th>{% trans %}Subject{% endtrans %}</th>
+          <th>{% trans %}From{% endtrans %}</th>
+          <th>{% trans %}To{% endtrans %}</th>
+          <th>{% trans %}Date{% endtrans %}</th>
+          <th>{% trans %}Actions{% endtrans %}</th>
+          <th><input id="private_message_mark_all"type="checkbox" ></th>
         </tr>
       </thead>
       <tbody>
       {% for entry in entries %}
-        <tr{% if message == entry.message %} class="active_pn"{% endif %}>
+        <tr>
           <td data-title="{% trans %}Subject{% endtrans %}">
               <a href="{{ entry|url }}"
                 {% if not entry.read %}class="private-message-unread"{% endif %}

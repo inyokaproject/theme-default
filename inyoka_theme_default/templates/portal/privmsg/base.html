@@ -8,6 +8,10 @@
 
 {% extends 'portal/base.html' %}
 
+{% block title %}
+  {{ _('Messages') }} - {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ super() }}
   {{ macros.breadcrumb_item(_('Messages'), href('portal', 'privmsg')) }}

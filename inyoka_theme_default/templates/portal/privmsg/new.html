@@ -10,6 +10,10 @@
 
 {% extends 'portal/privmsg/base.html' %}
 
+{% block title %}
+  {{ _('Compose message') }} - {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ super() }}
   {{ macros.breadcrumb_item(_('Compose message')) }}

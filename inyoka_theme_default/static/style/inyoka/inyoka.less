@@ -182,21 +182,26 @@ html, body {
   }
 }
 
-.staff-button {
-  &:extend(.btn);
-  &:extend(.btn-sm);
-  &:extend(.btn-danger);
-  &:extend(.btn-group > .btn);
+.staff-dropdown {
+  &:extend(.pull-right);
+  &:extend(.dropdown);
 
-  margin-top: 0;
+  &-button {
+    &:extend(.btn);
+    &:extend(.btn-sm);
+    &:extend(.btn-danger);
+    &:extend(.btn-group > .btn);
 
-  &:focus {
-    &:extend(.dropdown-toggle:focus);
+    margin-top: 0;
+
+    &:focus {
+      &:extend(.dropdown-toggle:focus);
+    }
   }
 
   &-menu {
     &:extend(.dropdown-menu);
-    &:extend(.pull-right > .dropdown-menu);
+    &:extend(.dropdown-menu-right);
 
     & > li > a {
       &:extend(.dropdown-menu > li > a);
@@ -205,11 +210,10 @@ html, body {
         &:extend(.dropdown-menu > li > a:focus);
       }
     }
-  }
-}
-.open {
-  > .staff-button-menu {
-    &:extend(.open > .dropdown-menu);
+
+    .open > & {
+      &:extend(.open > .dropdown-menu);
+    }
   }
 }
 

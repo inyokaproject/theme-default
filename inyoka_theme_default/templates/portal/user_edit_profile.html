@@ -10,7 +10,7 @@
 {% extends 'portal/user_admin.html' %}
 
 {% block title %}
-  {{ super() }}
+  {{ _('Edit') }} {{ user.username }} - {{ super() }}
 {% endblock %}
 
 {% block breadcrumb %}

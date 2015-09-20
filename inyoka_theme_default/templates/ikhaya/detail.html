@@ -97,17 +97,18 @@
             </a>
             {% if comment.author_id == USER.id %}
               <a href="{{ comment|url('edit') }}" class="btn btn-primary">
-                {% trans %}Edit{% endtrans %}</a>
+                {% trans %}Edit{% endtrans %}
+              </a>
             {% endif %}
           </div>
           {% if can_admin_comment %}
-            <div class="pull-right">
-              <button type="button" class="staff-button" data-toggle="dropdown">
+            <div class="staff-dropdown">
+              <button type="button" class="staff-dropdown-button" data-toggle="dropdown">
                 {% trans %}Staff{% endtrans %}
                 <span class="fa_icon-caret-down"></span>
               </button>
-              <ul class="staff-button-menu">
-                <li><a href="#">{% trans %}Edit{% endtrans %}</a></li>
+              <ul class="staff-dropdown-menu">
+                <li><a href="{{ comment|url('edit') }}">{% trans %}Edit{% endtrans %}</a></li>
                 {% if comment.deleted %}
                   <li><a href="#">{% trans %}Restore{% endtrans %}</a></li>
                 {% else %}

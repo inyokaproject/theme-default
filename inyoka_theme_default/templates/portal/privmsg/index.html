@@ -128,9 +128,11 @@
       {% for entry in entries %}
         <tr{% if message == entry.message %} class="active_pn"{% endif %}>
           <td data-title="{% trans %}Subject{% endtrans %}">
-            {% if not entry.read %}<strong>{% endif %}
-              <a href="{{ entry|url }}">{{ entry.message.subject|e|truncate(50,false,'...') }}</a>
-            {% if not entry.read %}</strong>{% endif %}
+              <a href="{{ entry|url }}"
+                {% if not entry.read %}class="private-message-unread"{% endif %}
+              >
+                {{ entry.message.subject|e|truncate(50)}}
+              </a>
           </td>
           <td data-title="{% trans %}From{% endtrans %}">
             <a{% if not entry.message.author.is_active %} class="user_inactive"{% endif %} href="{{ entry.message.author|url }}">

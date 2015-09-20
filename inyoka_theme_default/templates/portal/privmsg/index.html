@@ -187,20 +187,6 @@
     <tfoot>
       <tr>
         <td colspan="6">
-          <div class="pnfooter">
-            {{ macros.render_pagination(pagination) }}
-            <p class="onepage">
-              {% if one_page %}
-                <a href="{{ href('portal', 'privmsg', folder.id) }}">
-                 {% trans %}Split messages into multiple pages{% endtrans %}
-                </a>
-              {% else %}
-                <a href="{{ href('portal', 'privmsg', folder.id, 'all') }}">
-                  {% trans %}Display all messages on one page{% endtrans %}
-                </a>
-              {% endif %}
-            </p>
-          </div>
           <div class="linklist">
             <a href="{{ href('portal', 'privmsg', 'new') }}" class="button">{% trans %}Compose message{% endtrans %}</a>
             <input type="submit" value="{% trans %}Delete marked messages{% endtrans %}" class="button-delete" />

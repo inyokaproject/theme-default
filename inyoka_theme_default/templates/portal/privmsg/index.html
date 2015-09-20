@@ -184,17 +184,14 @@
         </tr>
       {% endfor %}
     </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="6">
-          <div class="linklist">
-            <a href="{{ href('portal', 'privmsg', 'new') }}" class="button">{% trans %}Compose message{% endtrans %}</a>
-            <input type="submit" value="{% trans %}Delete marked messages{% endtrans %}" class="button-delete" />
-          </div>
-        </td>
-        </tr>
-      </tfoot>
     </table>
+
+    {{ macros.render_pagination(pagination) }}
+
+    <div class="linklist">
+      <a href="{{ href('portal', 'privmsg', 'new') }}" class="button">{% trans %}Compose message{% endtrans %}</a>
+      <input type="submit" value="{% trans %}Delete marked messages{% endtrans %}" class="button-delete" />
+    </div>
   {% endcall %}
 {% endblock %}
 

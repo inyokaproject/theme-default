@@ -127,18 +127,18 @@
               </a>
           </td>
           <td data-title="{% trans %}From{% endtrans %}">
-            <a{% if not entry.message.author.is_active %} class="user_inactive"{% endif %} href="{{ entry.message.author|url }}">
-            {{ entry.message.author|e }}
+            <a href="{{ entry.message.author|url }}">
+              {{ entry.message.author|e }}
             </a>
           </td>
           <td data-title="{% trans %}To{% endtrans %}">
             {% if entry.message.recipients|length == 0 %}
-              <a{% if not entry.message.author.is_active %} class="user_inactive"{% endif %} href="{{ entry.message.author|url }}">
-              {{ entry.message.author|e }}
+              <a href="{{ entry.message.author|url }}">
+                {{ entry.message.author|e }}
               </a>
             {% else %}
-              <a{% if not entry.message.recipients[0].is_active %} class="user_inactive"{% endif %} href="{{ entry.message.recipients[0]|url }}">
-              {{ entry.message.recipients[0]|e }}
+              <a href="{{ entry.message.recipients[0]|url }}">
+                {{ entry.message.recipients[0]|e }}
               </a>
             {% endif %}
             {% if entry.message.recipients|length > 1 %}, …{% endif %}

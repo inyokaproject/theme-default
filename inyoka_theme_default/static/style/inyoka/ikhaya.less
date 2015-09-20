@@ -81,11 +81,9 @@
     & > &-heading {
       &:extend(.panel-heading);
       &:extend(.panel-default > .panel-heading);
-      &:extend(.list-inline);
+      &:extend(.list-inline all);
+
       margin: 0;
-      li {
-        &:extend(.list-inline > li);
-      }
     }
 
     & > &-body {
@@ -94,11 +92,9 @@
 
     & > &-footer {
       &:extend(.panel-footer);
-      &:extend(.list-inline);
+      &:extend(.list-inline all);
+
       margin: 0;
-      li {
-        &:extend(.list-inline > li);
-      }
     }
 
     &-hidden {

@@ -7,7 +7,7 @@
     :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
-{%- extends 'ikhaya/base.html' %}
+{% extends 'ikhaya/base.html' %}
 
 {% block breadcrumb %}
   {{ super() }}
@@ -18,7 +18,8 @@
 {% block content %}
   <p>
     {% trans link=href('ikhaya') %}
-      Here are all published articles in chronological order. You can find the most recent articles on <a href="{{ link }}">the front page</a>.
+      Here are all published articles in chronological order. You can find
+      the most recent articles on <a href="{{ link }}">the front page</a>.
     {% endtrans %}
   </p>
   {% for year in months|groupby('year') %}

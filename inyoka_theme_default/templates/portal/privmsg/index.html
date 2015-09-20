@@ -121,7 +121,7 @@
           <th class="recipients">{% trans %}To{% endtrans %}</th>
           <th class="date">{% trans %}Date{% endtrans %}</th>
           <th class="actions">{% trans %}Actions{% endtrans %}</th>
-          <th class="delete">{% trans %}Delete{% endtrans %} <input type="checkbox" ></th>
+          <th class="delete">{% trans %}Delete{% endtrans %} <input id="private_message_mark_all"type="checkbox" ></th>
         </tr>
       </thead>
       <tbody>
@@ -213,24 +213,17 @@
 {% endblock %}
 
 {% block scripts %}
-{{ super() }}
-<script type="text/javascript">
-  /* <![CDATA[ */
-  $(function () {
-    var all_checked = false;
-    $('.portal-privmsg-table .delete input[type="checkbox"]').click(function() {
-      $('input[name="delete"]').each(function() {
-        if (all_checked)
-          this.checked = false;
-        else
-          this.checked = true;
+  {{ super() }}
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    $(function () {
+      $('#private_message_mark_all').click(function() {
+        all_checked = this.checked;
+        $('input[name="delete"]').each(function() {
+            this.checked = all_checked;
+        });
       });
-      if (all_checked)
-        all_checked = false;
-      else
-        all_checked = true;
-    });
-  })
-  /* ]]> */
-</script>
+    })
+    /* ]]> */
+  </script>
 {% endblock %}

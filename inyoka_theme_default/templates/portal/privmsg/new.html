@@ -26,51 +26,34 @@
       {% else %}
         {{ macros.inner_form(form, ['recipient', 'subject', 'text']) }}
       {% endif %}
-      <input type="submit" name="preview" value="{% trans %}Preview{% endtrans %}" />
+      <input type="submit" id="private_message_preview_button" value="{% trans %}Preview{% endtrans %}" />
   {% endcall %}
-  {% if preview %}
-    <div class="preview_wrapper">
-      <h2 class="title">{% trans %}Preview{% endtrans %}</h2>
-      <div id="preview" class="preview">{{ preview }}</div>
-    </div>
-  {% endif %}
+  <div id="private_message_preview_wrapper">
+    <h2 id="private_message_preview_title">{% trans %}Preview{% endtrans %}</h2>
+    <div id="private_message_preview">{{ preview }}</div>
+  </div>
 {% endblock %}
 
 {% block scripts %}
   {{ super() }}
   <script type="text/javascript">
     /* <![CDATA[ */
-    var text = new WikiEditor('textarea[name="text"]', 'forum');
-    $(function() {
-      var
-        editor = $('textarea[name="text"]'),
-        output = $('<div class="preview" />')
-      var preview = $('<div class="preview_wrapper" />')
-        .hide()
-        .append('<h2 class="title">{% trans %}Preview{% endtrans %}<\/h2>')
-        .append(output);
+    (function() {
+      var editor = $('#id_text');
+      var output = $('#private_message_preview');
+      var preview = $("#private_message_preview_wrapper")
+        .hide();
 
-      $('form input[name="preview"]').click(function() {
-        $('body, input, textarea').css('cursor', 'progress');
-        preview.hide();
+      $('#private_message_preview_button').click(function() {
         $.post('/?__service__=wiki.render_preview', {
           text: editor.val()
         }, function(data) {
           output.html(data);
-          preview.slideDown('fast');
-          $('body, input, textarea').css('cursor', 'auto');
+          preview.show();
         });
         return false;
-      }).parent().parent().parent().append(preview);
+      });
     })();
-    $("#id_recipient").wrap($('<div class="tf_tokenfield"><div>')).token_field("/?__service__=portal.get_user_autocompletion", {
-                delay: 40, maxItemsToShow: 10, limit: 10, minChars: 3});
-  $("#id_recipient").parent().parent().parent().children("p.note").remove();
-  {% if USER.can('send_group_pm') %}
-    $("#id_group_recipient").wrap($('<div class="tf_tokenfield"><div>')).token_field("/?__service__=portal.get_group_autocompletion", {
-                delay: 40, maxItemsToShow: 10, limit: 10, minChars: 1});
-  $("#id_group_recipient").parent().parent().parent().children("p.note").remove();
-  {% endif %}
     /* ]]> */
   </script>
 {% endblock %}

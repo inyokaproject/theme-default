@@ -9,60 +9,143 @@
 #}
 {% extends 'ikhaya/base.html' %}
 
-{% import 'macros.html' as macros %}
-{% set rendered_pagination = macros.render_pagination(pagination) %}
+{% if category %}
+  {% set name = category.name %}
+  {% set feeds = [
+    (name + _('Captions'), href('ikhaya', 'feeds', category.slug, 'title/20')),
+    (name + _('Teaser'), href('ikhaya', 'feeds', category.slug, 'short/20')),
+    (name + _('Full'), href('ikhaya', 'feeds', category.slug, 'full/20')),
+    ] %}
+{% else %}
+  {% set feeds = [
+    (_('News') + ' - ' + _('Captions'), href('ikhaya', 'feeds/title/20')),
+    (_('News') + ' - ' + _('Teaser'), href('ikhaya', 'feeds/short/20')),
+    (_('News') + ' - ' + _('Full'), href('ikhaya', 'feeds/full/20')),
+    (_('Comments') + ' - ' + _('Full'), href('ikhaya', 'feeds/comments/title/20')),
+    (_('Comments') + ' - ' + _('Full'), href('ikhaya', 'feeds/comments/short/20')),
+    (_('Comments') + ' - ' + _('Full'), href('ikhaya', 'feeds/comments/full/20')),
+    ] %}
+{% endif %}
 
 {% block breadcrumb %}
   {{ super() }}
+
   {% if category %}
-    {{ macros.breadcrumb_item(category) }}
+    {{ macros.breadcrumb_item(category, category|url) }}
+  {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+  {{ super() }}
+
+  {% call macros.sidebar() %}
+    {{ macros.sidebar_item(_('Suggest article'), href('ikhaya', 'suggest', 'new'),
+                            'fa_icon-file-text') }}
+  {% endcall %}
+
+  {% call macros.sidebar(_('Categories')) %}
+    {% if categories %}
+        {% for category in categories %}
+          {% call macros.sidebar_item() %}
+            <a href="{{ category|url }}">{{ category.name|e }}</a>
+
+            {% if USER.can('category_edit') %}
+              <a href="{{ href('ikhaya', 'category', category.slug, 'edit') }}"><span class="fa_icon-pencil"></span></a>
+            {% endif %}
+          {% endcall %}
+        {% endfor %}
+    {% endif %}
+  {% endcall %}
+
+  {% call macros.sidebar() %}
+    {{ macros.sidebar_item(_('Archive'), href('ikhaya', 'archive'), 'fa_icon-archive') }}
+  {% endcall %}
+
+  {% if USER.can('article_edit') or USER.can('category_edit') %}
+    {% call macros.sidebar_admin() %}
+      {% if USER.can('article_edit') %}
+        {{ macros.sidebar_item(_('New article'), href('ikhaya', 'article', 'new')) }}
+      {% endif %}
+
+      {% if USER.can('category_edit') %}
+        {{ macros.sidebar_item(_('Add category'), href('ikhaya', 'category', 'new')) }}
+      {% endif %}
+    {% endcall %}
   {% endif %}
 {% endblock %}
 
 {% block content %}
-  {{ rendered_pagination }}
-  {% for article in articles %}
-    <article class="ikhaya-article {% if article.hidden %}ikhaya-article-muted{% endif %}"
-        {% if article.hidden %}
-          data-toggle="tooltip"
-          title="{% trans %}This article is not visible for regular users{% endtrans %}"
-          data-trigger="manual"
-        {% endif %} id="article-{{ article.id }}">
-      <div class="ikhaya-article-heading">
-          <time datetime="{{ article.pub_datetime|datetime('c') }}"
-            class="pull-right meta">{{ article.pub_datetime|datetime }}</time>
-        <h3>
-          <a href="{{ article|url }}">{{ article.subject }}</a>
-        </h3>
+  {% if articles %}
+    {% set rendered_pagination = macros.render_pagination(pagination) %}
 
-        <div class="clearfix"></div>
-      </div>
-      <div class="ikhaya-article-body">
-        {{ article.rendered_intro }}
-      </div>
-      <div class="ikhaya-article-footer">
-        <ul class="list-inline">
-          <li>
-            {% trans %}Category:{% endtrans %}
-            <a href="{{ article.category|url }}">{{ article.category.name|e }}</a>
-          </li>
-          <li>
-            {% trans count=article.comment_count %}
-              {{ count }} comment
-              {% pluralize %}
-              {{ count }} comments
-            {% endtrans %}
-          </li>
-          {% if article.updated > article.pub_datetime %}
-            <li class="pull-right">
-              <time datetime="{{ article.updated|datetime('c') }}">
-                {% trans %}Last update:{% endtrans %} {{ article.updated|datetime }}
-              </time>
+    {{ rendered_pagination }}
+    {% for article in articles %}
+      <article class="ikhaya-article {% if article.hidden %}ikhaya-article-muted{% endif %}"
+          {% if article.hidden %}
+            data-toggle="tooltip"
+            title="{% trans %}This article is not visible for regular users{% endtrans %}"
+            data-trigger="manual"
+          {% endif %} id="article-{{ article.id }}">
+
+        <div class="ikhaya-article-heading">
+          {% include 'ikhaya/includes/ikhaya-article-date.html' %}
+
+          <a href="{{ article|url }}">
+              {% if article.article_icon %}
+                <div class="icon-container">
+                  <img src="{{ article.article_icon|url }}" alt="{{ article.article_icon.identifier|e }}" />
+                </div>
+              {% endif %}
+
+              <h3>
+                {{ article.subject }}
+              </h3>
+          </a>
+
+        </div>
+
+        <div class="ikhaya-article-body">
+          {{ article.rendered_intro }}
+        </div>
+
+        <div class="ikhaya-article-footer">
+          <ul class="list-inline">
+            <li>
+              {% trans %}Category:{% endtrans %}
+              <a href="{{ article.category|url }}">{{ article.category.name|e }}</a>
             </li>
-          {% endif %}</ul>
-        <div class="clearfix"></div>
-      </div>
-    </article>
-  {% endfor %}
-  {{ rendered_pagination }}
+
+            <li>
+              {% if article.comments_enabled %}
+                <a href="{{ article|url }}#comment-section">
+                {% trans indicator=article.comment_count,
+                          count=article.comment_count|hnumber('masculine') %}
+                  {{ count }} comment
+                  {% pluralize indicator %}
+                  {{ count }} comments
+                {% endtrans %}
+                </a>
+
+              {% else %}
+                {% trans %}Comments disabled{% endtrans %}
+              {% endif %}
+            </li>
+
+            {% if USER.can('article_edit') %}
+              <li>
+                <a href="{{ article|url('edit') }}">
+                  {% trans %}Edit{% endtrans %}
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </article>
+    {% endfor %}
+    {{ rendered_pagination }}
+  {% else %}
+    <div class="message-info">
+      {% trans %}There is no article.{% endtrans %}
+    </div>
+  {% endif %}
 {% endblock %}

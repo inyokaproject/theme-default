@@ -9,12 +9,20 @@
 #}
 {% extends 'ikhaya/base.html' %}
 
+{% set feed = 'feeds/comments/%s/%%s/20'|format(article.id) %}
+{% set feeds = [
+  (_('Comments - Captions'), href('ikhaya', feed|format('title'))),
+  (_('Comments - Teaser'), href('ikhaya', feed|format('short'))),
+  (_('Comments - Full'), href('ikhaya', feed|format('full'))),
+  ] %}
+
 {% block title %}
   {{ article.subject }} - {{ super() }}
 {% endblock %}
 
 {% block breadcrumb %}
   {{ super() }}
+
   {{ macros.breadcrumb_item(article.category, article.category|url) }}
   {{ macros.breadcrumb_item(article.subject) }}
 {% endblock %}
@@ -25,19 +33,22 @@
   {% call macros.sidebar() %}
     {% if can_subscribe and article.comments_enabled %}
       {% if is_subscribed %}
-        {{ macros.sidebar_item(_('Unsubscribe comments'), article|url('unsubscribe')) }}
+        {{ macros.sidebar_item(_('Unsubscribe comments'), article|url('unsubscribe'),
+                                 'fa_icon-bell-slash') }}
       {% else %}
-        {{ macros.sidebar_item(_('Subscribe comments'), article|url('subscribe')) }}
+        {{ macros.sidebar_item(_('Subscribe comments'), article|url('subscribe'),
+                                 'fa_icon-bell') }}
       {% endif %}
     {% endif %}
 
-    {{ macros.sidebar_item(_('Report misspelling'), article|url('reports')) }}
+    {{ macros.sidebar_item(_('Report misspelling'), article|url('report_new'),
+                             'fa_icon-exclamation-triangle') }}
+    {{ macros.sidebar_item(_('Short URL'), article|url('id'), 'fa_icon-link') }}
   {% endcall %}
 
   {% if can_edit_article %}
     {% call macros.sidebar_admin() %}
-      {{ macros.sidebar_item(_('Edit article'), '#') }}
-      {{ macros.sidebar_item('Enable / Disable comments', '#') }}
+      {{ macros.sidebar_item(_('Edit article'), 'edit', 'fa_icon-pencil') }}
     {% endcall %}
   {% endif %}
 {% endblock %}
@@ -45,22 +56,16 @@
 {% block content %}
   <article class="ikhaya-article">
     <header class="ikhaya-article-heading">
+      {% include 'ikhaya/includes/ikhaya-article-date.html' %}
+
       <h3>{{ article.subject }}</h3>
+
       <ul class="list-inline meta">
         <li class="author">
           {% trans link=article.author|url, author=article.author.username|e %}
             Published by <a href="{{ link }}">{{ author }}</a>
           {% endtrans %}
         </li>
-        <li>
-          <time datetime="{{ article.pub_datetime|datetime('c') }}">{{ article.pub_datetime|datetime }}</time>
-        </li>
-        {% if article.updated > article.pub_datetime %}
-          <li>
-            <time datetime="{{ article.updated|datetime('c') }}">{% trans %}Last
-              update:{% endtrans %} {{ article.updated|datetime }}</time>
-          </li>
-        {% endif %}
         <li class="category">
           {% trans %}Category:{% endtrans %}
           <a href="{{ article.category|url }}">{{ article.category.name|e }}</a>
@@ -72,24 +77,36 @@
       <div class="text">{{ article.rendered_text }}</div>
     </div>
   </article>
-  <h3>{% trans %}Comments{% endtrans %}</h3>
+
+  <h3 id="comment-section">{% trans %}Comments{% endtrans %}</h3>
   {% for comment in comments %}
     {% if not comment.deleted or can_admin_comment %}
-      <div class="ikhaya-comment {% if comment.deleted %}ikhaya-comment-muted{% endif %}" id="comment_{{ loop.index }}">
+      <div class="ikhaya-comment
+      {% if comment.deleted %}muted{% endif %}
+      {% if comment.author.id == USER.id %}own{% endif %}" id="comment_{{ loop.index }}">
+
         <div class="ikhaya-comment-heading">
           <span class="pull-right">
-            <a href="#comment_{{ loop.index }}">
-              <time datetime="{{ comment.pub_date|datetime('c') }}">{{ comment.pub_date|datetime }}</time>
-            </a>
+            <time datetime="{{ comment.pub_date|datetime('c') }}">{{ comment.pub_date|datetime }}</time>
           </span>
           <a href="#comment_{{ loop.index }}">#{{ loop.index }}</a>
-          <a href="{{ comment.author|url }}">{{ comment.author }}</a>
 
-          <div class="clearfix"></div>
+          <a href="{{ comment.author|url }}" class="ikhaya-comment-author">
+            {% if comment.author.has_avatar and not USER.settings['hide_avatars'] %}
+              {{ macros.add_user_avatar(comment.author) }}
+            {% endif %}
+            {{ comment.author }}
+          </a>
+
+          {% if comment.author.primary_group_id and comment.author.primary_group.icon %}
+            <img class="teamicon" src="{{ comment.author.primary_group.icon_url }}" alt="{% trans %}Team icon{% endtrans %}" />
+          {% endif %}
         </div>
+
         <div class="ikhaya-comment-body">
           {{ comment.rendered_text }}
         </div>
+
         <div class="ikhaya-comment-footer">
           <div class="button-group">
             <a href="#" class="btn btn-default">
@@ -101,6 +118,7 @@
               </a>
             {% endif %}
           </div>
+
           {% if can_admin_comment %}
             <div class="staff-dropdown">
               <button type="button" class="staff-dropdown-button" data-toggle="dropdown">
@@ -110,16 +128,30 @@
               <ul class="staff-dropdown-menu">
                 <li><a href="{{ comment|url('edit') }}">{% trans %}Edit{% endtrans %}</a></li>
                 {% if comment.deleted %}
-                  <li><a href="#">{% trans %}Restore{% endtrans %}</a></li>
+                  <li><a href="{{ comment|url('restore') }}">{% trans %}Restore{% endtrans %}</a></li>
                 {% else %}
-                  <li><a href="#">{% trans %}Hide{% endtrans %}</a></li>
+                  <li><a href="{{ comment|url('hide') }}">{% trans %}Hide{% endtrans %}</a></li>
                 {% endif %}
               </ul>
             </div>
           {% endif %}
-          <div class="clearfix"></div>
         </div>
       </div>
     {% endif %}
   {% endfor %}
+
+  {% if article.comments_enabled and can_post_comment %}
+    <h3 id="new_comment">{% trans %}Write new Comment{% endtrans %}</h3>
+    {% call macros.outer_form(csrf_token(), form, action=article|url + '#new_comment') %}
+      <input type="submit" name="preview" value="{% trans %}Preview{% endtrans %}" />
+    {% endcall %}
+
+    {% if preview %}
+      <div class="preview_wrapper">
+        <h2 class="title">{% trans %}Preview{% endtrans %}</h2>
+        <div id="preview" class="preview">{{ preview }}</div>
+      </div>
+    {% endif %}
+  {% endif %}
+
 {% endblock %}

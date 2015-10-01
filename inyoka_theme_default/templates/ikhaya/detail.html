@@ -107,38 +107,41 @@
           {{ comment.rendered_text }}
         </div>
 
-        <div class="ikhaya-comment-footer">
-          <div class="button-group">
-            {% if article.comments_enabled and can_post_comment %}
-              <a href="#new_comment" data-reply-id="{{ loop.index }}" class="btn btn-default">
-                {% trans %}Reply{% endtrans %}
-              </a>
-            {% endif %}
+        {% if (article.comments_enabled and can_post_comment) or
+               comment.author_id == USER.id or can_admin_comment %}
+          <div class="ikhaya-comment-footer">
+            <div class="button-group">
+              {% if article.comments_enabled and can_post_comment %}
+                <a href="#new_comment" data-reply-id="{{ loop.index }}" class="btn btn-default">
+                  {% trans %}Reply{% endtrans %}
+                </a>
+              {% endif %}
 
-            {% if comment.author_id == USER.id %}
-              <a href="{{ comment|url('edit') }}" class="btn btn-primary">
-                {% trans %}Edit{% endtrans %}
-              </a>
+              {% if comment.author_id == USER.id %}
+                <a href="{{ comment|url('edit') }}" class="btn btn-primary">
+                  {% trans %}Edit{% endtrans %}
+                </a>
+              {% endif %}
+            </div>
+
+            {% if can_admin_comment %}
+              <div class="staff-dropdown">
+                <button type="button" class="staff-dropdown-button" data-toggle="dropdown">
+                  {% trans %}Staff{% endtrans %}
+                  <span class="fa_icon-caret-down"></span>
+                </button>
+                <ul class="staff-dropdown-menu">
+                  <li><a href="{{ comment|url('edit') }}">{% trans %}Edit{% endtrans %}</a></li>
+                  {% if comment.deleted %}
+                    <li><a href="{{ comment|url('restore') }}">{% trans %}Restore{% endtrans %}</a></li>
+                  {% else %}
+                    <li><a href="{{ comment|url('hide') }}">{% trans %}Hide{% endtrans %}</a></li>
+                  {% endif %}
+                </ul>
+              </div>
             {% endif %}
           </div>
-
-          {% if can_admin_comment %}
-            <div class="staff-dropdown">
-              <button type="button" class="staff-dropdown-button" data-toggle="dropdown">
-                {% trans %}Staff{% endtrans %}
-                <span class="fa_icon-caret-down"></span>
-              </button>
-              <ul class="staff-dropdown-menu">
-                <li><a href="{{ comment|url('edit') }}">{% trans %}Edit{% endtrans %}</a></li>
-                {% if comment.deleted %}
-                  <li><a href="{{ comment|url('restore') }}">{% trans %}Restore{% endtrans %}</a></li>
-                {% else %}
-                  <li><a href="{{ comment|url('hide') }}">{% trans %}Hide{% endtrans %}</a></li>
-                {% endif %}
-              </ul>
-            </div>
-          {% endif %}
-        </div>
+        {% endif %}
       </div>
     {% endif %}
   {% endfor %}

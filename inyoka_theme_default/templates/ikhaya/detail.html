@@ -109,9 +109,12 @@
 
         <div class="ikhaya-comment-footer">
           <div class="button-group">
-            <a href="#new_comment" data-reply-id="{{ loop.index }}" class="btn btn-default">
-              {% trans %}Reply{% endtrans %}
-            </a>
+            {% if article.comments_enabled and can_post_comment %}
+              <a href="#new_comment" data-reply-id="{{ loop.index }}" class="btn btn-default">
+                {% trans %}Reply{% endtrans %}
+              </a>
+            {% endif %}
+
             {% if comment.author_id == USER.id %}
               <a href="{{ comment|url('edit') }}" class="btn btn-primary">
                 {% trans %}Edit{% endtrans %}

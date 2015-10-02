@@ -107,6 +107,10 @@
       </div>
 
       <div class="content" id="main-content" role="main" target="-1">
+        {% if GLOBAL_MESSAGE %}
+          {{ macros.render_message(type="warning", content=GLOBAL_MESSAGE) }}
+        {% endif %}
+
         {% for message in MESSAGES %}
           {{ macros.render_message(type=message.tags, content=message) }}
         {% endfor %}

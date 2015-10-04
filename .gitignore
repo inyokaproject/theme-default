@@ -13,4 +13,3 @@ inyoka_theme_default/static/js/complete.js
 
 !.bumpversion.cfg
 !.gitignore
-!.travis.yml

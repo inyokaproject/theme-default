@@ -73,8 +73,8 @@
       </ul>
     </header>
     <div class="ikhaya-article-body">
-      <div class="intro">{{ article.rendered_intro }}</div>
-      <div class="text">{{ article.rendered_text }}</div>
+      <div class="intro">{{ article.get_intro() }}</div>
+      <div class="text">{{ article.get_text() }}</div>
     </div>
   </article>
 
@@ -104,7 +104,7 @@
         </div>
 
         <div class="ikhaya-comment-body">
-          {{ comment.rendered_text }}
+          {{ comment.text_rendered }}
         </div>
 
         <div class="ikhaya-comment-footer">

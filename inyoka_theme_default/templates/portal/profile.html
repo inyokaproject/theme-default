@@ -142,12 +142,5 @@
       </tr>
     </table>
   {% endif %}
-  {% if wikipage %}
-    {{ wikipage }}
-    <p>
-      (<a href="{{ href('wiki', SETTINGS.WIKI_USER_BASE, user.username|e, action='edit') }}">
-        {% trans %}edit{% endtrans %}
-      </a>)
-    </p>
-  {% endif %}
+  {{ user.rendered_userpage }}
 {% endblock %}

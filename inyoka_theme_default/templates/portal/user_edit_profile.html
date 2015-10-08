@@ -43,11 +43,9 @@
     </div>
 
     <h4>{% trans %}Contact addresses{% endtrans %}</h4>
-    {{ macros.inner_form(form, ['email', 'gpgkey', 'jabber', 'icq', 'msn', 'aim', 'yim', 'skype', 'wengophone', 'sip']) }}
+    {{ macros.inner_form(form, ['email', 'gpgkey', 'jabber']) }}
 
     <h4>{% trans %}Miscellaneous settings{% endtrans %}</h4>
-    {{ macros.inner_form(form, ['occupation', 'interests', 'website', 'launchpad', 'location']) }}
-
-    {{ macros.input(form.signature) }}
+    {{ macros.inner_form(form, ['website', 'launchpad', 'location','signature', 'userpage']) }}
   {% endcall %}
 {% endblock %}

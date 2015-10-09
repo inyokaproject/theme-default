@@ -112,7 +112,8 @@
           <div class="ikhaya-comment-footer">
             <div class="button-group">
               {% if article.comments_enabled and can_post_comment %}
-                <a href="#new_comment" data-reply-id="{{ loop.index }}" class="btn btn-default">
+                <a href="#new_comment" class="btn btn-default"
+                   data-reply-id="{{ loop.index }}" data-focus-after-scroll="false">
                   {% trans %}Reply{% endtrans %}
                 </a>
               {% endif %}

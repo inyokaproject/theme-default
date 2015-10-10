@@ -94,14 +94,14 @@
       </header>
 
       <div class="ikhaya-suggestion-body">
-        <div class="intro">{{ suggestion.rendered_intro }}</div>
-        <div class="text">{{ suggestion.rendered_text }}</div>
+        <div class="intro">{{ suggestion.intro_rendered }}</div>
+        <div class="text">{{ suggestion.text_rendered }}</div>
       </div>
 
-      {% if suggestion.rendered_notes %}
+      {% if suggestion.notes_rendered %}
         <div class="ikhaya-suggestion-footer">
           <h4>{% trans %}Proposers's notes to the admins{% endtrans %}</h4>
-          {{ suggestion.rendered_notes }}
+          {{ suggestion.notes_rendered }}
         </div>
       {% endif %}
     </article>

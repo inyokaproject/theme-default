@@ -13,7 +13,7 @@
 {% extends 'wiki/base.html' %}
 
 {% block content %}
-  <h2>{% trans %}Missing article{% endtrans %}</h2>
+  <h1>{% trans %}Missing article{% endtrans %}</h1>
   <p>
     {% if not page %}
       {% trans title=title|e %}The article “{{ title }}” does not exist yet.{% endtrans %}
@@ -22,7 +22,9 @@
         The article “{{ title }}” was deleted. You can restore it or create a new one in the
         action menu.
       {% endtrans %}
-    {% endif %}</p>
+    {% endif %}
+  </p>
+
   {% if not_finished %}
     <p>
       {% trans %}The article is already under construction, help improving and finishing it!{% endtrans %}
@@ -33,6 +35,7 @@
       </li>
     </ul>
   {% endif %}
+
   {% if backlinks %}
     <p>
       {% trans %}The following pages are referring this article:{% endtrans %}
@@ -45,6 +48,7 @@
       {% endfor %}
     </ul>
   {% endif %}
+
   <p>
     {% trans %}Check if you have a typo in the URL.{% endtrans %}
     {% if similar %}
@@ -58,11 +62,12 @@
       {% endfor %}
     </ul>
   {% endif %}
-  <p>
-    {% if create_link %}
-      {% trans link=create_link %}You can also <a href="{{ link }}">create</a> this article.{% endtrans %}
-    {% else %}
-      {% trans %}However, you are missing the permissions to create this article.{% endtrans %}
-    {% endif %}
-  </p>
+
+  {% if create_link %}
+    <p>
+      {% trans link=create_link %}
+      You can also <a href="{{ link }}">create</a> this article.
+      {% endtrans %}
+    </p>
+  {% endif %}
 {% endblock %}

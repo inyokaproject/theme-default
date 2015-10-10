@@ -9,6 +9,13 @@
 #}
 {% extends 'forum/base.html' %}
 
+{% set name = _('Forum “%(name_forum)s” - ', name_forum=forum.name|e) %}
+{% set feeds = [
+  (name + _('Captions'), href('forum', 'feeds/forum', forum.slug, 'title/20')),
+  (name + _('Teaser'), href('forum', 'feeds/forum', forum.slug, 'short/20')),
+  (name + _('Full post'), href('forum', 'feeds/forum', forum.slug, 'full/20'))
+] %}
+
 {% block title %}
   {{ forum }} - {{ super() }}
 {% endblock title %}

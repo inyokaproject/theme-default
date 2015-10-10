@@ -12,6 +12,13 @@
 
 {% extends 'forum/base.html' %}
 
+{% set name = topic.title|e %}
+{% set feeds = [
+  (name + ' - ' + _('Captions'), href('forum', 'feeds/topic', topic.slug, 'title/20')),
+  (name + ' - ' + _('Teaser'), href('forum', 'feeds/topic', topic.slug, 'short/20')),
+  (name + ' - ' + _('Full'), href('forum', 'feeds/topic', topic.slug, 'full/20'))
+] %}
+
 {% block title %}
   {{ topic }} - {{ topic.forum }} - {{ super() }}
 {% endblock %}

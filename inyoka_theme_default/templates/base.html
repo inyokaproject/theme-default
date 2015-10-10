@@ -24,6 +24,10 @@
 
   <title>{% block title %}Inyoka{% endblock %}</title>
 
+  {% for title, url in feeds %}
+    <link rel="alternate" href="{{ url|e }}" title="{{ title|e }}" type="application/atom+xml" />
+  {% endfor %}
+
   <link href="{{ href('static', 'style', 'style.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 </head>

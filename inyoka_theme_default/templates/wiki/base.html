@@ -10,12 +10,82 @@
 
 {% extends 'base.html' %}
 
+{% set active_app = 'wiki' %}
+
 {% block title %}
   {{ _('Wiki') }} - {{ super() }}
 {% endblock %}
 
-{% set active_app = 'wiki' %}
-
 {% block breadcrumb %}
   {{ macros.breadcrumb_item(_('Wiki'), href('wiki')) }}
+{% endblock %}
+
+{% block sidebar %}
+
+  {% if can %}
+  {#
+     thus, the following options are only renderd, if the page does exist.
+     F.e. not if missing_page is viewed
+  #}
+    {% call macros.sidebar() %}
+      {% if can.read %}
+        {{ macros.sidebar_item(_('Log'), '?action=log', 'fa_icon-history') }}
+        {{ macros.sidebar_item(_('Backlinks'), '?action=backlinks', 'fa_icon-exchange') }}
+      {% endif %}
+
+      {% if can.attach %}
+        {{ macros.sidebar_item(_('Manage attachments'), '?action=attach', 'fa_icon-paperclip') }}
+      {% endif %}
+
+      {% if page.topic %}
+        {% call macros.sidebar_item() %}
+          <a href="{{ page.topic|url('last_post') }}">
+            <span class="fa_icon-comments-o"></span> {% trans %}Discussion{% endtrans %}
+          </a>
+          {% if can.edit %}
+            <a href="?action=manage_discussion" title="{% trans %}Edit associated discussion{% endtrans %}">
+              <span class="fa_icon-pencil"></span>
+            </a>
+          {% endif %}
+        {% endcall %}
+      {% else %}
+        {{ macros.sidebar_item(_('Link Discussion'), href('forum', 'new_discussion', page.title), 'fa_icon-comments-o') }}
+      {% endif %}
+
+      {% if is_subscribed %}
+        {{ macros.sidebar_item(_('Unsubscribe'), page|url('unsubscribe'), 'fa_icon-bell-slash') }}
+      {% else %}
+        {{ macros.sidebar_item(_('Subscribe'), page|url('subscribe'), 'fa_icon-bell') }}
+      {% endif %}
+    {% endcall %}
+
+    {% call macros.sidebar(_('Page')) %}
+      {% if can.edit %}
+        {{ macros.sidebar_item(_('Edit'), '?action=edit', 'fa_icon-pencil') }}
+      {% endif %}
+      {% if can.manage %}
+        {{ macros.sidebar_item(_('Rename'), '?action=rename') }}
+      {% endif %}
+      {% if can.delete %}
+        {{ macros.sidebar_item(_('Delete'), '?action=delete', 'fa_icon-trash') }}
+      {% endif %}
+      {% if can.manage %}
+        {% if page.name.startswith('Baustelle') and not page.name.startswith('Baustelle/Verlassen') %}
+          {{ macros.sidebar_item(_('Move page to “discontinued”'), '?action=mv_discontinued') }}
+          {{ macros.sidebar_item(_('Move page back to the wiki'), '?action=mv_back') }}
+        {% else %}
+          {{ macros.sidebar_item(_('Mark page as “under construction”'), '?action=mv_baustelle') }}
+        {% endif %}
+      {% endif %}
+    {% endcall %}
+
+    {% if can.read %}
+      {% call macros.sidebar(_('Export')) %}
+        {{ macros.sidebar_item(_('Raw'), '?action=export&amp;format=raw') }}
+        {{ macros.sidebar_item(_('HTML'), '?action=export&amp;format=html') }}
+        {{ macros.sidebar_item(_('AST'), '?action=export&amp;format=ast') }}
+        {{ macros.sidebar_item(_('Metadata'), '?action=metaexport') }}
+      {% endcall %}
+    {% endif %}
+  {% endif %}
 {% endblock %}

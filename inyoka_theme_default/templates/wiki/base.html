@@ -13,7 +13,10 @@
 {% set active_app = 'wiki' %}
 
 {% block title %}
-  {{ _('Wiki') }} - {{ super() }}
+  {% if page %}
+    {{ page.title }} –
+  {% endif %}
+  {{ _('Wiki') }} – {{ super() }}
 {% endblock %}
 
 {% block breadcrumb %}

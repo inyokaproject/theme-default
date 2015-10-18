@@ -1,0 +1,36 @@
+{#
+    wiki/action_edit.html
+    ~~~~~~~~~~~~~~~~~~~~~
+
+    This template is used if a user edits a page.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'wiki/base_sidebar.html' %}
+
+{% block title %}
+  {% trans %}Edit{% endtrans %} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Edit'), page|url('edit')) }}
+{% endblock %}
+
+{% block content %}
+  {% if license_note_rendered %}
+    <div class="wiki-license-note">{{ license_note_rendered }}</div>
+  {% endif %}
+
+  {% call macros.outer_form(csrf_token(), form) %}
+    <input type="submit" name="preview" value="{% trans %}Preview{% endtrans %}" />
+  {% endcall %}
+
+  {% if preview %}
+    <h2>{% trans %}Preview{% endtrans %}</h2>
+    <div class="preview">{{ preview }}</div>
+  {% endif %}
+{% endblock %}

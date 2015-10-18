@@ -18,4 +18,16 @@
 
 {% block breadcrumb %}
   {{ macros.breadcrumb_item(_('Wiki'), href('wiki')) }}
+
+  {% if page %}
+    {% for part in page.title.split('/') %}
+      {% if loop.first %}
+        {% set link = href('wiki', part) %}
+      {% else %}
+        {% set link = link + '/' + part %}
+      {% endif %}
+
+      {{ macros.breadcrumb_item(part, link) }}
+    {% endfor %}
+  {% endif %}
 {% endblock %}

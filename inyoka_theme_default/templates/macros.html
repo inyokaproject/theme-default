@@ -242,17 +242,6 @@
   {% endif %}
 {% endmacro %}
 
-{% macro calendar_entry(event) %}
-  <a href="{{ event.get_absolute_url() }}">
-    <h3 class="portal-calendar-heading">
-      {{ event.date.strftime('%d.%m.%Y') }}
-      {% if (event.time) %} {{ event.time.strftime('%H:%M') }} {% endif %}
-      - {{ event.name }}{% if (event.location_town) %}, {{ event.location_town }}{% endif %}
-    </h3>
-  </a>
-  {{ event.rendered_description }}
-{% endmacro %}
-
 {% macro render_message(type, content) %}
   <div class="message-{{ type }}" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

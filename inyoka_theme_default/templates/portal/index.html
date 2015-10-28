@@ -22,19 +22,7 @@
       Upcoming Events
     {% endtrans %}
   </h2>
-  <div class="portal-calendar-overview">
-    {% if calendar_events %}
-      <ul>
-      {% for event in calendar_events %}
-        <li class="portal-calendar-event">
-          {{ macros.calendar_entry(event) }}
-        </li>
-      {% endfor %}
-      </ul>
-    {% else %}
-      {% trans %}There are no upcoming events.{% endtrans %}
-    {% endif %}
-  </div>
+  {{ calendar_events|safe }}
 
   <h2 class="portal-inyoka">
     {% trans %}

@@ -16,7 +16,7 @@
 {% block breadcrumb %}
   {{ super() }}
 
-  {{ macros.breadcrumb_item(_('Group memberships'), href('portal', 'user', user.urlsafe_username, 'edit', 'groups')) }}
+  {{ macros.breadcrumb_item(_('Group memberships'), href('portal', 'user', user.username, 'edit', 'groups')) }}
 {% endblock %}
 
 {% block content %}

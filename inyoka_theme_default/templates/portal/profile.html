@@ -49,7 +49,7 @@
 
   {% if request.user.can('user_edit') %}
     {% call macros.sidebar_admin() %}
-      {{ macros.sidebar_item(_('Edit user'), href('portal', 'user', user.urlsafe_username, 'edit', 'profile')) }}
+      {{ macros.sidebar_item(_('Edit user'), href('portal', 'user', user.username, 'edit', 'profile')) }}
       {{ macros.sidebar_item(_('Edit groups'), href('portal', 'user', user.username, 'edit', 'groups')) }}
     {% endcall %}
   {% endif %}

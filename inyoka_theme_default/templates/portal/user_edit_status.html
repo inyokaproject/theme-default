@@ -12,7 +12,7 @@
 {% block breadcrumb %}
   {{ super() }}
 
-  {{ macros.breadcrumb_item(_('State'), href('portal', 'user', user.urlsafe_username, 'edit', 'status')) }}
+  {{ macros.breadcrumb_item(_('State'), href('portal', 'user', user.username, 'edit', 'status')) }}
 {% endblock %}
 
 {% block content %}

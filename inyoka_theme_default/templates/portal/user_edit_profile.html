@@ -15,7 +15,7 @@
 
 {% block breadcrumb %}
   {{ super() }}
-  {{ macros.breadcrumb_item(_('Profile'), href('portal', 'user', user.urlsafe_username, 'edit', 'profile')) }}
+  {{ macros.breadcrumb_item(_('Profile'), href('portal', 'user', user.username, 'edit', 'profile')) }}
 {% endblock %}
 
 {% block content %}

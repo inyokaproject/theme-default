@@ -144,7 +144,7 @@
             {% if entry.message.recipients|length > 1 %}, …{% endif %}
           </td>
           <td data-title="{% trans %}Date{% endtrans %}">{{ entry.message.pub_date|datetime }}</td>
-          <td data-title={% trans %}Actions{% endtrans %} class="actions">
+          <td data-title="{% trans %}Actions{% endtrans %}" class="actions">
             {% if not entry.is_own_message %}
               {% if entry.message.author.is_active %}
                 <a href="{{ entry|url('reply') }}" title="{% trans %}Reply{% endtrans %}">
@@ -170,7 +170,7 @@
             <input type="checkbox" name="delete" value="{{ entry.id }}" />
           </td>
         </tr>
-        {% else %}
+      {% else %}
         <tr>
           <td colspan="6">
             {% trans %}Currently there are no messages in this folder.{% endtrans %}

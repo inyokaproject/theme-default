@@ -32,7 +32,7 @@ $(document).ready(function() {
             target.focus();
           }
         });
-      location.hash = target;
+      location.hash = target.selector;
       return false;
       }
     }

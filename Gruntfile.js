@@ -127,8 +127,9 @@ module.exports = function(grunt) {
       complete: {
         src: ['./bower_components/jquery/dist/jquery.js',
               './bower_components/bootstrap/dist/js/bootstrap.js',
-              './inyoka_theme_default/static/js/smoothscrolling.js',
-              './inyoka_theme_default/static/js/base.js',],
+              './inyoka_theme_default/static/js/base.js',
+              './inyoka_theme_default/static/js/ikhaya.js',
+              './inyoka_theme_default/static/js/smoothscrolling.js',],
         dest: 'inyoka_theme_default/static/js/complete.js',
       }
     }

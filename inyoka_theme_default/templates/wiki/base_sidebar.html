@@ -1,0 +1,74 @@
+{#
+  wiki/base_sidebar.html
+  ~~~~~~~~~~~~~~~~~~~~~~
+
+  Adds a basic sidebar to wiki/base.html. This is the basis for all wiki-actions.
+
+  :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+  :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'wiki/base.html' %}
+
+{% block sidebar %}
+  {% call macros.sidebar() %}
+    {% if can.read %}
+      {{ macros.sidebar_item(_('Log'), page|url('log'), 'fa_icon-history') }}
+      {{ macros.sidebar_item(_('Backlinks'), page|url('backlinks'), 'fa_icon-exchange') }}
+    {% endif %}
+
+    {% if can.attach %}
+      {{ macros.sidebar_item(_('Manage attachments'), page|url('attachments'), 'fa_icon-paperclip') }}
+    {% endif %}
+
+    {% if page.topic %}
+      {% call macros.sidebar_item() %}
+        <a href="{{ page.topic|url('last_post') }}">
+          <span class="fa_icon-comments-o"></span> {% trans %}Discussion{% endtrans %}
+        </a>
+        {% if can.edit %}
+          <a href="{{ page|url('discussion') }}" title="{% trans %}Edit associated discussion{% endtrans %}">
+            <span class="fa_icon-pencil"></span>
+          </a>
+        {% endif %}
+      {% endcall %}
+    {% else %}
+      {{ macros.sidebar_item(_('Link Discussion'), href('forum', 'new_discussion', page.title), 'fa_icon-comments-o') }}
+    {% endif %}
+
+    {% if is_subscribed %}
+      {{ macros.sidebar_item(_('Unsubscribe'), page|url('unsubscribe'), 'fa_icon-bell-slash') }}
+    {% else %}
+      {{ macros.sidebar_item(_('Subscribe'), page|url('subscribe'), 'fa_icon-bell') }}
+    {% endif %}
+  {% endcall %}
+
+  {% call macros.sidebar(_('Page')) %}
+    {% if can.edit %}
+      {{ macros.sidebar_item(_('Edit'), page|url('edit'), 'fa_icon-pencil') }}
+    {% endif %}
+    {% if can.manage %}
+      {{ macros.sidebar_item(_('Rename'), page|url('rename')) }}
+    {% endif %}
+    {% if can.delete %}
+      {{ macros.sidebar_item(_('Delete'), page|url('delete'), 'fa_icon-trash') }}
+    {% endif %}
+    {% if can.manage %}
+      {% if page.name.startswith('Baustelle') and not page.name.startswith('Baustelle/Verlassen') %}
+        {{ macros.sidebar_item(_('Move page to “discontinued”'), page|url('mv_discontinued')) }}
+        {{ macros.sidebar_item(_('Move page back to the wiki'), page|url('mv_back')) }}
+      {% else %}
+        {{ macros.sidebar_item(_('Mark page as “under construction”'), page|url('mv_baustelle')) }}
+      {% endif %}
+    {% endif %}
+  {% endcall %}
+
+  {% if can.read %}
+    {% call macros.sidebar(_('Export')) %}
+      {{ macros.sidebar_item(_('Raw'), page|url('export', format='raw')) }}
+      {{ macros.sidebar_item(_('HTML'), page|url('export', format='html')) }}
+      {{ macros.sidebar_item(_('AST'), page|url('export', format='ast')) }}
+      {{ macros.sidebar_item(_('Metadata'), page|url('export', format='meta')) }}
+    {% endcall %}
+  {% endif %}
+{% endblock %}

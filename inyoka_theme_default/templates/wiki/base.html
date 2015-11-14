@@ -29,12 +29,12 @@
   #}
     {% call macros.sidebar() %}
       {% if can.read %}
-        {{ macros.sidebar_item(_('Log'), '?action=log', 'fa_icon-history') }}
-        {{ macros.sidebar_item(_('Backlinks'), '?action=backlinks', 'fa_icon-exchange') }}
+        {{ macros.sidebar_item(_('Log'), page|url('log'), 'fa_icon-history') }}
+        {{ macros.sidebar_item(_('Backlinks'), page|url('backlinks'), 'fa_icon-exchange') }}
       {% endif %}
 
       {% if can.attach %}
-        {{ macros.sidebar_item(_('Manage attachments'), '?action=attach', 'fa_icon-paperclip') }}
+        {{ macros.sidebar_item(_('Manage attachments'), page|url('attachments'), 'fa_icon-paperclip') }}
       {% endif %}
 
       {% if page.topic %}
@@ -43,7 +43,7 @@
             <span class="fa_icon-comments-o"></span> {% trans %}Discussion{% endtrans %}
           </a>
           {% if can.edit %}
-            <a href="?action=manage_discussion" title="{% trans %}Edit associated discussion{% endtrans %}">
+            <a href="{{ page|url('discussion') }}" title="{% trans %}Edit associated discussion{% endtrans %}">
               <span class="fa_icon-pencil"></span>
             </a>
           {% endif %}
@@ -61,30 +61,30 @@
 
     {% call macros.sidebar(_('Page')) %}
       {% if can.edit %}
-        {{ macros.sidebar_item(_('Edit'), '?action=edit', 'fa_icon-pencil') }}
+        {{ macros.sidebar_item(_('Edit'), page|url('edit'), 'fa_icon-pencil') }}
       {% endif %}
       {% if can.manage %}
-        {{ macros.sidebar_item(_('Rename'), '?action=rename') }}
+        {{ macros.sidebar_item(_('Rename'), page|url('rename')) }}
       {% endif %}
       {% if can.delete %}
-        {{ macros.sidebar_item(_('Delete'), '?action=delete', 'fa_icon-trash') }}
+        {{ macros.sidebar_item(_('Delete'), page|url('delete'), 'fa_icon-trash') }}
       {% endif %}
       {% if can.manage %}
         {% if page.name.startswith('Baustelle') and not page.name.startswith('Baustelle/Verlassen') %}
-          {{ macros.sidebar_item(_('Move page to “discontinued”'), '?action=mv_discontinued') }}
-          {{ macros.sidebar_item(_('Move page back to the wiki'), '?action=mv_back') }}
+          {{ macros.sidebar_item(_('Move page to “discontinued”'), page|url('mv_discontinued')) }}
+          {{ macros.sidebar_item(_('Move page back to the wiki'), page|url('mv_back')) }}
         {% else %}
-          {{ macros.sidebar_item(_('Mark page as “under construction”'), '?action=mv_baustelle') }}
+          {{ macros.sidebar_item(_('Mark page as “under construction”'), page|url('mv_baustelle')) }}
         {% endif %}
       {% endif %}
     {% endcall %}
 
     {% if can.read %}
       {% call macros.sidebar(_('Export')) %}
-        {{ macros.sidebar_item(_('Raw'), '?action=export&amp;format=raw') }}
-        {{ macros.sidebar_item(_('HTML'), '?action=export&amp;format=html') }}
-        {{ macros.sidebar_item(_('AST'), '?action=export&amp;format=ast') }}
-        {{ macros.sidebar_item(_('Metadata'), '?action=metaexport') }}
+        {{ macros.sidebar_item(_('Raw'), page|url('export', format='raw')) }}
+        {{ macros.sidebar_item(_('HTML'), page|url('export', format='html')) }}
+        {{ macros.sidebar_item(_('AST'), page|url('export', format='ast')) }}
+        {{ macros.sidebar_item(_('Metadata'), page|url('export', format='meta')) }}
       {% endcall %}
     {% endif %}
   {% endif %}

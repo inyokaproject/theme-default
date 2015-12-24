@@ -26,7 +26,7 @@
       this.rebuildBoxes(user_joined, user_not_joined);
 
       // add needed submit event
-      $($(container).find('input[type="submit"]')[0]).submit(function () {
+      $(container).find('input[type="submit"]').first().submit(function () {
         $.each([self.user_not_joined, self.user_joined], function () {
           this.find('option').each(function () {
             this.selected = true;

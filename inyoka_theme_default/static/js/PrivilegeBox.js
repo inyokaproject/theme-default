@@ -142,6 +142,6 @@
       priv_list.append(entry);
     });
 
-   $(list.children()[0]).click();
+    list.children().first().click();
   };
 })();

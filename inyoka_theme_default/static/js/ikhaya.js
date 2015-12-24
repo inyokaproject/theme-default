@@ -9,13 +9,10 @@
  */
 
 (function reply_comments() {
-  var reply_buttons = $(".ikhaya-comment-footer a[href=#new_comment]");
+  var textarea = $("#id_text");
 
-  for(var i=0; i<reply_buttons.length; i++) {
-    $(reply_buttons[i]).on("click", function() {
-      var textarea = $("form #id_text");
+  $(".ikhaya-comment-footer a[href='#new_comment']").click(function() {
       textarea.val(textarea.val() + "@" + $(this).data("reply-id") + " ");
       textarea.focus();
-    });
-  }
+  });
 })();

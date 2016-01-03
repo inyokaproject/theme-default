@@ -17,6 +17,12 @@
   (_('Forum - Full post'), href('forum', 'feeds/full/20'))
 ] %}
 
+{% block sidebar %}
+  {% call macros.sidebar_admin() %}
+    {{ macros.sidebar_item(_('New Category'), href('forum', 'forum', 'new')) }}
+  {% endcall %}
+{% endblock %}
+
 {% block content %}
   {% for category, forums in forum_hierarchy %}
     <div class="forum-list">
@@ -24,6 +30,9 @@
         <h3>
           <a href="#" data-toggle="collapse" data-target="#category_{{ category.id }}">
             {{ category }}
+            <a class="forum-list-edit-category" href="{{ category|url('edit') }}">
+              <span class="fa_icon-pencil"></span>
+            </a>
           </a>
         </h3>
       </div>

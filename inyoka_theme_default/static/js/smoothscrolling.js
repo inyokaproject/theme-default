@@ -11,7 +11,7 @@
  * source: http://codepen.io/theandyyates/pen/dGovD/
  * (thus MIT licensed, see https://blog.codepen.io/legal/licensing/)
  * 
- * :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+ * :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
  * :license: BSD, see LICENSE for more details.
  */
 

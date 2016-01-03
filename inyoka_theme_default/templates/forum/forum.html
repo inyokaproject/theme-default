@@ -42,6 +42,10 @@
     {{ macros.sidebar_item(_('New topic'), forum|url('newtopic')) }}
     {{ macros.sidebar_item(_('Mark as read'), forum|url('markread')) }}
   {% endcall %}
+
+  {% call macros.sidebar_admin() %}
+    {{ macros.sidebar_item(_('Edit forum'), forum|url('edit')) }}
+  {% endcall %}
 {% endblock %}
 
 {% block content %}

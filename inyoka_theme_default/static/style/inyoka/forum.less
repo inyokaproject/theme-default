@@ -100,4 +100,16 @@
     &:extend(.bg-warning all);
     padding: 1em;
   }
+
+  &-reportlist {
+    .table-responsive();
+
+    > table {
+      .table();
+      .table-striped();
+    }
+    &-content {
+      white-space: pre-wrap;
+    }
+  }
 }

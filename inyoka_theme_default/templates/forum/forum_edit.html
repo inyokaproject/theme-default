@@ -31,8 +31,9 @@
 
 {% block content %}
   {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
-    {{ macros.inner_form(form, ['name', 'slug','description', 'parent', 'position', 'newtopic_default_text', 'force_version', 'count_posts']) }}
+    {{ macros.inner_form(form, ['name', 'slug','description', 'parent', 'position',
+        'newtopic_default_text', 'force_version', 'user_count_posts', 'support_group']) }}
     <h3>{% trans %}Welcome message{% endtrans %}</h3>
-    {{ macros.inner_form(form, ['welcome_msg_subject', 'welcome_msg_text']) }}
+    {{ macros.inner_form(form, ['welcome_title', 'welcome_text']) }}
   {% endcall %}
 {% endblock %}

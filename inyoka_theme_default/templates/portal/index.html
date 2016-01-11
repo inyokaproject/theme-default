@@ -2,7 +2,7 @@
   portal/index.html
   ~~~~~~~~~~~~~~~~~
 
-  :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+  :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 
@@ -22,19 +22,7 @@
       Upcoming Events
     {% endtrans %}
   </h2>
-  <div class="portal-calendar-overview">
-    {% if calendar_events %}
-      <ul>
-      {% for event in calendar_events %}
-        <li class="portal-calendar-event">
-          {{ macros.calendar_entry(event) }}
-        </li>
-      {% endfor %}
-      </ul>
-    {% else %}
-      {% trans %}There are no upcoming events.{% endtrans %}
-    {% endif %}
-  </div>
+  {{ calendar_events|safe }}
 
   <h2 class="portal-inyoka">
     {% trans %}
@@ -49,7 +37,7 @@
             <a href="{{ article|url }}">
               <h3 class="portal-inyoka-heading">{{ article.subject|e }}</h3>
             </a>
-            {{ article.rendered_intro }}
+            {{ article.intro_rendered }}
         </li>
       {% endfor %}
       </ul>

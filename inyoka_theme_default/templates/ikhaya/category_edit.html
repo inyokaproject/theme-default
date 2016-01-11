@@ -1,0 +1,33 @@
+{#
+    ikhaya/category_edit.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Template for editing or creating a ikhaya category.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'ikhaya/base.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+  
+  {% if not category %}
+    {{ macros.breadcrumb_item(_('Create category'), href('ikhaya', 'category', 'new')) }}
+  {% else %}
+    {{ macros.breadcrumb_item(category.name, category|url) }}
+    {{ macros.breadcrumb_item(_('Edit'), category|url('edit')) }}
+  {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+  {% call macros.sidebar() %}
+    {% if USER.can('static_file_edit') %}
+      {{ macros.sidebar_item(_('Upload new icon'), href('portal', 'files', 'new')) }}
+    {% endif %}
+  {% endcall %}
+{% endblock %}
+
+{% block content %}
+  {{ macros.outer_form(csrf_token(), form) }}
+{% endblock %}

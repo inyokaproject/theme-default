@@ -1,0 +1,24 @@
+{#
+    ikhaya/article_delete.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    This template is flashed to ensure that the user wants to delete the selected article.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% import 'macros.html' as macros %}
+
+{% call macros.outer_form(csrf_token(), action=article|url('delete')|e, submit_label=_('Delete')) %}
+  <p>
+    {% trans link=article|url('show')|e, article=article.subject %}
+      Are you sure you want to delete the article “<a href="{{ link }}">{{ article }}</a>”?
+    {% endtrans %}
+  </p>
+
+  <input type="submit" name="cancel" value="{% trans %}Cancel{% endtrans %}" />
+  {% if article.public %}
+    <input type="submit" name="unpublish" value="{% trans %}Unpublish{% endtrans %}" />
+  {% endif %}
+{% endcall %}

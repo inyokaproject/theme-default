@@ -215,7 +215,7 @@
     {{ field }}
 
     {% if field.help_text %}
-      <p class="help-block">{{ field.help_text }}</p>
+      <div class="help-block">{{ field.help_text }}</div>
     {% endif %}
   </div>
 {% endmacro %}
@@ -223,9 +223,7 @@
 {% macro render_errors(error_list) %}
   {% if error_list %}
     {% for error in error_list %}
-      <p class="help-block">
-        {{ error }}
-      </p>
+      <div class="help-block">{{ error }}</div>
     {% endfor %}
   {% endif %}
 {% endmacro %}
@@ -242,13 +240,11 @@
   {% endif %}
 {% endmacro %}
 
-{% macro calendar_entry(event) %}
-  <a href="{{ event.get_absolute_url() }}">
-    <h3 class="portal-calendar-heading">
-      {{ event.date.strftime('%d.%m.%Y') }}
-      {% if (event.time) %} {{ event.time.strftime('%H:%M') }} {% endif %}
-      - {{ event.name }}{% if (event.location_town) %}, {{ event.location_town }}{% endif %}
-    </h3>
-  </a>
-  {{ event.rendered_description }}
+{% macro render_message(type, content) %}
+  <div class="message-{{ type }}" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ content }}
+  </div>
 {% endmacro %}

@@ -1,0 +1,24 @@
+{% macro calendar_entry(event) %}
+  <a href="{{ event.get_absolute_url() }}">
+    <h3 class="portal-calendar-heading">
+      {{ event.date.strftime('%d.%m.%Y') }}
+      {% if (event.time) %} {{ event.time.strftime('%H:%M') }} {% endif %}
+      - {{ event.name }}{% if (event.location_town) %}, {{ event.location_town }}{% endif %}
+    </h3>
+  </a>
+  {{ event.rendered_description }}
+{% endmacro %}
+
+<div class="portal-calendar-overview">
+{% if events %}
+<ul>
+{% for event in events %}
+<li class="portal-calendar-event">
+{{ calendar_entry(event) }}
+</li>
+{% endfor %}
+</ul>
+{% else %}
+{% trans %}There are no upcoming events.{% endtrans %}
+{% endif %}
+</div>

@@ -4,7 +4,7 @@
 
   basic template on which all used templates rely.
 
-  :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+  :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 
@@ -12,18 +12,25 @@
 
 <!DOCTYPE html>
 <html>
-{% block head %}
+
 <head>
+{% block head %}
+  {% block meta %}
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% endblock %}
 
   <title>{% block title %}Inyoka{% endblock %}</title>
 
+  {% for title, url in feeds %}
+    <link rel="alternate" href="{{ url|e }}" title="{{ title|e }}" type="application/atom+xml" />
+  {% endfor %}
+
   <link href="{{ href('static', 'style', 'style.css') }}" rel="stylesheet" type="text/css" />
-</head>
 {% endblock %}
+</head>
 
 {% block body %}
 <body class="{{ active_app }}" role="document">
@@ -104,11 +111,12 @@
       </div>
 
       <div class="content" id="main-content" role="main" target="-1">
+        {% if GLOBAL_MESSAGE %}
+          {{ macros.render_message(type="warning", content=GLOBAL_MESSAGE) }}
+        {% endif %}
+
         {% for message in MESSAGES %}
-          <div class="message-{{ message.tags }}" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            {{ message }}
-          </div>
+          {{ macros.render_message(type=message.tags, content=message) }}
         {% endfor %}
 
         {% block content %}

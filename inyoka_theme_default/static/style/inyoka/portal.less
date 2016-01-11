@@ -4,7 +4,7 @@
  *
  * Custom styles for the portal. All css-classes are prefixed with `portal-`.
  *
- * :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+ * :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
  * :license: BSD, see LICENSE for more details.
  */
 
@@ -14,6 +14,11 @@
     &:extend(.table all);
     &:extend(.table-striped all);
     &:extend(.table-bordered all);
+
+    td, th {
+      max-width: 33%;
+      min-width: 33%;
+    }
   }
   &-privilege-list {
     &:extend(.list-group all);

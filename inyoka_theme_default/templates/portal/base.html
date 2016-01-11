@@ -4,14 +4,14 @@
 
   The base layout for all portal-pages.
 
-  :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+  :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 
 {% extends 'base.html' %}
 
 {% block title %}
-  Portal - {{ super() }}
+  {{ _('Portal') }} - {{ super() }}
 {% endblock %}
 
 {% set active_app = 'portal' %}

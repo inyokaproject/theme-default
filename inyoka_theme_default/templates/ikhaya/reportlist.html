@@ -1,0 +1,26 @@
+{#
+    ikhaya/reportlist.html
+    ~~~~~~~~~~~~~~~~~~~~~~
+
+    Shows a list of all unsolved article reports.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'ikhaya/base.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Reports')) }}
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% trans %}
+    Newest Reports
+    {% endtrans %}
+  </h2>
+
+  {{ render_reports(inside_reportlist=True) }}
+{% endblock %}

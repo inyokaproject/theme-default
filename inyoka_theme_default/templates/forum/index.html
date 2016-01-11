@@ -5,11 +5,17 @@
   This is the forum's index page that shows all root-forums and their
   first-level subforums.
 
-  :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+  :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 
 {% extends 'forum/base.html' %}
+
+{% set feeds = [
+  (_('Forum - Captions'), href('forum', 'feeds/title/20')),
+  (_('Forum - Teaser'), href('forum', 'feeds/short/20')),
+  (_('Forum - Full post'), href('forum', 'feeds/full/20'))
+] %}
 
 {% block content %}
   {% for category, forums in forum_hierarchy %}

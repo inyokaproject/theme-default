@@ -2,7 +2,7 @@
  * js.PrivilegeBox
  * ~~~~~~~~~~~~~~~
  *
- * :copyright: (c) 2007-2015 by the Inyoka Team, see AUTHORS for more details.
+ * :copyright: (c) 2007-2016 by the Inyoka Team, see AUTHORS for more details.
  * :license: BSD, see LICENSE for more details.
  *
  * TODO: i18n
@@ -142,6 +142,6 @@
       priv_list.append(entry);
     });
 
-   $(list.children()[0]).click();
+    list.children().first().click();
   };
 })();

@@ -1,0 +1,47 @@
+{#
+    ikhaya/reports.html
+    ~~~~~~~~~~~~~~~~~~~
+
+    Shows a list of reported improvements for an article.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'ikhaya/base.html' %}
+
+{% block head_meta %}
+  {{ super() }}
+
+  <meta name="robots" content="noindex"/>
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(article.subject, article|url) }}
+  {{ macros.breadcrumb_item(_('Reports'), article|url('reports')) }}
+{% endblock %}
+
+{% block sidebar %}
+  {{ super() }}
+
+  {% call macros.sidebar() %}
+    {{ macros.sidebar_item(_('Report new misspelling'), article|url('report_new')) }}
+  {% endcall %}
+
+  {% if can_edit %}
+    {% call macros.sidebar_admin() %}
+      {{ macros.sidebar_item(_('Edit article'), article|url('edit')) }}
+    {% endcall %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% trans article=article.subject %}
+    Reports for the article “{{ article }}”
+    {% endtrans %}
+  </h2>
+  
+  {{ render_reports(inside_reportlist=False) }}
+{% endblock %}

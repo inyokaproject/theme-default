@@ -4,7 +4,7 @@
 
     user administration interface.
 
-    :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
 {% extends 'portal/base.html' %}
@@ -18,7 +18,7 @@
 
   {{ macros.breadcrumb_item(_('Members'), href('portal', 'users')) }}
   {{ macros.breadcrumb_item(user.username, USER|url) }}
-  {{ macros.breadcrumb_item(_('Edit'), href('portal', 'user', user.urlsafe_username, 'edit')) }}
+  {{ macros.breadcrumb_item(_('Edit'), href('portal', 'user', user.username, 'edit')) }}
 {% endblock %}
 
 {% block sidebar %}
@@ -27,11 +27,11 @@
   {% endcall %}
 
   {% call macros.sidebar_admin() %}
-    {{ macros.sidebar_item(_('Profile'), href('portal', 'user', user.urlsafe_username, 'edit', 'profile')) }}
-    {{ macros.sidebar_item(_('Settings'), href('portal', 'user', user.urlsafe_username, 'edit', 'settings')) }}
-    {{ macros.sidebar_item(_('Group memberships'), href('portal', 'user', user.urlsafe_username, 'edit', 'groups')) }}
-    {{ macros.sidebar_item(_('Privileges'), href('portal', 'user', user.urlsafe_username, 'edit', 'privileges')) }}
-    {{ macros.sidebar_item(_('State'), href('portal', 'user', user.urlsafe_username, 'edit', 'status')) }}
+    {{ macros.sidebar_item(_('Profile'), href('portal', 'user', user.username, 'edit', 'profile')) }}
+    {{ macros.sidebar_item(_('Settings'), href('portal', 'user', user.username, 'edit', 'settings')) }}
+    {{ macros.sidebar_item(_('Group memberships'), href('portal', 'user', user.username, 'edit', 'groups')) }}
+    {{ macros.sidebar_item(_('Privileges'), href('portal', 'user', user.username, 'edit', 'privileges')) }}
+    {{ macros.sidebar_item(_('State'), href('portal', 'user', user.username, 'edit', 'status')) }}
   {% endcall %}
 {% endblock %}
 

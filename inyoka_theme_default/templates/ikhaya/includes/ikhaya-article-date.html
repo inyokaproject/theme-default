@@ -1,0 +1,22 @@
+{#
+  ikhaya/ikhaya-article-date.html
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+  :license: BSD, see LICENSE for more details.
+#}
+
+<ul class="list-inline meta pull-right">
+  <li>
+    <time datetime="{{ article.pub_datetime|datetime('c') }}">
+      {{ article.pub_datetime|datetime }}
+    </time>
+  </li>
+  {% if article.updated > article.pub_datetime %}
+    <li>
+      <time datetime="{{ article.updated|datetime('c') }}">
+        {% trans %}Last update:{% endtrans %} {{ article.updated|datetime }}
+      </time>
+    </li>
+  {% endif %}
+</ul>

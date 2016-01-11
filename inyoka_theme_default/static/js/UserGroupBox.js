@@ -5,7 +5,7 @@
  *    A little box to add/remove the user to some groups.
  *
  *
- *    :copyright: (c) 2007-2015 by the Inyoka Team, see AUTHORS for more details.
+ *    :copyright: (c) 2007-2016 by the Inyoka Team, see AUTHORS for more details.
  *    :license: BSD, see LICENSE for more details.
  */
 
@@ -26,7 +26,7 @@
       this.rebuildBoxes(user_joined, user_not_joined);
 
       // add needed submit event
-      $($(container).find('input[type="submit"]')[0]).submit(function () {
+      $(container).find('input[type="submit"]').first().submit(function () {
         $.each([self.user_not_joined, self.user_joined], function () {
           this.find('option').each(function () {
             this.selected = true;

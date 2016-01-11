@@ -4,13 +4,13 @@
 
   basic template on which all ikhaya-templates rely.
 
-  :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+  :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 {% extends 'base.html' %}
 
 {% block title %}
-  Ikhaya - {{ super() }}
+  {{ _('Ikhaya') }} - {{ super() }}
 {% endblock %}
 
 {% set active_app = 'ikhaya' %}
@@ -22,3 +22,68 @@
 {% block sidebar %}
   {{ ikhaya_description_rendered|default('', True) }}
 {% endblock %}
+
+{% macro render_reports(inside_reportlist) %}
+  {% for report in reports %}
+    {% if can_edit or not report.deleted %}
+      <div class="ikhaya-report{% if report.solved %} ikhaya-report-solved{% endif%}{% if report.deleted %} ikhaya-report-hidden{% endif %}"
+           id="report_{{ report.id }}">
+        <ul class="ikhaya-report-heading">
+          <li>
+            <a href="#report_{{ report.id }}">#{{ report.id }}</a>
+          </li>
+          <li>
+            {% trans link=report.author|url, author=report.author.username|e %}
+              Reported by <a href="{{ link }}">{{ author }}</a>
+            {% endtrans %}
+          </li>
+          <li>
+            <time datetime="{{ report.pub_date|datetime('c') }}">{{ report.pub_date|datetime }}</time>
+          </li>
+        </ul>
+
+        <div class="ikhaya-report-body">
+          {{ report.text_rendered }}
+        </div>
+
+        <ul class="ikhaya-report-footer">
+          {% if can_edit or inside_reportlist %}
+              <li>
+                {% if report.deleted %}
+                  <a href="{{ report|url('restore')|e }}" class="ikhaya-report-restore">
+                    <span class="fa_icon-eye"></span> {% trans %}Restore{% endtrans %}
+                  </a>
+                {% else %}
+                  <a href="{{ report|url('hide')|e }}" class="ikhaya-report-hide">
+                    <span class="fa_icon-eye-slash"></span> {% trans %}Hide{% endtrans %}
+                  </a>
+                {% endif %}
+              </li>
+
+              <li>
+                {% if not report.solved %}
+                  <a href="{{ report|url('solve')|e }}" class="ikhaya-report-solve">
+                    <span class="fa_icon-check"></span> {% trans %}Solved{% endtrans %}
+                  </a>
+                {% else %}
+                  <a href="{{ report|url('unsolve')|e }}" class="ikhaya-report-unsolve">
+                    <span class="fa_icon-remove"></span> {% trans %}Unsolved{% endtrans %}
+                  </a>
+                {% endif %}
+              </li>
+
+              {% if inside_reportlist %}
+                <li>
+                  <a href="{{ report.article|url('edit')|e }}" class="ikhaya-report-edit">
+                    <span class="fa_icon-pencil"></span> {% trans article=report.article.subject|e %}Edit article “{{ article }}”{% endtrans %}
+                  </a>
+                </li>
+              {% endif %}
+          {% endif %}
+        </ul>
+      </div>
+    {% endif %}
+  {% else %}
+    {% trans %}There are no reports yet.{% endtrans %}
+  {% endfor %}
+{% endmacro %}

@@ -1,0 +1,43 @@
+{#
+    ikhaya/report_new.html
+    ~~~~~~~~~~~~~~~~~~~~~~
+
+    Formular to report a mistake in an article.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'ikhaya/base.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(article.subject, article|url) }}
+  {{ macros.breadcrumb_item(_('Reports'), article|url('reports')) }}
+  {{ macros.breadcrumb_item(_('New report'), article|url('report_new')) }}
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% trans link=article|url, article=article.subject|e %}
+      New report for the article “<a href="{{ link }}">{{ article }}</a>”
+    {% endtrans %}
+  </h2>
+  <p>
+    {% trans link=article|url('reports') %}
+      Describe here briefly the discovered mistake. Please make sure that the mistake was not <a href="{{ link }}">already reported</a>.
+    {% endtrans %}
+  </p>
+
+  {% call macros.outer_form(csrf_token(), form, button_visible=False) %}
+    <input type="submit" name="preview" value="{% trans %}Preview{% endtrans %}"/>
+    <input type="submit" name="send" value="{% trans %}Submit{% endtrans %}"/>
+  {% endcall %}
+
+  {% if preview %}
+    <div class="preview_wrapper">
+      <h2 class="title">{% trans %}Preview{% endtrans %}</h2>
+      <div class="preview">{{ preview }}</div>
+    </div>
+  {% endif %}
+{% endblock %}

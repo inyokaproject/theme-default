@@ -4,7 +4,7 @@
  *
  * Main less-file. All component-styles are imported and global ones defined.
  *
- * :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+ * :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
  * :license: BSD, see LICENSE for more details.
  */
 
@@ -182,21 +182,26 @@ html, body {
   }
 }
 
-.staff-button {
-  &:extend(.btn);
-  &:extend(.btn-sm);
-  &:extend(.btn-danger);
-  &:extend(.btn-group > .btn);
+.staff-dropdown {
+  &:extend(.pull-right);
+  &:extend(.dropdown);
 
-  margin-top: 0;
+  &-button {
+    &:extend(.btn);
+    &:extend(.btn-sm);
+    &:extend(.btn-danger);
+    &:extend(.btn-group > .btn);
 
-  &:focus {
-    &:extend(.dropdown-toggle:focus);
+    margin-top: 0;
+
+    &:focus {
+      &:extend(.dropdown-toggle:focus);
+    }
   }
 
   &-menu {
     &:extend(.dropdown-menu);
-    &:extend(.pull-right > .dropdown-menu);
+    &:extend(.dropdown-menu-right);
 
     & > li > a {
       &:extend(.dropdown-menu > li > a);
@@ -205,11 +210,10 @@ html, body {
         &:extend(.dropdown-menu > li > a:focus);
       }
     }
-  }
-}
-.open {
-  > .staff-button-menu {
-    &:extend(.open > .dropdown-menu);
+
+    .open > & {
+      &:extend(.open > .dropdown-menu);
+    }
   }
 }
 
@@ -243,7 +247,8 @@ a.button {
     margin: 0;
 }
 
-input[type="text"], input[type="email"], input[type="password"], select {
+input[type="email"], input[type="password"], input[type="text"],
+input[type="url"], select {
   &:extend(.form-control);
   .form-control-focus();
 }

@@ -4,14 +4,48 @@
  *
  * Custom styles for ikhaya. All css-classes are prefixed with `ikhaya-`.
  *
- * :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+ * :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
  * :license: BSD, see LICENSE for more details.
  */
 
 .ikhaya {
+  &-article {
+    .article();
+
+    &-heading {
+      a {
+        &:extend(.media);
+        display: block;
+        clear: both;
+
+        .icon-container {
+          &:extend(.media-left);
+          img {
+            &:extend(.media-object);
+          }
+        }
+
+        h3 {
+          &:extend(.media-heading);
+          &:extend(.media-body);
+        }
+      }
+    }
+  }
+
+  &-suggestion {
+    .article();
+  }
+
   &-comment {
     &:extend(.panel);
     &:extend(.panel-default);
+
+    &-author {
+      img {
+        max-height: 35px;
+      }
+    }
 
     &-muted {
       &:extend(.panel-info);
@@ -23,16 +57,63 @@
     & > &-heading {
       &:extend(.panel-heading);
       &:extend(.panel-default > .panel-heading);
+
+      h3 {
+        clear: both;
+      }
     }
     & > &-body {
       &:extend(.panel-body);
+
+      p {
+        word-wrap: break-word;
+      }
     }
     & > &-footer {
       &:extend(.panel-footer);
     }
   }
 
-  &-article {
-    .article();
+  &-report {
+    &:extend(.panel);
+    &:extend(.panel-default);
+
+    & > &-heading {
+      &:extend(.panel-heading);
+      &:extend(.panel-default > .panel-heading);
+      &:extend(.list-inline all);
+
+      margin: 0;
+    }
+
+    & > &-body {
+      &:extend(.panel-body);
+    }
+
+    & > &-footer {
+      &:extend(.panel-footer);
+      &:extend(.list-inline all);
+
+      margin: 0;
+    }
+
+    &-hidden {
+      .ikhaya-report-body {
+        &:extend(.panel-info);
+        &:extend(.panel-info > .panel-heading);
+      }
+    }
+
+    &-solved {
+      .ikhaya-report-heading, .ikhaya-report-footer {
+        background-color: @state-success-bg;
+      }
+    }
+
+    &:target {
+      .ikhaya-report-heading {
+        background-color: @active-target-bg;
+      }
+    }
   }
 }

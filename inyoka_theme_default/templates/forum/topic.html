@@ -6,11 +6,18 @@
   It displays the posts itself, the author and publishing date of a post.
   If the topic grows, it is divided into pages.
 
-  :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+  :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 
 {% extends 'forum/base.html' %}
+
+{% set name = topic.title|e %}
+{% set feeds = [
+  (name + ' - ' + _('Captions'), href('forum', 'feeds/topic', topic.slug, 'title/20')),
+  (name + ' - ' + _('Teaser'), href('forum', 'feeds/topic', topic.slug, 'short/20')),
+  (name + ' - ' + _('Full'), href('forum', 'feeds/topic', topic.slug, 'full/20'))
+] %}
 
 {% block title %}
   {{ topic }} - {{ topic.forum }} - {{ super() }}
@@ -75,12 +82,12 @@
           {% endif %}
         </div>
         {% if can_moderate %}
-          <div class="pull-right">
-            <button type="button" class="staff-button" data-toggle="dropdown">
+          <div class="staff-dropdown">
+            <button type="button" class="staff-dropdown-button" data-toggle="dropdown">
               {% trans %}Staff{% endtrans %}
               <span class="fa_icon-caret-down"></span>
             </button>
-            <ul class="staff-button-menu">
+            <ul class="staff-dropdown-menu">
               <li><a href="#">{% trans %}Edit{% endtrans %}</a></li>
               {% if post.hidden %}
                 <li><a href="#">{% trans %}Restore{% endtrans %}</a></li>

@@ -21,7 +21,7 @@ def mkenv(root):
     )
 
     env.globals.update(
-        INYOKA_REVISION=None,
+        INYOKA_VERSION=None,
         SETTINGS=None,
         REQUEST=None,
         href=mkdummy('href-link'),

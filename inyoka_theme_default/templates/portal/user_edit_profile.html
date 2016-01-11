@@ -4,18 +4,18 @@
 
     Change a userprofile
 
-    :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
 {% extends 'portal/user_admin.html' %}
 
 {% block title %}
-  {{ super() }}
+  {{ _('Edit') }} {{ user.username }} - {{ super() }}
 {% endblock %}
 
 {% block breadcrumb %}
   {{ super() }}
-  {{ macros.breadcrumb_item(_('Profile'), href('portal', 'user', user.urlsafe_username, 'edit', 'profile')) }}
+  {{ macros.breadcrumb_item(_('Profile'), href('portal', 'user', user.username, 'edit', 'profile')) }}
 {% endblock %}
 
 {% block content %}
@@ -43,11 +43,9 @@
     </div>
 
     <h4>{% trans %}Contact addresses{% endtrans %}</h4>
-    {{ macros.inner_form(form, ['email', 'gpgkey', 'jabber', 'icq', 'msn', 'aim', 'yim', 'skype', 'wengophone', 'sip']) }}
+    {{ macros.inner_form(form, ['email', 'gpgkey', 'jabber']) }}
 
     <h4>{% trans %}Miscellaneous settings{% endtrans %}</h4>
-    {{ macros.inner_form(form, ['occupation', 'interests', 'website', 'launchpad', 'location']) }}
-
-    {{ macros.input(form.signature) }}
+    {{ macros.inner_form(form, ['website', 'launchpad', 'location','signature', 'userpage']) }}
   {% endcall %}
 {% endblock %}

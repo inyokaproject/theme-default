@@ -1,0 +1,22 @@
+{#
+    ikhaya/comment_edit.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'ikhaya/base.html' %}
+
+{% set article = comment.article %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(article.subject, article|url) }}
+  {{ macros.breadcrumb_item(_('Edit comment'), comment|url('edit')) }}
+{% endblock %}
+
+{% block content %}
+  <h2>{% trans %}Edit comment{% endtrans %}</h2>
+  {{ macros.outer_form(csrf_token(), form) }}
+{% endblock %}

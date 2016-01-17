@@ -11,7 +11,7 @@
 {% extends 'portal/privmsg/base.html' %}
 
 {% block title %}
-  {{ _(folder.name) }} - {{ super() }}
+  {{ folder.name }} - {{ super() }}
 {% endblock %}
 
 {% block breadcrumb %}
@@ -104,7 +104,6 @@
   {% endif %}
 
   {% call macros.outer_form(csrf_token(), form, button_visible=False, manually_rendered=True) %}
-    {{ csrf_token() }}
     <table class="portal-privmsg-table portal-privmsg-responsive-table table table-striped">
       <thead>
         <tr>
@@ -113,7 +112,7 @@
           <th>{% trans %}To{% endtrans %}</th>
           <th>{% trans %}Date{% endtrans %}</th>
           <th>{% trans %}Actions{% endtrans %}</th>
-          <th><input id="private_message_mark_all"type="checkbox" ></th>
+          <th><input id="private_message_mark_all" type="checkbox" ></th>
         </tr>
       </thead>
       <tbody>
@@ -123,7 +122,7 @@
               <a href="{{ entry|url }}"
                 {% if not entry.read %}class="private-message-unread"{% endif %}
               >
-                {{ entry.message.subject|e|truncate(50)}}
+                {{ entry.message.subject|e|truncate(50) }}
               </a>
           </td>
           <td data-title="{% trans %}From{% endtrans %}">

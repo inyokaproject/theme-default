@@ -10,11 +10,11 @@
 
 {% extends 'base.html' %}
 
+{% set active_app = 'wiki' %}
+
 {% block title %}
   {{ _('Wiki') }} - {{ super() }}
 {% endblock %}
-
-{% set active_app = 'wiki' %}
 
 {% block breadcrumb %}
   {{ macros.breadcrumb_item(_('Wiki'), href('wiki')) }}

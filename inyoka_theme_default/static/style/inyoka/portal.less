@@ -46,22 +46,6 @@
   }
 
   &-privmsg-table {
-    th.actions {
-      text-align: center;
-    }
-    .actions {
-      text-align: right;
-    }
-    th.delete {
-      text-align: center;
-      input {
-        margin-left: 5px;
-      }
-    }
-    .pn_delete {
-      text-align: center;
-    }
-
     @media (min-width: @screen-md-min) {
       .actionscol {width:10%;}
       .deletecol {width:14%;}
@@ -70,40 +54,22 @@
       .actionscol {width:10%;}
       .deletecol {width:12%;}
     }
-
-    @media (max-width: @screen-xs-max) {
-      thead {display:none;}
-      tbody {
-        tr {
-          display:block;
-          width:100%;
-          height:auto;
-          border-top:1px solid @gray-lighter;
-          margin:15px 0 25px;
-        }
-        td {
-          display: block;
-          float:left;
-          width:50%;
-          border:0;
-        }
-        td:before {
-          display: inline-block;
-          width: auto;
-          padding-right: 10px;
-          white-space: nowrap;
-          content: attr(data-title)':';
-        }
-        td.action,
-        td.pn_delete {
-          margin-bottom: 25px;
+    .actions {
+      text-align: right;
+    }
+    th {
+      &.delete {
+        text-align: center;
+        input {
+          margin-left: 5px;
         }
       }
-      tfoot > tr {
-        > td {
-          border-top: none;
-        }
+      &.actions {
+        text-align: center;
       }
+    }
+    .pn_delete {
+      text-align: center;
     }
   }
 

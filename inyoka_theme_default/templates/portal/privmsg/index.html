@@ -34,6 +34,8 @@
                   {{ message.author|e }}
                 </a>
               </div>
+            </div>
+            <div class="row">
               <div class="col-sm-3">
                 <strong>{% trans %}To:{% endtrans %}</strong>
               </div>
@@ -43,12 +45,16 @@
                   {% if not loop.last %}, {% endif %}
                 {% endfor %}
               </div>
+            </div>
+            <div class="row">
               <div class="col-sm-3">
                 <strong>{% trans %}Subject:{% endtrans %}</strong>
               </div>
               <div class="col-sm-9">
                 {{ message.subject|e }}
               </div>
+            </div>
+            <div class="row">
               <div class="col-sm-3">
                 <strong>{% trans %}Date:{% endtrans %}</strong>
               </div>

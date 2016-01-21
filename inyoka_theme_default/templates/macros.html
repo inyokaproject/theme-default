@@ -248,3 +248,10 @@
     {{ content }}
   </div>
 {% endmacro %}
+
+{% macro render_user_link(user) %}
+  {% if not user.is_active %}
+    {% set class = "user-inactive" %}
+  {% endif %}
+  <a class="{{ class }}" href="{{ user|url }}">{{ user|e }}</a>
+{% endmacro %}

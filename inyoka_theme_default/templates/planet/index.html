@@ -92,9 +92,8 @@
                   {% if USER.can('blog_edit') %}
                     {% if article.hidden and article.hidden_by %}
                       <li>
-                        {% trans link=article.hidden_by|url,
-                                 name=article.hidden_by.username|e %}
-                          Hidden by: <a href="{{ link }}">{{ name }}</a>
+                        {% trans user_link=macros.render_user_link(article.hidden_by) %}
+                          Hidden by: {{ user_link }}
                         {% endtrans %}
                       </li>
                     {% endif %}

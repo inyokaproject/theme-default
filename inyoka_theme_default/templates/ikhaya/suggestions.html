@@ -49,8 +49,9 @@
 
         <ul class="ikhaya-suggestion-info list-inline">
           <li>
-            {% trans link=suggestion.author|url, author=suggestion.author.username|e, date=suggestion.pub_date|datetime %}
-              Suggested by <a href="{{ link }}">{{ author }}</a>, {{ date }}
+            {% trans user_link=macros.render_user_link(suggestion.author),
+                     date=suggestion.pub_date|datetime %}
+              Suggested by {{ user_link }}, {{ date }}
             {% endtrans %}
           </li>
         </ul>
@@ -61,7 +62,7 @@
             {% if suggestion.owner_id == none %}
               {% trans %}Nobody{% endtrans %}
             {% else %}
-              <a href="{{ suggestion.owner|url }}">{{ suggestion.owner.username|e }}</a>
+              {{ macros.render_user_link(suggestion.owner) }}
             {% endif %}
           </li>
 

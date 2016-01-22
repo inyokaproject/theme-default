@@ -33,8 +33,8 @@
             <a href="#report_{{ report.id }}">#{{ report.id }}</a>
           </li>
           <li>
-            {% trans link=report.author|url, author=report.author.username|e %}
-              Reported by <a href="{{ link }}">{{ author }}</a>
+            {% trans user_link=macros.render_user_link(report.author) %}
+              Reported by {{ user_link }}
             {% endtrans %}
           </li>
           <li>

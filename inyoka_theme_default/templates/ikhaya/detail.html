@@ -62,8 +62,8 @@
 
       <ul class="list-inline meta">
         <li class="author">
-          {% trans link=article.author|url, author=article.author.username|e %}
-            Published by <a href="{{ link }}">{{ author }}</a>
+          {% trans user_link=macros.render_user_link(article.author) %}
+            Published by {{ user_link }}
           {% endtrans %}
         </li>
         <li class="category">

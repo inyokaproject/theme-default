@@ -42,7 +42,7 @@
     {% if not entry.author.is_anonymous %}
       <div>{% trans %}Author{% endtrans %}</div>
       <div>
-        <a href="{{ entry.author|url }}">{{ entry.author.username|e }}</a>
+        {{ macros.render_user_link(entry.author) }}
       </div>
     {% endif %}
 

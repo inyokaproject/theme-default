@@ -23,9 +23,9 @@
         <li>
           <span class="paste-pastelist-number">#{{ entry.id }}</span>
 
-          {% trans entry_link=entry|url, author_link=entry.author|url,
-                   title=entry.title|e, author=entry.author.username|e %}
-            <a href="{{ entry_link }}">{{ title }}</a> by <a href="{{ author_link }}">{{ author }}</a>
+          {% trans entry_link=entry|url, title=entry.title|e,
+                   user_link=macros.render_user_link(entry.author) %}
+            <a href="{{ entry_link }}">{{ title }}</a> by {{ user_link }}
           {% endtrans %}
 
           <span class="paste-pastelist-date">

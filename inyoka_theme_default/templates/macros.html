@@ -172,9 +172,7 @@
   {% if form %}
     {% if custom_fields %}
       {% for field in custom_fields %}
-        {% if form[field] %}
-          {{ render_field_by_type(form[field]) }}
-        {% endif %}
+        {{ render_field_by_type(form[field]) }}
       {% endfor %}
 
     {% else %}

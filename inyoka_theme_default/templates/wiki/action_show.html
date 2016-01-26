@@ -12,5 +12,27 @@
 {% extends 'wiki/base_sidebar.html' %}
 
 {% block content %}
-  <div id="wikipage">{{ page.rev.rendered_text }}</div>
+  <div id="wiki-page">{{ page.rev.rendered_text }}</div>
+
+  <div class="wiki-meta">
+    <p>
+       {% trans rev_link=page.rev|url, date=page.rev.change_date|datetime,
+                author_link=macros.render_user_link(page.rev.user) %}
+          <a href="{{ rev_link }}">This revision</a> was created on {{ date }} by {{ author_link }}.
+      {% endtrans %}
+    </p>
+
+    <p>
+      {% if tags %}
+        {% trans %}
+          At this page the following tags have been assigned:
+        {% endtrans %}
+        {% for tag in tags %}
+          <a href="{{ href('wiki', 'wiki', 'tags', tag|e) }}">{{ tag|e }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      {% else %}
+        {% trans %}No tags assigned to this page, yet.{% endtrans %}
+      {% endif %}
+    </p>
+  </div>
 {% endblock %}

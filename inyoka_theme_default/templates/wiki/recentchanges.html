@@ -1,0 +1,73 @@
+{#
+    wiki/recentchanges.html
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    This template shows recent changes of articles in the entire wiki. This template
+    uses no pagination and is limited via setting.py.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'wiki/base.html' %}
+
+{% block title %}
+  {% trans %}Recent Changes{% endtrans %} — {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Recent Changes')) }}
+{% endblock %}
+
+{% block content %}
+  <h1>{% trans %}Recent Changes{% endtrans %}</h1>
+
+  {% if recentchanges %}
+    <table class="wiki-recent_changes">
+      {% for day in recentchanges.keys() %}
+        <thead>
+          <tr>
+            <th colspan="3">{{ day }}</th>
+          </tr>
+        </thead>
+
+        {% for page in recentchanges[day].keys() %}
+          {% set change_set = recentchanges[day][page] %}
+
+          <tr>
+            <td>
+              {{ change_set[-1]['time'] }}
+              {% if change_set|length > 1 %}
+                - {{ change_set[0]['time'] }}
+              {% endif %}
+            </td>
+
+            <td>
+              <a href="{{ href('wiki', page)|e }}">{{ page|e }}</a>
+              (<a href="{{ href('wiki', page, 'a', 'log')|e }}">{{ change_set|length }}x</a>)
+            </td>
+
+            <td>
+             <ul>
+               {% for change in change_set %}
+                  <li>
+                    {{ change['note'] }}
+                    {% if change['username'] %}
+                      {% trans user=change['username']|e,
+                               userlink=href('portal', 'user', change['username']|e) %}
+                        (by <a href="{{ userlink }}">{{ user }}</a>)
+                      {% endtrans %}
+                    {% endif %}
+                  </li>
+               {% endfor %}
+             </ul>
+            </td>
+          </tr>
+        {% endfor %}
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>{% trans %}Recent Changes are currently unavailable.{% endtrans %}</p>
+  {% endif %}
+{% endblock %}

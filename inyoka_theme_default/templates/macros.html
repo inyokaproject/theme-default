@@ -178,7 +178,11 @@
       {% endfor %}
 
     {% else %}
-        {% for field in form %}
+        {% for hidden in form.hidden_fields() %}
+          {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields() %}
           {{ render_field_by_type(field) }}
         {% endfor %}
     {% endif %}

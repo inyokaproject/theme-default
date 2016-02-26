@@ -12,6 +12,14 @@
 {% extends 'wiki/base_sidebar.html' %}
 
 {% block content %}
+  <h1>{{ page.short_title|e }}</h1>
+
+  {% if page.rev.attachment %}
+    <div id="attachment">
+      {{ page.rev.attachment.html_representation }}
+    </div>
+  {% endif %}
+
   <div id="wiki-page">{{ page.rev.rendered_text }}</div>
 
   <div class="wiki-meta">

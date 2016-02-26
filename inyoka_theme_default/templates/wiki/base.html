@@ -27,7 +27,8 @@
       {% if loop.first %}
         {% set link = href('wiki', part) %}
       {% else %}
-        {% set link = link + '/' + part %}
+        {% set seperator = '/' if link[-1] != '/' else '' %}
+        {% set link = link + seperator + part %}
       {% endif %}
 
       {{ macros.breadcrumb_item(part, link) }}

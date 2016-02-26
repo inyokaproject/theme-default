@@ -1,0 +1,70 @@
+{#
+    wiki/action_backlinks.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Display a list of backlinks to a page.
+
+    :copyright: (c) 2010-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'wiki/base.html' %}
+
+{% block title %}
+  {% trans %}Backlinks{% endtrans %} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Backlinks'), page|url('backlinks')) }}
+{% endblock %}
+
+
+{% block content %}
+  {% if page.backlinks %}
+    <p>
+      {% trans title=page.title|e %}
+        The following pages are referring to the article “{{ title }}” by manual linking:
+      {% endtrans %}
+    </p>
+    <ul>
+    {% for page in page.backlinks %}
+      <li><a href="{{ page|url|e }}">{{ page.title|e }}</a></li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if page.embedders %}
+    <p>
+      {% trans %}
+        The following pages are embedding this articles as attachment.
+      {% endtrans %}
+      {% if not page.rev.attachment %}
+        {% trans %}
+          But the article itself is not listed as an attachment, perhaps
+          these pages are using the article mistakenly or an old revision
+          was an attachment.
+        {% endtrans %}
+      {% endif %}
+    </p>
+    <ul>
+    {% for page in page.embedders %}
+      <li><a href="{{ page|url|e }}">{{ page.title|e }}</a></li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if not page.backlinks and not page.embedders %}
+    <p>
+      {% if page.rev.attachment %}
+        {% trans %}
+          This attachment is an orphan and not referenced by any site.
+        {% endtrans %}
+      {% else %}
+        {% trans %}
+          This article is an orphan and not referenced by any site.
+        {% endtrans %}
+      {% endif %}
+    </p>
+  {% endif %}
+{% endblock %}

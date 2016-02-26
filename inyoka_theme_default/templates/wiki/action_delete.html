@@ -1,0 +1,18 @@
+{#
+    wiki/action_delete.html
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    This template is (unlike most other action templates) not a full HTML page
+    but flashed to the show action.  So keep it small, it's in a cookie!
+
+    :copyright: (c) 2010-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% import 'macros.html' as macros %}
+
+{% call macros.outer_form(csrf_token(), action=page|url('delete')|e, submit_label=_('Delete'), manually_rendered=True) %}
+  <p>{% trans %}Are you sure you want to delete this page?{% endtrans %}</p>
+  <label class="control-label" for="delete_note">{% trans %}Reason:{% endtrans %}</label>
+  <input type="text" id="delete_note" name="note" />
+  <input type="submit" name="cancel" value="{% trans %}Cancel{% endtrans %}" />
+{% endcall %}

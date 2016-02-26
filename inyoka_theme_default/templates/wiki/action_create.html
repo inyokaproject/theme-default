@@ -1,0 +1,28 @@
+{#
+    wiki/action_create.html
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    Offers a form for creating a new wikipage and selecting its initial content.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'wiki/base.html' %}
+
+{% block title %}
+  {% trans %}create{% endtrans %} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumbs %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('create'), href('wiki', 'create')) }}
+{% endblock %}
+
+
+{% block content %}
+  {% call macros.outer_form(csrf_token(), form, action=href('wiki', 'wiki', 'create'),
+                             submit_label=_('Create')) %}
+    <input type="submit" name="cancel" value="{% trans %}Cancel{% endtrans %}" />
+  {% endcall %}
+{% endblock %}

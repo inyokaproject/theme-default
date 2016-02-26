@@ -257,3 +257,11 @@
   {% endif %}
   <a class="{{ class }}" href="{{ user|url }}">{{ user|e }}</a>
 {% endmacro %}
+
+{% macro tag_link(count, name, size=None) %}
+  <a title="{{ count }} {% trans count=count %}page{% pluralize %}pages{% endtrans %}"
+     href="/wiki/tags/{{ name|e }}"
+     {% if size %}class="tag-{{ size }}"{% endif %}>
+    {{ name|e }}
+  </a>
+{% endmacro %}

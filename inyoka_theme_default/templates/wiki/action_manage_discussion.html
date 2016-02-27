@@ -1,0 +1,31 @@
+{#
+    wiki/action_manage_discussion.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Let the user set the discussion of a page.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'wiki/base.html' %}
+
+{% block title %}
+  {% trans %}Link discussion{% endtrans %} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Link discussion'), page|url('manage_discussion')) }}
+{% endblock %}
+
+
+{% block content %}
+  <p>
+    {% trans %}You can choose a topic as the discussion topic of this article.{% endtrans %}
+  <p>
+
+  {% call macros.outer_form(csrf_token(), form, action=page|url('discussion')|e,
+                            submit_label=_('Link')) %}
+  {% endcall %}
+{% endblock %}

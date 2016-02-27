@@ -19,6 +19,15 @@
     text-align: right;
   }
 
+  &-missingpages {
+    &:extend(.table-responsive all);
+
+    & > table {
+      &:extend(.table all);
+      &:extend(.table-striped all);
+    }
+  }
+
   &-recent_changes {
     .table-striped-responsive();
   }

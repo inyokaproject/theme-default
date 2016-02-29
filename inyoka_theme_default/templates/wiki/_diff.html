@@ -33,7 +33,17 @@
             <tr class="line {{ line.action }}">
               <td class="old">{{ line.old_lineno }}</td>
               <td class="new">{{ line.new_lineno }}</td>
-              <td class="code">{{ line.line }}</td>
+              <td class="code">
+                <span class="change-indicator">
+                  {% if line.action == 'add' %}
+                    +
+                  {% elif line.action == 'del' %}
+                    &minus;
+                  {% endif %}
+                </span>
+
+                {{ line.line }}
+              </td>
             </tr>
           {% endfor %}
         {% endfor %}

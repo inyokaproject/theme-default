@@ -19,3 +19,22 @@
 {% block breadcrumb %}
   {{ macros.breadcrumb_item(_('Wiki'), href('wiki')) }}
 {% endblock %}
+
+
+{% block sidebar %}
+  {{ super() }}
+
+  {% if not USER.is_anonymous %}
+    {% call macros.sidebar() %}
+      {{ macros.sidebar_item(_('Create new wikipage'), href('wiki', 'wiki', 'create')) }}
+    {% endcall %}
+  {% endif %}
+
+  {% call macros.sidebar(_('Overview')) %}
+    {{ macros.sidebar_item(_('Tag cloud'), href('wiki', 'wiki', 'tagcloud')) }}
+    {% if not USER.is_anonymous %}
+      {{ macros.sidebar_item(_('Missing pages'), href('wiki', 'wiki', 'missingpages')) }}
+    {% endif %}
+    {{ macros.sidebar_item(_('Recent changes'), href('wiki', 'wiki', 'recentchanges')) }}
+  {% endcall %}
+{% endblock %}

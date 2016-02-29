@@ -11,6 +11,8 @@
 {% extends 'wiki/base.html' %}
 
 {% block sidebar %}
+  {{ super() }}
+
   {% call macros.sidebar() %}
     {% if can.read %}
       {{ macros.sidebar_item(_('Log'), page|url('log'), 'fa_icon-history') }}

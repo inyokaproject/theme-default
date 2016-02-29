@@ -48,7 +48,7 @@
       {{ macros.sidebar_item(_('Edit'), page|url('edit'), 'fa_icon-pencil') }}
     {% endif %}
     {% if can.manage %}
-      {{ macros.sidebar_item(_('Rename'), page|url('rename')) }}
+      {{ macros.sidebar_item(_('Rename'), page|url('rename'), 'fa_icon-i-cursor') }}
     {% endif %}
     {% if can.delete %}
       {{ macros.sidebar_item(_('Delete'), page|url('delete'), 'fa_icon-trash') }}

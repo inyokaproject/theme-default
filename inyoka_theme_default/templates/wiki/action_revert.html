@@ -1,0 +1,18 @@
+{#
+    wiki/action_revert.html
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    This template is (unlike most other action templates) not a full HTML page
+    but flashed to the show action.  So keep it small, it's in a cookie!
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% import 'macros.html' as macros %}
+
+{% call macros.outer_form(csrf_token(), action=page|url('revert', revision=page.rev.id)|e,
+                    submit_label=_('Restore'), manually_rendered=True) %}
+  <label for="id_note">{% trans %}Reason:{% endtrans %}</label>
+  <input type="text" name="note" id="id_note" />
+  <input type="submit" name="cancel" value="{% trans %}Cancel{% endtrans %}" />
+{% endcall %}

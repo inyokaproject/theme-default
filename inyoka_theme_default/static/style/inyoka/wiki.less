@@ -9,6 +9,51 @@
  */
 
 .wiki {
+  &-diff {
+    &:extend(.table-responsive all);
+
+    & > table {
+      &:extend(.table all);
+
+      .ellipsis th {
+        text-align: center;
+        background-color: @diff-ellipsis;
+      }
+
+      tbody .line {
+        .new, .old {
+          text-align: right;
+        }
+
+        .change-indicator {
+          vertical-align: middle;
+        }
+
+        &.add td.code {
+          background-color: @diff-added-line;
+
+          ins {
+            background-color: @diff-added;
+            text-decoration: none;
+          }
+        }
+
+        &.del td.code {
+          background-color: @diff-removed-line;
+
+          del {
+            background-color: @diff-removed;
+            text-decoration: none;
+          }
+        }
+      }
+
+      td.code {
+        font-family: @font-family-monospace;
+      }
+    }
+  }
+
   &-license-note {
     &:extend(.alert-info all);
     .message();

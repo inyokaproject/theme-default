@@ -28,12 +28,8 @@
   {% endcall %}
 
   {% call macros.sidebar(_('Additional functions')) %}
-    {% if USER.is_authenticated() %}
-      {{ macros.sidebar_item(_('Pastebin'), href('pastebin')) }}
-    {% else %}
-      {{ macros.sidebar_item(_('Pastebin'), href('pastebin', 'browse')) }}
-    {% endif %}
-      {{ macros.sidebar_item(_('Calendar'), href('portal', 'calendar')) }}
+    {{ macros.sidebar_item(_('Pastebin'), href('pastebin')) }}
+    {{ macros.sidebar_item(_('Calendar'), href('portal', 'calendar')) }}
   {% endcall %}
 
   {% if USER.can('static_page_edit')

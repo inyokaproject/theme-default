@@ -46,7 +46,7 @@
         </td>
         <td data-title="{{ ('User') }}">
           {% if blog.user %}
-            <a href="{{ href('portal', 'user', blog.user) }}">{{ blog.user }}</a>
+            {{ macros.render_user_link(blog.user) }}
           {% else %}
              -
           {% endif %}

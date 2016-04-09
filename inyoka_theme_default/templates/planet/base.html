@@ -34,7 +34,6 @@
         {% call macros.sidebar_item() %}
           <a href="{{ blog|url|e }}">{{ blog.name|e }}</a>
 
-          {# TODO: swap pencil to the right #}
           {% if USER.can('category_edit') %}
             <a href="{{ blog|url('edit') }}"> <span class="fa_icon-pencil"></span></a>
           {% endif %}

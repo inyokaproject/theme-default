@@ -28,6 +28,10 @@
     {{ macros.sidebar_item('FOAF', href('planet', 'blogs', 'export', 'foaf')) }}
   {% endcall %}
 
+  {% call macros.sidebar() %}
+    {{ macros.sidebar_item(_('Suggest blog'), href('planet', 'suggest')) }}
+  {% endcall %}
+
   {% if blogs %}
     {% call macros.sidebar(_('Blogs')) %}
       {% for blog in blogs %}

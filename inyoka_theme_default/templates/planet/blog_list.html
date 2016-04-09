@@ -22,7 +22,8 @@
 {% block content %}
   <h3>{% trans %}Blogs{% endtrans %}</h3>
   <a href="{{ href('planet', 'blog', 'new') }}">{% trans %}Add new blog{% endtrans %}</a>
-  <table class="table table-striped planet-responsive-table">
+
+  <table class="planet-bloglist">
     <colgroup>
       <col class="namecol" />
       <col class="usercol" />

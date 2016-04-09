@@ -9,6 +9,10 @@
 #}
 {% extends 'planet/base.html' %}
 
+{% block title %}
+  {% trans %}Suggest blog{% endtrans %} – {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ super() }}
 

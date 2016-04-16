@@ -25,6 +25,6 @@
 {% block sidebar %}
   {% call macros.sidebar() %}
     {{ macros.sidebar_item(_('New paste'), href('pastebin', 'add')) }}
-    {{ macros.sidebar_item(_('Browse pastes'), href('pastebin', 'browse')) }}
+    {{ macros.sidebar_item(_('Browse pastes'), href('pastebin')) }}
   {% endcall %}
 {% endblock %}

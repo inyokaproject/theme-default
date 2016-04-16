@@ -139,3 +139,22 @@
     margin: 0;
   }
 }
+
+.table-striped-responsive() {
+  &:extend(.table all);
+  &:extend(.table-striped all);
+
+  @media screen and (max-width: @screen-xs-max) {
+    tbody {
+      td {
+        display: block;
+        width: 100%;
+      }
+      tr {
+        &:first-child td, & td:not(:first-child) {
+          border-top: none !important;
+        }
+      }
+    }
+  }
+}

@@ -9,5 +9,38 @@
  */
 
 .wiki {
+  &-license-note {
+    &:extend(.alert-info all);
+    .message();
+  }
 
+  &-meta {
+    border-top: 1px @gray-lighter solid;
+    text-align: right;
+  }
+
+  &-missingpages {
+    &:extend(.table-responsive all);
+
+    & > table {
+      &:extend(.table all);
+      &:extend(.table-striped all);
+    }
+  }
+
+  &-recent_changes {
+    .table-striped-responsive();
+  }
+
+  &-tagcloud {
+    text-align: center;
+
+    .tagclasses(@counter) when (@counter > 0) {
+      .tagclasses((@counter - 1));
+      .tag-@{counter} {
+        font-size: 140+@counter*10%;
+      }
+    }
+    .tagclasses(10);
+  }
 }

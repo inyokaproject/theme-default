@@ -172,13 +172,15 @@
   {% if form %}
     {% if custom_fields %}
       {% for field in custom_fields %}
-        {% if form[field] %}
-          {{ render_field_by_type(form[field]) }}
-        {% endif %}
+        {{ render_field_by_type(form[field]) }}
       {% endfor %}
 
     {% else %}
-        {% for field in form %}
+        {% for hidden in form.hidden_fields() %}
+          {{ hidden }}
+        {% endfor %}
+
+        {% for field in form.visible_fields() %}
           {{ render_field_by_type(field) }}
         {% endfor %}
     {% endif %}
@@ -254,4 +256,12 @@
     {% set class = "user-inactive" %}
   {% endif %}
   <a class="{{ class }}" href="{{ user|url }}">{{ user|e }}</a>
+{% endmacro %}
+
+{% macro tag_link(count, name, size=None) %}
+  <a title="{{ count }} {% trans count=count %}page{% pluralize %}pages{% endtrans %}"
+     href="/wiki/tags/{{ name|e }}"
+     {% if size %}class="tag-{{ size }}"{% endif %}>
+    {{ name|e }}
+  </a>
 {% endmacro %}

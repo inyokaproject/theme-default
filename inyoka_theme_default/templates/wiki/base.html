@@ -13,9 +13,25 @@
 {% set active_app = 'wiki' %}
 
 {% block title %}
-  {{ _('Wiki') }} - {{ super() }}
+  {% if page %}
+    {{ page.title }} –
+  {% endif %}
+  {{ _('Wiki') }} – {{ super() }}
 {% endblock %}
 
 {% block breadcrumb %}
   {{ macros.breadcrumb_item(_('Wiki'), href('wiki')) }}
+
+  {% if page %}
+    {% for part in page.title.split('/') %}
+      {% if loop.first %}
+        {% set link = href('wiki', part) %}
+      {% else %}
+        {% set seperator = '/' if link[-1] != '/' else '' %}
+        {% set link = link + seperator + part %}
+      {% endif %}
+
+      {{ macros.breadcrumb_item(part, link) }}
+    {% endfor %}
+  {% endif %}
 {% endblock %}

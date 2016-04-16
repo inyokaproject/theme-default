@@ -1,0 +1,38 @@
+{#
+    wiki/action_rename.html
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    This template is (unlike most other action templates) not a full HTML page
+    but flashed to the show action.  So keep it small, it's in a cookie!
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% import 'macros.html' as macros %}
+
+{% call macros.outer_form(csrf_token(), action=page|url('rename')|e,
+                    submit_label=_('Rename'), manually_rendered=True) %}
+  <p>
+    {% trans %}
+      If you rename this page, all revisions will be renamed.
+      The old page will redirect to the new one.
+    {% endtrans %}
+  </p>
+  <p>
+    <label for="id_new_name">{% trans %}New page name:{% endtrans %}</label>
+    <input type="text" name="new_name" id="id_new_name" value="{{ new_name|e }}" />
+
+    <input type="checkbox" id="id_add_redirect" name="add_redirect" />
+    <label for="id_add_redirect">{% trans %}Set redirect to new page{% endtrans %}</label>
+    {% if force %}
+      <input type="hidden" name="force" value="{{ force|e }}" />
+    {% endif %}
+  </p>
+  {% if force %}
+    <strong>
+      {% trans %}
+        Duplicate attachments on the target page will be overwritten!
+      {% endtrans %}
+    </strong>
+  {% endif %}
+{% endcall %}

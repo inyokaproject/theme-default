@@ -15,7 +15,7 @@
   (_('Planet - Full article'), href('planet', 'feeds/full/20'))
 ] %}
 
-{% block planet_content %}
+{% block content %}
   {% set rendered_pagination = macros.render_pagination(pagination) %}
 
   {{ rendered_pagination }}
@@ -78,9 +78,7 @@
                   </div>
                 </div>
                 <div class="planet-article-body">
-                  <div class="col-xs-12">
-                    <div class="text">{{ article.text }}</div>
-                  </div>
+                  <div class="text">{{ article.text }}</div>
                 </div>
 
                 <ul class="planet-article-footer">

@@ -14,10 +14,17 @@
       &-list {
         columns: 2;
         column-gap: 4em;
+
+        li {
+          break-inside: avoid;
+        }
       }
     }
   }
-  &-responsive-table {
+  &-bloglist {
+    &:extend(.table all);
+    &:extend(.table-striped all);
+
     @media (max-width: @screen-xs-max) {
       thead {display:none;}
       tr {

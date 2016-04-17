@@ -29,7 +29,7 @@
   </h1>
   <ul>
     {% for page in page_list %}
-      <li><a href="{{ page }}">{{ page }}</a></li>
+      <li><a href="{{ href('wiki', page) }}">{{ page }}</a></li>
     {% endfor %}
   </ul>
 {% endblock %}

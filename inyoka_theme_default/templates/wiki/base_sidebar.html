@@ -45,25 +45,27 @@
     {% endif %}
   {% endcall %}
 
-  {% call macros.sidebar(_('Page')) %}
-    {% if can.edit %}
-      {{ macros.sidebar_item(_('Edit'), page|url('edit'), 'fa_icon-pencil') }}
-    {% endif %}
-    {% if can.manage %}
-      {{ macros.sidebar_item(_('Rename'), page|url('rename'), 'fa_icon-i-cursor') }}
-    {% endif %}
-    {% if can.delete %}
-      {{ macros.sidebar_item(_('Delete'), page|url('delete'), 'fa_icon-trash') }}
-    {% endif %}
-    {% if can.manage %}
-      {% if page.name.startswith('Baustelle') and not page.name.startswith('Baustelle/Verlassen') %}
-        {{ macros.sidebar_item(_('Move page to “discontinued”'), page|url('mv_discontinued')) }}
-        {{ macros.sidebar_item(_('Move page back to the wiki'), page|url('mv_back')) }}
-      {% else %}
-        {{ macros.sidebar_item(_('Mark page as “under construction”'), page|url('mv_baustelle')) }}
+  {% if can.delete or can.edit or can.manage %}
+    {% call macros.sidebar(_('Page')) %}
+      {% if can.edit %}
+        {{ macros.sidebar_item(_('Edit'), page|url('edit'), 'fa_icon-pencil') }}
       {% endif %}
-    {% endif %}
-  {% endcall %}
+      {% if can.manage %}
+        {{ macros.sidebar_item(_('Rename'), page|url('rename'), 'fa_icon-i-cursor') }}
+      {% endif %}
+      {% if can.delete %}
+        {{ macros.sidebar_item(_('Delete'), page|url('delete'), 'fa_icon-trash') }}
+      {% endif %}
+      {% if can.manage %}
+        {% if page.name.startswith('Baustelle') and not page.name.startswith('Baustelle/Verlassen') %}
+          {{ macros.sidebar_item(_('Move page to “discontinued”'), page|url('mv_discontinued')) }}
+          {{ macros.sidebar_item(_('Move page back to the wiki'), page|url('mv_back')) }}
+        {% else %}
+          {{ macros.sidebar_item(_('Mark page as “under construction”'), page|url('mv_baustelle')) }}
+        {% endif %}
+      {% endif %}
+    {% endcall %}
+  {% endif %}
 
   {% if can.read %}
     {% call macros.sidebar(_('Export')) %}

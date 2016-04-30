@@ -11,8 +11,6 @@
 {% extends 'wiki/base.html' %}
 
 {% block sidebar %}
-  {{ super() }}
-
   {% call macros.sidebar() %}
     {% if can.read %}
       {{ macros.sidebar_item(_('Log'), page|url('log'), 'fa_icon-history') }}
@@ -75,4 +73,6 @@
       {{ macros.sidebar_item(_('Metadata'), page|url('export', format='meta')) }}
     {% endcall %}
   {% endif %}
+
+  {{ super() }}
 {% endblock %}

@@ -1,0 +1,29 @@
+{#
+    wiki/action_attachments_edit.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    This template is used to edit an existing attachment.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'wiki/base.html' %}
+
+{% block title %}
+  {% trans %}Edit{% endtrans %} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Edit'), page|url('edit')) }}
+{% endblock %}
+
+{% block content %}
+  <h1>{% trans %}Edit attachment{% endtrans %}</h1>
+
+  {% call macros.outer_form(csrf_token(), form, action=page|url('edit'),
+                             submit_label=_('Edit attachment')) %}
+    <input type="submit" name="cancel" value="{% trans %}Cancel{% endtrans %}" />
+  {% endcall %}
+{% endblock %}

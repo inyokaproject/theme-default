@@ -9,10 +9,15 @@
 #}
 {% extends 'planet/base.html' %}
 
+{% set tmp_name = _('Add blog') if not blog else blog.name|e %}
+
+{% block title %}
+  {{ tmp_name }} – {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ super() }}
 
-  {% set tmp_name = _('Add blog') if not blog else blog.name|e %}
   {{ macros.breadcrumb_item(tmp_name) }}
 {% endblock %}
 

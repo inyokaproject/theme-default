@@ -11,7 +11,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  {{ _('Planet') }} - {{ super() }}
+  {{ _('Planet') }} – {{ super() }}
 {% endblock %}
 
 {% block breadcrumb %}
@@ -28,13 +28,16 @@
     {{ macros.sidebar_item('FOAF', href('planet', 'blogs', 'export', 'foaf')) }}
   {% endcall %}
 
+  {% call macros.sidebar() %}
+    {{ macros.sidebar_item(_('Suggest blog'), href('planet', 'suggest')) }}
+  {% endcall %}
+
   {% if blogs %}
     {% call macros.sidebar(_('Blogs')) %}
       {% for blog in blogs %}
         {% call macros.sidebar_item() %}
           <a href="{{ blog|url|e }}">{{ blog.name|e }}</a>
 
-          {# TODO: swap pencil to the right #}
           {% if USER.can('category_edit') %}
             <a href="{{ blog|url('edit') }}"> <span class="fa_icon-pencil"></span></a>
           {% endif %}
@@ -50,9 +53,4 @@
     {% endcall %}
   {% endif %}
 
-{% endblock %}
-
-{% block content %}
-  {% block planet_content %}
-  {% endblock %}
 {% endblock %}

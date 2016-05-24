@@ -1,0 +1,20 @@
+{#
+    wiki/action_mv_back.html
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    This template is not a full HTML page. Intead it is flashed to the
+    show action. Djangos messages framework allows this to be in a
+    cookie, so keep it small.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% import 'macros.html' as macros %}
+
+{% call macros.outer_form(csrf_token(), action=page|url('mv_back')|e,
+                          submit_label=_('Move'), manually_rendered=True) %}
+  <p>
+    {% trans %}Are you sure you want to move the page into the wiki?{% endtrans %}
+  </p>
+  <input type="submit" name="cancel" value="{% trans %}Cancel{% endtrans %}" />
+{% endcall %}

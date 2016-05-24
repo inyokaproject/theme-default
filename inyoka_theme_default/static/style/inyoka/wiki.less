@@ -9,5 +9,111 @@
  */
 
 .wiki {
+  &-diff {
+    &:extend(.table-responsive all);
 
+    & > table {
+      &:extend(.table all);
+
+      .ellipsis th {
+        text-align: center;
+        background-color: @diff-ellipsis;
+      }
+
+      tbody .line {
+        .new, .old {
+          text-align: right;
+        }
+
+        .change-indicator {
+          font-weight: bold;
+        }
+
+        td.code {
+          font-family: @font-family-monospace;
+        }
+
+        &.add td.code {
+          background-color: @diff-added-line;
+
+          ins {
+            background-color: @diff-added;
+            text-decoration: none;
+          }
+        }
+
+        &.del td.code {
+          background-color: @diff-removed-line;
+
+          del {
+            background-color: @diff-removed;
+            text-decoration: none;
+          }
+        }
+      }
+
+    }
+  }
+
+  &-license-note {
+    &:extend(.alert-info all);
+    .message();
+  }
+
+  &-meta {
+    border-top: 1px @gray-lighter solid;
+    text-align: right;
+  }
+
+  &-missingpages {
+    &:extend(.table-responsive all);
+
+    & > table {
+      &:extend(.table all);
+      &:extend(.table-striped all);
+    }
+  }
+
+  &-recent_changes {
+    .table-striped-responsive();
+  }
+
+  &-revisions {
+    &:extend(.table-responsive all);
+
+    & > table {
+      &:extend(.table all);
+      &:extend(.table-striped all);
+    }
+
+    .actions {
+      white-space: nowrap;
+
+      a {
+        display: block;
+        width: 100%;
+      }
+    }
+
+    .author {
+      a {
+        white-space: nowrap;
+      }
+       img {
+        max-height: 35px;
+      }
+    }
+  }
+
+  &-tagcloud {
+    text-align: center;
+
+    .tagclasses(@counter) when (@counter > 0) {
+      .tagclasses((@counter - 1));
+      .tag-@{counter} {
+        font-size: 140+@counter*10%;
+      }
+    }
+    .tagclasses(10);
+  }
 }

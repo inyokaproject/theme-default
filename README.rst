@@ -2,7 +2,7 @@
 Inyoka default Theme
 ====================
 
-.. image:: https://ci.ubuntu-de.org/buildStatus/icon?job=theme-default
+.. image:: https://ci.ubuntu-de.org/job/inyokaproject-github/job/theme-default/job/staging/badge/icon
     :target: https://ci.ubuntu-de.org/job/theme-default/
     :alt: Build status of the staging branch
 

@@ -40,7 +40,7 @@
 {% block sidebar %}
   {{ super() }}
 
-  {% if not USER.is_anonymous %}
+  {% if not USER.is_anonymous() %}
     {% call macros.sidebar() %}
       {{ macros.sidebar_item(_('Create new wikipage'), href('wiki', 'wiki', 'create')) }}
     {% endcall %}
@@ -48,7 +48,7 @@
 
   {% call macros.sidebar(_('Overview')) %}
     {{ macros.sidebar_item(_('Tag cloud'), href('wiki', 'wiki', 'tagcloud'), 'fa_icon-tags') }}
-    {% if not USER.is_anonymous %}
+    {% if not USER.is_anonymous() %}
       {{ macros.sidebar_item(_('Missing pages'), href('wiki', 'wiki', 'missingpages'), 'fa_icon-puzzle-piece') }}
     {% endif %}
     {{ macros.sidebar_item(_('Recent changes'), href('wiki', 'wiki', 'recentchanges'), 'fa_icon-area-chart') }}

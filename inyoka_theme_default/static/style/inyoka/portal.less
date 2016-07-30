@@ -10,6 +10,23 @@
 
 .portal {
 
+  #portal-user-groupselector {
+    list-style: none;
+    padding: 0;
+    max-height: 800px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &-user-groupsetting-form {
+    label {
+      font-weight: normal;
+    }
+    > * {
+      margin-bottom: 1em;
+    }
+  }
+
   &-userinfo {
     &:extend(.table all);
     &:extend(.table-striped all);

@@ -23,7 +23,7 @@
 {% macro show_item(item) %}
   {% if user[item] and user.settings['show_'+item] %}
     <td>{{ user[item]|e }}</td>
-  {% elif user[item] and REQUEST.user.can('user_edit') %}
+  {% elif user[item] and REQUEST.user.has_perm('portal.change_user') %}
     <td class="hidden-info">{{ user[item]|e }}</td>
   {% else %}
     <td>–</td>
@@ -33,7 +33,7 @@
 {% block sidebar %}
 
   {% call macros.sidebar() %}
-    {% if request.user.can('subscribe_to_users') %}
+    {% if request.user.has_perm('portal.change_user') %}
       {% call macros.sidebar_item() %}
         {% if is_subscribed %}
           {{ macros.outer_form(csrf_token(), action=href('portal', 'user', user.username, 'unsubscribe')|e , submit_label=_('Don’t watch anymore')) }}
@@ -47,7 +47,7 @@
     {{ macros.sidebar_item(_('show posts'), href('forum', 'author', user.username)) }}
   {% endcall %}
 
-  {% if request.user.can('user_edit') %}
+  {% if request.user.has_perm('portal.change_user'') %}
     {% call macros.sidebar_admin() %}
       {{ macros.sidebar_item(_('Edit user'), href('portal', 'user', user.username, 'edit', 'profile')) }}
       {{ macros.sidebar_item(_('Edit groups'), href('portal', 'user', user.username, 'edit', 'groups')) }}
@@ -85,7 +85,7 @@
         <th>{% trans %}Jabber{% endtrans %}</th>
         {% if user.jabber and user.settings['show_jabber'] %}
           <td><a href="{{ user.jabber_url|e }}">{{ user.jabber|e }}</a></td>
-        {% elif user.jabber and REQUEST.user.can('user_edit') %}
+        {% elif user.jabber and REQUEST.user.has_perm('portal.change_user') %}
           <td class="hidden-info">
             <a href="{{ user.jabber_url|e }}">{{ user.jabber|e }}</a>
           </td>

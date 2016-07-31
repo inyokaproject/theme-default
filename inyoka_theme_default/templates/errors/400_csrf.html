@@ -2,7 +2,7 @@
     errors/400_csrf.html
     ~~~~~~~~~~~~~~~~~~~~
 
-    Rendered on CSRF attempts.
+    Rendered on failed CSRF attempts.
 
     :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
@@ -10,28 +10,52 @@
 
 {% extends 'base.html' %}
 {% block title %}
-  400 - {{ super() }}
+  {{ _('Forbidden (403)') }} - {{ super() }}
 {% endblock title %}
 
 {% block content %}
-  <h2>{% trans %}Bad request{% endtrans %}</h2>
+  <h2>{% trans %}Forbidden (403){% endtrans %}</h2>
   <p>
     {% trans %}
-      The browser did not transmit a valid control key and therefore the
-      processing has been canceled for security reasons.
+      CSRF verification failed. Request aborted.
     {% endtrans %}
   </p>
-  <p>
-    {% trans %}
-      This error usually occurs when you are trying to transfer data
-      automatically to the server. In rare cases this can also happen if
-      the browser configuration has changed while the form data was transmitted.
-    {% endtrans %}
-  </p>
-  <p>
-    {% trans %}
-      In some browsers it is possible to click on the "back" or the "reload"
-      button to request a new control key.
-    {% endtrans %}
-  </p>
+
+  {% if no_referer %}
+    <p>
+      {% trans %}
+        You are seeing this message because this HTTPS site requires a
+        'Referer header' to be sent by your Web browser, but none was
+        sent. This header is required for security reasons, to ensure
+        that your browser is not being hijacked by third parties.
+      {% endtrans %}
+    </p>
+
+    <p>
+      {% trans %}
+        If you have configured your browser to disable 'Referer' headers,
+        please re-enable them, at least for this site, for HTTPS
+        connections, or for 'same-origin' requests.
+      {% endtrans %}
+    </p>
+  {% endif %}
+
+  {% if no_cookie %}
+    <p>
+      {% trans %}
+        You are seeing this message because this site requires a CSRF
+        cookie when submitting forms. This cookie is required for
+        security reasons, to ensure that your browser is not being
+        hijacked by third parties.
+      {% endtrans %}
+    </p>
+
+    <p>
+      {% trans %}
+        If you have configured your browser to disable cookies, please
+        re-enable them, at least for this site, or for 'same-origin'
+        requests.
+      {% endtrans %}
+    </p>
+  {% endif %}
 {% endblock %}

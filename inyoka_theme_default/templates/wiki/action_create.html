@@ -21,8 +21,6 @@
 
 
 {% block content %}
-  {% call macros.outer_form(csrf_token(), form, action=href('wiki', 'wiki', 'create'),
-                             submit_label=_('Create')) %}
-    <input type="submit" name="cancel" value="{% trans %}Cancel{% endtrans %}" />
-  {% endcall %}
+  {{ macros.outer_form(csrf_token(), form, action=href('wiki', 'wiki', 'create'),
+                             submit_label=_('Create')) }}
 {% endblock %}

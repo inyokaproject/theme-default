@@ -19,8 +19,14 @@
 @import "portal.less";
 @import "forum.less";
 
-html, body {
+html {
   height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .skip-navigation {
@@ -349,20 +355,8 @@ textarea {
 .main-container {
   &:extend(.container);
 
-  @correction: 2px; /* prevents scrolling; needed because of approx. @line-height-computed (see bootstrap/variables.less, line 62)
-                       and min-height: 1px of .col-sm-3 for the sidebar */
-  @margin_sum: @header-height + @header-margin + @breadcrumb-height + @correction;
-
-  min-height: calc(~'100% - @{margin_sum}');
-  margin-bottom: @footer-height * -1;
-
-  padding-bottom: 5px;
-
-    &:after {
-      content: "";
-      display: block;
-      height: @footer-height;
-  }
+  flex: 1 0 auto; /* `0 auto` for IE11 */
+  padding-bottom: 15px;
 }
 
 .footer {

@@ -60,12 +60,15 @@
           </a>
         </h3>
       </div>
+
       <ul class="collapse {% if category.id not in hidden_categories %}in{% endif %}" id="category_{{ category.id }}">
         {% for forum, subforums in forums %}
           <a href="{{ forum|url }}" class="forum-list-item">
             <h4>{{ forum }}</h4>
             <p>{{ forum.description }}</p>
           </a>
+        {% else %}
+          <p>{% trans %}This category does not contain any forum.{% endtrans %}</p>
         {% endfor %}
       </ul>
     </div>

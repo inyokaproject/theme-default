@@ -1,0 +1,20 @@
+{#
+    forum/welcome.html
+    ~~~~~~~~~~~~~~~~~~
+
+    Show the rules for the community area.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'forum/base.html' %}
+
+{% block content %}
+  <h1>{{ forum.welcome_title|e }}</h1>
+  {{ forum.welcome_text_rendered }}
+
+  {% call macros.outer_form(csrf_token(), action=forum|url('welcome'), button_visible=False) %}
+    <input type="submit" name="accept" value="{% trans %}Read and accepted{% endtrans %}" />
+    <input type="submit" name="cancel" value="{% trans %}Reject{% endtrans %}" />
+  {% endcall %}
+{% endblock %}

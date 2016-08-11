@@ -125,6 +125,10 @@
             </div>
           </div>
         </li>
+      {% else %}
+        {% trans link=forum|url('newtopic') %}
+            There are no topics. <a href="{{ link }}">Create</a> the first one now!
+        {% endtrans %}
       {% endfor %}
     </ul>
   </div>

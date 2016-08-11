@@ -26,10 +26,11 @@
 {% block breadcrumb %}
   {{ super() }}
 
-  {% if forum.parent.parent %}
-    {{ macros.breadcrumb_item(forum.parent, forum.parent|url) }}
-  {% endif %}
-  {{ macros.breadcrumb_item(forum) }}
+  {% for parent in forum.parents|reverse %}
+    {{ macros.breadcrumb_item(parent.name, parent|url) }}
+  {% endfor %}
+
+  {{ macros.breadcrumb_item(forum, forum|url) }}
 {% endblock %}
 
 {% block sidebar %}

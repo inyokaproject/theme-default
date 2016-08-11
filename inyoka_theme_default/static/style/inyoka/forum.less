@@ -62,6 +62,18 @@
       &:extend(.list-group);
       &:extend(.panel > .list-group);
     }
+    &-created {
+      &:extend(.text-muted);
+    }
+    &-last-post {
+      &:extend(.text-muted);
+      .make-sm-column(4);
+      .make-xs-column(12);
+    }
+    &-link {
+      .make-sm-column(8);
+      .make-xs-column(12);
+    }
     &-item {
       &:extend(.list-group-item);
       &:extend(.panel > .list-group .list-group-item);

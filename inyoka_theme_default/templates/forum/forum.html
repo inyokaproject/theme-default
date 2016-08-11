@@ -59,6 +59,7 @@
 
 {% block content %}
   {{ rendered_pagination }}
+
   {% if subforums %}
     <div class="forum-list">
       <div class="forum-list-heading">
@@ -68,22 +69,25 @@
           </a>
         </h1>
       </div>
+
       <ul class="collapse in" id="subforums">
         {% for forum in subforums %}
           <a href="{{ forum|url }}" class="forum-list-item">
-            <h4>{{ forum }}</h4>
+            <h2>{{ forum }}</h2>
             <p>{{ forum.description }}</p>
           </a>
         {% endfor %}
       </ul>
     </div>
   {% endif %}
+
   <div class="forum-topic-list">
     <div class="forum-topic-list-heading">
-      <h3>
+      <h1>
         {% trans %}Topics{% endtrans %}
-      </h3>
+      </h1>
     </div>
+
     <ul>
       {% for topic in topics %}
         <li class="forum-topic-list-item" title="{{ topic.first_post.text|truncate(500)|e }}" data-toggle="tooltip"

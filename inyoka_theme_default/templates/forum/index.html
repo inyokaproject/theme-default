@@ -48,7 +48,7 @@
   {% for category, forums in forum_hierarchy %}
     <div class="forum-list">
       <div class="forum-list-heading">
-        <h3>
+        <h1>
           <a href="#" data-toggle="collapse" data-target="#category_{{ category.id }}">
             {{ category }}
           </a>
@@ -58,13 +58,13 @@
               <span class="fa_icon-pencil"></span>
             </a>
           {% endif %}
-        </h3>
+        </h1>
       </div>
 
       <ul class="collapse {% if category.id not in hidden_categories %}in{% endif %}" id="category_{{ category.id }}">
         {% for forum, subforums in forums %}
           <a href="{{ forum|url }}" class="forum-list-item">
-            <h4>{{ forum }}</h4>
+            <h2>{{ forum }}</h2>
             <p>{{ forum.description }}</p>
           </a>
         {% else %}

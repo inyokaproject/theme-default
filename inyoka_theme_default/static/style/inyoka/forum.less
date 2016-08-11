@@ -105,8 +105,17 @@
     .table-responsive();
 
     > table {
-      .table();
-      .table-striped();
+      td {
+        padding: @table-cell-padding;
+      }
+
+      tbody tr:nth-of-type(2n) {
+        border-bottom: 1px solid @table-border-color;
+      }
+
+      thead {
+        border-bottom: 2px solid @table-border-color;
+      }
     }
     &-content {
       white-space: pre-wrap;

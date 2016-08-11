@@ -34,19 +34,27 @@
 {% endblock %}
 
 {% block sidebar %}
-  {% call macros.sidebar() %}
-    {% if is_subscribed %}
-      {{ macros.sidebar_item(_('Unsubscribe'), forum|url('unsubscribe')) }}
-    {% else %}
-      {{ macros.sidebar_item(_('Subscribe'), forum|url('subscribe')) }}
-    {% endif %}
-    {{ macros.sidebar_item(_('New topic'), forum|url('newtopic')) }}
-    {{ macros.sidebar_item(_('Mark as read'), forum|url('markread')) }}
-  {% endcall %}
+  {% if USER.is_authenticated() %}
+    {% call macros.sidebar() %}
+      {% if is_subscribed %}
+        {{ macros.sidebar_item(_('Unsubscribe'), forum|url('unsubscribe')) }}
+      {% else %}
+        {{ macros.sidebar_item(_('Subscribe'), forum|url('subscribe')) }}
+      {% endif %}
 
-  {% call macros.sidebar_admin() %}
-    {{ macros.sidebar_item(_('Edit forum'), forum|url('edit')) }}
-  {% endcall %}
+      {% if can_create %}
+        {{ macros.sidebar_item(_('New topic'), forum|url('newtopic')) }}
+      {% endif %}
+
+      {{ macros.sidebar_item(_('Mark as read'), forum|url('markread')) }}
+    {% endcall %}
+
+    {% if USER.can('forum_edit') %}
+      {% call macros.sidebar_admin() %}
+        {{ macros.sidebar_item(_('Edit forum'), forum|url('edit')) }}
+      {% endcall %}
+    {% endif %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}

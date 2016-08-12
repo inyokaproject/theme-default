@@ -18,9 +18,30 @@
 ] %}
 
 {% block sidebar %}
-  {% call macros.sidebar_admin() %}
-    {{ macros.sidebar_item(_('New Category'), href('forum', 'forum', 'new')) }}
+  {% call macros.sidebar() %}
+    {{ macros.sidebar_item(_('Mark all forums as read'), href('forum', 'markread')) }}
   {% endcall %}
+
+  {% call macros.sidebar(_('Filter')) %}
+    {% if USER.is_authenticated() %}
+      {{ macros.sidebar_item(_('Involved topics'), href('forum', 'egosearch')) }}
+      {{ macros.sidebar_item(_('My posts'), href('forum', 'author', USER.username|e)) }}
+      {{ macros.sidebar_item(_('Created topics'), href('forum', 'topic_author', USER.username)|e) }}
+    {% endif %}
+
+    {{ macros.sidebar_item(_('New posts'), href('forum', 'newposts')) }}
+    {{ macros.sidebar_item(_('Unanswered topics'), href('forum', 'unanswered')) }}
+    {{ macros.sidebar_item(_('Unsolved topics'), href('forum', 'unsolved')) }}
+    {{ macros.sidebar_item(_('24 hours'), href('forum', 'last24')) }}
+    {{ macros.sidebar_item(_('12 hours'), href('forum', 'last12')) }}
+    {{ macros.sidebar_item(_('6 hours'), href('forum', 'last6')) }}
+  {% endcall %}
+
+  {% if USER.can('forum_edit') %}
+    {% call macros.sidebar_admin() %}
+      {{ macros.sidebar_item(_('New Category'), href('forum', 'forum', 'new')) }}
+    {% endcall %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}

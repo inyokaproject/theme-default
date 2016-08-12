@@ -51,9 +51,12 @@
         <h3>
           <a href="#" data-toggle="collapse" data-target="#category_{{ category.id }}">
             {{ category }}
-            <a class="forum-list-edit-category" href="{{ category|url('edit') }}">
-              <span class="fa_icon-pencil"></span>
-            </a>
+
+            {% if USER.can('forum_edit') %}
+              <a class="forum-list-edit-category" href="{{ category|url('edit') }}">
+                <span class="fa_icon-pencil"></span>
+              </a>
+            {% endif %}
           </a>
         </h3>
       </div>

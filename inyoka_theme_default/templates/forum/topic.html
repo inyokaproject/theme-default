@@ -64,12 +64,12 @@
           </a>
         </span>
         <a href="{{ post.author|url }}">{{ post.author }}</a>
-
-        <div class="clearfix"></div>
       </div>
+
       <div class="forum-post-body">
         {{ post.get_text() }}
       </div>
+
       <div class="forum-post-footer">
         <div class="button-group"{% if topic.locked %} data-toggle="tooltip" data-placement="right"
              title="{% trans %}The topic is locked{% endtrans %}"{% endif %}>
@@ -88,11 +88,11 @@
               <span class="fa_icon-caret-down"></span>
             </button>
             <ul class="staff-dropdown-menu">
-              <li><a href="#">{% trans %}Edit{% endtrans %}</a></li>
+              <li><a href="{{ post|url('edit') }}">{% trans %}Edit{% endtrans %}</a></li>
               {% if post.hidden %}
-                <li><a href="#">{% trans %}Restore{% endtrans %}</a></li>
+                <li><a href="{{ post|url('restore') }}">{% trans %}Restore{% endtrans %}</a></li>
               {% else %}
-                <li><a href="#">{% trans %}Hide{% endtrans %}</a></li>
+                <li><a href="{{ post|url('hide') }}">{% trans %}Hide{% endtrans %}</a></li>
               {% endif %}
               {% if can_moderate and topic.locked %}
                 <li><a href="{{ post|url('quote') }}">{% trans %}Quote{% endtrans %}</a></li>

@@ -20,9 +20,6 @@
   {{ forum }} - {{ super() }}
 {% endblock title %}
 
-{% import 'macros.html' as macros %}
-{% set rendered_pagination = macros.render_pagination(pagination) %}
-
 {% block breadcrumb %}
   {{ super() }}
 
@@ -58,6 +55,7 @@
 {% endblock %}
 
 {% block content %}
+  {% set rendered_pagination = macros.render_pagination(pagination) %}
   {{ rendered_pagination }}
 
   {% if subforums %}
@@ -88,46 +86,7 @@
       </h1>
     </div>
 
-    <ul>
-      {% for topic in topics %}
-        <li class="forum-topic-list-item">
-          <div class="row">
-            <a href="{{ topic|url }}" class="forum-topic-list-link">
-              {% if topic.sticky %}<strong>{% trans %}Sticky:{% endtrans %}</strong>{% endif %}
-              {% if topic.has_poll %}<strong>{% trans %}Poll:{% endtrans %}</strong>{% endif %}
-              {{ topic }}
-
-              <div class="forum-topic-list-created">
-                {% trans %}
-                  Created on:
-                {% endtrans %}
-                <time datetime="{{ topic.first_post.pub_date|datetime('c') }}">
-                  {{ topic.first_post.pub_date|datetime }}
-                </time>
-              </div>
-            </a>
-
-            <div class="forum-topic-list-last-post">
-              {% trans %}
-                Last post:
-              {% endtrans %}
-              <a href="{{ topic.last_post|url }}">
-                <time datetime="{{ topic.last_post.pub_date|datetime('c') }}">
-                  {{ topic.last_post.pub_date|datetime }}
-                </time>
-              </a>
-              {% trans author=topic.last_post.author|e, link=topic.last_post.author|url %}
-                by <a href="{{ link }}">{{ author }}</a>
-              {% endtrans %}
-            </div>
-          </div>
-        </li>
-      {% else %}
-        {% trans link=forum|url('newtopic') %}
-            There are no topics. <a href="{{ link }}">Create</a> the first one now!
-        {% endtrans %}
-      {% endfor %}
-    </ul>
+    {% include 'forum/topiclist-ul-body.html' %}
   </div>
 
   {{ rendered_pagination }}

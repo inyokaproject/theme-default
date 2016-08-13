@@ -85,6 +85,25 @@
         &:extend(.list-group-item:last-child);
         &:extend(.panel > .list-group:last-child .list-group-item:last-child);
       }
+
+      &.with-forum {
+        .forum-topic-list {
+          &-last-post {
+            &:extend(.text-muted);
+            .make-sm-column(3);
+            .make-xs-column(12);
+          }
+          &-location {
+            &:extend(.text-muted);
+            .make-sm-column(3);
+            .make-xs-column(12);
+          }
+          &-link {
+            .make-sm-column(6);
+            .make-xs-column(12);
+          }
+        }
+      }
     }
   }
 

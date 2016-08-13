@@ -1,0 +1,89 @@
+{#
+    forum/postlist.html
+    ~~~~~~~~~~~~~~~~~~~
+
+    Show a list of all posts for a given user.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'forum/base.html' %}
+
+{% block title %}
+  {{ title }} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {% if forum %}
+    {{ macros.breadcrumb_item(forum.name, href('forum', 'author', username|e, 'forum', forum.slug)) }}
+  {% elif topic %}
+    {{ macros.breadcrumb_item(topic.title, href('forum', 'author', username|e, 'topic', topic.slug)) }}
+  {% endif %}
+  {{ macros.breadcrumb_item(_('Posts by') + ' ' + username, href('forum', 'author', username|e)) }}
+{% endblock %}
+
+
+{% block content %}
+  {% set rendered_pagination = macros.render_pagination(pagination) %}
+  {{ rendered_pagination }}
+
+  <div class="forum-topic-list">
+    <div class="forum-topic-list-heading">
+      <h1>
+        {{ title }}
+      </h1>
+    </div>
+
+    <ul>
+      {% for post in posts if (not post.hidden or not post.topic.hidden
+                                or can_moderate(post.topic)) %}
+        <li class="forum-topic-list-item">
+          <div class="row">
+            <div class="forum-topic-list-post">
+              {% if can_moderate(post.topic) and post.hidden %}{% trans %}[Hidden]{% endtrans %}{% endif %}
+              <a href="{{ post|url }}">
+                {% trans date=post.pub_date|datetime %}
+                  Post on {{ date }}
+                {% endtrans %}
+              </a>
+            </div>
+
+            <div class="forum-topic-list-topic">
+              <p class="topic_title">
+                {% trans %}Topic: {% endtrans %}<a href="{{ post.topic|url }}">{{ post.topic.title|e }}</a>
+              </p>
+              <p class="forum-topic-list-topic-all-posts">
+                {% trans author=username|e,
+                      userlink=href('portal', 'user', username|e),
+                      link=href('forum', 'author', username|e, 'topic', post.topic.slug) %}
+                  <a href="{{ link }}">Posts by {{ author }} in this topic</a>
+                {% endtrans %}
+              </p>
+            </div>
+
+            <div class="forum-topic-list-forum">
+              <p class="topic_title">
+                {% trans %}Forum: {% endtrans %}<a href="{{ post.topic.forum|url }}">{{ post.topic.forum.name|e }}</a>
+              </p>
+              <p class="forum-topic-list-forum-all-posts">
+                {% trans author=username|e,
+                      userlink=href('portal', 'user', username|e),
+                      link=href('forum', 'author', username|e, 'forum', post.topic.forum.slug) %}
+                  <a href="{{ link }}">Posts by {{ author }} in this forum</a>
+                {% endtrans %}
+              </p>
+            </div>
+          </div>
+        </li>
+      {% else %}
+        <li>
+          {% trans %}No topics were found.{% endtrans %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  {{ rendered_pagination }}
+{% endblock %}

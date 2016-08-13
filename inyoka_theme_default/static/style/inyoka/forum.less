@@ -74,6 +74,28 @@
       .make-sm-column(8);
       .make-xs-column(12);
     }
+
+    &-post {
+      .make-sm-column(4);
+      .make-xs-column(12);
+    }
+    &-topic {
+      .make-sm-column(4);
+      .make-xs-column(12);
+
+      &-all-posts a {
+        &:extend(.text-muted);
+      }
+    }
+    &-forum {
+      .make-sm-column(4);
+      .make-xs-column(12);
+
+      &-all-posts a {
+        &:extend(.text-muted);
+      }
+    }
+
     &-item {
       &:extend(.list-group-item);
       &:extend(.panel > .list-group .list-group-item);

@@ -45,12 +45,27 @@
 
       {{ macros.sidebar_item(_('Mark as read'), forum|url('markread')) }}
     {% endcall %}
+  {% endif %}
 
-    {% if USER.can('forum_edit') %}
-      {% call macros.sidebar_admin() %}
-        {{ macros.sidebar_item(_('Edit forum'), forum|url('edit')) }}
-      {% endcall %}
+  {% call macros.sidebar(_('Filter (just this forum)')) %}
+    {% if USER.is_authenticated() %}
+      {{ macros.sidebar_item(_('Involved topics'), href('forum', 'egosearch', forum.slug|e)) }}
+      {{ macros.sidebar_item(_('My posts'), href('forum', 'author', USER.username|e, 'forum', forum.slug|e)) }}
+      {{ macros.sidebar_item(_('Created topics'), href('forum', 'topic_author', USER.username)|e, forum.slug|e) }}
     {% endif %}
+
+    {{ macros.sidebar_item(_('New posts'), href('forum', 'newposts', forum.slug|e)) }}
+    {{ macros.sidebar_item(_('Unanswered topics'), href('forum', 'unanswered', forum.slug|e)) }}
+    {{ macros.sidebar_item(_('Unsolved topics'), href('forum', 'unsolved', forum.slug|e)) }}
+    {{ macros.sidebar_item(_('24 hours'), href('forum', 'last24', forum.slug|e)) }}
+    {{ macros.sidebar_item(_('12 hours'), href('forum', 'last12', forum.slug|e)) }}
+    {{ macros.sidebar_item(_('6 hours'), href('forum', 'last6', forum.slug|e)) }}
+  {% endcall %}
+
+  {% if USER.can('forum_edit') %}
+    {% call macros.sidebar_admin() %}
+      {{ macros.sidebar_item(_('Edit forum'), forum|url('edit')) }}
+    {% endcall %}
   {% endif %}
 {% endblock %}
 

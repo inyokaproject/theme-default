@@ -122,6 +122,9 @@
       &:extend(.panel-heading);
       &:extend(.panel-default > .panel-heading);
     }
+    &:target > &-heading {
+      background-color: @active-target-bg;
+    }
     & > &-body {
       &:extend(.panel-body);
     }

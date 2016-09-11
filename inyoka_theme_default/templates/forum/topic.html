@@ -34,6 +34,7 @@
 {% endblock %}
 
 {% block sidebar %}
+  {{ super() }}
 
   {% if USER.is_authenticated() %}
     {% call macros.sidebar() %}
@@ -84,6 +85,7 @@
 {% block content %}
   {% set rendered_pagination = macros.render_pagination(pagination) %}
 
+  <h1>{{ topic.title|e }}</h1>
   {{ rendered_pagination }}
   {% for post in posts %}
     <div class="forum-post {% if post.hidden %}forum-post-muted{% endif %}" id="post-{{ post.id }}">

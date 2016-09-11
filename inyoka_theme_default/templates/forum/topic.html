@@ -96,6 +96,12 @@
 
       <div class="forum-post-body">
         {{ post.get_text() }}
+
+        {% if post.author.signature and not USER.settings['hide_signatures'] %}
+          <div class="forum-post-body-signature">
+            {{ post.author.signature_rendered }}
+          </div>
+        {% endif %}
       </div>
 
       <div class="forum-post-footer">

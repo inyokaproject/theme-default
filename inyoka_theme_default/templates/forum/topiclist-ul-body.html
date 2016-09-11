@@ -1,5 +1,5 @@
 <ul>
-  {% for topic in topics if (not topic.hidden or can_moderate(topic)) %}
+  {% for topic in topics if (not topic.hidden or can_moderate) %}
     <li class="forum-topic-list-item {% if show_forum %}with-forum{% endif %}">
       <div class="row">
         <a href="{{ topic|url }}" class="forum-topic-list-link">

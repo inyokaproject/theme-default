@@ -26,9 +26,9 @@
 {% block breadcrumb %}
   {{ super() }}
 
-  {% if topic.forum.parent.parent %}
-    {{ macros.breadcrumb_item('…') }}
-  {% endif %}
+  {% for parent in forum.parents|reverse %}
+    {{ macros.breadcrumb_item(parent.name, parent|url) }}
+  {% endfor %}
   {{ macros.breadcrumb_item(topic.forum, topic.forum|url) }}
   {{ macros.breadcrumb_item(topic, topic|url) }}
 {% endblock %}

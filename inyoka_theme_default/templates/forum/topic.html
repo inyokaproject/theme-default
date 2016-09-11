@@ -34,23 +34,51 @@
 {% endblock %}
 
 {% block sidebar %}
-  {% call macros.sidebar() %}
-    {{ macros.sidebar_item(_('Reply'), topic|url('reply'), 'fa_icon-comments-o') }}
 
-    {% if is_subscribed %}
-      {{ macros.sidebar_item(_('Unsubscribe'), topic|url('unsubscribe')) }}
-    {% else %}
-      {{ macros.sidebar_item(_('Subscribe'), topic|url('subscribe')) }}
-    {% endif %}
+  {% if USER.is_authenticated() %}
+    {% call macros.sidebar() %}
+      {% if (can_reply and not topic.locked) or can_moderate %}
+        {{ macros.sidebar_item(_('Reply'), topic|url('reply'), 'fa_icon-comments-o') }}
+      {% endif %}
 
-    {% if topic.solved %}
-      {{ macros.sidebar_item(_('Mark as unsolved'), topic|url('unsolve'), 'fa_icon-remove') }}
-    {% else %}
-      {{ macros.sidebar_item(_('Mark as solved'), topic|url('solve'), 'fa_icon-check') }}
-    {% endif %}
+      {% if is_subscribed %}
+        {{ macros.sidebar_item(_('Unsubscribe'), topic|url('unsubscribe'), 'fa_icon-bell-slash') }}
+      {% else %}
+        {{ macros.sidebar_item(_('Subscribe'), topic|url('subscribe'), 'fa_icon-bell') }}
+      {% endif %}
 
-    {{ macros.sidebar_item(_('Report'), topic|url('report'), 'fa_icon-exclamation-triangle') }}
-  {% endcall %}
+      {% if topic.solved %}
+        {{ macros.sidebar_item(_('Mark as unsolved'), topic|url('unsolve'), 'fa_icon-remove') }}
+      {% else %}
+        {{ macros.sidebar_item(_('Mark as solved'), topic|url('solve'), 'fa_icon-check') }}
+      {% endif %}
+
+      {{ macros.sidebar_item(_('Report'), topic|url('report'), 'fa_icon-exclamation-triangle') }}
+    {% endcall %}
+  {% endif %}
+
+  {% if can_moderate %}
+    {% call macros.sidebar_admin() %}
+      {{ macros.sidebar_item(_('Move'), topic|url('move'), 'fa_icon-arrow-circle-right') }}
+
+      {{ macros.sidebar_item(_('Split'), topic|url('split'), 'fa_icon-scissors') }}
+
+      {% if topic.locked %}
+        {{ macros.sidebar_item(_('Unlock'), topic|url('unlock'), 'fa_icon-unlock') }}
+      {% else %}
+        {{ macros.sidebar_item(_('Lock'), topic|url('lock'), 'fa_icon-lock') }}
+      {% endif %}
+
+      {% if topic.hidden %}
+        {{ macros.sidebar_item(_('Restore'), topic|url('restore'), 'fa_icon-eye') }}
+        {{ macros.sidebar_item(_('Delete'), topic|url('delete'), 'fa_icon-trash') }}
+        {{ macros.sidebar_item(_('Mark ham'), topic.first_post|url('ham'), 'fa_icon-recycle') }}
+      {% else %}
+        {{ macros.sidebar_item(_('Hide'), topic|url('hide'), 'fa_icon-eye-slash') }}
+        {{ macros.sidebar_item(_('Mark spam'), topic.first_post|url('spam'), 'fa_icon-fire') }}
+      {% endif %}
+    {% endcall %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}

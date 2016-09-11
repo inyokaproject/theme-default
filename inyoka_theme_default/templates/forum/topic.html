@@ -82,6 +82,8 @@
 {% endblock %}
 
 {% block content %}
+  {% set rendered_pagination = macros.render_pagination(pagination) %}
+
   {{ rendered_pagination }}
   {% for post in posts %}
     <div class="forum-post {% if post.hidden %}forum-post-muted{% endif %}" id="post-{{ post.id }}">
@@ -137,5 +139,6 @@
       </div>
     </div>
   {% endfor %}
+
   {{ rendered_pagination }}
 {% endblock %}

@@ -86,6 +86,24 @@
   {% set rendered_pagination = macros.render_pagination(pagination) %}
 
   <h1>{{ topic.title|e }}</h1>
+
+  {% if discussions %}
+    {% macro render_article_list(discussions) %}
+      {% for article in discussions %}
+        <a class="article_discussion_list" href="{{ article|url }}">{{ article.name|e }}</a>
+      {% if not loop.last %},{% endif %}
+      {% endfor %}
+    {% endmacro %}
+
+    {% call macros.render_message('info') %}
+      {% trans count=discussions|count, article_list=render_article_list(discussions) %}
+        This topic is the discussion of the article {{ article_list }}.
+      {% pluralize %}
+        This topic is the discussion of the articles {{ article_list }}.
+      {% endtrans %}
+    {% endcall %}
+  {% endif %}
+
   {{ rendered_pagination }}
   {% for post in posts %}
     <div class="forum-post {% if post.hidden %}forum-post-muted{% endif %}" id="post-{{ post.id }}">

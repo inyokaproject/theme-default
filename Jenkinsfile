@@ -1,3 +1,14 @@
+#!/usr/bin/env groovy
+
+properties([buildDiscarder(logRotator(
+                                      artifactDaysToKeepStr: '',
+                                      artifactNumToKeepStr: '',
+                                      daysToKeepStr: '',
+                                      numToKeepStr: '2')),
+                          pipelineTriggers([])
+])
+
+
 node {
     stage 'Checkout'
     checkout scm

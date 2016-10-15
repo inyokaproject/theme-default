@@ -38,7 +38,7 @@
         {% call macros.sidebar_item() %}
           <a href="{{ blog|url|e }}">{{ blog.name|e }}</a>
 
-          {% if USER.can('category_edit') %}
+          {% if USER.has_perm('planet.change_blog') %}
             <a href="{{ blog|url('edit') }}"> <span class="fa_icon-pencil"></span></a>
           {% endif %}
         {% endcall %}
@@ -46,7 +46,7 @@
     {% endcall %}
   {% endif %}
 
-  {% if USER.can('blog_edit') %}
+  {% if USER.has_perm('planet.change_blog') %}
     {% call macros.sidebar_admin() %}
       {{ macros.sidebar_item(_('new blog'), href('planet', 'blog', 'new')) }}
       {{ macros.sidebar_item(_('Bloglist'), href('planet', 'blogs')) }}

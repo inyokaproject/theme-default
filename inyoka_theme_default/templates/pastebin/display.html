@@ -26,7 +26,7 @@
     {{ macros.sidebar_item(_('Display entry as raw text'), entry|url('raw')) }}
   {% endcall %}
 
-  {% if USER.can('manage_pastebin') %}
+  {% if USER.has_perm('pastebin.change_entry') %}
     {% call macros.sidebar_admin() %}
       {{ macros.sidebar_item(_('Delete entry'), entry|url('delete')) }}
     {% endcall %}

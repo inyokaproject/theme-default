@@ -47,10 +47,10 @@
   {% endif %}
 
   {% call macros.sidebar(_('Overview')) %}
-    {{ macros.sidebar_item(_('Tag cloud'), href('wiki', 'wiki', 'tagcloud')) }}
+    {{ macros.sidebar_item(_('Tag cloud'), href('wiki', 'wiki', 'tagcloud'), 'fa_icon-tags') }}
     {% if not USER.is_anonymous %}
-      {{ macros.sidebar_item(_('Missing pages'), href('wiki', 'wiki', 'missingpages')) }}
+      {{ macros.sidebar_item(_('Missing pages'), href('wiki', 'wiki', 'missingpages'), 'fa_icon-puzzle-piece') }}
     {% endif %}
-    {{ macros.sidebar_item(_('Recent changes'), href('wiki', 'wiki', 'recentchanges')) }}
+    {{ macros.sidebar_item(_('Recent changes'), href('wiki', 'wiki', 'recentchanges'), 'fa_icon-area-chart') }}
   {% endcall %}
 {% endblock %}

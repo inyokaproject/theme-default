@@ -8,7 +8,7 @@
     :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
-{% extends 'wiki/base.html' %}
+{% extends 'wiki/base_sidebar.html' %}
 
 {% block title %}
   {% trans %}Attachements{% endtrans %} – {{ super() }}
@@ -52,7 +52,7 @@
       {% endfor %}
     </ul>
   {% else %}
-    <p>{% trans %}There are no attachments yet for this site.{% endtrans %}</p>
+    <p>{% trans %}There haven't been any attachments for this site uploaded yet.{% endtrans %}</p>
   {% endif %}
 
   <h1>{% trans %}Add attachment{% endtrans %}</h1>

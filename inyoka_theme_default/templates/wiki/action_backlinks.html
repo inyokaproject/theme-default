@@ -4,10 +4,10 @@
 
     Display a list of backlinks to a page.
 
-    :copyright: (c) 2010-2016 by the Inyoka Team, see AUTHORS for more details.
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
-{% extends 'wiki/base.html' %}
+{% extends 'wiki/base_sidebar.html' %}
 
 {% block title %}
   {% trans %}Backlinks{% endtrans %} – {{ super() }}
@@ -37,7 +37,7 @@
   {% if page.embedders %}
     <p>
       {% trans %}
-        The following pages are embedding this articles as attachment.
+        The following pages embed this articles as attachment.
       {% endtrans %}
       {% if not page.rev.attachment %}
         {% trans %}

@@ -11,7 +11,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  {{ _('Portal') }} - {{ super() }}
+  {{ _('Portal') }} – {{ super() }}
 {% endblock %}
 
 {% set active_app = 'portal' %}
@@ -32,23 +32,20 @@
     {{ macros.sidebar_item(_('Calendar'), href('portal', 'calendar')) }}
   {% endcall %}
 
-  {% if USER.can('static_page_edit')
-    or USER.can('static_file_edit')
-    or USER.can('configuration_edit')
-    or USER.can('markup_css_edit')
+  {% if USER.has_perm('portal.change_staticpage')
+    or USER.has_perm('portal.change_staticfile')
+    or USER.has_perm('portal.change_storage')
   %}
     {% call macros.sidebar_admin() %}
-      {% if USER.can('configuration_edit') %}
-        {{ macros.sidebar_item(_('General'),href('portal', 'config')) }}
+      {% if USER.has_perm('portal.change_storage') %}
+        {{ macros.sidebar_item(_('General'), href('portal', 'config')) }}
       {% endif %}
-      {% if USER.can('markup_css_edit') %}
-        {{ macros.sidebar_item(_('Stylesheets'),href('portal', 'styles')) }}
+      {% if USER.has_perm('portal.change_staticpage') %}
+        {{ macros.sidebar_item(_('Stylesheets'), href('portal', 'styles')) }}
+        {{ macros.sidebar_item(_('Static pages'), href('portal', 'pages')) }}
       {% endif %}
-      {% if USER.can('static_page_edit') %}
-        {{ macros.sidebar_item(_('Static pages'),href('portal', 'pages')) }}
-      {% endif %}
-      {% if USER.can('static_file_edit') %}
-        {{ macros.sidebar_item(_('Static files'),href('portal', 'files')) }}
+      {% if USER.has_perm('portal.change_staticfile') %}
+        {{ macros.sidebar_item(_('Static files'), href('portal', 'files')) }}
       {% endif %}
     {% endcall %}
   {% endif %}

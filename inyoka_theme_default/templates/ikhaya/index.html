@@ -49,7 +49,7 @@
           {% call macros.sidebar_item() %}
             <a href="{{ category|url }}">{{ category.name|e }}</a>
 
-            {% if USER.can('category_edit') %}
+            {% if USER.has_perm('ikhaya.change_category"') %}
               <a href="{{ href('ikhaya', 'category', category.slug, 'edit') }}"><span class="fa_icon-pencil"></span></a>
             {% endif %}
           {% endcall %}
@@ -61,13 +61,13 @@
     {{ macros.sidebar_item(_('Archive'), href('ikhaya', 'archive'), 'fa_icon-archive') }}
   {% endcall %}
 
-  {% if USER.can('article_edit') or USER.can('category_edit') %}
+  {% if USER.has_perm('ikhaya.change_article') or USER.has_perm('ikhaya.change_category"') %}
     {% call macros.sidebar_admin() %}
-      {% if USER.can('article_edit') %}
+      {% if USER.has_perm('ikhaya.change_article') %}
         {{ macros.sidebar_item(_('New article'), href('ikhaya', 'article', 'new')) }}
       {% endif %}
 
-      {% if USER.can('category_edit') %}
+      {% if USER.has_perm('ikhaya.change_category"') %}
         {{ macros.sidebar_item(_('Add category'), href('ikhaya', 'category', 'new')) }}
       {% endif %}
     {% endcall %}
@@ -131,7 +131,7 @@
               {% endif %}
             </li>
 
-            {% if USER.can('article_edit') %}
+            {% if USER.has_perm('ikhaya.change_article') %}
               <li>
                 <a href="{{ article|url('edit') }}">
                   {% trans %}Edit{% endtrans %}

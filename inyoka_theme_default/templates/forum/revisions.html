@@ -1,0 +1,55 @@
+{#
+    forum/revisions.html
+    ~~~~~~~~~~~~~~~~~~~~
+
+    This page shows all old revisions of a post and gives the moderator the
+    possibility to restore it.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'forum/base.html' %}
+
+{% block title %}
+  {{ post.topic.title }} – {% trans %}Old revisions{% endtrans %}
+  – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(post.topic.title, post.topic|url) }}
+  {{ macros.breadcrumb_item(_('Old revisions'), post|url('revisions')) }}
+{% endblock %}
+
+
+{% block content %}
+  {% for rev in revisions %}
+    <div class="forum-post {% if rev.post.hidden %}forum-post-muted{% endif %}">
+      <div class="forum-post-heading">
+        <a href="{{ post|url }}">
+          <time datetime="{{ rev.store_date|datetime('c') }}">
+            {{ rev.store_date|datetime }}
+          </time>
+
+          {% if loop.first %}
+            {% trans %}(Current revision){% endtrans %}
+          {% endif %}
+        </a>
+      </div>
+
+      <div class="forum-post-body">
+        {{ rev.text_rendered }}
+      </div>
+      
+      <div class="forum-post-footer">
+        <div class="button-group">
+          <a href="{{ rev|url('restore') }}"  class="btn btn-default">
+            {% trans %}Restore{% endtrans %}
+          </a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+  
+{% endblock %}

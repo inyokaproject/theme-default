@@ -105,6 +105,11 @@
   {% endif %}
 
   {{ rendered_pagination }}
+
+  {% if polls %}
+    {% include 'forum/topic__polls.html' %}
+  {% endif %}
+
   {% for post in posts %}
     <div class="forum-post {% if post.hidden %}forum-post-muted{% endif %}" id="post-{{ post.id }}">
       <div class="forum-post-heading">

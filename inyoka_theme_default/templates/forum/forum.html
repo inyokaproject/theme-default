@@ -62,7 +62,7 @@
     {{ macros.sidebar_item(_('6 hours'), href('forum', 'last6', forum.slug|e)) }}
   {% endcall %}
 
-  {% if USER.can('forum_edit') %}
+  {% if USER.has_perm('forum.change_forum') %}
     {% call macros.sidebar_admin() %}
       {{ macros.sidebar_item(_('Edit forum'), forum|url('edit')) }}
     {% endcall %}

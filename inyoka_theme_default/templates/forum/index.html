@@ -37,7 +37,7 @@
     {{ macros.sidebar_item(_('6 hours'), href('forum', 'last6')) }}
   {% endcall %}
 
-  {% if USER.can('forum_edit') %}
+  {% if USER.has_perm('forum.change_forum') %}
     {% call macros.sidebar_admin() %}
       {{ macros.sidebar_item(_('New Category'), href('forum', 'forum', 'new')) }}
     {% endcall %}
@@ -53,7 +53,7 @@
             {{ category }}
           </a>
 
-          {% if USER.can('forum_edit') %}
+          {% if USER.has_perm('forum.change_forum') %}
             <a class="forum-list-edit-category" href="{{ category|url('edit') }}">
               <span class="fa_icon-pencil-square-o"></span>
             </a>

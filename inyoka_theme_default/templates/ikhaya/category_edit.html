@@ -22,7 +22,7 @@
 
 {% block sidebar %}
   {% call macros.sidebar() %}
-    {% if USER.can('static_file_edit') %}
+    {% if USER.has_perm('portal.change_staticfile') %}
       {{ macros.sidebar_item(_('Upload new icon'), href('portal', 'files', 'new')) }}
     {% endif %}
   {% endcall %}

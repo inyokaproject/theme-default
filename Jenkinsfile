@@ -15,10 +15,8 @@ node {
     }
 
     stage('Build virtualenv') {
-      sh '''virtualenv --no-download venv
+      sh '''virtualenv venv
       . ./venv/bin/activate
-      # Workaround for pip, because it will hang forever when not updated and using the cache.
-      pip install --upgrade pip --no-cache-dir
       pip install -e .
       pip install -r tests/requirements.txt'''
     }

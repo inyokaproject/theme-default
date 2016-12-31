@@ -2,7 +2,7 @@
   "name": "theme-default",
   "private": true,
   "dependencies": {
-    "bootstrap": "~3.3.2",
-    "fontawesome": "^4.3.0"
+    "bootstrap": "^3.3.7",
+    "fontawesome": "^4.7.0"
   }
 }

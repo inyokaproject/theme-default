@@ -49,17 +49,6 @@
     <div>{% trans %}Date{% endtrans %}</div>
     <div>{{ entry.pub_date|datetime }}</div>
 
-    {% if entry.referrer|length %}
-      <div>{% trans %}Pages that are referencing this entry{% endtrans %}</div>
-      <div>
-        <ul>
-          {% for link in entry.referrer_list %}
-            <li>{{ link|urlize(60) }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
-
     <div>{% trans %}Code{% endtrans %}</div>
     <div class="paste-entry-code">
       {{ entry.code_rendered }}

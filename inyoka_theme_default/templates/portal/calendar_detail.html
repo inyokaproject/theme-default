@@ -1,0 +1,82 @@
+{#
+  portal/calendar_detail.html
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Show a single event, header etc. part
+
+  :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+  :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'portal/calendar_overview.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item( ('%s %d'|format(MONTHS[month], year) ), href('portal', 'calendar', year, '%02d' % month)) }}
+  {{ macros.breadcrumb_item( event.name, event|url ) }}
+{% endblock %}
+
+{% block sidebar %}
+  {% call macros.sidebar(_('Event')) %}
+    {{ macros.sidebar_item(_('Download iCal'), "http://h2vx.com/ics/%s"|format(CURRENT_URL)) }}
+    {{ macros.sidebar_item(_('Enter in Google Calendar'), google_link) }}
+  {% endcall %}
+
+  {{ super() }}
+{% endblock %}
+
+{% set month = event.date.month %}
+{% set year = event.date.year %}
+
+{% block content %}
+  <h3>
+    {% trans title=event.name|e %}Event “{{ title }}”{% endtrans %}
+  </h3>
+  <dl class="dl-horizontal">
+    <dt>{% trans %}Date{% endtrans %}</dt>
+    <dd>
+      {% if event.date != None %}
+        {{ _('from') }}
+        {% if event.time == None %}
+          {{ event.date|naturalday }}
+        {% else %}
+          {{ event.startdatetime|naturalday }}
+          {{ event.startdatetime|time }}
+        {% endif %}
+        {% if event.enddate != None %}
+          {{ _('to') }}
+          {% if event.endtime == None %}
+            {{ event.enddate|naturalday }}
+          {% else %}
+            {{ event.enddatetime|naturalday }}
+            {{ event.enddatetime|time }}
+          {% endif %}
+        {% endif %}
+      {% else %}
+        –
+      {% endif %}
+    </dd>
+    {% if event.location_town %}
+      <dt>{% trans %}Venue{% endtrans %}</dt>
+      <dd>
+        {% if event.location %}
+          <span class="location">{{ event.location|e }} in {{ event.location_town|e }}</span>
+        {% endif %}
+
+        {% if event.location_lat and event.location_long %}
+          (<a href="{{ event.coordinates_url|e }}">
+            <abbr class="geo" title="{{ event.simple_coordinates|e }}">{{ event.natural_coordinates|e }}</abbr>
+          </a>)
+        {% endif %}
+      </dd>
+    {% endif %}
+    <dt>{% trans %}Description{% endtrans %}</dt>
+    <dd>
+       <span class="description">{{ event.description_rendered or '–' }}</span>
+    </dd>
+  </dl>
+  {% if USER.has_perm('portal.change_event') %}
+    <a class="btn btn-primary" href="{{ event|url('edit') }}">{% trans %}edit{% endtrans %}</a>
+  {% endif %}
+{% endblock %}

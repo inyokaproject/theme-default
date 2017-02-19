@@ -1,0 +1,57 @@
+{#
+  portal/calendar_overview.html
+  ~~~~~~~~~~~~~~~~~~~~
+
+  Show the next few events.
+
+  :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+  :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'portal/base.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Calendar'), href('portal', 'calendar')) }}
+{% endblock %}
+
+{% block sidebar %}
+  {% call macros.sidebar(_('Calender')) %}
+    {{ macros.sidebar_item(_('Suggest new event'), href('ikhaya', 'event', 'suggest')) }}
+  {% endcall %}
+
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+  <ul class="switcher">
+    {% for y in range(year - 2, year + 3) %}
+      {% if y == year %}
+        <li class="active">{{ y }}</li>
+      {% else %}
+        <li><a href="/calendar/{{ y }}/{{ '%02d' % month }}/">{{ y }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  <ul class="switcher">
+    {% for i in MONTHS %}
+      {% if i == month %}
+        <li class="active">{{ MONTHS[i]|e }}</li>
+      {% else %}
+        <li><a href="/calendar/{{ year }}/{{ '%02d' % i }}/">{{ MONTHS[i]|e }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+
+  <h3>{% trans %}Upcoming events{% endtrans %}</h3>
+  {% if events %}
+    <ul class="events vcalendar">
+      {% for event in events %}
+      <li>{{ event.friendly_title(with_html_link=true) }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>{% trans %}Currently there are no events listed.{% endtrans %}</p>
+  {% endif %}
+{% endblock %}

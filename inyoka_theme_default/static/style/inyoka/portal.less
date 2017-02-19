@@ -77,4 +77,34 @@
       border-bottom: 1px @gray-lighter solid;
     }
   }
+  .switcher  {
+    .list-inline();
+    text-align: center;
+    li {
+      padding: 0 8px;
+    }
+    li + li {
+      &:before {
+        content: ' ';
+        position: relative;
+        left:-9px;
+        border-left: 1px @gray-light solid;
+      }
+    }
+  }
+
+  .calendar_month {
+    .today {
+      background: lighten(@brand-primary, 20%);
+    }
+    .saturday {
+      background: @gray-lighter;
+    }
+    .sunday {
+      background: darken(@gray-lighter, 7%);
+    }
+    ul {
+      margin-bottom:0;
+    }
+  }
 }

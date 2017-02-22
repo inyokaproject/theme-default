@@ -1,0 +1,70 @@
+{#
+  ikhaya/events.html
+  ~~~~~~~~~~~~~~~~~~
+
+  This is the overview of the events.
+
+  :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+  :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'ikhaya/base.html' %}
+
+{% block breadcrumb %}
+  {{ macros.breadcrumb_item(_('Events')) }}
+{% endblock %}
+
+{% block sidebar %}
+  {% call macros.sidebar(_('Calender')) %}
+    {{ macros.sidebar_item(_('Add event'), href('ikhaya', 'event', 'new')) }}
+
+    {% if not show_all %}
+      {{ macros.sidebar_item(_('Display past events'), href('ikhaya', 'events', 'all')) }}
+    {% endif %}
+
+    {% if not invisible %}
+      {{ macros.sidebar_item(_('Show only invisible events'), href('ikhaya', 'events', 'invisible')) }}
+    {% endif %}
+
+    {% if invisible or show_all %}
+      {{ macros.sidebar_item(_('Show only upcoming events'), href('ikhaya', 'events')) }}
+    {% endif %}
+  {% endcall %}
+
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+  <h3>{% trans %}Events{% endtrans %}</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>{{ table.get_html('name', _('Name')) }}</th>
+        <th>{{ table.get_html('date', _('Date')) }}</th>
+        <th>{{ table.get_html('author', _('Author')) }}</th>
+        <th>{% trans %}Actions{% endtrans %}</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for event in events %}
+      <tr>
+        <td><a href="{{ event|url }}">{{ event.name|e }}</a></td>
+        <td>{{ event.date|e }}</td>
+        <td><a href="{{ event.author|url }}">{{ event.author|e }}</a></th>
+        <td>
+          <a href="{{ event|url('edit') }}">{% trans %}Edit{% endtrans %}</a>
+          | <a href="{{ event|url('delete') }}">{% trans %}Delete{% endtrans %}</a>
+          | <a href="{{ event|url('copy') }}">{% trans %}Copy{% endtrans %}</a>
+        </td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="4">
+          {% trans link=href('ikhaya', 'event', 'new') %}
+            No event was added yet, <a href="{{ link }}">create</a> the first one now!
+          {% endtrans %}
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

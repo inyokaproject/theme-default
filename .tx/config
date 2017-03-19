@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+
+[inyoka-1.theme-default]
+source_file = inyoka_theme_default/locale/django.pot
+source_lang = en
+type = PO
+file_filter = inyoka_theme_default/locale/<lang>/LC_MESSAGES/django.po
+

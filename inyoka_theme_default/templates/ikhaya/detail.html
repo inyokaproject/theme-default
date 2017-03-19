@@ -148,7 +148,7 @@
   {% endfor %}
 
   {% if article.comments_enabled and can_post_comment %}
-    <h3 id="new_comment">{% trans %}Write new Comment{% endtrans %}</h3>
+    <h3 id="new_comment">{% trans %}Write new comment{% endtrans %}</h3>
     {% call macros.outer_form(csrf_token(), form, action=article|url + '#new_comment') %}
       <input type="submit" name="preview" value="{% trans %}Preview{% endtrans %}" />
     {% endcall %}

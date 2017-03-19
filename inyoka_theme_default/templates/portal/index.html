@@ -10,24 +10,18 @@
 
 {% block content %}
   <h1 class="portal-welcome">
-    {% trans %}
-      Welcome!
-    {% endtrans %}
+    {% trans %}Welcome!{% endtrans %}
   </h1>
 
   {{ welcome_message_rendered|default('', True) }}
 
   <h2 class="portal-calendar">
-    {% trans %}
-      Upcoming Events
-    {% endtrans %}
+    {% trans %}Upcoming Event{% endtrans %}
   </h2>
   {{ calendar_events|safe }}
 
   <h2 class="portal-inyoka">
-    {% trans %}
-      Latest News
-    {% endtrans %}
+    {% trans %}Latest New{% endtrans %}
   </h2>
   <div class="portal-inyoka-overview">
     {% if ikhaya_latest %}

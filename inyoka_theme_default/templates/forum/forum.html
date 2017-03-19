@@ -81,9 +81,7 @@
               {% if topic.has_poll %}<strong>{% trans %}Poll:{% endtrans %}</strong>{% endif %}
               <a href="{{ topic|url }}">{{ topic }}</a><br />
               <small class="text-muted">
-                {% trans %}
-                  Created on:
-                {% endtrans %}
+                {% trans %}Created on:{% endtrans %}
                 <time
                     datetime="{{ topic.first_post.pub_date|datetime('c') }}">{{ topic.first_post.pub_date|datetime }}</time>
               </small>
@@ -94,16 +92,14 @@
                     datetime="{{ topic.last_post.pub_date|datetime('c') }}">{{ topic.last_post.pub_date|datetime }}</time>
               </a><br />
               <small class="text-muted pull-right">
-                {% trans author=topic.last_post.author|e, link=topic.last_post.author|url %}
+                {% trans author=topic.last_post.author|e, link=topic.last_post.author|url -%}
                   Last post by <a href="{{ link }}">{{ author }}</a>
-                {% endtrans %}
+                {%- endtrans %}
               </small>
             </div>
             <div class="col-sm-4 visible-xs">
               <small class="text-muted">
-                {% trans %}
-                  Last post:
-                {% endtrans %}
+                {% trans %}Last post:{% endtrans %}
                 <a href="{{ topic.last_post|url }}">
                   <time
                       datetime="{{ topic.last_post.pub_date|datetime('c') }}">{{ topic.last_post.pub_date|datetime }}</time>

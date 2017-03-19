@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[inyoka-1.theme-default]
+[inyoka.theme-default]
 source_file = inyoka_theme_default/locale/django.pot
 source_lang = en
 type = PO

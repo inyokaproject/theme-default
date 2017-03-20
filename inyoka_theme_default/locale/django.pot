@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Inyoka Project v0.15.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2017-03-19 16:39+0100\n"
+"POT-Creation-Date: 2017-03-20 08:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,25 +43,6 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-msgid ""
-"\n"
-"                  Created on:\n"
-"                "
-msgstr ""
-
-#, python-format
-msgid ""
-"\n"
-"                  Last post by <a href=\"%(link)s\">%(author)s</a>\n"
-"                "
-msgstr ""
-
-msgid ""
-"\n"
-"                  Last post:\n"
-"                "
-msgstr ""
-
 #, python-format
 msgid ""
 "\n"
@@ -74,20 +55,6 @@ msgid ""
 "\n"
 "              Suggested by %(user_link)s, %(date)s\n"
 "            "
-msgstr ""
-
-#, python-format
-msgid ""
-"\n"
-"            (Derived from %(grouplist)s)\n"
-"          "
-msgstr ""
-
-#, python-format
-msgid ""
-"\n"
-"            (last modified on %(date)s by %(user)s)\n"
-"          "
 msgstr ""
 
 #, python-format
@@ -121,27 +88,6 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"          <a href=\"%(rev_link)s\">This revision</a> was created on %(date)s by %(author_link)s.\n"
-"      "
-msgstr ""
-
-msgid ""
-"\n"
-"          At this page the following tags have been assigned:\n"
-"        "
-msgstr ""
-
-msgid ""
-"\n"
-"          But the article itself is not listed as an attachment, perhaps\n"
-"          these pages are using the article mistakenly or an old revision\n"
-"          was an attachment.\n"
-"        "
-msgstr ""
-
-#, python-format
-msgid ""
-"\n"
 "          Can’t sign in? <a href=\"%(lost_password)s\">Request a new password</a>\n"
 "        "
 msgstr ""
@@ -160,24 +106,6 @@ msgid ""
 "        "
 msgstr ""
 
-msgid ""
-"\n"
-"          Sorry, you need to enable JavaScript to edit forum privileges.\n"
-"        "
-msgstr ""
-
-msgid ""
-"\n"
-"          This article is an orphan and not referenced by any site.\n"
-"        "
-msgstr ""
-
-msgid ""
-"\n"
-"          This attachment is an orphan and not referenced by any site.\n"
-"        "
-msgstr ""
-
 #, python-format
 msgid ""
 "\n"
@@ -193,40 +121,10 @@ msgid ""
 "      "
 msgstr ""
 
-msgid ""
-"\n"
-"        Duplicate attachments on the target page will be overwritten!\n"
-"      "
-msgstr ""
-
 #, python-format
 msgid ""
 "\n"
 "        Edit article “<a href=\"%(link)s\" title=\"Show article\">%(article)s</a>”\n"
-"      "
-msgstr ""
-
-msgid ""
-"\n"
-"        If you have configured your browser to disable 'Referer' headers,\n"
-"        please re-enable them, at least for this site, for HTTPS\n"
-"        connections, or for 'same-origin' requests.\n"
-"      "
-msgstr ""
-
-msgid ""
-"\n"
-"        If you have configured your browser to disable cookies, please\n"
-"        re-enable them, at least for this site, or for 'same-origin'\n"
-"        requests.\n"
-"      "
-msgstr ""
-
-msgid ""
-"\n"
-"        If you just posted a new reply, check first, whether your post has\n"
-"        been successfull submitted. If needed, you can try to post your\n"
-"        content a second time after that.\n"
 "      "
 msgstr ""
 
@@ -259,12 +157,6 @@ msgid ""
 "      "
 msgstr ""
 
-msgid ""
-"\n"
-"        The following pages embed this articles as attachment.\n"
-"      "
-msgstr ""
-
 #, python-format
 msgid ""
 "\n"
@@ -272,38 +164,6 @@ msgid ""
 "        “<a href=\"%(article_link)s\">%(article)s</a>” between\n"
 "        <a href=\"%(old_rev_link)s\">revision %(old_rev)s</a> (%(old_rev_note)s)\n"
 "        and <a href=\"%(new_rev_link)s\">revision %(new_rev)s</a> (%(new_rev_note)s).\n"
-"      "
-msgstr ""
-
-msgid ""
-"\n"
-"        The page you requested was not found. Please check if there are any\n"
-"        typos in the URL. Alternativly, you do not have the permission to\n"
-"        access this site.\n"
-"      "
-msgstr ""
-
-msgid ""
-"\n"
-"        There aren't any links to missing pages in the wiki. Congratulations!\n"
-"      "
-msgstr ""
-
-#, python-format
-msgid ""
-"\n"
-"        There is currently one attachment assigned to this page.\n"
-"      "
-msgid_plural ""
-"\n"
-"        There are currently %(count)s attachments assigned to this page.\n"
-"      "
-msgstr[0] ""
-msgstr[1] ""
-
-msgid ""
-"\n"
-"        To refer to an attachment you can either link to the corresponding wiki page or include it with the <code>[[Bild()]]</code> macro.\n"
 "      "
 msgstr ""
 
@@ -324,24 +184,6 @@ msgid ""
 "        overviews them. This is useful to find more articles to a specified\n"
 "        topic, etc. There is also a complete <a href=\"%(link_tags)s\">alphabetical list</a>\n"
 "        of all tags in the wiki.\n"
-"      "
-msgstr ""
-
-msgid ""
-"\n"
-"        You are seeing this message because this HTTPS site requires a\n"
-"        'Referer header' to be sent by your Web browser, but none was\n"
-"        sent. This header is required for security reasons, to ensure\n"
-"        that your browser is not being hijacked by third parties.\n"
-"      "
-msgstr ""
-
-msgid ""
-"\n"
-"        You are seeing this message because this site requires a CSRF\n"
-"        cookie when submitting forms. This cookie is required for\n"
-"        security reasons, to ensure that your browser is not being\n"
-"        hijacked by third parties.\n"
 "      "
 msgstr ""
 
@@ -374,12 +216,6 @@ msgstr ""
 msgid ""
 "\n"
 "      Attention: You are currently editing “%(name)s”.\n"
-"    "
-msgstr ""
-
-msgid ""
-"\n"
-"      CSRF verification failed. Request aborted.\n"
 "    "
 msgstr ""
 
@@ -416,44 +252,6 @@ msgid_plural ""
 "    "
 msgstr[0] ""
 msgstr[1] ""
-
-#, python-format
-msgid ""
-"\n"
-"      I assure that my submission does not violate any other legal rights and it does not violate the <a href=\"%(link_rules)s\">platform rules</a>. Additionally I accept that my submission is published under the <a href=\"%(link_license)s\">license</a> of the platform.\n"
-"    "
-msgstr ""
-
-msgid ""
-"\n"
-"      If you rename this page, all revisions will be renamed.\n"
-"      The old page will redirect to the new one.\n"
-"    "
-msgstr ""
-
-msgid ""
-"\n"
-"      If you want to suggest a new article please submit your article below.\n"
-"    "
-msgstr ""
-
-msgid ""
-"\n"
-"      It is not possible to submit images along with the article. If you want to use images please upload them elsewhere and insert the links in the article.\n"
-"    "
-msgstr ""
-
-msgid ""
-"\n"
-"      Latest News\n"
-"    "
-msgstr ""
-
-msgid ""
-"\n"
-"      Leave this field empty if the suggestion should be deleted without an explanation.\n"
-"    "
-msgstr ""
 
 #, python-format
 msgid ""
@@ -496,39 +294,12 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-msgid ""
-"\n"
-"      This is a pastebin where you can save error messages, logs, configuration files\n"
-"      or source codes to keep threads or IRC channels clean. To do this, just copy\n"
-"      the text in the box below and choose the appropriate language. After that, you\n"
-"      copy the URL into the topic or the channel.\n"
-"    "
-msgstr ""
-
 #, python-format
 msgid ""
 "\n"
 "      To be always up to date you can read the <a href=\"%(feed_link)s\">atom feed</a>\n"
 "      or <a href=\"%(subscribe_link)s\">subscribe</a>.\n"
 "    "
-msgstr ""
-
-msgid ""
-"\n"
-"      Upcoming Events\n"
-"    "
-msgstr ""
-
-msgid ""
-"\n"
-"      Welcome!\n"
-"    "
-msgstr ""
-
-msgid ""
-"\n"
-"      You aren't allowed to view any forum or there are no forums configured in this Inyoka instance.\n"
-"      "
 msgstr ""
 
 #, python-format
@@ -546,23 +317,11 @@ msgid ""
 "    "
 msgstr ""
 
-msgid ""
-"\n"
-"    Newest Reports\n"
-"    "
-msgstr ""
-
 #, python-format
 msgid ""
 "\n"
 "    Reports for the article “%(article)s”\n"
 "    "
-msgstr ""
-
-msgid ""
-"\n"
-"    You can change your password with this form. For security reasons, you need to enter your old password.\n"
-"  "
 msgstr ""
 
 msgid " Activation link:"
@@ -577,6 +336,18 @@ msgid "%(name)s is not available."
 msgstr ""
 
 msgid "(De)select all"
+msgstr ""
+
+#, python-format
+msgid "(Derived from %(grouplist)s)"
+msgstr ""
+
+#, python-format
+msgid "(last modified on %(date)s by %(user)s)"
+msgstr ""
+
+#, python-format
+msgid "<a href=\"%(rev_link)s\">This revision</a> was created on %(date)s by %(author_link)s."
 msgstr ""
 
 msgid "AST"
@@ -630,6 +401,9 @@ msgstr ""
 msgid "Assigned to:"
 msgstr ""
 
+msgid "At this page the following tags have been assigned"
+msgstr ""
+
 msgid "Attachements"
 msgstr ""
 
@@ -656,6 +430,15 @@ msgid "Blogs"
 msgstr ""
 
 msgid "Browse pastes"
+msgstr ""
+
+msgid ""
+"But the article itself is not listed as an attachment, perhaps\n"
+"          these pages are using the article mistakenly or an old revision\n"
+"          was an attachment."
+msgstr ""
+
+msgid "CSRF verification failed. Request aborted."
 msgstr ""
 
 msgid "Calendar"
@@ -721,6 +504,9 @@ msgstr ""
 msgid "Create new wikipage"
 msgstr ""
 
+msgid "Created on:"
+msgstr ""
+
 msgid "Date"
 msgstr ""
 
@@ -758,6 +544,9 @@ msgid "Do not notify me anymore about new article suggestions"
 msgstr ""
 
 msgid "Don’t watch anymore"
+msgstr ""
+
+msgid "Duplicate attachments on the target page will be overwritten!"
 msgstr ""
 
 msgid "Edit"
@@ -864,7 +653,35 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
+#, python-format
+msgid "I assure that my submission does not violate any other legal rights and it does not violate the <a href=\"%(link_rules)s\">platform rules</a>. Additionally I accept that my submission is published under the <a href=\"%(link_license)s\">license</a> of the platform."
+msgstr ""
+
 msgid "ID"
+msgstr ""
+
+msgid ""
+"If you have configured your browser to disable 'Referer' headers,\n"
+"        please re-enable them, at least for this site, for HTTPS\n"
+"        connections, or for 'same-origin' requests."
+msgstr ""
+
+msgid ""
+"If you have configured your browser to disable cookies, please\n"
+"        re-enable them, at least for this site, or for 'same-origin'\n"
+"        requests."
+msgstr ""
+
+msgid ""
+"If you just posted a new reply, check first, whether your post has\n"
+"        been successfull submitted. If needed, you can try to post your\n"
+"        content a second time after that."
+msgstr ""
+
+msgid "If you rename this page, all revisions will be renamed. The old page will redirect to the new one."
+msgstr ""
+
+msgid "If you want to suggest a new article please submit your article below."
 msgstr ""
 
 msgid "Ikhaya"
@@ -873,16 +690,32 @@ msgstr ""
 msgid "Interface"
 msgstr ""
 
+msgid "It is not possible to submit images along with the article. If you want to use images please upload them elsewhere and insert the links in the article."
+msgstr ""
+
 msgid "Jabber"
 msgstr ""
 
+#, python-format
+msgid "Last post by <a href=\"%(link)s\">%(author)s</a>"
+msgstr ""
+
+msgid "Last post:"
+msgstr ""
+
 msgid "Last update:"
+msgstr ""
+
+msgid "Latest New"
 msgstr ""
 
 msgid "Latest update"
 msgstr ""
 
 msgid "Launchpad username"
+msgstr ""
+
+msgid "Leave this field empty if the suggestion should be deleted without an explanation."
 msgstr ""
 
 msgid "Link"
@@ -933,7 +766,7 @@ msgstr ""
 msgid "Mark selected subscriptions as read"
 msgstr ""
 
-msgid "Member informations"
+msgid "Member information"
 msgstr ""
 
 msgid "Member since"
@@ -1000,6 +833,9 @@ msgid "New report"
 msgstr ""
 
 msgid "New topic"
+msgstr ""
+
+msgid "Newest Reports"
 msgstr ""
 
 msgid "News"
@@ -1083,7 +919,7 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-msgid "Proposers's notes to the admins"
+msgid "Proposer's notes to the admins"
 msgstr ""
 
 msgid "Quote"
@@ -1182,6 +1018,9 @@ msgstr ""
 msgid "Solved"
 msgstr ""
 
+msgid "Sorry, you need to enable JavaScript to edit forum privileges."
+msgstr ""
+
 msgid "Staff"
 msgstr ""
 
@@ -1252,7 +1091,16 @@ msgstr ""
 msgid "The following pages are referring this article:"
 msgstr ""
 
+msgid "The following pages embed this articles as attachment."
+msgstr ""
+
 msgid "The following pages have similar names:"
+msgstr ""
+
+msgid ""
+"The page you requested was not found. Please check if there are any\n"
+"        typos in the URL. Alternativly, you do not have the permission to\n"
+"        access this site."
 msgstr ""
 
 msgid "The topic is locked"
@@ -1276,19 +1124,44 @@ msgstr ""
 msgid "There are no upcoming events."
 msgstr ""
 
+msgid "There aren't any links to missing pages in the wiki. Congratulations!"
+msgstr ""
+
 msgid "There haven't been any attachments for this site uploaded yet."
 msgstr ""
+
+#, python-format
+msgid "There is currently one attachment assigned to this page."
+msgid_plural "There are currently %(count)s attachments assigned to this page."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "There is no article."
 msgstr ""
 
+msgid "This article is an orphan and not referenced by any site."
+msgstr ""
+
 msgid "This article is not visible for regular users"
+msgstr ""
+
+msgid "This attachment is an orphan and not referenced by any site."
+msgstr ""
+
+msgid ""
+"This is a pastebin where you can save error messages, logs, configuration files\n"
+"      or source codes to keep threads or IRC channels clean. To do this, just copy\n"
+"      the text in the box below and choose the appropriate language. After that, you\n"
+"      copy the URL into the topic or the channel."
 msgstr ""
 
 msgid "This may be because you are not logged in."
 msgstr ""
 
 msgid "Title"
+msgstr ""
+
+msgid "To refer to an attachment you can either link to the corresponding wiki page or include it with the <code>[[Bild()]]</code> macro."
 msgstr ""
 
 msgid "Topics"
@@ -1304,6 +1177,9 @@ msgid "Unsubscribe"
 msgstr ""
 
 msgid "Unsubscribe comments"
+msgstr ""
+
+msgid "Upcoming Event"
 msgstr ""
 
 msgid "Upload attachments"
@@ -1330,6 +1206,9 @@ msgstr ""
 msgid "Website"
 msgstr ""
 
+msgid "Welcome!"
+msgstr ""
+
 msgid "Who is online?"
 msgstr ""
 
@@ -1343,7 +1222,27 @@ msgstr ""
 msgid "With this form you can suggest a new blog for the planet."
 msgstr ""
 
-msgid "Write new Comment"
+msgid "Write new comment"
+msgstr ""
+
+msgid ""
+"You are seeing this message because this HTTPS site requires a\n"
+"        'Referer header' to be sent by your Web browser, but none was\n"
+"        sent. This header is required for security reasons, to ensure\n"
+"        that your browser is not being hijacked by third parties."
+msgstr ""
+
+msgid ""
+"You are seeing this message because this site requires a CSRF\n"
+"        cookie when submitting forms. This cookie is required for\n"
+"        security reasons, to ensure that your browser is not being\n"
+"        hijacked by third parties."
+msgstr ""
+
+msgid "You aren't allowed to view any forum or there are no forums configured in this Inyoka instance."
+msgstr ""
+
+msgid "You can change your password with this form. For security reasons, you need to enter your old password."
 msgstr ""
 
 msgid "You can choose a topic as the discussion topic of this article."

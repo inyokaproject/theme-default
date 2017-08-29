@@ -57,8 +57,8 @@
         <td><a href="{{ event.author|url }}">{{ event.author|e }}</a></th>
         <td>
           <a href="{{ event|url('edit') }}">{% trans %}Edit{% endtrans %}</a>
-          | <a href="{{ event|url('delete') }}">{% trans %}Delete{% endtrans %}</a>
-          | <a href="{{ event|url('copy') }}">{% trans %}Copy{% endtrans %}</a>
+          <a href="{{ event|url('delete') }}">{% trans %}Delete{% endtrans %}</a>
+          <a href="{{ event|url('copy') }}">{% trans %}Copy{% endtrans %}</a>
         </td>
       </tr>
     {% else %}

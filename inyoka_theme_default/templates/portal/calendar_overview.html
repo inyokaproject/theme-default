@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block content %}
-  <ul class="switcher">
+  <ul class="calendar-switcher">
     {% for y in range(year - 2, year + 3) %}
       {% if y == year %}
         <li class="active">{{ y }}</li>
@@ -36,7 +36,7 @@
       {% endif %}
     {% endfor %}
   </ul>
-  <ul class="switcher">
+  <ul class="calendar-switcher">
     {% for i in MONTHS %}
       {% if i == month %}
         <li class="active">{{ MONTHS[i]|e }}</li>

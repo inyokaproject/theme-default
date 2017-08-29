@@ -23,6 +23,12 @@
     {{ macros.sidebar_item(_('Enter in Google Calendar'), google_link) }}
   {% endcall %}
 
+  {% if USER.has_perm('portal.change_event') %}
+    {% call macros.sidebar_admin() %}
+      {{ macros.sidebar_item(_('Edit entry'), event|url('edit')) }}
+    {% endcall %}
+  {% endif %}
+
   {{ super() }}
 {% endblock %}
 
@@ -33,6 +39,7 @@
   <h3>
     {% trans title=event.name|e %}Event “{{ title }}”{% endtrans %}
   </h3>
+
   <dl class="dl-horizontal">
     <dt>{% trans %}Date{% endtrans %}</dt>
     <dd>
@@ -76,7 +83,4 @@
        <span class="description">{{ event.description_rendered or '–' }}</span>
     </dd>
   </dl>
-  {% if USER.has_perm('portal.change_event') %}
-    <a class="btn btn-primary" href="{{ event|url('edit') }}">{% trans %}edit{% endtrans %}</a>
-  {% endif %}
 {% endblock %}

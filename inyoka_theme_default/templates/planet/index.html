@@ -87,7 +87,7 @@
                       {% trans %}Permanent link{% endtrans %}
                     </a>
                   </li>
-                  {% if USER.has_perm('planet.change_blog') %}
+                  {% if USER.has_perm('planet.hide_entry') %}
                     {% if article.hidden and article.hidden_by %}
                       <li>
                         {% trans user_link=macros.render_user_link(article.hidden_by) %}

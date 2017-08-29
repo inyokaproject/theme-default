@@ -16,7 +16,7 @@
 
 {% block breadcrumb %}
   {{ macros.breadcrumb_item(_('Events'), href('ikhaya', 'events')) }}
-  {{ macros.breadcrumb_item( _('Suggest event') ) }}
+  {{ macros.breadcrumb_item(_('Suggest event')) }}
 {% endblock %}
 
 {% block content %}
@@ -34,5 +34,4 @@
   </p>
 
   {{ macros.outer_form(csrf_token(), form) }}
-
 {% endblock %}

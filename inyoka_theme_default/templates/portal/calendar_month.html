@@ -17,7 +17,8 @@
 {% block breadcrumb %}
   {{ super() }}
 
-  {{ macros.breadcrumb_item( ('%s %d'|format(MONTHS[month], year)), href('portal', 'calendar', year, '%02d' % month)) }}
+  {{ macros.breadcrumb_item('%s %d'|format(MONTHS[month], year),
+                            href('portal', 'calendar', year, '%02d' % month)) }}
 {% endblock %}
 
 {% block content %}

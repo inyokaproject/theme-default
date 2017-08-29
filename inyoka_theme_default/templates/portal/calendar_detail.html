@@ -77,7 +77,9 @@
 
         {% if event.location_lat and event.location_long %}
           (<a href="{{ event.coordinates_url|e }}">
-            <abbr class="geo" title="{{ event.simple_coordinates|e }}">{{ event.natural_coordinates|e }}</abbr>
+            <abbr class="geo" title="{{ event.simple_coordinates|e }}">
+              {{ event.natural_coordinates|e }}
+            </abbr>
           </a>)
         {% endif %}
       </dd>

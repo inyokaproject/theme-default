@@ -29,5 +29,12 @@
 {% endblock %}
 
 {% block content %}
+  {% if event.author %}
+    <p>
+      {% trans %}Suggested by:{% endtrans %}
+      <a href="{{ event.author|url }}">{{ event.author|e }}</a>
+    </p>
+  {% endif %}
+
   {{ macros.outer_form(csrf_token(), form) }}
 {% endblock %}

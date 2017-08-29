@@ -86,7 +86,7 @@
     {% endif %}
     <dt>{% trans %}Description{% endtrans %}</dt>
     <dd>
-       <span class="description">{{ event.description_rendered or '–' }}</span>
+       {{ event.description_rendered or '–' }}
     </dd>
   </dl>
 {% endblock %}

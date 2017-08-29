@@ -40,10 +40,10 @@
       {% elif day.weekday() == 5 %} class="saturday"
       {% endif %}>
       <td class="weekday">
-        {{- WEEKDAYS[day.weekday()][:2] -}}
+        {{ WEEKDAYS[day.weekday()][:2] }}
       </td>
       <td class="day">
-        {{- day.strftime('%d') -}}
+        {{ day.strftime('%d') }}
       </td>
       <td>
         {% if events %}

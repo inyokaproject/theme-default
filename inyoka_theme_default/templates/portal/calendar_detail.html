@@ -47,25 +47,22 @@
   <dl class="dl-horizontal">
     <dt>{% trans %}Date{% endtrans %}</dt>
     <dd>
-      {% if event.date != None %}
-        {{ _('from') }}
-        {% if event.time == None %}
-          {{ event.date|naturalday }}
-        {% else %}
-          {{ event.startdatetime|naturalday }}
-          {{ event.startdatetime|time }}
-        {% endif %}
-        {% if event.enddate != None %}
-          {{ _('to') }}
-          {% if event.endtime == None %}
-            {{ event.enddate|naturalday }}
-          {% else %}
-            {{ event.enddatetime|naturalday }}
-            {{ event.enddatetime|time }}
-          {% endif %}
-        {% endif %}
+      {{ _('from') }}
+      {% if event.time is none %}
+        {{ event.date|naturalday }}
       {% else %}
-        –
+        {{ event.startdatetime|naturalday }}
+        {{ event.startdatetime|time }}
+      {% endif %}
+
+      {% if event.enddate is not none %}
+        {{ _('to') }}
+        {% if event.endtime is none %}
+          {{ event.enddate|naturalday }}
+        {% else %}
+          {{ event.enddatetime|naturalday }}
+          {{ event.enddatetime|time }}
+        {% endif %}
       {% endif %}
     </dd>
     {% if event.location_town %}

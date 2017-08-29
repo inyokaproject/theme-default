@@ -19,6 +19,8 @@
 {% endblock %}
 
 {% block sidebar %}
+  {{ super() }}
+
   {% call macros.sidebar(_('Calender')) %}
     {{ macros.sidebar_item(_('Add event'), href('ikhaya', 'event', 'new')) }}
 
@@ -34,8 +36,6 @@
       {{ macros.sidebar_item(_('Show only upcoming events'), href('ikhaya', 'events')) }}
     {% endif %}
   {% endcall %}
-
-  {{ super() }}
 {% endblock %}
 
 {% block content %}

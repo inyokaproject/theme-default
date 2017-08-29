@@ -18,7 +18,9 @@
 
 {% block sidebar %}
   {% call macros.sidebar(_('Calender')) %}
-    {{ macros.sidebar_item(_('Suggest new event'), href('ikhaya', 'event', 'suggest')) }}
+    {% if USER.has_perm('portal.suggest_event') %}
+      {{ macros.sidebar_item(_('Suggest new event'), href('ikhaya', 'event', 'suggest')) }}
+    {% endif %}
   {% endcall %}
 
   {{ super() }}

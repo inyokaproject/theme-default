@@ -10,6 +10,10 @@
 
 {% extends 'ikhaya/base.html' %}
 
+{% block title %}
+  {% trans %}Events{% endtrans %} – {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ macros.breadcrumb_item(_('Events')) }}
 {% endblock %}

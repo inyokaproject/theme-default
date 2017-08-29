@@ -10,6 +10,16 @@
 
 {% extends 'ikhaya/base.html' %}
 
+{% blockt title %}
+  {% if event %}
+    {% trans %}Edit{% endtrans %} {{ event.name }}
+  {% else %}
+    {% trans %}Add event{% endtrans %}
+  {% endif %}
+
+   – {{ super() }}
+{% endblock %}
+
 {% block breadcrumb %}
   {{ macros.breadcrumb_item(_('Events'), href('ikhaya', 'events')) }}
   {% if not event %}

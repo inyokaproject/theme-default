@@ -10,8 +10,9 @@
 
 {% extends 'ikhaya/base.html' %}
 
-{% set styles = ['editor', 'datetimefield'] %}
-{% set scripts = ['WikiEditor','DateTime'] %}
+{% block title %}
+  {% trans %}Suggest event{% endtrans%} — {{ super() }}
+{% endblock title %}
 
 {% block breadcrumb %}
   {{ macros.breadcrumb_item(_('Events'), href('ikhaya', 'events')) }}

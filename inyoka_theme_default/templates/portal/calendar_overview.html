@@ -25,26 +25,7 @@
 {% endblock %}
 
 {% block content %}
-  <ul class="calendar-switcher">
-    {% for y in range(year-2, year+3) %}
-      {% if y == year %}
-        <li class="active">{{ y }}</li>
-      {% else %}
-        <li>
-          <a href="/calendar/{{ y }}/{{ '%02d' % month }}/">{{ y }}</a>
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-  <ul class="calendar-switcher">
-    {% for i in MONTHS %}
-      {% if i == month %}
-        <li class="active">{{ MONTHS[i]|e }}</li>
-      {% else %}
-        <li><a href="/calendar/{{ year }}/{{ '%02d' % i }}/">{{ MONTHS[i]|e }}</a></li>
-      {% endif %}
-    {% endfor %}
-  </ul>
+  {% include "portal/calendar_switcher.html" %}
 
   <h3>{% trans %}Upcoming events{% endtrans %}</h3>
   {% if events %}

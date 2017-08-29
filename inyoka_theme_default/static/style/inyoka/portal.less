@@ -77,4 +77,23 @@
       border-bottom: 1px @gray-lighter solid;
     }
   }
+  .calendar-switcher  {
+    .list-inline();
+    text-align: center;
+  }
+
+  .calendar-month {
+    .today {
+      background: lighten(@brand-primary, 20%);
+    }
+    .saturday {
+      background: @gray-lighter;
+    }
+    .sunday {
+      background: darken(@gray-lighter, 7%);
+    }
+    ul {
+      margin-bottom:0;
+    }
+  }
 }

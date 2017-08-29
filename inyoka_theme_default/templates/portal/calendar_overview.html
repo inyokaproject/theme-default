@@ -1,0 +1,44 @@
+{#
+  portal/calendar_overview.html
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Show the next few events.
+
+  :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+  :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'portal/base.html' %}
+
+{% block title %}
+  {% trans %}Calendar{% endtrans%} – {{ super() }}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Calendar'), href('portal', 'calendar')) }}
+{% endblock %}
+
+{% block sidebar %}
+  {% call macros.sidebar(_('Calender')) %}
+    {% if USER.has_perm('portal.suggest_event') %}
+      {{ macros.sidebar_item(_('Suggest new event'), href('ikhaya', 'event', 'suggest')) }}
+    {% endif %}
+  {% endcall %}
+{% endblock %}
+
+{% block content %}
+  {% include "portal/calendar_switcher.html" %}
+
+  <h3>{% trans %}Upcoming events{% endtrans %}</h3>
+  {% if events %}
+    <ul>
+      {% for event in events %}
+        <li>{{ event.startdatetime|datetime }}: {{ event.friendly_title(with_html_link=true) }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>{% trans %}Currently there are no events listed.{% endtrans %}</p>
+  {% endif %}
+{% endblock %}

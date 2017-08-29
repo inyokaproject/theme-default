@@ -10,7 +10,7 @@
 
 {% extends 'ikhaya/base.html' %}
 
-{% blockt title %}
+{% block title %}
   {% if event %}
     {% trans %}Edit{% endtrans %} {{ event.name }}
   {% else %}

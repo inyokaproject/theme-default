@@ -33,7 +33,7 @@
 
   <h3>{% trans %}Upcoming events{% endtrans %}</h3>
   {% if events %}
-    <ul class="events vcalendar">
+    <ul>
       {% for event in events %}
         <li>{{ event.startdatetime|datetime }}: {{ event.friendly_title(with_html_link=true) }}</li>
       {% endfor %}

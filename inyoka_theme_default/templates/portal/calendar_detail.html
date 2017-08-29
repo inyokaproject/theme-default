@@ -19,7 +19,7 @@
 
 {% block sidebar %}
   {% call macros.sidebar(_('Event')) %}
-    {{ macros.sidebar_item(_('Download iCal'), "http://h2vx.com/ics/%s"|format(CURRENT_URL)) }}
+    {{ macros.sidebar_item(_('Download iCal'), ical_link) }}
     {{ macros.sidebar_item(_('Enter in Google Calendar'), google_link) }}
   {% endcall %}
 

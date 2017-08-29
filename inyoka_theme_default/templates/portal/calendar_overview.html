@@ -35,7 +35,7 @@
   {% if events %}
     <ul class="events vcalendar">
       {% for event in events %}
-      <li>{{ event.friendly_title(with_html_link=true) }}</li>
+        <li>{{ event.startdatetime|datetime }}: {{ event.friendly_title(with_html_link=true) }}</li>
       {% endfor %}
     </ul>
   {% else %}

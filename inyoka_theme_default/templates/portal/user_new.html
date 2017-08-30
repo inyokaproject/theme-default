@@ -1,0 +1,26 @@
+{#
+    portal/new_user.html
+    ~~~~~~~~~~~~~~~~~~~~
+
+    Create a new user.
+
+    :copyright: (c) 2007-2017 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/_user_member.html' %}
+
+{% block title %}
+  {% trans %}Create user{% endtrans %} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Create user'), href('portal', 'user', 'new')) }}
+{% endblock%}
+
+{% block content %}
+  <h1>{% trans %}Create user{% endtrans %}</h1>
+
+  {{ macros.outer_form(csrf_token(), form) }}
+{% endblock %}

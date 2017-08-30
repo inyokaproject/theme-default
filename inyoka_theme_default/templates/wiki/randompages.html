@@ -1,0 +1,48 @@
+{#
+    wiki/randompages.html
+    ~~~~~~~~~~~~~~~~~~~~~
+
+    This template is used to show a list of random wiki articles.
+
+    :copyright: (c) 2007-2017 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'wiki/base.html' %}
+
+{% block title %}
+  {% trans %}Random Pages{% endtrans %} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Random Pages'), href('wiki', 'wiki/randompages')) }}
+{% endblock%}
+
+{% block content %}
+  <h1>{% trans %}Random Pages{% endtrans %}</h1>
+
+  {% for page in randompages %}
+    {% if loop.first %}
+      <p>
+        {% trans %}
+        The following list consists of 10 randomly selected wiki articles.
+        <a href="/wiki/randompages">Reload</a> to see more pages.
+        {% endtrans %}
+      </p>
+
+      <ul>
+    {% endif %}
+
+      <li><a href="/{{ page|e }}">{{ page|e }}</a></li>
+
+    {% if loop.last %}
+      </ul>
+    {% endif %}
+  {% else %}
+    <p>
+      {% trans %}There are no wiki articles that could be shown, yet.{% endtrans %}
+    </p>
+  {% endfor %}
+{% endblock %}

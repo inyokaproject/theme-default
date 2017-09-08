@@ -35,11 +35,13 @@
 
     {% for session in sessions.registered_sessions %}
       {% if session.link %}
-        <a href="{{ session.link|e }}" class="{{ session.type }}">
+        <a href="{{ session.link|e }}" class="portal-whoisonline {{ session.type }}">
           {{ session.text|e }}
         </a>
       {% else %}
-        <span class="{{ session.type }}">{{ session.text|e }}</span>
+        <span class="portal-whoisonline {{ session.type }}">
+          {{ session.text|e }}
+        </span>
       {% endif %}
       {% if not loop.last %}, {% endif %}
     {% else %}

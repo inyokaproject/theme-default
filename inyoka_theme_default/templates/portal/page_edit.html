@@ -1,0 +1,38 @@
+{#
+    portal/pages_edit.html
+    ~~~~~~~~~~~~~~~~~~~~~
+
+    Formular for editing or writing a new page.
+
+    :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/pages.html' %}
+
+{% block title %}
+  {% trans %}Edit{% endtrans %} – {{ page.title|e }} – {{ super() }}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {% if page %}
+    {{ macros.breadcrumb_item(page.title|e, page|url()) }}
+    {{ macros.breadcrumb_item(_('Edit'), page|url('edit')) }}
+  {% else %}
+    {{ macros.breadcrumb_item(_('Create new page'), href('portal', 'page', 'new')) }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h1>{{ page.title|e }}</h1>
+
+  {% call macros.outer_form(csrf_token(), form) %}
+    <input type="submit" value="{% trans %}Preview{% endtrans %}" name="preview" />
+  {% endcall %}
+
+  {% if preview %}
+    <h2>{% trans %}Preview{% endtrans %}</h2>
+    <div class="preview">{{ preview }}</div>
+  {% endif %}
+{% endblock %}

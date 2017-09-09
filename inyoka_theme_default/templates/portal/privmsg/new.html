@@ -1,0 +1,59 @@
+{#
+  portal/privmsg/new.html
+  ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  This page shows a form where the user can create a new Private Message
+
+  :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+  :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'portal/privmsg/base.html' %}
+
+{% block title %}
+  {{ _('Compose message') }} - {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+  {{ macros.breadcrumb_item(_('Compose message')) }}
+{% endblock %}
+
+{% block content %}
+  {% call macros.outer_form(csrf_token(), form, action=href('portal', 'privmsg', 'new'),  manually_rendered=True, submit_label=_('Send message')) %}
+      {% if USER.can('send_group_pm') %}
+        {{ macros.inner_form(form, ['recipient', 'group_recipient','subject', 'text']) }}
+      {% else %}
+        {{ macros.inner_form(form, ['recipient', 'subject', 'text']) }}
+      {% endif %}
+      <input type="submit" id="private_message_preview_button" value="{% trans %}Preview{% endtrans %}" />
+  {% endcall %}
+  <div id="private_message_preview_wrapper">
+    <h2 id="private_message_preview_title">{% trans %}Preview{% endtrans %}</h2>
+    <div id="private_message_preview">{{ preview }}</div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script type="text/javascript">
+    /* <![CDATA[ */
+    (function() {
+      var editor = $('#id_text');
+      var output = $('#private_message_preview');
+      var preview = $("#private_message_preview_wrapper")
+        .hide();
+
+      $('#private_message_preview_button').click(function() {
+        $.post('/?__service__=wiki.render_preview', {
+          text: editor.val()
+        }, function(data) {
+          output.html(data);
+          preview.show();
+        });
+        return false;
+      });
+    })();
+    /* ]]> */
+  </script>
+{% endblock %}

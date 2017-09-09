@@ -1,0 +1,13 @@
+{#
+  confirm_action_flash.html
+  ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+  :license: BSD, see LICENSE for more details.
+#}
+{% import 'macros.html' as macros %}
+
+{% call macros.outer_form(csrf_token(), form, action=action_url|e,  manually_rendered=True, submit_label=confirm_label|e) %}
+	<p>{{ message|e }}</p>
+    <input type="submit" name="cancel" value="{{ cancel_label|e }}" />
+{% endcall %}

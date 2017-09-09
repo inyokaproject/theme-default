@@ -51,6 +51,8 @@
     {% call macros.sidebar_admin() %}
       {{ macros.sidebar_item(_('Edit user'), href('portal', 'user', user.username, 'edit', 'profile')) }}
       {{ macros.sidebar_item(_('Edit groups'), href('portal', 'user', user.username, 'edit', 'groups')) }}
+
+      {{ macros.sidebar_item(_('Compose mail'), href('portal', 'user', user.username, 'mail')) }}
     {% endcall %}
   {% endif %}
 {% endblock %}

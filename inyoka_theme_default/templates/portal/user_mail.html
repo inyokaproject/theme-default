@@ -1,0 +1,26 @@
+{#
+    portal/user_mail.html
+    ~~~~~~~~~~~~~~~~~~~~~
+
+    simple formmailer
+
+    :copyright: (c) 2007-2017 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/_user_member.html' %}
+
+{% block title %}
+  {% trans %}Compose mail{% endtrans %} – {{ user.username }} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(user.username, href('portal', 'user', user.username)) }}
+  {{ macros.breadcrumb_item(_('Compose mail'), href('portal', 'user', user.username, 'mail')) }}
+{% endblock%}
+
+{% block content %}
+  <h1>{% trans user=user.username%}Compose mail for “{{ user }}”{% endtrans %}</h1>
+  {{ macros.outer_form(csrf_token(), form, submit_label=_('Send mail')) }}
+{% endblock %}

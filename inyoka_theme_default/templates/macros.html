@@ -205,6 +205,10 @@
       <label>
         {{ field }} {{ field.label }}
       </label>
+
+      {% if field.help_text %}
+        <div class="help-block">{{ field.help_text }}</div>
+      {% endif %}
     </div>
 
   {% if field.errors %} </div> {% endif %}

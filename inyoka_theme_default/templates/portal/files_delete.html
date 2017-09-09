@@ -1,0 +1,18 @@
+{#
+    portal/files_delete.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~
+
+    This template is flashed to ensure that the user wants to delete the selected file.
+
+    :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% import 'macros.html' as macros %}
+
+{% call macros.outer_form(csrf_token(), form, action=object|url('delete')|e, submit_label=_('Delete')) %}
+  <p>{% trans file=object.identifier|e %}
+    Do you really want to delete the file “{{ file }}”?
+  {% endtrans %}</p>
+
+  <input type="submit" name="cancel" value="{% trans %}Cancel{% endtrans %}" />
+{% endcall %}

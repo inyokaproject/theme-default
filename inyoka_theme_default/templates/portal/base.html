@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block sidebar %}
-  {% call macros.sidebar(_('Member informations')) %}
+  {% call macros.sidebar(_('Member information')) %}
     {{ macros.sidebar_item(_('Members'), href('portal', 'users')) }}
     {{ macros.sidebar_item(_('Who is online?'), href('portal', 'whoisonline')) }}
     {{ macros.sidebar_item(_('Groups'), href('portal', 'groups')) }}

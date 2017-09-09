@@ -13,10 +13,7 @@
 {% call macros.outer_form(csrf_token(), action=page|url('rename')|e,
                     submit_label=_('Rename'), manually_rendered=True) %}
   <p>
-    {% trans %}
-      If you rename this page, all revisions will be renamed.
-      The old page will redirect to the new one.
-    {% endtrans %}
+    {% trans %}If you rename this page, all revisions will be renamed. The old page will redirect to the new one.{% endtrans %}
   </p>
   <p>
     <label for="id_new_name">{% trans %}New page name:{% endtrans %}</label>
@@ -30,9 +27,7 @@
   </p>
   {% if force %}
     <strong>
-      {% trans %}
-        Duplicate attachments on the target page will be overwritten!
-      {% endtrans %}
+      {% trans %}Duplicate attachments on the target page will be overwritten!{% endtrans %}
     </strong>
   {% endif %}
 {% endcall %}

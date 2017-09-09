@@ -24,14 +24,12 @@
   <h1>{% trans %}Existing attachments{% endtrans %}</h1>
   {% if attachments %}
     <p>
-      {% trans count=attachments|count %}
+      {% trans count=attachments|count -%}
         There is currently one attachment assigned to this page.
-      {% pluralize %}
+      {%- pluralize -%}
         There are currently {{ count }} attachments assigned to this page.
-      {% endtrans %}
-      {% trans %}
-        To refer to an attachment you can either link to the corresponding wiki page or include it with the <code>[[Bild()]]</code> macro.
-      {% endtrans %}
+      {%- endtrans %}
+      {% trans %}To refer to an attachment you can either link to the corresponding wiki page or include it with the <code>[[Bild()]]</code> macro.{% endtrans %}
     </p>
     <ul class="attachments">
       {% for attachment in attachments %}
@@ -45,9 +43,9 @@
             {% set modified_by = attachment.rev.remote_addr|e %}
           {% endif %}
 
-          {% trans date=attachment.rev.change_date|datetime, user=modified_by %}
+          {% trans date=attachment.rev.change_date|datetime, user=modified_by -%}
             (last modified on {{ date }} by {{ user }})
-          {% endtrans %}
+          {%- endtrans %}
         </li>
       {% endfor %}
     </ul>

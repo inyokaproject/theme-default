@@ -38,9 +38,9 @@
       <label for="perm_{{ id }}">{{ name|e }}</label>
       {% if derived %}
         <span class="text-muted">
-          {% trans grouplist=render_grouplist(derived) %}
+          {% trans grouplist=render_grouplist(derived) -%}
             (Derived from {{ grouplist }})
-          {% endtrans %}
+          {%- endtrans %}
         </span>
       {% endif %}
       <br />
@@ -49,9 +49,7 @@
     <h4>{% trans %}Forum privileges{% endtrans %}</h4>
     <div id="forum_rights">
       <p class="text-danger">
-        {% trans %}
-          Sorry, you need to enable JavaScript to edit forum privileges.
-        {% endtrans %}
+        {% trans %}Sorry, you need to enable JavaScript to edit forum privileges.{% endtrans %}
       </p>
     </div>
   {% endcall %}

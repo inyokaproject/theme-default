@@ -36,15 +36,13 @@
 
   {% if page.embedders %}
     <p>
-      {% trans %}
-        The following pages embed this articles as attachment.
-      {% endtrans %}
+      {% trans %}The following pages embed this articles as attachment.{% endtrans %}
       {% if not page.rev.attachment %}
-        {% trans %}
+        {% trans -%}
           But the article itself is not listed as an attachment, perhaps
           these pages are using the article mistakenly or an old revision
           was an attachment.
-        {% endtrans %}
+        {%- endtrans %}
       {% endif %}
     </p>
     <ul>
@@ -57,13 +55,9 @@
   {% if not page.backlinks and not page.embedders %}
     <p>
       {% if page.rev.attachment %}
-        {% trans %}
-          This attachment is an orphan and not referenced by any site.
-        {% endtrans %}
+        {% trans %}This attachment is an orphan and not referenced by any site.{% endtrans %}
       {% else %}
-        {% trans %}
-          This article is an orphan and not referenced by any site.
-        {% endtrans %}
+        {% trans %}This article is an orphan and not referenced by any site.{% endtrans %}
       {% endif %}
     </p>
   {% endif %}

@@ -16,6 +16,9 @@
 {% block breadcrumb %}
   {{ super() }}
 
+  {% if USER.has_perm('portal.change_staticpage') %}
+    {{ macros.breadcrumb_item(_('Static pages'), href('portal', 'pages')) }}
+  {% endif %}
   {{ macros.breadcrumb_item(title|e, href('portal', key)) }}
 {% endblock %}
 

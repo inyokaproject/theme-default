@@ -107,6 +107,15 @@
     }
   }
 
+  &-static_pages {
+    &:extend(.table-responsive all);
+
+    & > table {
+      &:extend(.table all);
+      &:extend(.table-striped all);
+    }
+  }
+
   &-whoisonline.team {
     color: @team-member;
   }

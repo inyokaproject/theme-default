@@ -96,4 +96,13 @@
       margin-bottom:0;
     }
   }
+
+  &-static_files {
+    &:extend(.table-responsive all);
+
+    & > table {
+      &:extend(.table all);
+      &:extend(.table-striped all);
+    }
+  }
 }

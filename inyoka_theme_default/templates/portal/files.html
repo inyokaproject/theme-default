@@ -1,0 +1,70 @@
+{#
+    portal/files.html
+    ~~~~~~~~~~~~~~~~~
+
+    This is the overview of the ikhaya files.
+
+    :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/base.html' %}
+
+{% block title %}
+  {% trans %}Static files{% endtrans %} – {{ super() }}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Static files'), href('portal', 'files')) }}
+{% endblock %}
+
+{% block sidebar %}
+  {% call macros.sidebar_admin() %}
+    {{ macros.sidebar_item(_('Create new static file'), href('portal', 'files', 'new')) }}
+  {% endcall%}
+{% endblock %}
+
+{% block content %}
+  <h1>{% trans %}Static files{% endtrans %}</h1>
+
+  <div class="portal-static_files">
+    <table>
+      <thead>
+        <tr>
+          <th>{{ table.get_html('identifier', _('Identifier')) }}</th>
+          <th>{{ table.get_html('is_ikhaya_icon', _('Is Ikhaya-Icon')) }}</th>
+          <th>{% trans %}Actions{% endtrans %}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for file in object_list %}
+          <tr>
+            <td>
+              <a href="{{ file|url('edit') }}">{{ file.identifier|e }}</a>
+            </td>
+            <td>{{ file.is_ikhaya_icon and _('yes') or _('no') }}</td>
+            <td class="actions">
+              <a href="{{ file|url('edit') }}">
+                <span class="fa_icon-pencil" aria-hidden="true"></span>
+                {% trans %}Edit{% endtrans %}
+              </a>
+              <br>
+              <a href="{{ file|url('delete') }}">
+                <span class="fa_icon-trash" aria-hidden="true"></span>
+                {% trans %}Delete{% endtrans %}
+              </a>
+            </td>
+          </tr>
+        {% else %}
+          <tr>
+            <td colspan="3">
+              {% trans %}There are no static files, create the first one now!{% endtrans %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

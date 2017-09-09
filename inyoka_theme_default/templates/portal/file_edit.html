@@ -1,0 +1,54 @@
+{#
+    portal/file_edit.html
+    ~~~~~~~~~~~~~~~~~~~~~
+
+    Template for editing or creating a static file.
+
+    :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/files.html' %}
+
+{% block title %}
+  {% if file %}
+    {{ file.identifier|e }}
+  {% else %}
+    {% trans %}Create{% endtrans %}
+  {% endif %}
+
+  – {{ super() }}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {% if file %}
+    {{ macros.breadcrumb_item(file.identifier|e, file|url('edit')) }}
+  {% else %}
+    {{ macros.breadcrumb_item(_('Create'), href('portal', 'files', 'new')) }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h1>
+    {% if file %}
+      {{ file.identifier|e }}
+    {% else %}
+      {% trans %}Create new static file{% endtrans %}
+    {% endif %}
+  </h1>
+
+  {% if file %}
+    <h2>{% trans %}Usage:{% endtrans %}</h2>
+<pre>
+[[Bild("{{ file.identifier|e }}")]]
+[[Vorlage(Ikhayabild, "{{ file.identifier|e }}", Link oder Größe, "{% trans %}Description{% endtrans %}", left|right)]]
+</pre>
+
+    <div class="message-warning">
+      {% trans %}CAUTION: A change of the file destroys all links from articles to this file!{% endtrans %}
+    </div>
+  {% endif %}
+
+  {{ macros.outer_form(csrf_token(), form) }}
+{% endblock %}

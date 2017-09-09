@@ -39,8 +39,10 @@
   {{ super() }}
 
   {% call macros.sidebar() %}
-    {{ macros.sidebar_item(_('Suggest article'), href('ikhaya', 'suggest', 'new'),
-                            'fa_icon-file-text') }}
+    {% if USER.has_perm('ikhaya.suggest_article') %}
+      {{ macros.sidebar_item(_('Suggest article'), href('ikhaya', 'suggest', 'new'),
+                              'fa_icon-file-text') }}
+    {% endif %}
   {% endcall %}
 
   {% call macros.sidebar(_('Categories')) %}

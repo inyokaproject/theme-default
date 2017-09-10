@@ -31,6 +31,23 @@
     }
   }
 
+  &-edit-forum-permissions {
+    &:extend(.table-responsive all);
+
+    & > table {
+      &:extend(.table all);
+      &:extend(.table-striped all);
+    }
+
+    .head {
+      background-color: @gray-lighter !important;
+    }
+
+    tr:hover, colgroup.hover {
+      background-color: @state-warning-bg !important;
+    }
+  }
+
   &-user-groupsetting-form {
     label {
       font-weight: normal;

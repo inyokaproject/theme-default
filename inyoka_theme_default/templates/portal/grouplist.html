@@ -1,0 +1,58 @@
+{#
+    portal/grouplist.html
+    ~~~~~~~~~~~~~~~~~~~~~
+
+    This page shows all existing groups.
+
+    :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/base.html' %}
+
+{% block title %}
+   {% trans %}Groups{% endtrans %} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Groups'), href('portal', 'groups')) }}
+{% endblock %}
+
+{% block sidebar %}
+  {% if USER.has_perm('auth.add_group') %}
+    {% call macros.sidebar_admin() %}
+      {{ macros.sidebar_item(_('Create new group'), href('portal', 'group', 'new')) }}
+    {% endcall %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h2>{% trans %}Groups{% endtrans %}</h2>
+  <p>
+    {% trans count=group_count, usercount=user_groups.count() %}
+      In total there is {{ count }} group, you are in {{ usercount }} group.
+    {% pluralize %}
+      In total there are {{ count }} groups, you are in {{ usercount }} of them (printed bold).
+    {% endtrans %}
+  </p>
+
+  <ul>
+    {% for group in groups %}
+      <li>
+        {% if group in user_groups %}<strong>{% endif %}
+          <a href="{{ href('portal', 'group', group) }}">
+            {{ group.name|e }}
+          </a>
+        {% if group in user_groups %}</strong>{% endif %}
+
+        {% if USER.has_perm('auth.change_group') %}
+          <a href="{{ href('portal', 'group', group.name|e, 'edit') }}"
+             aria-label="{% trans %}Edit group{% endtrans %}">
+            <span class="fa_icon-pencil" aria-hidden="true"></span>
+          </a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

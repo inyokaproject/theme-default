@@ -1,0 +1,30 @@
+{#
+    portal/group_edit_global_permissions.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+    Edit the permission of a group within ikhaya, portal, pastebin and planet.
+
+    :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/group_edit.html' %}
+
+{% block title %}
+  {% trans %}Global Permissions{% endtrans %} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Global Permissions'), href('portal', 'group', group.name, 'edit', 'global_permissions')) }}
+{% endblock %}
+
+{% block content %}
+  {% call macros.outer_form(csrf_token(), form, manually_rendered=True) %}
+    {% for field in form %}
+      <h2>{{ field.label }}</h2>
+      {{ field }}
+    {% endfor %}
+  {% endcall %}
+{% endblock %}

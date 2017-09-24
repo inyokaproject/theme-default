@@ -6,14 +6,9 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                deleteDir()
-                checkout scm
-            }
-        }
         stage('Build virtuelenv') {
             steps {
+                deleteDir()
                 sh '''virtualenv venv
                 . ./venv/bin/activate
                 pip install -e .

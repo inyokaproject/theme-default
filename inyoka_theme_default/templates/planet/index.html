@@ -34,13 +34,19 @@
     {% endif %}
 
     <div class="row">
-      {% set article_index = 0 %}
+      {% set article_index = [0] %}
       {% for day in days %}
         <div class="col-xs-12">
           <h2>{{ day.date|naturalday }}</h2>
           {% set dayloop = loop %}
           {% for article in day.articles %}
-            <article id="article_{{ article_index + loop.index0 }}">
+            {% set current_article_id = article_index[0] + loop.index0 %}
+            {% if loop.last %}
+              {% do article_index.pop() %}
+              {% do article_index.append(current_article_id + 1) %}
+            {% endif %}
+
+            <article id="article_{{ current_article_id }}">
               <div class="planet-article {% if article.hidden %}planet-article-muted{% endif %}">
                 <div class="planet-article-heading">
                   <div class="col-md-2 blog-icon-container">
@@ -59,7 +65,7 @@
                     </div>
                     <div class="pull-right meta">
                       {% if not (dayloop.first and loop.first) %}
-                      <a href="#article_{{ article_index + loop.index0 - 1 }}">{% trans %}« Previous{% endtrans %}</a>
+                      <a href="#article_{{ current_article_id - 1 }}">{% trans %}« Previous{% endtrans %}</a>
                       {% endif %}
 
                       {% if not (dayloop.first and loop.first) and not (dayloop.last and loop.last) %}
@@ -67,13 +73,13 @@
                       {% endif %}
 
                       {% if not (dayloop.last and loop.last) %}
-                      <a href="#article_{{ article_index + loop.index0 + 1 }}">{% trans %}Next »{% endtrans %}</a>
+                      <a href="#article_{{ current_article_id + 1 }}">{% trans %}Next »{% endtrans %}</a>
                       {% endif %}
                     </div>
                     <div class="clearfix"></div>
                     <h3>
                       <a href="{{ article|url|e }}">{{ article.title }}</a>
-                      <a class="headerlink" href="#article_{{ article_index + loop.index0 }}">¶</a>
+                      <a class="headerlink" href="#article_{{ current_article_id }}">¶</a>
                     </h3>
                   </div>
                 </div>
@@ -112,7 +118,6 @@
             </article>
           {% endfor %}
         </div>
-        {% set article_index = article_index + day.articles|length %}
       {% endfor %}
     </div>
     {{ rendered_pagination }}

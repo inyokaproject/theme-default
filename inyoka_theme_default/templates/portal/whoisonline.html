@@ -4,7 +4,7 @@
 
     Shows a list of active users.
 
-    :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+    :copyright: (c) 2013-2018 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
 {% extends 'portal/base.html' %}
@@ -25,7 +25,7 @@
     <li>
     {% trans n=sessions.all %}{{ n }} User online{% pluralize %}{{ n }} Users online{% endtrans %}
     </li>
-  
+
     <li>
     {% trans guests=sessions.anonymous %}{{ guests }} Guest{% pluralize %}{{ guests }} Guests{% endtrans %}
     </li>

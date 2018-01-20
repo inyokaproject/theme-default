@@ -4,7 +4,7 @@
 
     Shows a list of reported improvements for an article.
 
-    :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+    :copyright: (c) 2013-2018 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
 {% extends 'ikhaya/base.html' %}
@@ -42,6 +42,6 @@
     Reports for the article “{{ article }}”
     {% endtrans %}
   </h2>
-  
+
   {{ render_reports(inside_reportlist=False) }}
 {% endblock %}

@@ -1572,3 +1572,6 @@ msgstr "« Zurück"
 #, python-format
 msgid "“%(tag)s”"
 msgstr ""
+
+msgid "Compose mail"
+msgstr "E-Mail verfassen"

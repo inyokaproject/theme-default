@@ -1,40 +1,36 @@
 #!/usr/bin/env groovy
 
-node('inyoka-slave') {
-    stage('Checkout') {
-      checkout scm
+pipeline {
+    agent {
+        label 'inyoka-slave'
     }
 
-    stage('Build virtualenv') {
-      sh '''virtualenv venv
-      . ./venv/bin/activate
-      pip install -e .
-      pip install -r tests/requirements.txt'''
-    }
+    stages {
+        stage('Checkout') {
+            steps {
+                deleteDir()
+                checkout scm
+            }
+        }
+        stage('Build virtuelenv') {
+            steps {
+                sh '''virtualenv venv
+                . ./venv/bin/activate
+                pip install -e .
+                pip install -r tests/requirements.txt'''
+            }
+        }
+        stage ('Tests') {
+            steps {
+                sh '''. venv/bin/activate
+                nosetests --with-xcoverage --with-xunit'''
+            }
+        }
 
-    stage('Tests') {
-      sh '''. venv/bin/activate
-      nosetests --with-xcoverage --with-xunit'''
-
-      step([$class: 'XUnitPublisher',
-            testTimeMargin: '3000',
-            thresholdMode: 1,
-            thresholds: [[$class: 'FailedThreshold',
-                          failureNewThreshold: '1',
-                          failureThreshold: '1',
-                          unstableNewThreshold: '0',
-                          unstableThreshold: '0'],
-                        [$class: 'SkippedThreshold',
-                          failureNewThreshold: '1',
-                          failureThreshold: '1',
-                          unstableNewThreshold: '0',
-                          unstableThreshold: '0']],
-                         tools: [[$class: 'JUnitType',
-                                  deleteOutputFiles: true,
-                                  failIfNotNew: true,
-                                  pattern: '**/nosetests.xml',
-                                  skipNoTestFiles: false,
-                                  stopProcessingIfError: true]]
-          ])
+        stage('Publish test results') {
+            steps {
+                junit '**/nosetests.xml'
+            }
+        }
     }
 }

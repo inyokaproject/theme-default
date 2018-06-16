@@ -4,7 +4,7 @@
 
   Adds a basic sidebar to wiki/base.html. This is the basis for all wiki-actions.
 
-  :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+  :copyright: (c) 2013-2018 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 
@@ -69,7 +69,6 @@
     {% call macros.sidebar(_('Export')) %}
       {{ macros.sidebar_item(_('Raw'), page|url('export', format='raw')) }}
       {{ macros.sidebar_item(_('HTML'), page|url('export', format='html')) }}
-      {{ macros.sidebar_item(_('AST'), page|url('export', format='ast')) }}
       {{ macros.sidebar_item(_('Metadata'), page|url('export', format='meta')) }}
     {% endcall %}
   {% endif %}

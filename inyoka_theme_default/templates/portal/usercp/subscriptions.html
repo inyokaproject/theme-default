@@ -5,7 +5,7 @@
     This page shows all subscriptions of the user and let him
     manage them.
 
-    :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+    :copyright: (c) 2013-2018 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
 
@@ -39,7 +39,7 @@
         <tr>
           <th class="checkboxes"><input type="checkbox" id="check_all" title="{% trans %}(De)select all{% endtrans %}" /></th>
           <th class="name">{% trans %}Name{% endtrans %}</th>
-          <th class="read">{{ table.get_html('notified', _('Read')) }}</th>
+          <th class="read">{% trans %}Read{% endtrans %}</th>
           <th class="status">{% trans %}State{% endtrans %}</th>
         </tr>
       </thead>

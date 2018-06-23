@@ -1,0 +1,47 @@
+{#
+    portal/group_edit.html
+    ~~~~~~~~~~~~~~~~~~~~~~
+
+
+    Edit/Create a new group.
+
+    :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/grouplist.html' %}
+
+{% block title %}
+  {% if group is defined %}
+    {% trans %}Edit{% endtrans %} – {{ group.name }}
+  {% else %}
+    {% trans %}New group{% endtrans %}
+  {% endif %}
+
+  – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {% if group is defined %}
+    {{ macros.breadcrumb_item(group.name, href('portal', 'group', group.name)) }}
+    {{ macros.breadcrumb_item(_('Edit'), href('portal', 'group', group.name, 'edit')) }}
+  {% else %}
+    {{ macros.breadcrumb_item(_('New group'), href('portal', 'group', 'new')) }}
+  {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+  {% if group is defined %}
+    {% call macros.sidebar(_('Permissions')) %}
+      {{ macros.sidebar_item(_('Forum Permissions'), href('portal', 'group', group.name, 'edit', 'forum_permissions')) }}
+      {{ macros.sidebar_item(_('Global Permissions'), href('portal', 'group', group.name, 'edit', 'global_permissions')) }}
+    {% endcall %}
+  {% endif %}
+
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+  {{ macros.outer_form(csrf_token(), form) }}
+{% endblock %}

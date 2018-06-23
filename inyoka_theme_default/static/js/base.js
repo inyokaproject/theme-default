@@ -1,11 +1,4 @@
 $(function () {
-    if (window.location.hash) {
-        var pos = $(window.location.hash).offset().top - navbar_height;
-        window.setTimeout(function () {
-            $('html, body').animate({ scrollTop: pos }, 100);
-        }, 50);
-    }
-
     // initialize fancy tooltips
     $('[data-toggle="tooltip"]').tooltip();
 

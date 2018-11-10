@@ -33,7 +33,7 @@
 {% block sidebar %}
 
   {% call macros.sidebar() %}
-    {% if request.user.has_perm('portal.subscribe_user') %}
+    {% if USER.has_perm('portal.subscribe_user') %}
       {% call macros.sidebar_item() %}
         {% if is_subscribed %}
           {{ macros.outer_form(csrf_token(), action=href('portal', 'user', user.username, 'unsubscribe')|e , submit_label=_('Don’t watch anymore')) }}
@@ -47,7 +47,7 @@
     {{ macros.sidebar_item(_('show posts'), href('forum', 'author', user.username)) }}
   {% endcall %}
 
-  {% if request.user.has_perm('portal.change_user') %}
+  {% if USER.has_perm('portal.change_user') %}
     {% call macros.sidebar_admin() %}
       {{ macros.sidebar_item(_('Edit user'), href('portal', 'user', user.username, 'edit', 'profile')) }}
       {{ macros.sidebar_item(_('Edit groups'), href('portal', 'user', user.username, 'edit', 'groups')) }}

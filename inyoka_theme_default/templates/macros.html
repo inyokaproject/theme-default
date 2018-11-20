@@ -270,3 +270,10 @@
     {{ name|e }}
   </a>
 {% endmacro %}
+
+{% macro render_article_list(discussions) %}
+  {%- for article in discussions %}
+    <a class="article_discussion_list" href="{{ article|url }}">{{ article.name|e }}</a>
+    {%- if not loop.last %},{% endif %}
+  {%- endfor -%}
+{% endmacro %}

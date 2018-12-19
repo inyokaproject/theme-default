@@ -29,34 +29,39 @@
   <form action="" method="post" enctype="multipart/form-data" class="post_editor">
     {{ csrf_token() }}
     <a href="{{ href('pastebin') }}" class="pastelink" title="{% trans %}Please save long code snippets or program outputs in our paste service and link to the respective entry.{% endtrans %}">
-      {%- trans %}Paste{% endtrans -%}
+      {% trans %}Paste{% endtrans %}
     </a>
-    {%- if topic %}
-      {%- if post %}
+    {% if topic %}
+
+      {% if post %}
         <h2>{% trans %}Edit post{% endtrans %}</h2>
-      {%- else %}
+      {% else %}
         <h2>{% trans topic=topic.title|e %}New reply in “{{ topic }}”{% endtrans %}</h2>
-      {%- endif %}
-      {%- if topic.get_version_info() and not (isfirstpost or isnewtopic) %}
+      {% endif %}
+
+      {% if topic.get_version_info() and not (isfirstpost or isnewtopic) %}
         <p class="ubuntu_version">
           <strong>Ubuntu-Version:</strong> {{ topic.get_version_info() }}
         </p>
-      {%- endif %}
-      {%- if discussions %}
+      {% endif %}
+
+      {% if discussions %}
       <div class="topic_box discussion_info">
-        {%- trans count=discussions|count, article_list=macros.render_article_list(discussions) -%}
+        {% trans count=discussions|count, article_list=macros.render_article_list(discussions) %}
           This topic is the discussion of the article {{ article_list }}.
-        {%- pluralize -%}
+        {% pluralize %}
           This topic is the discussion of the articles {{ article_list }}.
-        {%- endtrans -%}
+        {% endtrans %}
       </div>
-      {%- endif %}
-    {%- else %}
+      {% endif %}
+
+    {% else %}
       <h2>{% trans forum=forum.name|e %}New topic in “{{ forum }}”{% endtrans %}</h2>
-    {%- endif %}
+    {% endif %}
+
     <dl>
-      {%- if isnewtopic or isfirstpost %}
-        {%- if not article %}
+      {% if isnewtopic or isfirstpost %}
+        {% if not article %}
 
           <dt class="title">{% trans %}Title:{% endtrans %}</dt>
           <dd class="title">
@@ -71,85 +76,88 @@
 
             <span id="version_info"></span>
           </dd>
-        {%- else %}
+        {% else %}
           <dd><input type="hidden" name="title" value="{{ article.name|e }}" /></dd>
-        {%- endif %}
-      {%- endif %}
+        {% endif %}
+      {% endif %}
+
       <dt class="text">{% trans %}Text:{% endtrans %}</dt>
       <dd class="text">
       {# There must be another solution to cann `form.text` and modify the attributes in place… --entequak #}
         <textarea id="id_text" rows="10" cols="40" name="text"{% if topic.locked and can_moderate %} class="mod_action"{% endif %}>
-          {%- if form.data.text -%}
+          {% if form.data.text %}
             {{ form.data.text|e }}
-          {%- elif form.initial.text != none -%}
+          {% elif form.initial.text != none %}
             {{ form.initial.text|e }}
-          {%- endif -%}
+          {% endif %}
         </textarea>
         {{ form.errors.text }}
       </dd>
-      {%- if storage['license_note_rendered'] %}
+
+      {% if storage['license_note_rendered'] %}
         <dd class="license_note">{{ storage['license_note_rendered'] }}</dd>
-      {%- endif %}
+      {% endif %}
       <dd style="display: none"><input type="submit" value="Absenden" name="send" /></dd>
-      {%- if (isnewtopic or isfirstpost) and can_create_poll %}
+
+      {% if (isnewtopic or isfirstpost) and can_create_poll %}
         <dt class="collapse{% if poll_form.errors %} has_errors{% endif %}">Umfragen:</dt>
-        {%- if polls %}
+        {% if polls %}
           <dd>{% trans %}Existing polls:{% endtrans %}
             <ul>
-              {%- for poll in polls or () %}
+              {% for poll in polls or () %}
                 <li>{{ poll.question|e }} <button name="delete_poll" value="{{ poll.id }}">{% trans %}Delete{% endtrans %}</button></li>
-              {%- endfor %}
+              {% endfor %}
             </ul>
           </dd>
-        {%- endif %}
+        {% endif %}
         <dd>{% trans %}Question:{% endtrans %} {{ poll_form.question }} {{ poll_form.question.errors }}</dd>
         <dd>{{ poll_form.multiple }} <label for="id_multiple">{% trans %}Allow multiple answers{% endtrans %}</label></dd>
-        {%- if poll_form.options.errors %}
+        {% if poll_form.options.errors %}
           <dd>{{ poll_form.options.errors }}</dd>
-        {%- endif %}
-        {%- for option in options %}
+        {% endif %}
+        {% for option in options %}
           <dd class="newtopic_polls_replies">Antwort {{ loop.index }}: <input type="text" name="options" maxlength="250" size="40" value="{{ option }}" />
-            {%- if loop.last %}
+            {% if loop.last %}
               <input type="submit" name="add_option" value="{% trans %}Additional answer{% endtrans %}" id="id_add_option" />
-            {%- endif -%}
+            {% endif %}
           </dd>
-        {%- endfor %}
+        {% endfor %}
         <dd>{% trans duration=poll_form.duration %}Duration of the poll: {{ duration }} days{% endtrans %} {{ poll_form.duration.errors }}</dd>
         <dd class="note">{% trans %}Leave that feel empty for an endless duration{% endtrans %}</dd>
         <dd><input type="submit" name="add_poll" value="{% trans %}Add poll{% endtrans %}" /></dd>
-      {%- endif %}
-      {%- if can_attach %}
+      {% endif %}
+      {% if can_attach %}
       <dt class="collapse{% if attach_form.errors %} has_errors{% endif %}">{% trans %}Attachments:{% endtrans %}</dt>
       <dd>
-        {%- if attachments %}
+        {% if attachments %}
           <ul>
-            {%- for att in attachments %}
+            {% for att in attachments %}
               <li>
                 <a href="{{ att.get_absolute_url() }}">{{ att.name|e }}</a> - {{ att.size|filesizeformat(true) }}
                 <button type="submit" name="delete_attachment" value="{{ att.id }}">{% trans %}Delete{% endtrans %}</button>
               </li>
-            {%- endfor %}
+            {% endfor %}
           </ul>
-        {%- endif %}
+        {% endif %}
         <p><label for="id_attachment">{% trans %}Attachment:{% endtrans %}</label>
           {{ attach_form.attachment }}{{ attach_form.errors.attachment }}</p>
         <p><label for="id_filename">{% trans %}Rename to:{% endtrans %}</label>
           {{ attach_form.filename }}{{ attach_form.errors.filename }}</p>
         <p><label for="id_text">{% trans %}Description:{% endtrans %}</label>
           {{ attach_form.comment }}{{ attach_form.errors.comment }}</p>
-        <p>{{ attach_form.override }} <label for="id_override">{% trans -%}
-          Overwrite existing attachment with the same name.{%- endtrans %}</label></p>
+        <p>{{ attach_form.override }} <label for="id_override">{% trans %}
+          Overwrite existing attachment with the same name.{% endtrans %}</label></p>
         <p><input type="submit" value="{% trans %}upload attachment{% endtrans %}" name="attach" /></p>
       </dd>
-      {%- endif %}
-      {%- if can_sticky and (isnewtopic or isfirstpost) %}
+      {% endif %}
+      {% if can_sticky and (isnewtopic or isfirstpost) %}
       <dt>Optionen:</dt>
       <dd>{{ form.sticky }} <label for="id_sticky">{% trans %}Mark topic as “Important:”{% endtrans %}</label></dd>
-      {%- endif %}
+      {% endif %}
     </dl>
     <p>
-      <input type="hidden" name="attachments" id="id_attachments" value="{%- for att in attachments or () %}{% if not loop.first %},{% endif %}{{ att.id }}{% endfor %}" />
-      <input type="hidden" name="polls" id="id_polls" value="{%- for poll in polls or () %}{% if not loop.first %},{% endif %}{{ poll.id }}{%- endfor %}" />
+      <input type="hidden" name="attachments" id="id_attachments" value="{% for att in attachments or () %}{% if not loop.first %},{% endif %}{{ att.id }}{% endfor %}" />
+      <input type="hidden" name="polls" id="id_polls" value="{% for poll in polls or () %}{% if not loop.first %},{% endif %}{{ poll.id }}{% endfor %}" />
       {{ form.errors.__all__ }}
       <input type="submit" value="{% trans %}Preview{% endtrans %}" name="preview" />
       <input type="submit" value="{% trans %}Publish{% endtrans %}" name="send" />
@@ -157,12 +165,12 @@
     </p>
   </form>
   <div class="preview_wrapper">
-    {%- if preview %}
+    {% if preview %}
       <h2 class="title">{% trans %}Preview{% endtrans %}</h2>
       <div class="preview">{{ preview }}</div>
-    {%- endif %}
+    {% endif %}
   </div>
-  {%- if not isnewtopic %}
+  {% if not isnewtopic %}
     <table class="topic" style="position:relative; top:11px">
       <thead>
         <tr><th id="recent_posts" colspan="2">{% trans %}Recent posts{% endtrans %}</th></tr>
@@ -170,9 +178,9 @@
     </table>
     <table class="topic latest_posts">
       <tbody>
-        {%- for post in posts %}
-        {%- endfor %}
+        {% for post in posts %}
+        {% endfor %}
       </tbody>
     </table>
-  {%- endif %}
+  {% endif %}
 {% endblock %}

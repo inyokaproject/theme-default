@@ -5,7 +5,7 @@
     This template shows a single pastebin entry and displays a list of actions
     the user can execute.
 
-    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :copyright: (c) 2013-2019 by the Inyoka Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 #}
 {% extends 'pastebin/base.html' %}
@@ -39,7 +39,7 @@
     <div>{% trans %}Title{% endtrans %}</div>
     <div>{{ entry.title|e }}</div>
 
-    {% if not entry.author.is_anonymous %}
+    {% if not entry.author.is_anonymous() %}
       <div>{% trans %}Author{% endtrans %}</div>
       <div>
         {{ macros.render_user_link(entry.author) }}
@@ -48,17 +48,6 @@
 
     <div>{% trans %}Date{% endtrans %}</div>
     <div>{{ entry.pub_date|datetime }}</div>
-
-    {% if entry.referrer|length %}
-      <div>{% trans %}Pages that are referencing this entry{% endtrans %}</div>
-      <div>
-        <ul>
-          {% for link in entry.referrer_list %}
-            <li>{{ link|urlize(60) }}</li>
-          {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
 
     <div>{% trans %}Code{% endtrans %}</div>
     <div class="paste-entry-code">

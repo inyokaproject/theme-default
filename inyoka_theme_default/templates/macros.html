@@ -205,6 +205,10 @@
       <label>
         {{ field }} {{ field.label }}
       </label>
+
+      {% if field.help_text %}
+        <div class="help-block">{{ field.help_text }}</div>
+      {% endif %}
     </div>
 
   {% if field.errors %} </div> {% endif %}
@@ -236,7 +240,8 @@
   {% if user.avatar_url %}
     <img src="{{ user.avatar_url|e }}"
          alt="{% trans user=user.username|e %}Avatar of {{ user }}{% endtrans %}"
-         title="{% trans user=user.username|e %}Avatar of {{ user }}{% endtrans %}" />
+         title="{% trans user=user.username|e %}Avatar of {{ user }}{% endtrans %}" 
+         class="avatar" />
   {% else %}
     <span class="fa_icon-user" title="{% trans user=user.username|e %}Avatar of {{ user }}{% endtrans %}"></span>
   {% endif %}

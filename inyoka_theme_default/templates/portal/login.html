@@ -4,7 +4,7 @@
 
   This page displays a formular where the user can log in.
 
-  :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+  :copyright: (c) 2013-2019 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 
@@ -22,6 +22,30 @@
 
 {% block content %}
   <h2>{% trans %}Login{% endtrans %}</h2>
+  {% if failed %}
+    <div class="message-error">
+    {% if not inactive and not banned %}
+      {% trans name=username|e %}
+        Login failed because the password for the user “{{ name }}”
+        was wrong or the user does not exist.
+      {% endtrans %}
+    {% elif banned %}
+      {% trans name=username|e, mail='team@ubuntuusers.de',
+          mailto='mailto:team@ubuntuusers.de' %}
+        Login failed because the user “{{ name }}” is currently banned.
+        You were informed about that. If you don’t agree with the ban
+        or if it is a mistake, please contact <a href="{{ mailto }}">{{ mail }}</a>.
+      {% endtrans %}
+    {% else %}
+      {% trans name=username|e, mail='team@ubuntuusers.de', mailto='mailto:team@ubuntuusers.de' %}
+        Login failed because the user “{{ name }}” is inactive. You
+        probably didn’t click on the link in the activation mail
+        which was sent to you after your registration. If it is still
+        not working, contact us: <a href="{{ mailto }}">{{ mail }}</a>
+      {% endtrans %}
+    {% endif %}
+    </div>
+  {% endif %}
   {{ macros.outer_form(csrf_token(), form, submit_label=_('Sign in')) }}
 
   <small class="text-muted">

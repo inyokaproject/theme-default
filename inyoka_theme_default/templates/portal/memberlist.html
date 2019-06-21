@@ -1,0 +1,59 @@
+{#
+    portal/memberlist.html
+    ~~~~~~~~~~~~~~~~~~~~~~
+
+    This page shows all registered users.
+
+    :copyright: (c) 2007-2019 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/_user_member.html' %}
+
+{% block sidebar %}
+  {% if USER.has_perm('portal.add_user') %}
+    {% call macros.sidebar_admin() %}
+      {{ macros.sidebar_item(_('Create a new user'), href('portal', 'user', 'new')) }}
+    {% endcall %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% set rendered_pagination = macros.render_pagination(pagination) %}
+
+  <h1>{% trans %}Members{% endtrans %}</h1>
+  {% if USER.has_perm('portal.change_user') %}
+    {% call macros.outer_form(csrf_token(), submit_label=_('Select')) %}
+      <p>
+        {% trans %}
+        Choose the user you want to edit. You can also enter
+        an e-mail address instead of a user name.
+        {% endtrans %}
+      </p>
+      <input type="text" id="user_query" name="user" />
+    {% endcall %}
+  {% endif %}
+
+  <table class="portal-memberlist-table">
+    <tr>
+      <th>{{ table.get_html('id', '#') }}</th>
+      <th>{{ table.get_html('username', _('Username')) }}</th>
+      <th>{{ table.get_html('location', _('Residence')) }}</th>
+      <th>{{ table.get_html('date_joined', _('Member since')) }}</th>
+    </tr>
+    {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>
+          <a href="{{ user|url }}">{{ user.username|e }}</a></td>
+        <td>{{ user.location }}</td>
+        <td>{{ user.date_joined|naturalday }}</td>
+      </tr>
+    {% else %}
+      <tr>
+        <td colspan="4">{% trans %}No users were found.{% endtrans %}</td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  {{ rendered_pagination }}
+{% endblock %}

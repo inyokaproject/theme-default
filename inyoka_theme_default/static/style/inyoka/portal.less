@@ -4,11 +4,58 @@
  *
  * Custom styles for the portal. All css-classes are prefixed with `portal-`.
  *
- * :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+ * :copyright: (c) 2013-2019 by the Inyoka Team, see AUTHORS for more details.
  * :license: BSD, see LICENSE for more details.
  */
 
 .portal {
+  &-memberlist-table {
+    &:extend(.table all);
+    &:extend(.table-striped all);
+  }
+
+  #portal-user-groupselector {
+    list-style: none;
+    padding: 0;
+    max-height: 800px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &-group-members {
+    &:extend(.table-responsive all);
+
+    & > table {
+      &:extend(.table all);
+      &:extend(.table-striped all);
+    }
+  }
+
+  &-edit-forum-permissions {
+    &:extend(.table-responsive all);
+
+    & > table {
+      &:extend(.table all);
+      &:extend(.table-striped all);
+    }
+
+    .head {
+      background-color: @gray-lighter !important;
+    }
+
+    tr:hover, colgroup.hover {
+      background-color: @state-warning-bg !important;
+    }
+  }
+
+  &-user-groupsetting-form {
+    label {
+      font-weight: normal;
+    }
+    > * {
+      margin-bottom: 1em;
+    }
+  }
 
   &-userinfo {
     &:extend(.table all);
@@ -20,18 +67,7 @@
       min-width: 33%;
     }
   }
-  &-privilege-list {
-    &:extend(.list-group all);
 
-    &-item {
-      &:extend(.list-group-item all);
-
-      &.changed:not(.active) {
-        color: @state-warning-text;
-        background-color: @state-warning-bg;
-      }
-    }
-  }
   &-usericon {
     font-size:  20ex;
     text-align: center;
@@ -76,5 +112,28 @@
     .portal-calendar-event:not(:last-child) {
       border-bottom: 1px @gray-lighter solid;
     }
+  }
+  .calendar-switcher  {
+    .list-inline();
+    text-align: center;
+  }
+
+  .calendar-month {
+    .today {
+      background: lighten(@brand-primary, 20%);
+    }
+    .saturday {
+      background: @gray-lighter;
+    }
+    .sunday {
+      background: darken(@gray-lighter, 7%);
+    }
+    ul {
+      margin-bottom:0;
+    }
+  }
+
+  &-whoisonline.team {
+    color: @team-member;
   }
 }

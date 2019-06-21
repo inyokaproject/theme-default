@@ -1,0 +1,61 @@
+{#
+  portal/calendar_month.html
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Show all events of a month, header etc. part
+
+  :copyright: (c) 2013-2019 by the Inyoka Team, see AUTHORS for more details.
+  :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'portal/calendar_overview.html' %}
+
+{% block title %}
+  {{ MONTHS[month] }} {{ year }} – {{ super() }}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item('%s %d'|format(MONTHS[month], year),
+                            href('portal', 'calendar', year, '%02d' % month)) }}
+{% endblock %}
+
+{% block content %}
+  {% include "portal/calendar_switcher.html" %}
+
+  <table class="calendar-month table table-striped">
+    <colgroup>
+      <col width="40">
+      <col width="40">
+      <col >
+    </colgroup>
+    <tr>
+      <th colspan="2">{% trans %}Day{% endtrans %}</th>
+      <th>{% trans %}Events{% endtrans %}</th>
+    </tr>
+    {% for day, events in days %}
+      <tr
+      {% if day == today %} class="today"
+      {% elif day.weekday() == 6 %} class="sunday"
+      {% elif day.weekday() == 5 %} class="saturday"
+      {% endif %}>
+      <td class="weekday">
+        {{ WEEKDAYS[day.weekday()][:2] }}
+      </td>
+      <td class="day">
+        {{ day.strftime('%d') }}
+      </td>
+      <td>
+        {% if events %}
+        <ul class="list-unstyled">
+          {% for event in events %}
+          <li>{{ event.friendly_title(with_html_link=true) }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

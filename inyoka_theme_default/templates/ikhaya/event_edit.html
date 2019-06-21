@@ -1,0 +1,50 @@
+{#
+  ikhaya/event_edit.html
+  ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Template for editing or creating an event.
+
+  :copyright: (c) 2013-2019 by the Inyoka Team, see AUTHORS for more details.
+  :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'ikhaya/base.html' %}
+
+{% block title %}
+  {% if event %}
+    {% trans %}Edit{% endtrans %} {{ event.name }}
+  {% else %}
+    {% trans %}Add event{% endtrans %}
+  {% endif %}
+
+   – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ macros.breadcrumb_item(_('Events'), href('ikhaya', 'events')) }}
+  {% if not event %}
+    {{ macros.breadcrumb_item(_('Add')) }}
+  {% else %}
+    {{ macros.breadcrumb_item(_('Edit')) }}
+  {% endif %}
+{% endblock %}
+
+{% block sidebar %}
+  {% if event %}
+    {% call macros.sidebar(_('Calender')) %}
+      {{ macros.sidebar_item(_('Show event'), event|url()) }}
+      {{ macros.sidebar_item(_('Delete event'), event|url('delete')) }}
+    {% endcall %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if event.author %}
+    <p>
+      {% trans %}Suggested by:{% endtrans %}
+      <a href="{{ event.author|url }}">{{ event.author|e }}</a>
+    </p>
+  {% endif %}
+
+  {{ macros.outer_form(csrf_token(), form) }}
+{% endblock %}

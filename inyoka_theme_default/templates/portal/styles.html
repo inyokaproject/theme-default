@@ -1,0 +1,35 @@
+{#
+    templates.portal.styles
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    On this page the administrator can alter a global stylesheet for styling
+    wiki markup.
+
+    :copyright: (c) 2013-2019 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/base.html' %}
+
+{% block title %}
+  {% trans %}Stylesheets{% endtrans %} – {{ super() }}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Stylesheets'), href('portal', 'styles')) }}
+{% endblock %}
+
+{% block content %}
+  <h1>{% trans %}Stylesheets{% endtrans %}</h1>
+  <p>
+    {% trans %}
+      You can edit here the stylesheet which is responsibly for formatting
+      the syntax elements. It is included on all pages. Please do only
+      add already tested stylesheets, otherwise all users will get a
+      corrupt stylesheet.
+    {% endtrans %}
+  </p>
+
+  {{ macros.outer_form(csrf_token(), form) }}
+{% endblock %}

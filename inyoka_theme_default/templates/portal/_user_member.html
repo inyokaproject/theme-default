@@ -1,0 +1,20 @@
+{#
+    portal/_user_member.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Base template for some member-actions.
+
+    :copyright: (c) 2007-2019 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/base.html' %}
+
+{% block title %}
+  {% trans %}Members{% endtrans %} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Members'), href('portal', 'users')) }}
+{% endblock%}

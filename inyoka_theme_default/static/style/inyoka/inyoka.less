@@ -4,7 +4,7 @@
  *
  * Main less-file. All component-styles are imported and global ones defined.
  *
- * :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+ * :copyright: (c) 2013-2019 by the Inyoka Team, see AUTHORS for more details.
  * :license: BSD, see LICENSE for more details.
  */
 
@@ -27,6 +27,7 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  scroll-behavior: smooth;
 }
 
 .skip-navigation {
@@ -249,7 +250,7 @@ button, input[type="button"], input[type="submit"] {
 }
 
 input[type="email"], input[type="password"], input[type="text"],
-input[type="url"], select {
+input[type="url"],input[type="number"], select {
   &:extend(.form-control);
   .form-control-focus();
 }
@@ -357,6 +358,11 @@ textarea {
 
   flex: 1 0 auto; /* `0 auto` for IE11 */
   padding-bottom: 15px;
+}
+
+.avatar {
+  max-width: 80px;
+  max-height: 100px;
 }
 
 .footer {

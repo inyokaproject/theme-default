@@ -1,0 +1,1413 @@
+# Translations template for Inyoka Project.
+# Copyright (C) 2017 Inyoka Team (see AUTHORS)
+# This file is distributed under the same license as the Inyoka Project project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Inyoka Project v0.15.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-03-19 16:39+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language-Team: German (Switzerland) (https://www.transifex.com/inyokaproject/teams/72960/de_CH/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.2.0\n"
+"Language: de_CH\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, python-format
+msgid ""
+"\n"
+"                          Hidden by: %(user_link)s\n"
+"                        "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"                        (by <a href=\"%(userlink)s\">%(user)s</a>)\n"
+"                      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"                  %(count)s comment\n"
+"                  "
+msgid_plural ""
+"\n"
+"                  %(count)s comments\n"
+"                "
+msgstr[0] ""
+msgstr[1] ""
+
+msgid ""
+"\n"
+"                  Created on:\n"
+"                "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"                  Last post by <a href=\"%(link)s\">%(author)s</a>\n"
+"                "
+msgstr ""
+
+msgid ""
+"\n"
+"                  Last post:\n"
+"                "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"              Reported by %(user_link)s\n"
+"            "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"              Suggested by %(user_link)s, %(date)s\n"
+"            "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"            (Derived from %(grouplist)s)\n"
+"          "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"            (last modified on %(date)s by %(user)s)\n"
+"          "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"            <a href=\"%(entry_link)s\">%(title)s</a> by %(user_link)s\n"
+"          "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"            Published by %(user_link)s\n"
+"          "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"            “%(name)s” is no member of any group.\n"
+"           "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"          (Will be scaled to %(width)sx%(height)s)\n"
+"        "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"          <a href=\"%(rev_link)s\">This revision</a> was created on %(date)s by %(author_link)s.\n"
+"      "
+msgstr ""
+
+msgid ""
+"\n"
+"          At this page the following tags have been assigned:\n"
+"        "
+msgstr ""
+
+msgid ""
+"\n"
+"          But the article itself is not listed as an attachment, perhaps\n"
+"          these pages are using the article mistakenly or an old revision\n"
+"          was an attachment.\n"
+"        "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"          Can’t sign in? <a href=\"%(lost_password)s\">Request a new password</a>\n"
+"        "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"          Don’t have an account yet? <a href=\"%(register)s\">Sign up now</a>\n"
+"        "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"          Powered by <a href=\"%(link)s\">Inyoka</a>\n"
+"        "
+msgstr ""
+
+msgid ""
+"\n"
+"          Sorry, you need to enable JavaScript to edit forum privileges.\n"
+"        "
+msgstr ""
+
+msgid ""
+"\n"
+"          This article is an orphan and not referenced by any site.\n"
+"        "
+msgstr ""
+
+msgid ""
+"\n"
+"          This attachment is an orphan and not referenced by any site.\n"
+"        "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        <a href=\"%(link)s\">Send an email</a> to %(name)s\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        But you can display <a href=\"%(link)s\">a list of changes</a>\n"
+"        of this page and compare individual revisions.\n"
+"      "
+msgstr ""
+
+msgid ""
+"\n"
+"        Duplicate attachments on the target page will be overwritten!\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        Edit article “<a href=\"%(link)s\" title=\"Show article\">%(article)s</a>”\n"
+"      "
+msgstr ""
+
+msgid ""
+"\n"
+"        If you have configured your browser to disable 'Referer' headers,\n"
+"        please re-enable them, at least for this site, for HTTPS\n"
+"        connections, or for 'same-origin' requests.\n"
+"      "
+msgstr ""
+
+msgid ""
+"\n"
+"        If you have configured your browser to disable cookies, please\n"
+"        re-enable them, at least for this site, or for 'same-origin'\n"
+"        requests.\n"
+"      "
+msgstr ""
+
+msgid ""
+"\n"
+"        If you just posted a new reply, check first, whether your post has\n"
+"        been successfull submitted. If needed, you can try to post your\n"
+"        content a second time after that.\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        Last login: %(date)s\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        Member since: %(date)s\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        The article “%(title)s” was deleted. You can restore it or create a new one in the\n"
+"        action menu.\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        The following pages are referring to the article “%(title)s” by manual linking:\n"
+"      "
+msgstr ""
+
+msgid ""
+"\n"
+"        The following pages embed this articles as attachment.\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        The following table shows the difference of the article\n"
+"        “<a href=\"%(article_link)s\">%(article)s</a>” between\n"
+"        <a href=\"%(old_rev_link)s\">revision %(old_rev)s</a> (%(old_rev_note)s)\n"
+"        and <a href=\"%(new_rev_link)s\">revision %(new_rev)s</a> (%(new_rev_note)s).\n"
+"      "
+msgstr ""
+
+msgid ""
+"\n"
+"        The page you requested was not found. Please check if there are any\n"
+"        typos in the URL. Alternativly, you do not have the permission to\n"
+"        access this site.\n"
+"      "
+msgstr ""
+
+msgid ""
+"\n"
+"        There aren't any links to missing pages in the wiki. Congratulations!\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        There is currently one attachment assigned to this page.\n"
+"      "
+msgid_plural ""
+"\n"
+"        There are currently %(count)s attachments assigned to this page.\n"
+"      "
+msgstr[0] ""
+msgstr[1] ""
+
+msgid ""
+"\n"
+"        To refer to an attachment you can either link to the corresponding wiki page or include it with the <code>[[Bild()]]</code> macro.\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        Wiki articles can be tagged by key words. The following alphabetical\n"
+"        tag list shows all of them. This is useful to find more articles to\n"
+"        a specified topic, etc. There is also a <a href=\"%(cloud_link)s\">tag cloud</a>\n"
+"        overviewing the most used tags of the wiki.\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        Wiki articles can be tagged by key words. The following tag list\n"
+"        overviews them. This is useful to find more articles to a specified\n"
+"        topic, etc. There is also a complete <a href=\"%(link_tags)s\">alphabetical list</a>\n"
+"        of all tags in the wiki.\n"
+"      "
+msgstr ""
+
+msgid ""
+"\n"
+"        You are seeing this message because this HTTPS site requires a\n"
+"        'Referer header' to be sent by your Web browser, but none was\n"
+"        sent. This header is required for security reasons, to ensure\n"
+"        that your browser is not being hijacked by third parties.\n"
+"      "
+msgstr ""
+
+msgid ""
+"\n"
+"        You are seeing this message because this site requires a CSRF\n"
+"        cookie when submitting forms. This cookie is required for\n"
+"        security reasons, to ensure that your browser is not being\n"
+"        hijacked by third parties.\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        You are trying to compare two equal revision of the article\n"
+"        “<a href=\"%(link)s\">%(article)s</a>”. For this reason no\n"
+"        change is displayed.\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"        You can also download the changes as <a href=\"%(link_diff)s\">unified diff</a>\n"
+"        or display a <a href=\"%(link_list)s\">list of the last changes</a>\n"
+"        and compare individual revisions.\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      Are you sure you want to delete the article “<a href=\"%(link)s\">%(article)s</a>”?\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      Attention: You are currently editing “%(name)s”.\n"
+"    "
+msgstr ""
+
+msgid ""
+"\n"
+"      CSRF verification failed. Request aborted.\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      Describe here briefly the discovered mistake. Please make sure that the mistake was not <a href=\"%(link)s\">already reported</a>.\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      Do you really want to delete the entry <a href=\"%(link)s\">%(entry)s</a>?\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      Here are all published articles in chronological order. You can find\n"
+"      the most recent articles on <a href=\"%(link)s\">the front page</a>.\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      Here is one article suggestion which was not yet reviewed.\n"
+"    "
+msgid_plural ""
+"\n"
+"      Here are %(count)s article suggestions which were not yet reviewed.\n"
+"    "
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid ""
+"\n"
+"      I assure that my submission does not violate any other legal rights and it does not violate the <a href=\"%(link_rules)s\">platform rules</a>. Additionally I accept that my submission is published under the <a href=\"%(link_license)s\">license</a> of the platform.\n"
+"    "
+msgstr ""
+
+msgid ""
+"\n"
+"      If you rename this page, all revisions will be renamed.\n"
+"      The old page will redirect to the new one.\n"
+"    "
+msgstr ""
+
+msgid ""
+"\n"
+"      If you want to suggest a new article please submit your article below.\n"
+"    "
+msgstr ""
+
+msgid ""
+"\n"
+"      It is not possible to submit images along with the article. If you want to use images please upload them elsewhere and insert the links in the article.\n"
+"    "
+msgstr ""
+
+msgid ""
+"\n"
+"      Latest News\n"
+"    "
+msgstr ""
+
+msgid ""
+"\n"
+"      Leave this field empty if the suggestion should be deleted without an explanation.\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      Mark page “%(page)s” as “under construction”\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      New report for the article “<a href=\"%(link)s\">%(article)s</a>”\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      Revision %(new_rev)s\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      The <a href=\"%(rev_link)s\">most recent revision</a> was created\n"
+"      by %(author)s at %(rev_date)s.\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      The article “<a href=\"%(link)s\">%(article)s</a>” has currently %(count)s revision.\n"
+"    "
+msgid_plural ""
+"\n"
+"      The article “<a href=\"%(link)s\">%(article)s</a>” has currently %(count)s revisions.\n"
+"    "
+msgstr[0] ""
+msgstr[1] ""
+
+msgid ""
+"\n"
+"      This is a pastebin where you can save error messages, logs, configuration files\n"
+"      or source codes to keep threads or IRC channels clean. To do this, just copy\n"
+"      the text in the box below and choose the appropriate language. After that, you\n"
+"      copy the URL into the topic or the channel.\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      To be always up to date you can read the <a href=\"%(feed_link)s\">atom feed</a>\n"
+"      or <a href=\"%(subscribe_link)s\">subscribe</a>.\n"
+"    "
+msgstr ""
+
+msgid ""
+"\n"
+"      Upcoming Events\n"
+"    "
+msgstr ""
+
+msgid ""
+"\n"
+"      Welcome!\n"
+"    "
+msgstr ""
+
+msgid ""
+"\n"
+"      You aren't allowed to view any forum or there are no forums configured in this Inyoka instance.\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      You can also <a href=\"%(link)s\">create</a> this article.\n"
+"      "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"      You can deactivate your account “%(name)s” here. By doing this, we will remove all your personal data. All your forum posts and wiki articles will remain. <br>\n"
+"      Keep in mind that deactivating your account cannot be undone. After that, you will never be able to log in with the account “%(name)s” again.\n"
+"    "
+msgstr ""
+
+msgid ""
+"\n"
+"    Newest Reports\n"
+"    "
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"    Reports for the article “%(article)s”\n"
+"    "
+msgstr ""
+
+msgid ""
+"\n"
+"    You can change your password with this form. For security reasons, you need to enter your old password.\n"
+"  "
+msgstr ""
+
+msgid " Activation link:"
+msgstr ""
+
+#, python-format
+msgid "%(name)s is a system user."
+msgstr ""
+
+#, python-format
+msgid "%(name)s is not available."
+msgstr ""
+
+msgid "(De)select all"
+msgstr ""
+
+msgid "AST"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Add attachment"
+msgstr ""
+
+msgid "Add blog"
+msgstr ""
+
+msgid "Add category"
+msgstr ""
+
+msgid "Add group"
+msgstr ""
+
+msgid "Additional functions"
+msgstr ""
+
+msgid "An internal error occurred. The administration was already notified."
+msgstr ""
+
+msgid "Archive"
+msgstr ""
+
+msgid "Are you sure you want to delete this page?"
+msgstr ""
+
+msgid "Are you sure you want to hide the entry?"
+msgstr ""
+
+msgid "Are you sure you want to mark the page as “discontinued”?"
+msgstr ""
+
+msgid "Are you sure you want to move the page into the wiki?"
+msgstr ""
+
+msgid "Are you sure you want to restore the entry?"
+msgstr ""
+
+msgid "Article suggestions"
+msgstr ""
+
+msgid "Assign to me"
+msgstr ""
+
+msgid "Assigned to:"
+msgstr ""
+
+msgid "Attachements"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Available groups"
+msgstr ""
+
+#, python-format
+msgid "Avatar of %(user)s"
+msgstr ""
+
+msgid "Avatar settings"
+msgstr ""
+
+msgid "Backlinks"
+msgstr ""
+
+msgid "Bloglist"
+msgstr ""
+
+msgid "Blogs"
+msgstr ""
+
+msgid "Browse pastes"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Captions"
+msgstr ""
+
+msgid "Categories"
+msgstr ""
+
+msgid "Category:"
+msgstr ""
+
+msgid "Change password"
+msgstr ""
+
+msgid "Changes since last visit"
+msgstr ""
+
+msgid "Check if you have a typo in the URL."
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Comments"
+msgstr ""
+
+msgid "Comments - Captions"
+msgstr ""
+
+msgid "Comments - Full"
+msgstr ""
+
+msgid "Comments - Teaser"
+msgstr ""
+
+msgid "Comments disabled"
+msgstr ""
+
+msgid "Compare"
+msgstr ""
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Contact addresses"
+msgstr ""
+
+msgid "Control panel"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Create category"
+msgstr ""
+
+msgid "Create new wikipage"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Deactivate account"
+msgstr ""
+
+msgid "Deactivate my account"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete assignment"
+msgstr ""
+
+msgid "Delete entry"
+msgstr ""
+
+msgid "Delete selected subscriptions"
+msgstr ""
+
+msgid "Delete suggestion"
+msgstr ""
+
+msgid "Difference"
+msgstr ""
+
+msgid "Discussion"
+msgstr ""
+
+msgid "Display entry as raw text"
+msgstr ""
+
+msgid "Do not notify me anymore about new article suggestions"
+msgstr ""
+
+msgid "Don’t watch anymore"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Edit article"
+msgstr ""
+
+#, python-format
+msgid "Edit article “%(article)s”"
+msgstr ""
+
+msgid "Edit associated discussion"
+msgstr ""
+
+msgid "Edit attachment"
+msgstr ""
+
+msgid "Edit comment"
+msgstr ""
+
+msgid "Edit groups"
+msgstr ""
+
+msgid "Edit user"
+msgstr ""
+
+msgid "Email address"
+msgstr ""
+
+msgid "Entries"
+msgstr ""
+
+msgid "Existing attachments"
+msgstr ""
+
+msgid "Explanation for the author of the suggestion:"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Export blogs"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Forbidden (403)"
+msgstr ""
+
+msgid "Forum"
+msgstr ""
+
+msgid "Forum - Captions"
+msgstr ""
+
+msgid "Forum - Full post"
+msgstr ""
+
+msgid "Forum - Teaser"
+msgstr ""
+
+msgid "Forum privileges"
+msgstr ""
+
+#, python-format
+msgid "Forum “%(name_forum)s” - "
+msgstr ""
+
+msgid "Full"
+msgstr ""
+
+msgid "Full post"
+msgstr ""
+
+msgid "GPG key"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Generate a new one"
+msgstr ""
+
+msgid "Generate a random password"
+msgstr ""
+
+msgid "Generated password:"
+msgstr ""
+
+msgid "Go to last comment"
+msgstr ""
+
+msgid "Group memberships"
+msgstr ""
+
+msgid "Groups"
+msgstr ""
+
+msgid "HTML"
+msgstr ""
+
+msgid "Hide"
+msgstr ""
+
+msgid "ID"
+msgstr ""
+
+msgid "Ikhaya"
+msgstr ""
+
+msgid "Interface"
+msgstr ""
+
+msgid "Jabber"
+msgstr ""
+
+msgid "Last update:"
+msgstr ""
+
+msgid "Latest update"
+msgstr ""
+
+msgid "Launchpad username"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Link Discussion"
+msgstr ""
+
+msgid "Link discussion"
+msgstr ""
+
+msgid "Log"
+msgstr ""
+
+msgid "Login"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "Lost password"
+msgstr ""
+
+msgid "Manage attachments"
+msgstr ""
+
+msgid "Mark"
+msgstr ""
+
+msgid "Mark as discontinued"
+msgstr ""
+
+msgid "Mark as read"
+msgstr ""
+
+msgid "Mark as solved"
+msgstr ""
+
+msgid "Mark as unsolved"
+msgstr ""
+
+msgid "Mark as “under construction”"
+msgstr ""
+
+msgid "Mark page as “under construction”"
+msgstr ""
+
+msgid "Mark selected subscriptions as read"
+msgstr ""
+
+msgid "Member informations"
+msgstr ""
+
+msgid "Member since"
+msgstr ""
+
+msgid "Members"
+msgstr ""
+
+msgid "Membership"
+msgstr ""
+
+msgid "Menu"
+msgstr ""
+
+msgid "Messages"
+msgstr ""
+
+msgid "Metadata"
+msgstr ""
+
+msgid "Miscellaneous information fields"
+msgstr ""
+
+msgid "Miscellaneous settings"
+msgstr ""
+
+msgid "Missing Pages"
+msgstr ""
+
+msgid "Missing article"
+msgstr ""
+
+msgid "Missing pages"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Move page back to the wiki"
+msgstr ""
+
+msgid "Move page to “discontinued”"
+msgstr ""
+
+msgid "My profile"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "New Article"
+msgstr ""
+
+msgid "New article"
+msgstr ""
+
+msgid "New page name:"
+msgstr ""
+
+msgid "New paste"
+msgstr ""
+
+msgid "New report"
+msgstr ""
+
+msgid "New topic"
+msgstr ""
+
+msgid "News"
+msgstr ""
+
+msgid "Next »"
+msgstr ""
+
+msgid "No articles were aggregated"
+msgstr ""
+
+msgid "No entry"
+msgstr ""
+
+msgid "No pastes were created yet."
+msgstr ""
+
+msgid "No tags assigned to this page, yet."
+msgstr ""
+
+msgid "Nobody"
+msgstr ""
+
+msgid "Notify me about new article suggestions"
+msgstr ""
+
+msgid "Overview"
+msgstr ""
+
+msgid "Page"
+msgstr ""
+
+msgid "Page not found"
+msgstr ""
+
+msgid "Page revisions"
+msgstr ""
+
+msgid "Password generator"
+msgstr ""
+
+msgid "Pastebin"
+msgstr ""
+
+msgid "Permanent link"
+msgstr ""
+
+msgid "Planet"
+msgstr ""
+
+msgid "Planet - Captions"
+msgstr ""
+
+msgid "Planet - Full article"
+msgstr ""
+
+msgid "Planet - Teaser"
+msgstr ""
+
+msgid ""
+"Please be patient. It could take a while, until we approve your suggestion."
+msgstr ""
+
+msgid "Poll:"
+msgstr ""
+
+msgid "Portal"
+msgstr ""
+
+msgid "Posts"
+msgstr ""
+
+msgid "Preview"
+msgstr ""
+
+msgid "Private message"
+msgstr ""
+
+msgid "Privileges"
+msgstr ""
+
+msgid "Profile"
+msgstr ""
+
+msgid "Proposers's notes to the admins"
+msgstr ""
+
+msgid "Quote"
+msgstr ""
+
+msgid "Raw"
+msgstr ""
+
+msgid "Read"
+msgstr ""
+
+msgid "Reason:"
+msgstr ""
+
+msgid "Recent Changes"
+msgstr ""
+
+msgid "Recent Changes are currently unavailable."
+msgstr ""
+
+msgid "Recent articles"
+msgstr ""
+
+msgid "Recent changes"
+msgstr ""
+
+msgid "Register"
+msgstr ""
+
+msgid "Remove group"
+msgstr ""
+
+msgid "Rename"
+msgstr ""
+
+msgid "Reply"
+msgstr ""
+
+msgid "Report"
+msgstr ""
+
+msgid "Report misspelling"
+msgstr ""
+
+msgid "Report new misspelling"
+msgstr ""
+
+msgid "Reports"
+msgstr ""
+
+msgid "Request new password"
+msgstr ""
+
+msgid "Resend activation mail"
+msgstr ""
+
+msgid "Residence"
+msgstr ""
+
+msgid "Restore"
+msgstr ""
+
+msgid "Revisions"
+msgstr ""
+
+msgid "Servererror"
+msgstr ""
+
+msgid "Set redirect to new page"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Short URL"
+msgstr ""
+
+msgid "Show article"
+msgstr ""
+
+msgid "Show profile"
+msgstr ""
+
+msgid "Show unread posts"
+msgstr ""
+
+msgid "Sign in"
+msgstr ""
+
+msgid "Sign up"
+msgstr ""
+
+msgid "Skip to main content"
+msgstr ""
+
+msgid "Solved"
+msgstr ""
+
+msgid "Staff"
+msgstr ""
+
+msgid "State"
+msgstr ""
+
+msgid "Static files"
+msgstr ""
+
+msgid "Static pages"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Sticky:"
+msgstr ""
+
+msgid "Stylesheets"
+msgstr ""
+
+msgid "Subforums"
+msgstr ""
+
+msgid "Submit"
+msgstr ""
+
+msgid "Subscribe"
+msgstr ""
+
+msgid "Subscribe comments"
+msgstr ""
+
+msgid "Subscriptions"
+msgstr ""
+
+msgid "Suggest article"
+msgstr ""
+
+msgid "Suggest blog"
+msgstr ""
+
+msgid "Suggest new article"
+msgstr ""
+
+msgid "Tag Cloud"
+msgstr ""
+
+msgid "Tag List"
+msgstr ""
+
+msgid "Tag cloud"
+msgstr ""
+
+msgid "Team icon"
+msgstr ""
+
+msgid "Teaser"
+msgstr ""
+
+msgid ""
+"The article is already under construction, help improving and finishing it!"
+msgstr ""
+
+#, python-format
+msgid "The article “%(title)s” does not exist yet."
+msgstr ""
+
+msgid "The following pages are referring this article:"
+msgstr ""
+
+msgid "The following pages have similar names:"
+msgstr ""
+
+msgid "The topic is locked"
+msgstr ""
+
+msgid "The two revisions are identical."
+msgstr ""
+
+msgid "There are currently no article suggestions."
+msgstr ""
+
+msgid "There are no news at the moment."
+msgstr ""
+
+msgid "There are no reports yet."
+msgstr ""
+
+msgid "There are no tags in the wiki, yet."
+msgstr ""
+
+msgid "There are no upcoming events."
+msgstr ""
+
+msgid "There haven't been any attachments for this site uploaded yet."
+msgstr ""
+
+msgid "There is no article."
+msgstr ""
+
+msgid "This article is not visible for regular users"
+msgstr ""
+
+msgid "This may be because you are not logged in."
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Topics"
+msgstr ""
+
+msgid "Unpublish"
+msgstr ""
+
+msgid "Unsolved"
+msgstr ""
+
+msgid "Unsubscribe"
+msgstr ""
+
+msgid "Unsubscribe comments"
+msgstr ""
+
+msgid "Upload attachments"
+msgstr ""
+
+msgid "Upload new icon"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+msgid "View public profile"
+msgstr ""
+
+msgid "View settings"
+msgstr ""
+
+msgid "Watch"
+msgstr ""
+
+msgid "Website"
+msgstr ""
+
+msgid "Who is online?"
+msgstr ""
+
+msgid "Wiki"
+msgstr ""
+
+#, python-format
+msgid "Wiki articles tagged with “%(tag)s”"
+msgstr ""
+
+msgid "With this form you can suggest a new blog for the planet."
+msgstr ""
+
+msgid "Write new Comment"
+msgstr ""
+
+msgid "You can choose a topic as the discussion topic of this article."
+msgstr ""
+
+msgid "You did not yet subscribed to any topics or articles."
+msgstr ""
+
+msgid "You do not have permissions to access this page."
+msgstr ""
+
+msgid "You have forgotten your password? You can obtain a new one here"
+msgstr ""
+
+msgid "actions"
+msgstr ""
+
+msgid "author"
+msgstr ""
+
+msgid "code changes"
+msgstr ""
+
+msgid "create"
+msgstr ""
+
+msgid "dead link"
+msgstr ""
+
+msgid "edit summary"
+msgstr ""
+
+msgid "found in"
+msgstr ""
+
+msgid "new"
+msgstr ""
+
+msgid "new blog"
+msgstr ""
+
+msgid "new line"
+msgstr ""
+
+msgid "old"
+msgstr ""
+
+msgid "old line"
+msgstr ""
+
+msgid "page"
+msgid_plural "pages"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "show posts"
+msgstr ""
+
+msgid "« Previous"
+msgstr ""
+
+#, python-format
+msgid "“%(tag)s”"
+msgstr ""

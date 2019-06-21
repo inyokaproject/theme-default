@@ -4,7 +4,7 @@
 
   The base layout for all wiki-pages.
 
-  :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+  :copyright: (c) 2013-2019 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 
@@ -23,15 +23,15 @@
   {{ macros.breadcrumb_item(_('Wiki'), href('wiki')) }}
 
   {% if page %}
+    {% set part_list = [] %}
     {% for part in page.title.split('/') %}
       {% if loop.first %}
-        {% set link = href('wiki', part) %}
+        {% do part_list.append(href('wiki', part)[:-1]) %}
       {% else %}
-        {% set seperator = '/' if link[-1] != '/' else '' %}
-        {% set link = link + seperator + part %}
+        {% do part_list.append(part) %}
       {% endif %}
 
-      {{ macros.breadcrumb_item(part, link) }}
+    {{ macros.breadcrumb_item(part, part_list|join('/') + '/') }}
     {% endfor %}
   {% endif %}
 {% endblock %}
@@ -40,7 +40,7 @@
 {% block sidebar %}
   {{ super() }}
 
-  {% if not USER.is_anonymous %}
+  {% if not USER.is_anonymous() %}
     {% call macros.sidebar() %}
       {{ macros.sidebar_item(_('Create new wikipage'), href('wiki', 'wiki', 'create')) }}
     {% endcall %}
@@ -48,7 +48,7 @@
 
   {% call macros.sidebar(_('Overview')) %}
     {{ macros.sidebar_item(_('Tag cloud'), href('wiki', 'wiki', 'tagcloud'), 'fa_icon-tags') }}
-    {% if not USER.is_anonymous %}
+    {% if not USER.is_anonymous() %}
       {{ macros.sidebar_item(_('Missing pages'), href('wiki', 'wiki', 'missingpages'), 'fa_icon-puzzle-piece') }}
     {% endif %}
     {{ macros.sidebar_item(_('Recent changes'), href('wiki', 'wiki', 'recentchanges'), 'fa_icon-area-chart') }}

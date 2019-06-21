@@ -4,7 +4,7 @@
 
   This page shows some of the latest news entries.
 
-  :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+  :copyright: (c) 2013-2019 by the Inyoka Team, see AUTHORS for more details.
   :license: BSD, see LICENSE for more details.
 #}
 {% extends 'ikhaya/base.html' %}
@@ -39,8 +39,10 @@
   {{ super() }}
 
   {% call macros.sidebar() %}
-    {{ macros.sidebar_item(_('Suggest article'), href('ikhaya', 'suggest', 'new'),
-                            'fa_icon-file-text') }}
+    {% if USER.has_perm('ikhaya.suggest_article') %}
+      {{ macros.sidebar_item(_('Suggest article'), href('ikhaya', 'suggest', 'new'),
+                              'fa_icon-file-text') }}
+    {% endif %}
   {% endcall %}
 
   {% call macros.sidebar(_('Categories')) %}

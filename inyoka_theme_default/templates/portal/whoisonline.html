@@ -1,0 +1,67 @@
+{#
+    portal/whoisonline.html
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    Shows a list of active users.
+
+    :copyright: (c) 2013-2019 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/base.html' %}
+
+{% block title %}
+  {% trans %}Who is online?{% endtrans%} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Who is online?'), href('portal', 'whoisonline')) }}
+{% endblock %}
+
+{% block content %}
+  <h2>{% trans %}Who is online?{% endtrans %}</h2>
+  <ul>
+    <li>
+    {% trans n=sessions.all %}{{ n }} User online{% pluralize %}{{ n }} Users online{% endtrans %}
+    </li>
+
+    <li>
+    {% trans guests=sessions.anonymous %}{{ guests }} Guest{% pluralize %}{{ guests }} Guests{% endtrans %}
+    </li>
+
+    <li>
+    {% trans registered=sessions.registered %}{{ registered }} Registered user:{% pluralize %}{{ registered }} Registered users:{% endtrans %}
+
+    {% for session in sessions.registered_sessions %}
+      {% if session.link %}
+        <a href="{{ session.link|e }}" class="portal-whoisonline {{ session.type }}">
+          {{ session.text|e -}}
+        </a>
+      {%- else %}
+        <span class="portal-whoisonline {{ session.type }}">
+          {{ session.text|e -}}
+        </span>
+      {%- endif %}
+      {%- if not loop.last %}, {% endif %}
+    {% else %}
+      {% trans %}None{% endtrans %}
+    {% endfor %}
+    <br />
+    {% trans %}Members with green usernames belong to the team.{% endtrans %}
+    </li>
+
+  </ul>
+
+  <p>
+    {% trans time=record_time|datetime %}
+      Most users ever online was {{ record }} on {{ time }}.
+    {% endtrans %}
+  </p>
+
+  <p>
+    {% trans %}
+      In total there are {{ global_registered_users }} users registered.
+    {% endtrans %}
+  </p>
+{% endblock %}

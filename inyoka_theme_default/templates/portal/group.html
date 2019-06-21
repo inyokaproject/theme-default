@@ -1,0 +1,61 @@
+{#
+    portal/group.html
+    ~~~~~~~~~~~~~~~~~
+
+    This page shows details about a group.
+
+    :copyright: (c) 2013-2019 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/grouplist.html' %}
+
+{% block title %}
+   {{ group.name }} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(group.name, group|url) }}
+{% endblock %}
+
+{% block sidebar %}
+  {% call macros.sidebar_admin(group.name) %}
+    {{ macros.sidebar_item(_('Edit'), group|url('edit'), 'fa_icon-pencil') }}
+  {% endcall %}
+
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+  {% set rendered_pagination = macros.render_pagination(pagination) %}
+
+  <h2>{{ group.name|e }}</h2>
+  <p>
+    {% trans count=user_count, name=group.name|e %}
+      The group “{{ name }}” has {{ count }} member:
+    {% pluralize %}
+      The group “{{ name }}” has {{ count }} members:
+    {% endtrans %}
+  </p>
+  <div class="portal-group-members">
+    <table>
+      <tr>
+        <th>{{ table.get_html('id', '#') }}</th>
+        <th>{{ table.get_html('username', _('Username')) }}</th>
+        <th>{{ table.get_html('location', _('Residence')) }}</th>
+        <th>{{ table.get_html('date_joined', _('Member since')) }}</th>
+      </tr>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ macros.render_user_link(user) }}</td>
+          <td>{{ user.location }}</td>
+          <td>{{ user.date_joined|datetime }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  {{ rendered_pagination }}
+{% endblock %}

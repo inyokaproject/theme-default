@@ -1,0 +1,93 @@
+{#
+    forum/reportlist.html
+    ~~~~~~~~~~~~~~~~~~~~~
+
+    The moderators can see all reported topics on this page.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'forum/base.html' %}
+
+{% block title %}
+  {% trans %}Reported topics{% endtrans %} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Reported topics'), href('forum', 'reported_topics')) }}
+{% endblock %}
+
+{% block sidebar %}
+  {{ super() }}
+
+  {% call macros.sidebar() %}
+    {% if subscribed %}
+      {{ macros.sidebar_item(_('Unsubscribe from topic reports'), href('forum', 'reported_topics', 'unsubscribe'), 'fa_icon-bell-slash') }}
+    {% else %}
+      {{ macros.sidebar_item(_('Subscribe to topic reports'), href('forum', 'reported_topics', 'subscribe'), 'fa_icon-bell') }}
+    {% endif %}
+  {% endcall %}
+{% endblock %}
+
+{% block content %}
+  {% call macros.outer_form(csrf_token(), form, submit_label=_('Close selected tickets'), manually_rendered=True) %}
+    <div class="forum-reportlist">
+      <table>
+        <thead>
+          <tr>
+            <th>{% trans %}#{% endtrans %}</th>
+            <th>{% trans %}Topic{% endtrans %}</th>
+            <th>{% trans %}Reported by{% endtrans %}</th>
+            <th>{% trans %}Assigned to{% endtrans %}</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for topic in topics %}
+            <tr class="forum-reportlist-head">
+              <td>
+                <input type="checkbox" name="selected" value="{{ topic.id }}" />
+              </td>
+              <td>
+                <a href="{{ topic|url }}">{{ topic.title|e }}</a> ({{ topic.forum.name|e}})
+              </td>
+              <td>
+                <a href="{{ topic.reporter|url }}">{{ topic.reporter.username }}</a>
+              </td>
+              <td>
+                {% if topic.report_claimed_by %}
+                  {% if topic.report_claimed_by.username == USER.username %}
+                    <a href="{{ href('forum', 'reported_topics', unassign=USER, topic=topic.slug) }}">
+                      {% trans %}Unassign me{% endtrans %}
+                    </a>
+                  {% else %}
+                    <a href="{{ topic.report_claimed_by|url }}">
+                      {{ topic.report_claimed_by.username }}
+                    </a>
+                  {% endif %}
+                {% else %}
+                  <a href="{{ href('forum', 'reported_topics', assign=USER, topic=topic.slug) }}">
+                    {% trans %}Assign to me{% endtrans %}
+                  </a>
+                {% endif %}
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="4" class="forum-reportlist-content">
+                {{ topic.reported_rendered }}
+              </td>
+            </tr>
+          {% else %}
+            <tr><td colspan="4">
+                {% trans %}Currently there are no reported topics.{% endtrans %}
+            </td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endcall %}
+{% endblock %}

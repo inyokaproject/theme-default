@@ -20,32 +20,59 @@
   {{ forum }} - {{ super() }}
 {% endblock title %}
 
-{% import 'macros.html' as macros %}
-{% set rendered_pagination = macros.render_pagination(pagination) %}
-
 {% block breadcrumb %}
   {{ super() }}
 
-  {% if forum.parent.parent %}
-    {{ macros.breadcrumb_item(forum.parent, forum.parent|url) }}
-  {% endif %}
-  {{ macros.breadcrumb_item(forum) }}
+  {% for parent in forum.parents|reverse %}
+    {{ macros.breadcrumb_item(parent.name, parent|url) }}
+  {% endfor %}
+
+  {{ macros.breadcrumb_item(forum, forum|url) }}
 {% endblock %}
 
 {% block sidebar %}
-  {% call macros.sidebar() %}
-    {% if is_subscribed %}
-      {{ macros.sidebar_item(_('Unsubscribe'), forum|url('unsubscribe')) }}
-    {% else %}
-      {{ macros.sidebar_item(_('Subscribe'), forum|url('subscribe')) }}
+  {% if USER.is_authenticated() %}
+    {% call macros.sidebar() %}
+      {% if is_subscribed %}
+        {{ macros.sidebar_item(_('Unsubscribe'), forum|url('unsubscribe')) }}
+      {% else %}
+        {{ macros.sidebar_item(_('Subscribe'), forum|url('subscribe')) }}
+      {% endif %}
+
+      {% if can_create %}
+        {{ macros.sidebar_item(_('New topic'), forum|url('newtopic')) }}
+      {% endif %}
+
+      {{ macros.sidebar_item(_('Mark as read'), forum|url('markread')) }}
+    {% endcall %}
+  {% endif %}
+
+  {% call macros.sidebar(_('Filter (just this forum)')) %}
+    {% if USER.is_authenticated() %}
+      {{ macros.sidebar_item(_('Involved topics'), href('forum', 'egosearch', forum.slug|e)) }}
+      {{ macros.sidebar_item(_('My posts'), href('forum', 'author', USER.username|e, 'forum', forum.slug|e)) }}
+      {{ macros.sidebar_item(_('Created topics'), href('forum', 'topic_author', USER.username)|e, forum.slug|e) }}
     {% endif %}
-    {{ macros.sidebar_item(_('New topic'), forum|url('newtopic')) }}
-    {{ macros.sidebar_item(_('Mark as read'), forum|url('markread')) }}
+
+    {{ macros.sidebar_item(_('New posts'), href('forum', 'newposts', forum.slug|e)) }}
+    {{ macros.sidebar_item(_('Unanswered topics'), href('forum', 'unanswered', forum.slug|e)) }}
+    {{ macros.sidebar_item(_('Unsolved topics'), href('forum', 'unsolved', forum.slug|e)) }}
+    {{ macros.sidebar_item(_('24 hours'), href('forum', 'last24', forum.slug|e)) }}
+    {{ macros.sidebar_item(_('12 hours'), href('forum', 'last12', forum.slug|e)) }}
+    {{ macros.sidebar_item(_('6 hours'), href('forum', 'last6', forum.slug|e)) }}
   {% endcall %}
+
+  {% if USER.has_perm('forum.change_forum') %}
+    {% call macros.sidebar_admin() %}
+      {{ macros.sidebar_item(_('Edit forum'), forum|url('edit')) }}
+    {% endcall %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
+  {% set rendered_pagination = macros.render_pagination(pagination) %}
   {{ rendered_pagination }}
+
   {% if subforums %}
     <div class="forum-list">
       <div class="forum-list-heading">
@@ -55,65 +82,27 @@
           </a>
         </h1>
       </div>
+
       <ul class="collapse in" id="subforums">
         {% for forum in subforums %}
           <a href="{{ forum|url }}" class="forum-list-item">
-            <h4>{{ forum }}</h4>
+            <h2>{{ forum }}</h2>
             <p>{{ forum.description }}</p>
           </a>
         {% endfor %}
       </ul>
     </div>
   {% endif %}
+
   <div class="forum-topic-list">
     <div class="forum-topic-list-heading">
-      <h3>
+      <h1>
         {% trans %}Topics{% endtrans %}
-      </h3>
+      </h1>
     </div>
-    <ul>
-      {% for topic in topics %}
-        <li class="forum-topic-list-item" title="{{ topic.first_post.text|truncate(500)|e }}" data-toggle="tooltip"
-            data-trigger="manual">
-          <div class="row">
-            <div class="col-sm-8">
-              {% if topic.sticky %}<strong>{% trans %}Sticky:{% endtrans %}</strong>{% endif %}
-              {% if topic.has_poll %}<strong>{% trans %}Poll:{% endtrans %}</strong>{% endif %}
-              <a href="{{ topic|url }}">{{ topic }}</a><br />
-              <small class="text-muted">
-                {% trans %}
-                  Created on:
-                {% endtrans %}
-                <time
-                    datetime="{{ topic.first_post.pub_date|datetime('c') }}">{{ topic.first_post.pub_date|datetime }}</time>
-              </small>
-            </div>
-            <div class="col-sm-4 hidden-xs">
-              <a href="{{ topic.last_post|url }}" class="pull-right">
-                <time
-                    datetime="{{ topic.last_post.pub_date|datetime('c') }}">{{ topic.last_post.pub_date|datetime }}</time>
-              </a><br />
-              <small class="text-muted pull-right">
-                {% trans author=topic.last_post.author|e, link=topic.last_post.author|url %}
-                  Last post by <a href="{{ link }}">{{ author }}</a>
-                {% endtrans %}
-              </small>
-            </div>
-            <div class="col-sm-4 visible-xs">
-              <small class="text-muted">
-                {% trans %}
-                  Last post:
-                {% endtrans %}
-                <a href="{{ topic.last_post|url }}">
-                  <time
-                      datetime="{{ topic.last_post.pub_date|datetime('c') }}">{{ topic.last_post.pub_date|datetime }}</time>
-                </a>
-              </small>
-            </div>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
+
+    {% include 'forum/topiclist-ul-body.html' %}
   </div>
+
   {{ rendered_pagination }}
 {% endblock %}

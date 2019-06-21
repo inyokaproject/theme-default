@@ -1,0 +1,27 @@
+{#
+    forum/post_delete.html
+    ~~~~~~~~~~~~~~~~~~~~~~
+
+    This template is flashed to ensure that the user wants to delete the selected post.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% import macros.html as macros %}
+
+{% set submit_label = _('Delete') if action=='delete' else _('Hide') %}
+
+{% call macros.outer_form(csrf_token(), action=post|url(action)|e, submit_label=submit_label) %}
+  {% if action == 'delete' %}
+    {% trans link=post|url('show')|e, author=post.author.username|e %}
+      Do you want to delete the <a href="{{ link }}">post from {{ author }}</a>?
+    {% endtrans %}
+  {% else %}
+    {% trans link=post|url('show')|e, author=post.author.username|e %}
+      Do you want to hide the <a href="{{ link }}">post from {{ author }}</a>?
+    {% endtrans %}
+  {% endif %}
+
+  <input type="submit" name="cancel" value="{% trans %}Cancel{% endtrans %}" />
+{% endcall %}

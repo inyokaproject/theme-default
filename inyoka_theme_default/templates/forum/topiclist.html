@@ -1,0 +1,39 @@
+{#
+    forum/topiclist.html
+    ~~~~~~~~~~~~~~~~~~~
+
+    Show a list of all recent posts.
+
+    :copyright: (c) 2013-2016 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'forum/base.html' %}
+
+{% block title %}
+  {{ title }} – {{ super() }}
+{% endblock %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(title) }}
+
+{% endblock %}
+
+{% block content %}
+  {% set rendered_pagination = macros.render_pagination(pagination) %}
+  {{ rendered_pagination }}
+
+  <div class="forum-topic-list">
+    <div class="forum-topic-list-heading">
+      <h1>
+        {{ title }}
+      </h1>
+    </div>
+
+    {% set show_forum = True %}
+    {% include 'forum/topiclist-ul-body.html' %}
+  </div>
+
+  {{ rendered_pagination }}
+{% endblock %}

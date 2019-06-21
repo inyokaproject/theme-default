@@ -1,0 +1,71 @@
+{% call macros.outer_form(csrf_token(), manually_rendered=True, button_visible=False) %}
+  {% for poll in polls %}
+    <h2> {% trans %}Poll: {% endtrans %}{{ poll.question|e }}</h2>
+
+    <table class="poll">
+      {% for option in poll.options.all() %}
+        <tr>
+          <td>
+            {% if poll.can_vote and can_vote and not show_vote_results %}
+              <input type="{{ poll.multiple_votes and 'checkbox' or 'radio' }}"
+                     name="poll_{{ poll.id }}" id="option_{{ option.id }}"
+                     value="{{ option.id }}" />
+              <label for="option_{{ option.id }}">{{ option.name|e }}</label>
+            {% else %}
+              {{ option.name|e }}
+            {% endif %}
+          </td>
+          {% if not (poll.can_vote and can_vote) or show_vote_results %}
+            <td>
+              <meter min="0" max="100" value="{{ option.percentage }}" title="%">{{ option.percentage }}</meter>
+            </td>
+            {% set bc, ac = (option.percentage|string).split('.') %}
+            <td class="percentage">
+              {{ bc }}{% if ac|int %}.{{ ac[:2] }}{% endif %}%
+            </td>
+            <td class="votes">
+              [ {{ option.votes }} ]
+            </td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </table>
+
+    <div>
+      {% if poll.ended %}
+        {% trans start_date=poll.start_time|datetime, end_date=poll.end_time|datetime %}
+          The poll was started on {{ start_date }} and it ended on {{ end_date }}.
+        {% endtrans %}
+      {% elif poll.end_time %}
+        {% trans start_date=poll.start_time|datetime, end_date=poll.end_time|datetime %}
+          The poll was started on {{ start_date }} and it will end on {{ end_date }}.
+        {% endtrans %}
+      {% endif %}
+    </div>
+
+    {% trans count=poll.votes %}
+      {{ count }} vote
+    {% pluralize %}
+      {{ count }} votes
+    {% endtrans %}
+
+    {% if poll.multiple_votes %},
+      {% trans count=poll.votings.count() %}
+        {{ count }} voter
+      {% pluralize %}
+        {{ count }} voters
+      {% endtrans %}
+    {% endif %}
+  {% endfor %}
+
+  {% if can_vote and not voted_all %}
+    <p>
+      {% if show_vote_results %}
+        <a href="?">{% trans %}Hide results{% endtrans %}</a>
+      {% else %}
+        <input type="submit" name="vote" value="{% trans %}Vote{% endtrans %}" />
+        <a href="?action=vote_results">{% trans %}Show results{% endtrans %}</a>
+      {% endif %}
+    </p>
+  {% endif %}
+{% endcall %}

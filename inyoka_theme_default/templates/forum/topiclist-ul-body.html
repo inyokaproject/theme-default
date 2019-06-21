@@ -1,0 +1,59 @@
+<ul>
+  {% for topic in topics if (not topic.hidden or can_moderate) %}
+    <li class="forum-topic-list-item {% if show_forum %}with-forum{% endif %}">
+      <div class="row">
+        <a href="{{ topic|url }}" class="forum-topic-list-link">
+          {% if topic.sticky %}<strong>{% trans %}Sticky:{% endtrans %}</strong>{% endif %}
+          {% if topic.has_poll %}<strong>{% trans %}Poll:{% endtrans %}</strong>{% endif %}
+          {{ topic }}
+
+          <div class="forum-topic-list-created">
+            {% trans %}
+              Created on:
+            {% endtrans %}
+            <time datetime="{{ topic.first_post.pub_date|datetime('c') }}">
+              {{ topic.first_post.pub_date|datetime }}
+            </time>
+          </div>
+        </a>
+
+        {% if show_forum %}
+          <div class="forum-topic-list-location">
+            {% trans %}in{% endtrans %} <a href="{{ topic.forum|url }}">{{ topic.forum.name|e }}</a>
+
+          {% trans author=topic.author.username|e, link=topic.author|url %}
+            by <a href="{{ link }}">{{ author }}</a>
+          {% endtrans %}
+          </div>
+        {% endif %}
+
+        <div class="forum-topic-list-last-post">
+          {% trans %}
+            Last post:
+          {% endtrans %}
+          <a href="{{ topic.last_post|url }}">
+            <time datetime="{{ topic.last_post.pub_date|datetime('c') }}">
+              {{ topic.last_post.pub_date|datetime }}
+            </time>
+          </a>
+          {% trans author=topic.last_post.author|e, link=topic.last_post.author|url %}
+            by <a href="{{ link }}">{{ author }}</a>
+          {% endtrans %}
+        </div>
+      </div>
+    </li>
+  {% else %}
+    <li class="forum-topic-list-item {% if show_forum %}with-forum{% endif %}">
+      <div class="row">
+        {% trans %}
+          There are no topics.
+        {% endtrans %}
+        {% if not show_forum %}
+          {% trans link=forum|url('newtopic') %}
+            <a href="{{ link }}">Create</a> the first one now!
+          {% endtrans %}
+        {% endif %}
+      </div>
+    </li>
+  {% endfor %}
+</ul>

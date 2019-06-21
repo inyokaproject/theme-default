@@ -17,22 +17,58 @@
   (_('Forum - Full post'), href('forum', 'feeds/full/20'))
 ] %}
 
+{% block sidebar %}
+  {% call macros.sidebar() %}
+    {{ macros.sidebar_item(_('Mark all forums as read'), href('forum', 'markread')) }}
+  {% endcall %}
+
+  {% call macros.sidebar(_('Filter')) %}
+    {% if USER.is_authenticated() %}
+      {{ macros.sidebar_item(_('Involved topics'), href('forum', 'egosearch')) }}
+      {{ macros.sidebar_item(_('My posts'), href('forum', 'author', USER.username|e)) }}
+      {{ macros.sidebar_item(_('Created topics'), href('forum', 'topic_author', USER.username)|e) }}
+    {% endif %}
+
+    {{ macros.sidebar_item(_('New posts'), href('forum', 'newposts')) }}
+    {{ macros.sidebar_item(_('Unanswered topics'), href('forum', 'unanswered')) }}
+    {{ macros.sidebar_item(_('Unsolved topics'), href('forum', 'unsolved')) }}
+    {{ macros.sidebar_item(_('24 hours'), href('forum', 'last24')) }}
+    {{ macros.sidebar_item(_('12 hours'), href('forum', 'last12')) }}
+    {{ macros.sidebar_item(_('6 hours'), href('forum', 'last6')) }}
+  {% endcall %}
+
+  {% if USER.has_perm('forum.change_forum') %}
+    {% call macros.sidebar_admin() %}
+      {{ macros.sidebar_item(_('New Category'), href('forum', 'forum', 'new')) }}
+    {% endcall %}
+  {% endif %}
+{% endblock %}
+
 {% block content %}
   {% for category, forums in forum_hierarchy %}
     <div class="forum-list">
       <div class="forum-list-heading">
-        <h3>
-          <a href="#" data-toggle="collapse" data-target="#category_{{ category.id }}">
+        <h1>
+          <a class="forum-list-heading-category" href="#" data-toggle="collapse" data-target="#category_{{ category.id }}">
             {{ category }}
           </a>
-        </h3>
+
+          {% if USER.has_perm('forum.change_forum') %}
+            <a class="forum-list-edit-category" href="{{ category|url('edit') }}">
+              <span class="fa_icon-pencil-square-o"></span>
+            </a>
+          {% endif %}
+        </h1>
       </div>
+
       <ul class="collapse {% if category.id not in hidden_categories %}in{% endif %}" id="category_{{ category.id }}">
         {% for forum, subforums in forums %}
           <a href="{{ forum|url }}" class="forum-list-item">
-            <h4>{{ forum }}</h4>
+            <h2>{{ forum }}</h2>
             <p>{{ forum.description }}</p>
           </a>
+        {% else %}
+          <p>{% trans %}This category does not contain any forum.{% endtrans %}</p>
         {% endfor %}
       </ul>
     </div>

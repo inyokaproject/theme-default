@@ -17,10 +17,14 @@
       &:extend(.panel-heading);
       &:extend(.panel-default > .panel-heading);
 
-      & > h3 {
+      & > h1 {
         &:extend(.panel-title all);
 
         font-size: @font-size-h3;
+      }
+
+      &-category {
+        padding-right: @font-size-h3;
       }
     }
     & > ul {
@@ -31,12 +35,17 @@
       &:extend(.list-group-item all);
       &:extend(.panel > .list-group .list-group-item all);
 
-      & > h4 {
+      & > h2 {
         &:extend(list-group-item-heading all);
+
+        font-size: @font-size-h4;
       }
       & > p {
         &:extend(list-group-item-text all);
       }
+    }
+    &-edit-category {
+      &:extend(.pull-right);
     }
   }
 
@@ -48,14 +57,49 @@
       &:extend(.panel-heading);
       &:extend(.panel-default > .panel-heading);
 
-      & > h3 {
+      & > h1 {
         &:extend(.panel-title);
+        font-size: @font-size-h3;
       }
     }
     & > ul {
       &:extend(.list-group);
       &:extend(.panel > .list-group);
     }
+    &-created {
+      &:extend(.text-muted);
+    }
+    &-last-post {
+      &:extend(.text-muted);
+      .make-sm-column(4);
+      .make-xs-column(12);
+    }
+    &-link {
+      .make-sm-column(8);
+      .make-xs-column(12);
+    }
+
+    &-post {
+      .make-sm-column(4);
+      .make-xs-column(12);
+    }
+    &-topic {
+      .make-sm-column(4);
+      .make-xs-column(12);
+
+      &-all-posts a {
+        &:extend(.text-muted);
+      }
+    }
+    &-forum {
+      .make-sm-column(4);
+      .make-xs-column(12);
+
+      &-all-posts a {
+        &:extend(.text-muted);
+      }
+    }
+
     &-item {
       &:extend(.list-group-item);
       &:extend(.panel > .list-group .list-group-item);
@@ -66,6 +110,25 @@
       &:last-child {
         &:extend(.list-group-item:last-child);
         &:extend(.panel > .list-group:last-child .list-group-item:last-child);
+      }
+
+      &.with-forum {
+        .forum-topic-list {
+          &-last-post {
+            &:extend(.text-muted);
+            .make-sm-column(3);
+            .make-xs-column(12);
+          }
+          &-location {
+            &:extend(.text-muted);
+            .make-sm-column(3);
+            .make-xs-column(12);
+          }
+          &-link {
+            .make-sm-column(6);
+            .make-xs-column(12);
+          }
+        }
       }
     }
   }
@@ -85,8 +148,18 @@
       &:extend(.panel-heading);
       &:extend(.panel-default > .panel-heading);
     }
-    & > &-body {
+    &:target > &-heading {
+      background-color: @active-target-bg;
+    }
+    &-body {
       &:extend(.panel-body);
+
+      &-signature {
+        border-top: 1px solid lighten(@post-signature, 30%);
+        color: @post-signature;
+        padding-top: 1em;
+        margin-top: 2em;
+      }
     }
     & > &-footer {
       &:extend(.panel-footer);
@@ -96,5 +169,26 @@
   & &-no-forum {
     &:extend(.bg-warning all);
     padding: 1em;
+  }
+
+  &-reportlist {
+    .table-responsive();
+
+    > table {
+      td {
+        padding: @table-cell-padding;
+      }
+
+      tbody tr:nth-of-type(2n) {
+        border-bottom: 1px solid @table-border-color;
+      }
+
+      thead {
+        border-bottom: 2px solid @table-border-color;
+      }
+    }
+    &-content {
+      white-space: pre-wrap;
+    }
   }
 }

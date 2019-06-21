@@ -1,0 +1,37 @@
+{#
+    portal/static_page.html
+    ~~~~~~~~~~~~~~~~~~~~~~~
+
+    Used for static pages (imprint, licence etc.)
+
+    :copyright: (c) 2013-2017 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+{% extends 'portal/base.html' %}
+
+{% block title %}
+  {{ title|e }} – {{ super() }}
+{% endblock title %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {% if USER.has_perm('portal.change_staticpage') %}
+    {{ macros.breadcrumb_item(_('Static pages'), href('portal', 'pages')) }}
+  {% endif %}
+  {{ macros.breadcrumb_item(title|e, href('portal', key)) }}
+{% endblock %}
+
+{% block sidebar %}
+  {% if USER.has_perm('portal.change_staticpage') %}
+    {% call macros.sidebar_admin() %}
+      {{ macros.sidebar_item(_('Delete'), page|url('delete'), 'fa_icon-trash') }}
+      {{ macros.sidebar_item(_('Edit'), page|url('edit'), 'fa_icon-pencil') }}
+    {% endcall %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h1>{{ title|e }}</h1>
+  {{ content }}
+{% endblock %}
